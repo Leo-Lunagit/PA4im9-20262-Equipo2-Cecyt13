@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PA4IM9_20262_Equipo2
 {
-    public partial class Form1 : Form
+    public partial class PanelAcceso : Form
     {
-        public Form1()
+        public PanelAcceso()
         {
             InitializeComponent();
         }
