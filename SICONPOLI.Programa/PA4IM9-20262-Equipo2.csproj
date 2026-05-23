@@ -46,6 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entidades\LabelVertical.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Modulos\Sistema.cs" />
     <Compile Include="Vistas\Panel de Acceso\PanelAcceso.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +82,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Datos\Usuarios.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
