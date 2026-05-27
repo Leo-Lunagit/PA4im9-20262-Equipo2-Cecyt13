@@ -11,8 +11,11 @@ namespace PA4IM9_20262_Equipo2.Modulos
 {
     internal static class Sistema
     {
+        // Mediante esos codigos se obtiene la ruta de archivos donde se esta ejecutando el programa.
         public static string rutaEjecusion = AppDomain.CurrentDomain.BaseDirectory;
+        // Fusiona la ruta de ejecucion con una ruta nueva, regresa dos carpetas a la carpeta donde tenemos todo el codigo, se dirije a la carpeta de "Datos" y al arhivo.
         public static string rutaUsuarios = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Usuarios.xml");
+        public static string raizUsuarios = "usuarios"; // Elemento raiz del archivo.
         
         // Verificacion de la existencia de un archivo XML.
         public static void VerificarArchivo(string ruta, string nombreRaiz)
@@ -50,7 +53,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
 
         public static void CargarArchivos()
         {
-            VerificarArchivo(rutaUsuarios, "usuarios");
+            VerificarArchivo(rutaUsuarios, raizUsuarios);
         }
     }
 }
