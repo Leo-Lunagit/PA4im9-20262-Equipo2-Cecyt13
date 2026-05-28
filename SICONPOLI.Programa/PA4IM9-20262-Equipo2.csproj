@@ -52,6 +52,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Entidades\Perfil.cs" />
+    <Compile Include="Modulos\ConvertidorXml.cs" />
     <Compile Include="Modulos\Sistema.cs" />
     <Compile Include="Vistas\Panel de Acceso\PanelAcceso.cs">
       <SubType>Form</SubType>
