@@ -32,7 +32,7 @@
             this.lblTitulo = new System.Windows.Forms.Label();
             this.btnAcerca = new System.Windows.Forms.Label();
             this.btnPriva = new System.Windows.Forms.Label();
-            this.btnRegistrar = new System.Windows.Forms.Label();
+            this.btnAlternar = new System.Windows.Forms.Label();
             this.btnAcceder = new System.Windows.Forms.Button();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.txtContrasenia = new System.Windows.Forms.TextBox();
@@ -40,35 +40,40 @@
             this.separador2 = new System.Windows.Forms.Label();
             this.btnRecuperar = new System.Windows.Forms.Label();
             this.grpInicioS = new System.Windows.Forms.GroupBox();
-            this.chkBoxRecordar = new System.Windows.Forms.CheckBox();
+            this.lblMensajes = new System.Windows.Forms.Label();
+            this.txtCorreo = new System.Windows.Forms.TextBox();
+            this.txtEdad = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
+            this.txtConfirmarContra = new System.Windows.Forms.TextBox();
+            this.chkBoxRecordar = new System.Windows.Forms.CheckBox();
             this.panInstitucion = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblLaTecnica = new System.Windows.Forms.Label();
+            this.lblCecyt = new System.Windows.Forms.Label();
+            this.lblIPN = new System.Windows.Forms.Label();
+            this.lblRFM = new System.Windows.Forms.Label();
             this.linea1 = new System.Windows.Forms.Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.LogoIPN = new System.Windows.Forms.PictureBox();
+            this.LogoAniIPN = new System.Windows.Forms.PictureBox();
+            this.LogoAniCecyt = new System.Windows.Forms.PictureBox();
             this.logoCecyt = new System.Windows.Forms.PictureBox();
             this.panAcceso = new System.Windows.Forms.Panel();
             this.panMarca = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.txtConfirmarContra = new System.Windows.Forms.TextBox();
-            this.txtEdad = new System.Windows.Forms.TextBox();
-            this.txtCorreo = new System.Windows.Forms.TextBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.linea2 = new System.Windows.Forms.Panel();
+            this.iconoContrasenia = new System.Windows.Forms.PictureBox();
+            this.iconoConfirmarContra = new System.Windows.Forms.PictureBox();
             this.grpInicioS.SuspendLayout();
             this.panInstitucion.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LogoIPN)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LogoAniIPN)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LogoAniCecyt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoCecyt)).BeginInit();
             this.panAcceso.SuspendLayout();
             this.panMarca.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconoContrasenia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconoConfirmarContra)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -111,56 +116,62 @@
             this.btnPriva.Text = "Politica de Privacidad";
             this.btnPriva.Click += new System.EventHandler(this.btnPriva_Click);
             // 
-            // btnRegistrar
+            // btnAlternar
             // 
-            this.btnRegistrar.AutoSize = true;
-            this.btnRegistrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRegistrar.Font = new System.Drawing.Font("Dubai", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistrar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
-            this.btnRegistrar.Location = new System.Drawing.Point(233, 10);
-            this.btnRegistrar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(77, 24);
-            this.btnRegistrar.TabIndex = 3;
-            this.btnRegistrar.Text = "Registrarse";
+            this.btnAlternar.AutoSize = true;
+            this.btnAlternar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAlternar.Font = new System.Drawing.Font("Dubai", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlternar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
+            this.btnAlternar.Location = new System.Drawing.Point(233, 10);
+            this.btnAlternar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnAlternar.Name = "btnAlternar";
+            this.btnAlternar.Size = new System.Drawing.Size(77, 24);
+            this.btnAlternar.TabIndex = 3;
+            this.btnAlternar.Text = "Registrarse";
+            this.btnAlternar.Click += new System.EventHandler(this.btnAlternar_Click);
             // 
             // btnAcceder
             // 
+            this.btnAcceder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAcceder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(29)))), ((int)(((byte)(70)))));
             this.btnAcceder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAcceder.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAcceder.ForeColor = System.Drawing.Color.White;
-            this.btnAcceder.Location = new System.Drawing.Point(71, 144);
+            this.btnAcceder.Location = new System.Drawing.Point(71, 156);
             this.btnAcceder.Margin = new System.Windows.Forms.Padding(2);
             this.btnAcceder.Name = "btnAcceder";
             this.btnAcceder.Size = new System.Drawing.Size(157, 32);
             this.btnAcceder.TabIndex = 6;
             this.btnAcceder.Text = "Iniciar Sesión";
             this.btnAcceder.UseVisualStyleBackColor = false;
-            this.btnAcceder.Click += new System.EventHandler(this.btnIniciarS_Click);
+            this.btnAcceder.Click += new System.EventHandler(this.btnAcceder_Click);
             // 
             // txtUsuario
             // 
             this.txtUsuario.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
-            this.txtUsuario.Location = new System.Drawing.Point(38, 41);
+            this.txtUsuario.Location = new System.Drawing.Point(38, 57);
             this.txtUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(212, 25);
             this.txtUsuario.TabIndex = 7;
             this.txtUsuario.Text = "Usuario";
+            this.txtUsuario.Enter += new System.EventHandler(this.txtUsuario_Enter);
+            this.txtUsuario.Leave += new System.EventHandler(this.txtUsuario_Leave);
             // 
             // txtContrasenia
             // 
             this.txtContrasenia.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtContrasenia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
-            this.txtContrasenia.Location = new System.Drawing.Point(38, 78);
+            this.txtContrasenia.Location = new System.Drawing.Point(38, 94);
             this.txtContrasenia.Margin = new System.Windows.Forms.Padding(2);
             this.txtContrasenia.MaxLength = 16;
             this.txtContrasenia.Name = "txtContrasenia";
             this.txtContrasenia.Size = new System.Drawing.Size(212, 25);
             this.txtContrasenia.TabIndex = 8;
             this.txtContrasenia.Text = "Contraseña";
+            this.txtContrasenia.Enter += new System.EventHandler(this.txtContrasenia_Enter);
+            this.txtContrasenia.Leave += new System.EventHandler(this.txtContrasenia_Leave);
             // 
             // separador1
             // 
@@ -184,10 +195,11 @@
             // 
             // btnRecuperar
             // 
+            this.btnRecuperar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRecuperar.AutoSize = true;
             this.btnRecuperar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRecuperar.Font = new System.Drawing.Font("Dubai", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRecuperar.Location = new System.Drawing.Point(75, 178);
+            this.btnRecuperar.Location = new System.Drawing.Point(75, 190);
             this.btnRecuperar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnRecuperar.Name = "btnRecuperar";
             this.btnRecuperar.Size = new System.Drawing.Size(156, 24);
@@ -197,6 +209,9 @@
             // 
             // grpInicioS
             // 
+            this.grpInicioS.Controls.Add(this.iconoConfirmarContra);
+            this.grpInicioS.Controls.Add(this.iconoContrasenia);
+            this.grpInicioS.Controls.Add(this.lblMensajes);
             this.grpInicioS.Controls.Add(this.txtCorreo);
             this.grpInicioS.Controls.Add(this.txtEdad);
             this.grpInicioS.Controls.Add(this.txtNombre);
@@ -209,7 +224,7 @@
             this.grpInicioS.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.grpInicioS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.grpInicioS.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpInicioS.ForeColor = System.Drawing.Color.Black;
+            this.grpInicioS.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(29)))), ((int)(((byte)(70)))));
             this.grpInicioS.Location = new System.Drawing.Point(25, 82);
             this.grpInicioS.Margin = new System.Windows.Forms.Padding(2);
             this.grpInicioS.Name = "grpInicioS";
@@ -219,12 +234,81 @@
             this.grpInicioS.TabStop = false;
             this.grpInicioS.Text = "Inciar seción en SIRETECH Poli";
             // 
+            // lblMensajes
+            // 
+            this.lblMensajes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMensajes.Location = new System.Drawing.Point(22, 32);
+            this.lblMensajes.Name = "lblMensajes";
+            this.lblMensajes.Size = new System.Drawing.Size(251, 16);
+            this.lblMensajes.TabIndex = 19;
+            this.lblMensajes.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // txtCorreo
+            // 
+            this.txtCorreo.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCorreo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
+            this.txtCorreo.Location = new System.Drawing.Point(38, 57);
+            this.txtCorreo.Margin = new System.Windows.Forms.Padding(2);
+            this.txtCorreo.MaxLength = 20;
+            this.txtCorreo.Name = "txtCorreo";
+            this.txtCorreo.Size = new System.Drawing.Size(212, 25);
+            this.txtCorreo.TabIndex = 18;
+            this.txtCorreo.Text = "Email";
+            this.txtCorreo.Visible = false;
+            this.txtCorreo.Enter += new System.EventHandler(this.txtCorreo_Enter);
+            this.txtCorreo.Leave += new System.EventHandler(this.txtCorreo_Leave);
+            // 
+            // txtEdad
+            // 
+            this.txtEdad.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEdad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
+            this.txtEdad.Location = new System.Drawing.Point(38, 94);
+            this.txtEdad.Margin = new System.Windows.Forms.Padding(2);
+            this.txtEdad.MaxLength = 20;
+            this.txtEdad.Name = "txtEdad";
+            this.txtEdad.Size = new System.Drawing.Size(212, 25);
+            this.txtEdad.TabIndex = 17;
+            this.txtEdad.Text = "Edad";
+            this.txtEdad.Visible = false;
+            this.txtEdad.Enter += new System.EventHandler(this.txtEdad_Enter);
+            this.txtEdad.Leave += new System.EventHandler(this.txtEdad_Leave);
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
+            this.txtNombre.Location = new System.Drawing.Point(38, 57);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(212, 25);
+            this.txtNombre.TabIndex = 15;
+            this.txtNombre.Text = "Nombre";
+            this.txtNombre.Visible = false;
+            this.txtNombre.Enter += new System.EventHandler(this.txtNombre_Enter);
+            this.txtNombre.Leave += new System.EventHandler(this.txtNombre_Leave);
+            // 
+            // txtConfirmarContra
+            // 
+            this.txtConfirmarContra.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConfirmarContra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
+            this.txtConfirmarContra.Location = new System.Drawing.Point(38, 94);
+            this.txtConfirmarContra.Margin = new System.Windows.Forms.Padding(2);
+            this.txtConfirmarContra.MaxLength = 20;
+            this.txtConfirmarContra.Name = "txtConfirmarContra";
+            this.txtConfirmarContra.Size = new System.Drawing.Size(212, 25);
+            this.txtConfirmarContra.TabIndex = 16;
+            this.txtConfirmarContra.Text = "Confirmar Contraseña";
+            this.txtConfirmarContra.Visible = false;
+            this.txtConfirmarContra.Enter += new System.EventHandler(this.txtConfirmarContra_Enter);
+            this.txtConfirmarContra.Leave += new System.EventHandler(this.txtConfirmarContra_Leave);
+            // 
             // chkBoxRecordar
             // 
+            this.chkBoxRecordar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkBoxRecordar.AutoSize = true;
             this.chkBoxRecordar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkBoxRecordar.Font = new System.Drawing.Font("Modern No. 20", 12F);
-            this.chkBoxRecordar.Location = new System.Drawing.Point(93, 118);
+            this.chkBoxRecordar.Location = new System.Drawing.Point(93, 134);
             this.chkBoxRecordar.Margin = new System.Windows.Forms.Padding(2);
             this.chkBoxRecordar.Name = "chkBoxRecordar";
             this.chkBoxRecordar.Size = new System.Drawing.Size(106, 22);
@@ -232,29 +316,17 @@
             this.chkBoxRecordar.Text = "Recordarme.";
             this.chkBoxRecordar.UseVisualStyleBackColor = true;
             // 
-            // txtNombre
-            // 
-            this.txtNombre.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
-            this.txtNombre.Location = new System.Drawing.Point(38, 41);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(2);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(212, 25);
-            this.txtNombre.TabIndex = 15;
-            this.txtNombre.Text = "Nombre";
-            this.txtNombre.Visible = false;
-            // 
             // panInstitucion
             // 
             this.panInstitucion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(29)))), ((int)(((byte)(70)))));
-            this.panInstitucion.Controls.Add(this.label3);
-            this.panInstitucion.Controls.Add(this.label1);
-            this.panInstitucion.Controls.Add(this.label4);
-            this.panInstitucion.Controls.Add(this.label2);
+            this.panInstitucion.Controls.Add(this.lblLaTecnica);
+            this.panInstitucion.Controls.Add(this.lblCecyt);
+            this.panInstitucion.Controls.Add(this.lblIPN);
+            this.panInstitucion.Controls.Add(this.lblRFM);
             this.panInstitucion.Controls.Add(this.linea1);
-            this.panInstitucion.Controls.Add(this.pictureBox3);
-            this.panInstitucion.Controls.Add(this.pictureBox2);
-            this.panInstitucion.Controls.Add(this.pictureBox1);
+            this.panInstitucion.Controls.Add(this.LogoIPN);
+            this.panInstitucion.Controls.Add(this.LogoAniIPN);
+            this.panInstitucion.Controls.Add(this.LogoAniCecyt);
             this.panInstitucion.Controls.Add(this.logoCecyt);
             this.panInstitucion.Dock = System.Windows.Forms.DockStyle.Top;
             this.panInstitucion.Location = new System.Drawing.Point(0, 0);
@@ -262,49 +334,49 @@
             this.panInstitucion.Size = new System.Drawing.Size(784, 80);
             this.panInstitucion.TabIndex = 13;
             // 
-            // label3
+            // lblLaTecnica
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(481, 41);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(210, 16);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "\"La Técnica al Servicio de la Patria\"";
+            this.lblLaTecnica.AutoSize = true;
+            this.lblLaTecnica.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLaTecnica.ForeColor = System.Drawing.Color.White;
+            this.lblLaTecnica.Location = new System.Drawing.Point(481, 41);
+            this.lblLaTecnica.Name = "lblLaTecnica";
+            this.lblLaTecnica.Size = new System.Drawing.Size(210, 16);
+            this.lblLaTecnica.TabIndex = 8;
+            this.lblLaTecnica.Text = "\"La Técnica al Servicio de la Patria\"";
             // 
-            // label1
+            // lblCecyt
             // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Tai Le", 10.75F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(102, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(193, 41);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Centro de Estudios Cientificos y Tecnologicos No. 13";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblCecyt.Font = new System.Drawing.Font("Microsoft Tai Le", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblCecyt.ForeColor = System.Drawing.Color.White;
+            this.lblCecyt.Location = new System.Drawing.Point(102, 9);
+            this.lblCecyt.Name = "lblCecyt";
+            this.lblCecyt.Size = new System.Drawing.Size(193, 41);
+            this.lblCecyt.TabIndex = 5;
+            this.lblCecyt.Text = "Centro de Estudios Cientificos y Tecnologicos No. 13";
+            this.lblCecyt.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label4
+            // lblIPN
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Tai Le", 10.75F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(478, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(215, 19);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Instituto Politecnico Nacional";
+            this.lblIPN.AutoSize = true;
+            this.lblIPN.Font = new System.Drawing.Font("Microsoft Tai Le", 10.75F, System.Drawing.FontStyle.Bold);
+            this.lblIPN.ForeColor = System.Drawing.Color.White;
+            this.lblIPN.Location = new System.Drawing.Point(478, 22);
+            this.lblIPN.Name = "lblIPN";
+            this.lblIPN.Size = new System.Drawing.Size(215, 19);
+            this.lblIPN.TabIndex = 7;
+            this.lblIPN.Text = "Instituto Politecnico Nacional";
             // 
-            // label2
+            // lblRFM
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(124, 49);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(147, 16);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "\"Ricardo Flores Magón\"";
+            this.lblRFM.AutoSize = true;
+            this.lblRFM.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRFM.ForeColor = System.Drawing.Color.White;
+            this.lblRFM.Location = new System.Drawing.Point(124, 49);
+            this.lblRFM.Name = "lblRFM";
+            this.lblRFM.Size = new System.Drawing.Size(147, 16);
+            this.lblRFM.TabIndex = 6;
+            this.lblRFM.Text = "\"Ricardo Flores Magón\"";
             // 
             // linea1
             // 
@@ -314,35 +386,35 @@
             this.linea1.Size = new System.Drawing.Size(1, 72);
             this.linea1.TabIndex = 4;
             // 
-            // pictureBox3
+            // LogoIPN
             // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(688, 8);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(64, 64);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 3;
-            this.pictureBox3.TabStop = false;
+            this.LogoIPN.Image = ((System.Drawing.Image)(resources.GetObject("LogoIPN.Image")));
+            this.LogoIPN.Location = new System.Drawing.Point(688, 8);
+            this.LogoIPN.Name = "LogoIPN";
+            this.LogoIPN.Size = new System.Drawing.Size(64, 64);
+            this.LogoIPN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.LogoIPN.TabIndex = 3;
+            this.LogoIPN.TabStop = false;
             // 
-            // pictureBox2
+            // LogoAniIPN
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(408, 8);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(64, 64);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
+            this.LogoAniIPN.Image = ((System.Drawing.Image)(resources.GetObject("LogoAniIPN.Image")));
+            this.LogoAniIPN.Location = new System.Drawing.Point(408, 8);
+            this.LogoAniIPN.Name = "LogoAniIPN";
+            this.LogoAniIPN.Size = new System.Drawing.Size(64, 64);
+            this.LogoAniIPN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.LogoAniIPN.TabIndex = 2;
+            this.LogoAniIPN.TabStop = false;
             // 
-            // pictureBox1
+            // LogoAniCecyt
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(311, 8);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.LogoAniCecyt.Image = ((System.Drawing.Image)(resources.GetObject("LogoAniCecyt.Image")));
+            this.LogoAniCecyt.Location = new System.Drawing.Point(311, 8);
+            this.LogoAniCecyt.Name = "LogoAniCecyt";
+            this.LogoAniCecyt.Size = new System.Drawing.Size(64, 64);
+            this.LogoAniCecyt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.LogoAniCecyt.TabIndex = 1;
+            this.LogoAniCecyt.TabStop = false;
             // 
             // logoCecyt
             // 
@@ -361,7 +433,7 @@
             this.panAcceso.Controls.Add(this.btnAcerca);
             this.panAcceso.Controls.Add(this.btnPriva);
             this.panAcceso.Controls.Add(this.separador2);
-            this.panAcceso.Controls.Add(this.btnRegistrar);
+            this.panAcceso.Controls.Add(this.btnAlternar);
             this.panAcceso.Controls.Add(this.separador1);
             this.panAcceso.Dock = System.Windows.Forms.DockStyle.Right;
             this.panAcceso.Location = new System.Drawing.Point(454, 80);
@@ -374,68 +446,13 @@
             this.panMarca.BackColor = System.Drawing.Color.White;
             this.panMarca.Controls.Add(this.lblVersion);
             this.panMarca.Controls.Add(this.pictureBox4);
-            this.panMarca.Controls.Add(this.panel1);
+            this.panMarca.Controls.Add(this.linea2);
             this.panMarca.Controls.Add(this.lblTitulo);
             this.panMarca.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panMarca.Location = new System.Drawing.Point(0, 80);
             this.panMarca.Name = "panMarca";
             this.panMarca.Size = new System.Drawing.Size(454, 381);
             this.panMarca.TabIndex = 15;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.Location = new System.Drawing.Point(452, 8);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(2, 365);
-            this.panel1.TabIndex = 5;
-            // 
-            // txtConfirmarContra
-            // 
-            this.txtConfirmarContra.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConfirmarContra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
-            this.txtConfirmarContra.Location = new System.Drawing.Point(38, 78);
-            this.txtConfirmarContra.Margin = new System.Windows.Forms.Padding(2);
-            this.txtConfirmarContra.MaxLength = 20;
-            this.txtConfirmarContra.Name = "txtConfirmarContra";
-            this.txtConfirmarContra.Size = new System.Drawing.Size(212, 25);
-            this.txtConfirmarContra.TabIndex = 16;
-            this.txtConfirmarContra.Text = "Confirmar Contraseña";
-            this.txtConfirmarContra.Visible = false;
-            // 
-            // txtEdad
-            // 
-            this.txtEdad.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEdad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
-            this.txtEdad.Location = new System.Drawing.Point(38, 78);
-            this.txtEdad.Margin = new System.Windows.Forms.Padding(2);
-            this.txtEdad.MaxLength = 20;
-            this.txtEdad.Name = "txtEdad";
-            this.txtEdad.Size = new System.Drawing.Size(212, 25);
-            this.txtEdad.TabIndex = 17;
-            this.txtEdad.Text = "Edad";
-            this.txtEdad.Visible = false;
-            // 
-            // txtCorreo
-            // 
-            this.txtCorreo.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCorreo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
-            this.txtCorreo.Location = new System.Drawing.Point(38, 41);
-            this.txtCorreo.Margin = new System.Windows.Forms.Padding(2);
-            this.txtCorreo.MaxLength = 20;
-            this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.Size = new System.Drawing.Size(212, 25);
-            this.txtCorreo.TabIndex = 18;
-            this.txtCorreo.Text = "Email";
-            this.txtCorreo.Visible = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Location = new System.Drawing.Point(32, 98);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(390, 223);
-            this.pictureBox4.TabIndex = 6;
-            this.pictureBox4.TabStop = false;
             // 
             // lblVersion
             // 
@@ -446,6 +463,45 @@
             this.lblVersion.Size = new System.Drawing.Size(63, 16);
             this.lblVersion.TabIndex = 7;
             this.lblVersion.Text = "Alph 0.2.4";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Location = new System.Drawing.Point(32, 98);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(390, 223);
+            this.pictureBox4.TabIndex = 6;
+            this.pictureBox4.TabStop = false;
+            // 
+            // linea2
+            // 
+            this.linea2.BackColor = System.Drawing.Color.Black;
+            this.linea2.Location = new System.Drawing.Point(452, 8);
+            this.linea2.Name = "linea2";
+            this.linea2.Size = new System.Drawing.Size(2, 365);
+            this.linea2.TabIndex = 5;
+            // 
+            // iconoContrasenia
+            // 
+            this.iconoContrasenia.Image = ((System.Drawing.Image)(resources.GetObject("iconoContrasenia.Image")));
+            this.iconoContrasenia.Location = new System.Drawing.Point(223, 95);
+            this.iconoContrasenia.Name = "iconoContrasenia";
+            this.iconoContrasenia.Size = new System.Drawing.Size(22, 22);
+            this.iconoContrasenia.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.iconoContrasenia.TabIndex = 20;
+            this.iconoContrasenia.TabStop = false;
+            this.iconoContrasenia.Click += new System.EventHandler(this.iconoContrasenia_Click);
+            // 
+            // iconoConfirmarContra
+            // 
+            this.iconoConfirmarContra.Image = ((System.Drawing.Image)(resources.GetObject("iconoConfirmarContra.Image")));
+            this.iconoConfirmarContra.Location = new System.Drawing.Point(223, 95);
+            this.iconoConfirmarContra.Name = "iconoConfirmarContra";
+            this.iconoConfirmarContra.Size = new System.Drawing.Size(22, 22);
+            this.iconoConfirmarContra.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.iconoConfirmarContra.TabIndex = 21;
+            this.iconoConfirmarContra.TabStop = false;
+            this.iconoConfirmarContra.Visible = false;
+            this.iconoConfirmarContra.Click += new System.EventHandler(this.iconoConfirmarContra_Click);
             // 
             // PanelAcceso
             // 
@@ -465,15 +521,17 @@
             this.grpInicioS.PerformLayout();
             this.panInstitucion.ResumeLayout(false);
             this.panInstitucion.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LogoIPN)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LogoAniIPN)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LogoAniCecyt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoCecyt)).EndInit();
             this.panAcceso.ResumeLayout(false);
             this.panAcceso.PerformLayout();
             this.panMarca.ResumeLayout(false);
             this.panMarca.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconoContrasenia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconoConfirmarContra)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -483,7 +541,7 @@
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label btnAcerca;
         private System.Windows.Forms.Label btnPriva;
-        private System.Windows.Forms.Label btnRegistrar;
+        private System.Windows.Forms.Label btnAlternar;
         private System.Windows.Forms.Button btnAcceder;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.TextBox txtContrasenia;
@@ -497,20 +555,23 @@
         private System.Windows.Forms.Panel panAcceso;
         private System.Windows.Forms.Panel panMarca;
         private System.Windows.Forms.Panel linea1;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox LogoIPN;
+        private System.Windows.Forms.PictureBox LogoAniIPN;
+        private System.Windows.Forms.PictureBox LogoAniCecyt;
         private System.Windows.Forms.PictureBox logoCecyt;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblRFM;
+        private System.Windows.Forms.Label lblCecyt;
+        private System.Windows.Forms.Label lblLaTecnica;
+        private System.Windows.Forms.Label lblIPN;
+        private System.Windows.Forms.Panel linea2;
         private System.Windows.Forms.TextBox txtCorreo;
         private System.Windows.Forms.TextBox txtEdad;
         private System.Windows.Forms.TextBox txtConfirmarContra;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label lblMensajes;
+        private System.Windows.Forms.PictureBox iconoContrasenia;
+        private System.Windows.Forms.PictureBox iconoConfirmarContra;
     }
 }
 

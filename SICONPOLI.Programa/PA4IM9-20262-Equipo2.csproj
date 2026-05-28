@@ -71,6 +71,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Vistas\Panel de Acceso\PanelAcceso.resx">
       <DependentUpon>PanelAcceso.cs</DependentUpon>
@@ -93,6 +94,8 @@
     <Content Include="Datos\Usuarios.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Recursos\Iconos\NoMostrarContra.png" />
+    <Content Include="Recursos\Iconos\MostrarContra.png" />
     <Content Include="Recursos\Multimedia\AniversarioCecyt.png" />
     <Content Include="Recursos\Multimedia\AniversarioIPN.png" />
     <Content Include="Recursos\Multimedia\cecyt13-blanco.png" />
