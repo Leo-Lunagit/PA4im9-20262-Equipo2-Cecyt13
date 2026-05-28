@@ -40,6 +40,8 @@
             this.separador2 = new System.Windows.Forms.Label();
             this.btnRecuperar = new System.Windows.Forms.Label();
             this.grpInicioS = new System.Windows.Forms.GroupBox();
+            this.iconoConfirmarContra = new System.Windows.Forms.PictureBox();
+            this.iconoContrasenia = new System.Windows.Forms.PictureBox();
             this.lblMensajes = new System.Windows.Forms.Label();
             this.txtCorreo = new System.Windows.Forms.TextBox();
             this.txtEdad = new System.Windows.Forms.TextBox();
@@ -61,9 +63,9 @@
             this.lblVersion = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.linea2 = new System.Windows.Forms.Panel();
-            this.iconoContrasenia = new System.Windows.Forms.PictureBox();
-            this.iconoConfirmarContra = new System.Windows.Forms.PictureBox();
             this.grpInicioS.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconoConfirmarContra)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconoContrasenia)).BeginInit();
             this.panInstitucion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoIPN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LogoAniIPN)).BeginInit();
@@ -72,8 +74,6 @@
             this.panAcceso.SuspendLayout();
             this.panMarca.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconoContrasenia)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconoConfirmarContra)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -158,6 +158,7 @@
             this.txtUsuario.Text = "Usuario";
             this.txtUsuario.Enter += new System.EventHandler(this.txtUsuario_Enter);
             this.txtUsuario.Leave += new System.EventHandler(this.txtUsuario_Leave);
+            this.txtUsuario.Validating += new System.ComponentModel.CancelEventHandler(this.txtUsuario_Validating);
             // 
             // txtContrasenia
             // 
@@ -172,6 +173,7 @@
             this.txtContrasenia.Text = "Contraseña";
             this.txtContrasenia.Enter += new System.EventHandler(this.txtContrasenia_Enter);
             this.txtContrasenia.Leave += new System.EventHandler(this.txtContrasenia_Leave);
+            this.txtContrasenia.Validating += new System.ComponentModel.CancelEventHandler(this.txtContrasenia_Validating);
             // 
             // separador1
             // 
@@ -212,15 +214,15 @@
             this.grpInicioS.Controls.Add(this.iconoConfirmarContra);
             this.grpInicioS.Controls.Add(this.iconoContrasenia);
             this.grpInicioS.Controls.Add(this.lblMensajes);
-            this.grpInicioS.Controls.Add(this.txtCorreo);
-            this.grpInicioS.Controls.Add(this.txtEdad);
-            this.grpInicioS.Controls.Add(this.txtNombre);
-            this.grpInicioS.Controls.Add(this.txtConfirmarContra);
             this.grpInicioS.Controls.Add(this.chkBoxRecordar);
-            this.grpInicioS.Controls.Add(this.txtUsuario);
             this.grpInicioS.Controls.Add(this.btnRecuperar);
             this.grpInicioS.Controls.Add(this.btnAcceder);
             this.grpInicioS.Controls.Add(this.txtContrasenia);
+            this.grpInicioS.Controls.Add(this.txtCorreo);
+            this.grpInicioS.Controls.Add(this.txtNombre);
+            this.grpInicioS.Controls.Add(this.txtUsuario);
+            this.grpInicioS.Controls.Add(this.txtEdad);
+            this.grpInicioS.Controls.Add(this.txtConfirmarContra);
             this.grpInicioS.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.grpInicioS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.grpInicioS.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -233,6 +235,29 @@
             this.grpInicioS.TabIndex = 12;
             this.grpInicioS.TabStop = false;
             this.grpInicioS.Text = "Inciar seción en SIRETECH Poli";
+            // 
+            // iconoConfirmarContra
+            // 
+            this.iconoConfirmarContra.Image = ((System.Drawing.Image)(resources.GetObject("iconoConfirmarContra.Image")));
+            this.iconoConfirmarContra.Location = new System.Drawing.Point(223, 95);
+            this.iconoConfirmarContra.Name = "iconoConfirmarContra";
+            this.iconoConfirmarContra.Size = new System.Drawing.Size(22, 22);
+            this.iconoConfirmarContra.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.iconoConfirmarContra.TabIndex = 21;
+            this.iconoConfirmarContra.TabStop = false;
+            this.iconoConfirmarContra.Visible = false;
+            this.iconoConfirmarContra.Click += new System.EventHandler(this.iconoConfirmarContra_Click);
+            // 
+            // iconoContrasenia
+            // 
+            this.iconoContrasenia.Image = ((System.Drawing.Image)(resources.GetObject("iconoContrasenia.Image")));
+            this.iconoContrasenia.Location = new System.Drawing.Point(223, 95);
+            this.iconoContrasenia.Name = "iconoContrasenia";
+            this.iconoContrasenia.Size = new System.Drawing.Size(22, 22);
+            this.iconoContrasenia.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.iconoContrasenia.TabIndex = 20;
+            this.iconoContrasenia.TabStop = false;
+            this.iconoContrasenia.Click += new System.EventHandler(this.iconoContrasenia_Click);
             // 
             // lblMensajes
             // 
@@ -257,6 +282,7 @@
             this.txtCorreo.Visible = false;
             this.txtCorreo.Enter += new System.EventHandler(this.txtCorreo_Enter);
             this.txtCorreo.Leave += new System.EventHandler(this.txtCorreo_Leave);
+            this.txtCorreo.Validating += new System.ComponentModel.CancelEventHandler(this.txtCorreo_Validating);
             // 
             // txtEdad
             // 
@@ -271,7 +297,9 @@
             this.txtEdad.Text = "Edad";
             this.txtEdad.Visible = false;
             this.txtEdad.Enter += new System.EventHandler(this.txtEdad_Enter);
+            this.txtEdad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEdad_KeyPress);
             this.txtEdad.Leave += new System.EventHandler(this.txtEdad_Leave);
+            this.txtEdad.Validating += new System.ComponentModel.CancelEventHandler(this.txtEdad_Validating);
             // 
             // txtNombre
             // 
@@ -286,6 +314,7 @@
             this.txtNombre.Visible = false;
             this.txtNombre.Enter += new System.EventHandler(this.txtNombre_Enter);
             this.txtNombre.Leave += new System.EventHandler(this.txtNombre_Leave);
+            this.txtNombre.Validating += new System.ComponentModel.CancelEventHandler(this.txtNombre_Validating);
             // 
             // txtConfirmarContra
             // 
@@ -301,6 +330,7 @@
             this.txtConfirmarContra.Visible = false;
             this.txtConfirmarContra.Enter += new System.EventHandler(this.txtConfirmarContra_Enter);
             this.txtConfirmarContra.Leave += new System.EventHandler(this.txtConfirmarContra_Leave);
+            this.txtConfirmarContra.Validating += new System.ComponentModel.CancelEventHandler(this.txtConfirmarContra_Validating);
             // 
             // chkBoxRecordar
             // 
@@ -480,29 +510,6 @@
             this.linea2.Size = new System.Drawing.Size(2, 365);
             this.linea2.TabIndex = 5;
             // 
-            // iconoContrasenia
-            // 
-            this.iconoContrasenia.Image = ((System.Drawing.Image)(resources.GetObject("iconoContrasenia.Image")));
-            this.iconoContrasenia.Location = new System.Drawing.Point(223, 95);
-            this.iconoContrasenia.Name = "iconoContrasenia";
-            this.iconoContrasenia.Size = new System.Drawing.Size(22, 22);
-            this.iconoContrasenia.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.iconoContrasenia.TabIndex = 20;
-            this.iconoContrasenia.TabStop = false;
-            this.iconoContrasenia.Click += new System.EventHandler(this.iconoContrasenia_Click);
-            // 
-            // iconoConfirmarContra
-            // 
-            this.iconoConfirmarContra.Image = ((System.Drawing.Image)(resources.GetObject("iconoConfirmarContra.Image")));
-            this.iconoConfirmarContra.Location = new System.Drawing.Point(223, 95);
-            this.iconoConfirmarContra.Name = "iconoConfirmarContra";
-            this.iconoConfirmarContra.Size = new System.Drawing.Size(22, 22);
-            this.iconoConfirmarContra.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.iconoConfirmarContra.TabIndex = 21;
-            this.iconoConfirmarContra.TabStop = false;
-            this.iconoConfirmarContra.Visible = false;
-            this.iconoConfirmarContra.Click += new System.EventHandler(this.iconoConfirmarContra_Click);
-            // 
             // PanelAcceso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -519,6 +526,8 @@
             this.Text = "Panel de Acceso.";
             this.grpInicioS.ResumeLayout(false);
             this.grpInicioS.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconoConfirmarContra)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconoContrasenia)).EndInit();
             this.panInstitucion.ResumeLayout(false);
             this.panInstitucion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoIPN)).EndInit();
@@ -530,8 +539,6 @@
             this.panMarca.ResumeLayout(false);
             this.panMarca.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconoContrasenia)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconoConfirmarContra)).EndInit();
             this.ResumeLayout(false);
 
         }

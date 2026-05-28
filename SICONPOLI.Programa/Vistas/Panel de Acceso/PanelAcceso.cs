@@ -1,4 +1,5 @@
-﻿using PA4IM9_20262_Equipo2.Modulos;
+﻿using PA4IM9_20262_Equipo2.Entidades;
+using PA4IM9_20262_Equipo2.Modulos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using System.Text.RegularExpressions;
 
 namespace PA4IM9_20262_Equipo2
 {
@@ -44,15 +46,23 @@ namespace PA4IM9_20262_Equipo2
         //
         // Logica de logueo.
         //
+        // Funcion qie verifica que los datos de inicio de secion no esten vacios y si se deben llenar los de registro que no esten vacios.
+        private bool CamposCorrectos() { 
+            if (txtUsuario.Text == "Usuario" || txtContrasenia.Text == "Contraseña" || (txtNombre.Visible == true && (txtNombre.Text == "Nombre" || txtCorreo.Text == "Email" || txtConfirmarContra.Text == "Confirmar Contraseña" || txtEdad.Text == "Edad")))
+            {
+                lblMensajes.Text = "Campos vacios";
+                return true;
+            } else if (txtContrasenia.Text != txtConfirmarContra.Text)
+            {
+                lblMensajes.Text = "Las contraseñas no coinciden.";
+                return true;
+            }
+            return false;
+        }
         private void btnAcceder_Click(object sender, EventArgs e)
         {
             // Verifica que SOLO los campos neseasarios No esten vacíos.
-            if (txtUsuario.Text == "" || txtContrasenia.Text == "" || (txtNombre.Text == "" && txtNombre.Visible == true))
-            {
-                // Si estan vacíos notifica con un texto y termina el proseso.
-                lblMensajes.Text = "Campos vacios.";
-                return;
-            }
+            if (CamposCorrectos()) return; // Si estan vacíos notifica con un texto y termina el proseso.
             // EN CASO DE QUE NO ESTEN VACÍOS.
             lblMensajes.Text = ""; // Limpia el mensaje.
 
@@ -63,7 +73,7 @@ namespace PA4IM9_20262_Equipo2
 
             // Dependiendo del contenido en el boton enviara a inicios o registros de secion.
             if (btnAcceder.Text == "Iniciar Sesión") IniciarSesion(documento, txtUsuario.Text, txtContrasenia.Text);
-            else if (btnAcceder.Text == "Registrarse") Registrarse(documento, txtNombre.Text, txtUsuario.Text, txtContrasenia.Text);
+            else if (btnAcceder.Text == "Registrarse") Registrarse(documento);
         }
         private void IniciarSesion(XmlDocument lector, string usuario, string contrasenia)
         {
@@ -109,24 +119,19 @@ namespace PA4IM9_20262_Equipo2
                 AlternarInicioRegistro(false);
             }
         }
-        private void Registrarse(XmlDocument escritor, string nombre, string usuario, string contrasenia)
+        private void Registrarse(XmlDocument escritor)
         {
             // Crea un elemento contenedor (nodo) para el registro
             XmlNode nodoCuenta = escritor.CreateElement("perfil");
-
-            // Funcion que ahorra trabajo. 
-            void AgregarPropiedad(string etiqueta, string valor)
-            {
-                // Crea un elemento, le asigna el valor y lo agrega al contenedor de elementos.
-                XmlElement hijo = escritor.CreateElement(etiqueta);
-                hijo.InnerText = valor;
-                nodoCuenta.AppendChild(hijo);
-            }
+            // Crea un objeto para el perfil.
+            Perfil nuevoPerfil = new Perfil();
 
             // Se registran los datos ingresados.
-            AgregarPropiedad("nombre", nombre);
-            AgregarPropiedad("usuario", usuario);
-            AgregarPropiedad("contrasenia", contrasenia);
+            nuevoPerfil.Nombre = txtNombre.Text;
+            nuevoPerfil.Usuario = txtUsuario.Text;
+            nuevoPerfil.Correo = txtCorreo.Text;
+            nuevoPerfil.Contrasenia = txtContrasenia.Text;
+            nuevoPerfil.Edad = int.Parse(txtEdad.Text);
 
             // Se agrega el perfil al contenedor principal, el de los perfiles.
             escritor.DocumentElement.AppendChild(nodoCuenta);
@@ -144,10 +149,10 @@ namespace PA4IM9_20262_Equipo2
             // Ajustar tamaños.
             // Si cambia a registro se deben modificar las propiedades (el mismo numero {1}),
             // si cambia a inicio de secion se deben contrarestar las modificaiones (el inverso del numero {-1}).
-            int sentido = deInicioToRegistro ? 1 : -1;  
+            int sentido = deInicioToRegistro ? 1 : -1;
             grpInicioS.Height += 110 * sentido; // 130px entre 4 text y espacios, pero 20px menos del boton de recuperar contraseña
             // Desplazar los controles un sierto tamaño.
-            grpInicioS.Location = new Point(grpInicioS.Location.X, grpInicioS.Location.Y - 50 * sentido ); // Hacia arriba (signo -) hay 50px a donde nos podemos mover.
+            grpInicioS.Location = new Point(grpInicioS.Location.X, grpInicioS.Location.Y - 50 * sentido); // Hacia arriba (signo -) hay 50px a donde nos podemos mover.
             chkBoxRecordar.Location = new Point(chkBoxRecordar.Location.X, chkBoxRecordar.Location.Y + 20 * sentido); // Tomamos el espacio por debajo (signo +)
             btnAcceder.Location = new Point(btnAcceder.Location.X, btnAcceder.Location.Y + 20 * sentido); // correspondiente al boton de recuperar contraseña.
             txtUsuario.Location = new Point(txtUsuario.Location.X, txtUsuario.Location.Y + 35 * sentido); // 25px del alto de los txt y 12 px del espacio entre ellos.
@@ -238,7 +243,7 @@ namespace PA4IM9_20262_Equipo2
         private void txtNombre_Leave(object sender, EventArgs e) { PonerPlaceHolder(sender, "Nombre"); }
         private void txtUsuario_Enter(object sender, EventArgs e) { QuitarPlaceHolder(sender, "Usuario"); }
         private void txtUsuario_Leave(object sender, EventArgs e) { PonerPlaceHolder(sender, "Usuario"); }
-        private void txtCorreo_Enter(object sender, EventArgs e) { QuitarPlaceHolder(sender, "Email"); } 
+        private void txtCorreo_Enter(object sender, EventArgs e) { QuitarPlaceHolder(sender, "Email"); }
         private void txtCorreo_Leave(object sender, EventArgs e) { PonerPlaceHolder(sender, "Email"); }
         private void txtContrasenia_Enter(object sender, EventArgs e) { QuitarPlaceHolderContrasenias(sender, "Contraseña"); }
         private void txtContrasenia_Leave(object sender, EventArgs e) { PonerPlaceHolderContrasenias(sender, "Contraseña"); }
@@ -260,5 +265,93 @@ namespace PA4IM9_20262_Equipo2
         }
         private void iconoContrasenia_Click(object sender, EventArgs e) { AlternarVerContra(txtContrasenia, sender, "Contraseña"); }
         private void iconoConfirmarContra_Click(object sender, EventArgs e) { AlternarVerContra(txtConfirmarContra, sender, "Confirmar Contraseña"); }
+        //
+        // Logica de Validacion.
+        //
+        private bool CorreoValido(string cadena)
+        {
+            // Expresion regular para que se asemeje a un correo electronico.
+            string expresionRegular = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+            // Si coincide la expresion con el texto, pasa a la siguiente verificacion.
+            if (Regex.IsMatch(cadena, expresionRegular))
+            {
+                // Reemplaza los elementos que coincidan con la expresion regular por nada. Si al final de esa operacion no sobro ningun caracter, es un correo.
+                if (Regex.Replace(cadena, expresionRegular, String.Empty).Length == 0) return true;
+                // Si sobra algo, tan solo es un troso de correo con mas cosas.
+                else return false;
+            }
+            else return false; // Si no coincide la exprecion no es un correo. 
+        }
+        private bool ConEspacios(string cadena)
+        {
+            // Indica que coincide con uno o mas caracteres sin espacio.
+            string expresionRegular = @"^\S+$";
+            if (Regex.IsMatch(cadena, expresionRegular)) return false; 
+            else return true;
+        }
+
+        private void txtNombre_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtNombre.Text == "Nombre") lblMensajes.Text = "Falta ingresar el nombre.";
+        }
+        private void txtUsuario_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtUsuario.Text == "Usuario") lblMensajes.Text = "Falta ingresar el usuario";
+            else if (ConEspacios(txtUsuario.Text))
+            {
+                lblMensajes.Text = "El usuario no debe contener espacios.";
+                txtUsuario.Focus();
+            }
+        }
+        private void txtCorreo_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtCorreo.Text == "Email") lblMensajes.Text = "Falta ingresar el correo.";
+            else if (!CorreoValido(txtCorreo.Text) && txtCorreo.Visible == true)
+            {
+                lblMensajes.Text = "El correo no es valido.";
+                txtCorreo.Focus();
+            }
+        }
+        private void txtContrasenia_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtContrasenia.Text == "Contraseña") lblMensajes.Text = "Falta ingresar la contraseña.";
+            else if (ConEspacios(txtContrasenia.Text))
+            {
+                lblMensajes.Text = "La contraseña no debe tener espacios.";
+                txtContrasenia.Focus();
+            }
+            if (txtConfirmarContra.Text == txtContrasenia.Text && lblMensajes.Text == "Las contraseñas no coinciden.") lblMensajes.Text = ""; 
+        }
+        private void txtConfirmarContra_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtConfirmarContra.Text == "Confirmar Contraseña") lblMensajes.Text = "Falta confirmar la contraseña.";
+            else if (ConEspacios(txtConfirmarContra.Text))
+            {
+                lblMensajes.Text = "La contraseña no debe tener espacios.";
+                txtConfirmarContra.Focus();
+            }
+            else if (txtConfirmarContra.Text != txtContrasenia.Text) lblMensajes.Text = "Las contraseñas no coinciden.";
+        }
+        private void txtEdad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar)) e.Handled = false;
+            else if (Char.IsControl(e.KeyChar)) e.Handled = false;
+            else if (Char.IsSeparator(e.KeyChar)) e.Handled = false;
+            else e.Handled = true;
+        }
+
+        private void txtEdad_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtEdad.Text == "Edad") lblMensajes.Text = "Falta ingresar la edad.";
+            else
+            {
+                int edad = int.Parse(txtEdad.Text);
+                if (edad < 0 || edad > 120)
+                {
+                    lblMensajes.Text = "Rango de edad no valido.";
+                    txtEdad.Focus();
+                }
+            }
+        }
     }
 }
