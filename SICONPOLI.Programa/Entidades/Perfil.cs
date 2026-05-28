@@ -32,5 +32,7 @@ namespace PA4IM9_20262_Equipo2.Entidades
         public string Nombre { get; set; } 
         [XmlElement("edad")]
         public int Edad { get; set; }
+
+        public Perfil() { } // Constructor vacio.
     }
 }
