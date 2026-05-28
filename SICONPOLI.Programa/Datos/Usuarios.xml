@@ -5,4 +5,9 @@
     <usuario>adminL</usuario>
     <contrasenia>leon@090802</contrasenia>
   </perfil>
+  <perfil>
+    <nombre>pene</nombre>
+    <usuario>pene</usuario>
+    <contrasenia>12345678</contrasenia>
+  </perfil>
 </usuarios>
