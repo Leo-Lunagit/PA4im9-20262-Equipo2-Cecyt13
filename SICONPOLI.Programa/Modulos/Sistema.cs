@@ -16,6 +16,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
         // Fusiona la ruta de ejecucion con una ruta nueva, regresa dos carpetas a la carpeta donde tenemos todo el codigo, se dirije a la carpeta de "Datos" y al arhivo.
         public static string rutaUsuarios = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Usuarios.xml");
         public static string raizUsuarios = "usuarios"; // Elemento raiz del archivo.
+        public static string[] Roles = { "administrador", "colaborador", "cliente" };
         
         // Verificacion de la existencia de un archivo XML.
         public static void VerificarArchivo(string ruta, string nombreRaiz)
@@ -27,6 +28,8 @@ namespace PA4IM9_20262_Equipo2.Modulos
             try { documento.Load(ruta); } 
             // En caso de no poder cargar el archivo
             catch {
+                // Si no existe la ruta padre del elemento, crea ese directorio (carpeta).
+                if (!Directory.Exists(Path.Combine(ruta, ".."))) Directory.CreateDirectory(Path.Combine(ruta, ".."));
                 // Verifica que exista el archivo, en caso contrario lo crea.
                 if (!File.Exists(ruta)) File.Create(ruta);
                 // Si no existia el archivo, hay que llenarlo, si ya existia entonces estaba vasio, hay que llenarlo.
@@ -54,6 +57,13 @@ namespace PA4IM9_20262_Equipo2.Modulos
         public static void CargarArchivos()
         {
             VerificarArchivo(rutaUsuarios, raizUsuarios);
+        }
+
+        public static string GenerarID()
+        {
+            XmlDocument lector = new XmlDocument();
+            lector.Load(rutaUsuarios);
+            return $"1{(lector.DocumentElement.ChildNodes.Count + 1):D3}"; // El numero de perfiles mas 1, asegurandose que minimo tenga 3 cifras aunque con 0 a la izquierda.
         }
     }
 }

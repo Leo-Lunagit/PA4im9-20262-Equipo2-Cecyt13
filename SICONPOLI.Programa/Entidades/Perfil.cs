@@ -15,6 +15,9 @@ namespace PA4IM9_20262_Equipo2.Entidades
     [XmlRoot("perfil")]
     public class Perfil // Nesesario que sean publicos para poder convertir en un elemento xml.
     {
+        public Perfil() { } // Constructor vacio afuerzas.
+        
+
         // Fragmento que identifica algun elemento como la DECLARACION que le sigue.
         [XmlElement("id")]
         public string ID { get; set; } // Methodos nesesarios para convertir los objetos a elementos xml
@@ -32,7 +35,5 @@ namespace PA4IM9_20262_Equipo2.Entidades
         public string Nombre { get; set; } 
         [XmlElement("edad")]
         public int Edad { get; set; }
-
-        public Perfil() { } // Constructor vacio.
     }
 }

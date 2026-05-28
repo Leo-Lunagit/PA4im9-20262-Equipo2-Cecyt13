@@ -43,30 +43,17 @@ namespace PA4IM9_20262_Equipo2
                 chkBoxRecordar.Checked = true;
             }
         }
+
         //
         // Logica de logueo.
         //
-        // Funcion qie verifica que los datos de inicio de secion no esten vacios y si se deben llenar los de registro que no esten vacios.
-        private bool CamposCorrectos() { 
-            if (txtUsuario.Text == "Usuario" || txtContrasenia.Text == "Contraseña" || (txtNombre.Visible == true && (txtNombre.Text == "Nombre" || txtCorreo.Text == "Email" || txtConfirmarContra.Text == "Confirmar Contraseña" || txtEdad.Text == "Edad")))
-            {
-                lblMensajes.Text = "Campos vacios";
-                return true;
-            } else if (txtContrasenia.Text != txtConfirmarContra.Text)
-            {
-                lblMensajes.Text = "Las contraseñas no coinciden.";
-                return true;
-            }
-            return false;
-        }
         private void btnAcceder_Click(object sender, EventArgs e)
         {
-            // Verifica que SOLO los campos neseasarios No esten vacíos.
+            // Verifica que SOLO los datos en los campos sean adecuados.
             if (CamposCorrectos()) return; // Si estan vacíos notifica con un texto y termina el proseso.
-            // EN CASO DE QUE NO ESTEN VACÍOS.
             lblMensajes.Text = ""; // Limpia el mensaje.
 
-            Sistema.VerificarArchivo(Sistema.rutaUsuarios, "usuarios"); // Verifica la existencia del archivo
+            Sistema.VerificarArchivo(Sistema.rutaUsuarios, Sistema.raizUsuarios); // Verifica la existencia del archivo
             // Crea el controlador de archivos xml y carga el documento en la ruta de usuarios.
             XmlDocument documento = new XmlDocument();
             documento.Load(Sistema.rutaUsuarios);
@@ -116,16 +103,18 @@ namespace PA4IM9_20262_Equipo2
                 txtUsuario.Text = "";
                 txtContrasenia.Text = "";
                 // Mandar a llamar el registro.
-                AlternarInicioRegistro(false);
+                AlternarInicioRegistro(true);
             }
         }
         private void Registrarse(XmlDocument escritor)
         {
-            // Crea un elemento contenedor (nodo) para el registro
-            XmlNode nodoCuenta = escritor.CreateElement("perfil");
             // Crea un objeto para el perfil.
             Perfil nuevoPerfil = new Perfil();
 
+            // Se asignan los datos fundamentales.
+            nuevoPerfil.FechaCreacion = DateTime.Now;
+            nuevoPerfil.Rol = Sistema.Roles[0];
+            nuevoPerfil.ID = Sistema.GenerarID();
             // Se registran los datos ingresados.
             nuevoPerfil.Nombre = txtNombre.Text;
             nuevoPerfil.Usuario = txtUsuario.Text;
@@ -133,9 +122,15 @@ namespace PA4IM9_20262_Equipo2
             nuevoPerfil.Contrasenia = txtContrasenia.Text;
             nuevoPerfil.Edad = int.Parse(txtEdad.Text);
 
+            // Creamos un elemento Xml llenandolo con los datos del perfil antes llenado.
+            XmlElement elementoPerfil = ConvertidorXml.ObjetoToElemento(escritor ,nuevoPerfil);
+
+            // Si esta marcada la casilla para recordar
+            if (chkBoxRecordar.Checked == true) elementoPerfil.Attributes.Append(escritor.CreateAttribute("recordar"));
+            
             // Se agrega el perfil al contenedor principal, el de los perfiles.
-            escritor.DocumentElement.AppendChild(nodoCuenta);
-            escritor.Save(Sistema.rutaUsuarios);
+            escritor.DocumentElement.AppendChild(elementoPerfil);
+            escritor.Save(Sistema.rutaUsuarios); // Guardar Cambios
 
             // Accede al sistema.
             MessageBox.Show("Datos correctos. | Accediste al sistema.", "Acceso Permitido.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -184,6 +179,7 @@ namespace PA4IM9_20262_Equipo2
             // Si no, alterna al inicio de secion.
             else AlternarInicioRegistro(false);
         }
+
         //
         // Logica de ventanas.
         //
@@ -191,8 +187,9 @@ namespace PA4IM9_20262_Equipo2
         private void btnAcerca_Click(object sender, EventArgs e) { MessageBox.Show("Conocenos.", "Acerca de.", MessageBoxButtons.OK, MessageBoxIcon.Information); }
         // Cargar ventana de "Politicas de Privacidad" Solo minimizar la de registro.
         private void btnPriva_Click(object sender, EventArgs e) { MessageBox.Show("Conoce nuestras politicas", "Politicas.", MessageBoxButtons.OK, MessageBoxIcon.Information); }
-        // Cargar ventana de "Recuperar contraseña" Solo minimizar la de registro.
+        // Cargar ventana de "Recuperar contraseña".
         private void btnRecuperar_Click(object sender, EventArgs e) { MessageBox.Show("Enviaremos un correo a su direccion", "Recuperar.", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+        
         //
         // Logica de utiilidades.
         //
@@ -234,7 +231,8 @@ namespace PA4IM9_20262_Equipo2
             TextBox caja = Sender as TextBox;
             if (caja.Text == "")
             {
-                caja.PasswordChar = '\0'; // Hace que vuelvan a aparecer letras
+                // Caracter vacio.
+                caja.PasswordChar = '\0'; // Hace que vuelvan a aparecer letras.
                 caja.Text = PlaceHolder;
                 caja.ForeColor = Color.FromArgb(99, 101, 105);
             }
@@ -265,9 +263,27 @@ namespace PA4IM9_20262_Equipo2
         }
         private void iconoContrasenia_Click(object sender, EventArgs e) { AlternarVerContra(txtContrasenia, sender, "Contraseña"); }
         private void iconoConfirmarContra_Click(object sender, EventArgs e) { AlternarVerContra(txtConfirmarContra, sender, "Confirmar Contraseña"); }
+        
         //
         // Logica de Validacion.
         //
+        private bool CamposCorrectos()
+        {
+            // Si los campos de inicio de secion estan vacios (llenos con su placeholder) o si los campos de registro estan activos y vacios (igual con su placeholder).
+            if (txtUsuario.Text == "Usuario" || txtContrasenia.Text == "Contraseña" || (txtNombre.Visible == true && (txtNombre.Text == "Nombre" || txtCorreo.Text == "Email" || txtConfirmarContra.Text == "Confirmar Contraseña" || txtEdad.Text == "Edad")))
+            {
+                lblMensajes.Text = "Campos vacios";
+                return false; // Entonces faltaran datos y se notificara.
+            }
+            // En caso de que esten llenos los campos pero no coincidan las contraseñas,
+            else if (txtContrasenia.Text != txtConfirmarContra.Text) 
+            {
+                lblMensajes.Text = "Las contraseñas no coinciden."; // Indica que no son iguales las contraseñas.
+                txtConfirmarContra.Focus(); // Manda a corregir la contraseña.
+                return false;
+            }
+            return false;
+        }
         private bool CorreoValido(string cadena)
         {
             // Expresion regular para que se asemeje a un correo electronico.

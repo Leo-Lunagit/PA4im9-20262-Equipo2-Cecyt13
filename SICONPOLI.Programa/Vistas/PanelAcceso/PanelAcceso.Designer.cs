@@ -43,11 +43,11 @@
             this.iconoConfirmarContra = new System.Windows.Forms.PictureBox();
             this.iconoContrasenia = new System.Windows.Forms.PictureBox();
             this.lblMensajes = new System.Windows.Forms.Label();
-            this.txtCorreo = new System.Windows.Forms.TextBox();
-            this.txtEdad = new System.Windows.Forms.TextBox();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtConfirmarContra = new System.Windows.Forms.TextBox();
             this.chkBoxRecordar = new System.Windows.Forms.CheckBox();
+            this.txtCorreo = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.txtEdad = new System.Windows.Forms.TextBox();
+            this.txtConfirmarContra = new System.Windows.Forms.TextBox();
             this.panInstitucion = new System.Windows.Forms.Panel();
             this.lblLaTecnica = new System.Windows.Forms.Label();
             this.lblCecyt = new System.Windows.Forms.Label();
@@ -97,7 +97,7 @@
             this.btnAcerca.Location = new System.Drawing.Point(7, 10);
             this.btnAcerca.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnAcerca.Name = "btnAcerca";
-            this.btnAcerca.Size = new System.Drawing.Size(65, 24);
+            this.btnAcerca.Size = new System.Drawing.Size(81, 29);
             this.btnAcerca.TabIndex = 1;
             this.btnAcerca.Text = "Acerca de";
             this.btnAcerca.Click += new System.EventHandler(this.btnAcerca_Click);
@@ -111,7 +111,7 @@
             this.btnPriva.Location = new System.Drawing.Point(88, 10);
             this.btnPriva.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnPriva.Name = "btnPriva";
-            this.btnPriva.Size = new System.Drawing.Size(130, 24);
+            this.btnPriva.Size = new System.Drawing.Size(163, 29);
             this.btnPriva.TabIndex = 2;
             this.btnPriva.Text = "Politica de Privacidad";
             this.btnPriva.Click += new System.EventHandler(this.btnPriva_Click);
@@ -125,7 +125,7 @@
             this.btnAlternar.Location = new System.Drawing.Point(233, 10);
             this.btnAlternar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnAlternar.Name = "btnAlternar";
-            this.btnAlternar.Size = new System.Drawing.Size(77, 24);
+            this.btnAlternar.Size = new System.Drawing.Size(94, 29);
             this.btnAlternar.TabIndex = 3;
             this.btnAlternar.Text = "Registrarse";
             this.btnAlternar.Click += new System.EventHandler(this.btnAlternar_Click);
@@ -153,7 +153,7 @@
             this.txtUsuario.Location = new System.Drawing.Point(38, 57);
             this.txtUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(212, 25);
+            this.txtUsuario.Size = new System.Drawing.Size(212, 29);
             this.txtUsuario.TabIndex = 7;
             this.txtUsuario.Text = "Usuario";
             this.txtUsuario.Enter += new System.EventHandler(this.txtUsuario_Enter);
@@ -168,7 +168,7 @@
             this.txtContrasenia.Margin = new System.Windows.Forms.Padding(2);
             this.txtContrasenia.MaxLength = 16;
             this.txtContrasenia.Name = "txtContrasenia";
-            this.txtContrasenia.Size = new System.Drawing.Size(212, 25);
+            this.txtContrasenia.Size = new System.Drawing.Size(212, 29);
             this.txtContrasenia.TabIndex = 8;
             this.txtContrasenia.Text = "Contraseña";
             this.txtContrasenia.Enter += new System.EventHandler(this.txtContrasenia_Enter);
@@ -181,7 +181,7 @@
             this.separador1.Location = new System.Drawing.Point(70, 15);
             this.separador1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.separador1.Name = "separador1";
-            this.separador1.Size = new System.Drawing.Size(9, 13);
+            this.separador1.Size = new System.Drawing.Size(10, 15);
             this.separador1.TabIndex = 9;
             this.separador1.Text = "|";
             // 
@@ -191,7 +191,7 @@
             this.separador2.Location = new System.Drawing.Point(216, 15);
             this.separador2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.separador2.Name = "separador2";
-            this.separador2.Size = new System.Drawing.Size(9, 13);
+            this.separador2.Size = new System.Drawing.Size(10, 15);
             this.separador2.TabIndex = 10;
             this.separador2.Text = "|";
             // 
@@ -204,7 +204,7 @@
             this.btnRecuperar.Location = new System.Drawing.Point(75, 190);
             this.btnRecuperar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.btnRecuperar.Name = "btnRecuperar";
-            this.btnRecuperar.Size = new System.Drawing.Size(156, 24);
+            this.btnRecuperar.Size = new System.Drawing.Size(195, 29);
             this.btnRecuperar.TabIndex = 11;
             this.btnRecuperar.Text = "¿Olvidaste tu contraseña?";
             this.btnRecuperar.Click += new System.EventHandler(this.btnRecuperar_Click);
@@ -268,6 +268,20 @@
             this.lblMensajes.TabIndex = 19;
             this.lblMensajes.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // chkBoxRecordar
+            // 
+            this.chkBoxRecordar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkBoxRecordar.AutoSize = true;
+            this.chkBoxRecordar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chkBoxRecordar.Font = new System.Drawing.Font("Modern No. 20", 12F);
+            this.chkBoxRecordar.Location = new System.Drawing.Point(93, 130);
+            this.chkBoxRecordar.Margin = new System.Windows.Forms.Padding(2);
+            this.chkBoxRecordar.Name = "chkBoxRecordar";
+            this.chkBoxRecordar.Size = new System.Drawing.Size(134, 26);
+            this.chkBoxRecordar.TabIndex = 12;
+            this.chkBoxRecordar.Text = "Recordarme.";
+            this.chkBoxRecordar.UseVisualStyleBackColor = true;
+            // 
             // txtCorreo
             // 
             this.txtCorreo.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -276,13 +290,28 @@
             this.txtCorreo.Margin = new System.Windows.Forms.Padding(2);
             this.txtCorreo.MaxLength = 20;
             this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.Size = new System.Drawing.Size(212, 25);
+            this.txtCorreo.Size = new System.Drawing.Size(212, 29);
             this.txtCorreo.TabIndex = 18;
             this.txtCorreo.Text = "Email";
             this.txtCorreo.Visible = false;
             this.txtCorreo.Enter += new System.EventHandler(this.txtCorreo_Enter);
             this.txtCorreo.Leave += new System.EventHandler(this.txtCorreo_Leave);
             this.txtCorreo.Validating += new System.ComponentModel.CancelEventHandler(this.txtCorreo_Validating);
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
+            this.txtNombre.Location = new System.Drawing.Point(38, 57);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(212, 29);
+            this.txtNombre.TabIndex = 15;
+            this.txtNombre.Text = "Nombre";
+            this.txtNombre.Visible = false;
+            this.txtNombre.Enter += new System.EventHandler(this.txtNombre_Enter);
+            this.txtNombre.Leave += new System.EventHandler(this.txtNombre_Leave);
+            this.txtNombre.Validating += new System.ComponentModel.CancelEventHandler(this.txtNombre_Validating);
             // 
             // txtEdad
             // 
@@ -292,7 +321,7 @@
             this.txtEdad.Margin = new System.Windows.Forms.Padding(2);
             this.txtEdad.MaxLength = 20;
             this.txtEdad.Name = "txtEdad";
-            this.txtEdad.Size = new System.Drawing.Size(212, 25);
+            this.txtEdad.Size = new System.Drawing.Size(212, 29);
             this.txtEdad.TabIndex = 17;
             this.txtEdad.Text = "Edad";
             this.txtEdad.Visible = false;
@@ -300,21 +329,6 @@
             this.txtEdad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEdad_KeyPress);
             this.txtEdad.Leave += new System.EventHandler(this.txtEdad_Leave);
             this.txtEdad.Validating += new System.ComponentModel.CancelEventHandler(this.txtEdad_Validating);
-            // 
-            // txtNombre
-            // 
-            this.txtNombre.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
-            this.txtNombre.Location = new System.Drawing.Point(38, 57);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(2);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(212, 25);
-            this.txtNombre.TabIndex = 15;
-            this.txtNombre.Text = "Nombre";
-            this.txtNombre.Visible = false;
-            this.txtNombre.Enter += new System.EventHandler(this.txtNombre_Enter);
-            this.txtNombre.Leave += new System.EventHandler(this.txtNombre_Leave);
-            this.txtNombre.Validating += new System.ComponentModel.CancelEventHandler(this.txtNombre_Validating);
             // 
             // txtConfirmarContra
             // 
@@ -324,27 +338,13 @@
             this.txtConfirmarContra.Margin = new System.Windows.Forms.Padding(2);
             this.txtConfirmarContra.MaxLength = 20;
             this.txtConfirmarContra.Name = "txtConfirmarContra";
-            this.txtConfirmarContra.Size = new System.Drawing.Size(212, 25);
+            this.txtConfirmarContra.Size = new System.Drawing.Size(212, 29);
             this.txtConfirmarContra.TabIndex = 16;
             this.txtConfirmarContra.Text = "Confirmar Contraseña";
             this.txtConfirmarContra.Visible = false;
             this.txtConfirmarContra.Enter += new System.EventHandler(this.txtConfirmarContra_Enter);
             this.txtConfirmarContra.Leave += new System.EventHandler(this.txtConfirmarContra_Leave);
             this.txtConfirmarContra.Validating += new System.ComponentModel.CancelEventHandler(this.txtConfirmarContra_Validating);
-            // 
-            // chkBoxRecordar
-            // 
-            this.chkBoxRecordar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.chkBoxRecordar.AutoSize = true;
-            this.chkBoxRecordar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chkBoxRecordar.Font = new System.Drawing.Font("Modern No. 20", 12F);
-            this.chkBoxRecordar.Location = new System.Drawing.Point(93, 134);
-            this.chkBoxRecordar.Margin = new System.Windows.Forms.Padding(2);
-            this.chkBoxRecordar.Name = "chkBoxRecordar";
-            this.chkBoxRecordar.Size = new System.Drawing.Size(106, 22);
-            this.chkBoxRecordar.TabIndex = 12;
-            this.chkBoxRecordar.Text = "Recordarme.";
-            this.chkBoxRecordar.UseVisualStyleBackColor = true;
             // 
             // panInstitucion
             // 
@@ -361,7 +361,7 @@
             this.panInstitucion.Dock = System.Windows.Forms.DockStyle.Top;
             this.panInstitucion.Location = new System.Drawing.Point(0, 0);
             this.panInstitucion.Name = "panInstitucion";
-            this.panInstitucion.Size = new System.Drawing.Size(784, 80);
+            this.panInstitucion.Size = new System.Drawing.Size(782, 80);
             this.panInstitucion.TabIndex = 13;
             // 
             // lblLaTecnica
@@ -371,7 +371,7 @@
             this.lblLaTecnica.ForeColor = System.Drawing.Color.White;
             this.lblLaTecnica.Location = new System.Drawing.Point(481, 41);
             this.lblLaTecnica.Name = "lblLaTecnica";
-            this.lblLaTecnica.Size = new System.Drawing.Size(210, 16);
+            this.lblLaTecnica.Size = new System.Drawing.Size(275, 22);
             this.lblLaTecnica.TabIndex = 8;
             this.lblLaTecnica.Text = "\"La Técnica al Servicio de la Patria\"";
             // 
@@ -393,7 +393,7 @@
             this.lblIPN.ForeColor = System.Drawing.Color.White;
             this.lblIPN.Location = new System.Drawing.Point(478, 22);
             this.lblIPN.Name = "lblIPN";
-            this.lblIPN.Size = new System.Drawing.Size(215, 19);
+            this.lblIPN.Size = new System.Drawing.Size(262, 23);
             this.lblIPN.TabIndex = 7;
             this.lblIPN.Text = "Instituto Politecnico Nacional";
             // 
@@ -404,7 +404,7 @@
             this.lblRFM.ForeColor = System.Drawing.Color.White;
             this.lblRFM.Location = new System.Drawing.Point(124, 49);
             this.lblRFM.Name = "lblRFM";
-            this.lblRFM.Size = new System.Drawing.Size(147, 16);
+            this.lblRFM.Size = new System.Drawing.Size(189, 22);
             this.lblRFM.TabIndex = 6;
             this.lblRFM.Text = "\"Ricardo Flores Magón\"";
             // 
@@ -466,9 +466,9 @@
             this.panAcceso.Controls.Add(this.btnAlternar);
             this.panAcceso.Controls.Add(this.separador1);
             this.panAcceso.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panAcceso.Location = new System.Drawing.Point(454, 80);
+            this.panAcceso.Location = new System.Drawing.Point(452, 80);
             this.panAcceso.Name = "panAcceso";
-            this.panAcceso.Size = new System.Drawing.Size(330, 381);
+            this.panAcceso.Size = new System.Drawing.Size(330, 373);
             this.panAcceso.TabIndex = 14;
             // 
             // panMarca
@@ -481,7 +481,7 @@
             this.panMarca.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panMarca.Location = new System.Drawing.Point(0, 80);
             this.panMarca.Name = "panMarca";
-            this.panMarca.Size = new System.Drawing.Size(454, 381);
+            this.panMarca.Size = new System.Drawing.Size(452, 373);
             this.panMarca.TabIndex = 15;
             // 
             // lblVersion
@@ -490,9 +490,9 @@
             this.lblVersion.Font = new System.Drawing.Font("Harlow Solid Italic", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersion.Location = new System.Drawing.Point(12, 356);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(63, 16);
+            this.lblVersion.Size = new System.Drawing.Size(84, 22);
             this.lblVersion.TabIndex = 7;
-            this.lblVersion.Text = "Alph 0.2.4";
+            this.lblVersion.Text = "Alph 0.2.8";
             // 
             // pictureBox4
             // 
@@ -514,7 +514,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 461);
+            this.ClientSize = new System.Drawing.Size(782, 453);
             this.Controls.Add(this.panMarca);
             this.Controls.Add(this.panAcceso);
             this.Controls.Add(this.panInstitucion);
