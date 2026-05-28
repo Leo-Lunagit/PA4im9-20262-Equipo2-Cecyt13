@@ -50,11 +50,11 @@ namespace PA4IM9_20262_Equipo2
             if (txtUsuario.Text == "" || txtContrasenia.Text == "" || (txtNombre.Text == "" && txtNombre.Visible == true))
             {
                 // Si estan vacíos notifica con un texto y termina el proseso.
-                lblMensajes.Text = "Campos vacios.";
+                //lblMensajes.Text = "Campos vacios.";
                 return;
             }
             // EN CASO DE QUE NO ESTEN VACÍOS.
-            lblMensajes.Text = ""; // Limpia el mensaje.
+            //lblMensajes.Text = ""; // Limpia el mensaje.
 
             Sistema.VerificarArchivo(Sistema.rutaUsuarios, "usuarios"); // Verifica la existencia del archivo
             // Crea el controlador de archivos xml y carga el documento en la ruta de usuarios.
@@ -96,7 +96,7 @@ namespace PA4IM9_20262_Equipo2
                     }
                 }
                 // Si ningun registro coincide con los datos ingresados, lo notifica con un mensaje y borra la contraseña.
-                lblMensajes.Text = "La información no coincide.";
+                // lblMensajes.Text = "La información no coincide.";
                 txtContrasenia.Text = "";
             }
             // En caso de no existir ningun registro, se invita a registrarse amablemente.
@@ -155,19 +155,16 @@ namespace PA4IM9_20262_Equipo2
             this.MinimumSize = new Size(this.Width, this.Height + desplazamiento + ajuste);
             grpInicioS.Height += desplazamiento + ajuste;
             // Desplazar los controles un sierto tamaño.
-            lblUsuario.Location = new Point(lblUsuario.Location.X, lblUsuario.Location.Y + desplazamiento);
             txtUsuario.Location = new Point(txtUsuario.Location.X, txtUsuario.Location.Y + desplazamiento);
             txtContrasenia.Location = new Point(txtContrasenia.Location.X, txtContrasenia.Location.Y + desplazamiento);
-            lblContrasenia.Location = new Point(lblContrasenia.Location.X, lblContrasenia.Location.Y + desplazamiento);
             chkBoxRecordar.Location = new Point(chkBoxRecordar.Location.X, chkBoxRecordar.Location.Y + desplazamiento);
             btnAcceder.Location = new Point(btnAcceder.Location.X, btnAcceder.Location.Y + desplazamiento);
             btnRecuperar.Location = new Point(btnRecuperar.Location.X, btnRecuperar.Location.Y + desplazamiento);
             // Mostrar controles extra.
             btnRecuperar.Visible = inicio;
-            lblNombre.Visible = !inicio;
             txtNombre.Visible = !inicio;
             // Cambiar textos.
-            lblMensajes.Text = "";
+            // lblMensajes.Text = "";
             grpInicioS.Text = inicio ? "Iniciar Sesión en SICONPOLI" : "Registrarse en SICONPOLI";
             btnAcceder.Text = inicio ? "Iniciar Sesión" : "Registrarse";
             btnRegistrar.Text = inicio ? "Registrarse" : "Iniciar Sesión";
@@ -175,9 +172,7 @@ namespace PA4IM9_20262_Equipo2
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            // Revisa en que ventana esta con respecto al contenido del btn para cambiar, mandando a llamar a la segunda disposición ("apariencia" de la ventana.).
-            if (btnRegistrar.Text == "Registrarse") AlternarInicioRegistro(50, false);
-            else AlternarInicioRegistro(-50, true);
+
         }
     }
 }

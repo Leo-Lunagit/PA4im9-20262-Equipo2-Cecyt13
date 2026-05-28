@@ -91,6 +91,11 @@
     <Content Include="Datos\Usuarios.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Recursos\Multimedia\AniversarioCecyt.png" />
+    <Content Include="Recursos\Multimedia\AniversarioIPN.png" />
+    <Content Include="Recursos\Multimedia\cecyt13-blanco.png" />
+    <Content Include="Recursos\Multimedia\LogoCecyt13.png" />
+    <Content Include="Recursos\Multimedia\LogoIPN.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
