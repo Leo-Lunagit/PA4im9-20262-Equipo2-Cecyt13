@@ -21,7 +21,8 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>0</WarningLevel>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,14 +48,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entidades\Asientos.cs" />
     <Compile Include="Entidades\LabelVertical.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Entidades\Perfil.cs" />
+    <Compile Include="Modulos\ConvertidorXml.cs" />
     <Compile Include="Modulos\Sistema.cs" />
-    <Compile Include="Vistas\Panel de Acceso\PanelAcceso.cs">
+    <Compile Include="Vistas\PanelAcceso\PanelAcceso.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\Panel de Acceso\PanelAcceso.Designer.cs">
+    <Compile Include="Vistas\PanelAcceso\PanelAcceso.Designer.cs">
       <DependentUpon>PanelAcceso.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -66,8 +71,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Vistas\Panel de Acceso\PanelAcceso.resx">
+    <EmbeddedResource Include="Vistas\PanelAcceso\PanelAcceso.resx">
       <DependentUpon>PanelAcceso.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -88,6 +94,13 @@
     <Content Include="Datos\Usuarios.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Recursos\Iconos\NoMostrarContra.png" />
+    <Content Include="Recursos\Iconos\MostrarContra.png" />
+    <Content Include="Recursos\Multimedia\AniversarioCecyt.png" />
+    <Content Include="Recursos\Multimedia\AniversarioIPN.png" />
+    <Content Include="Recursos\Multimedia\cecyt13-blanco.png" />
+    <Content Include="Recursos\Multimedia\LogoCecyt13.png" />
+    <Content Include="Recursos\Multimedia\LogoIPN.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
