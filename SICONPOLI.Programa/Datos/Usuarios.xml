@@ -1,3 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <usuarios>
+  <perfil>
+    <id>1001</id>
+    <rol>administrador</rol>
+    <fechaCreacion>2026-05-28T20:49:27.3365154-06:00</fechaCreacion>
+    <usuario>equipo2</usuario>
+    <correo>losjochis@gmail.com</correo>
+    <contrasenia>1234</contrasenia>
+    <nombre>Equipo 2</nombre>
+    <edad>18</edad>
+  </perfil>
 </usuarios>

@@ -80,10 +80,9 @@
             // 
             this.lblTitulo.Font = new System.Drawing.Font("Harrington", 19.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(29)))), ((int)(((byte)(70)))));
-            this.lblTitulo.Location = new System.Drawing.Point(26, 10);
-            this.lblTitulo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTitulo.Location = new System.Drawing.Point(35, 12);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(402, 80);
+            this.lblTitulo.Size = new System.Drawing.Size(536, 98);
             this.lblTitulo.TabIndex = 0;
             this.lblTitulo.Text = "Sistema de Reciclaje Tecnológico en el Poilitécnico";
             this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -94,8 +93,7 @@
             this.btnAcerca.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAcerca.Font = new System.Drawing.Font("Dubai", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAcerca.ForeColor = System.Drawing.Color.Black;
-            this.btnAcerca.Location = new System.Drawing.Point(7, 10);
-            this.btnAcerca.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnAcerca.Location = new System.Drawing.Point(9, 12);
             this.btnAcerca.Name = "btnAcerca";
             this.btnAcerca.Size = new System.Drawing.Size(81, 29);
             this.btnAcerca.TabIndex = 1;
@@ -108,8 +106,7 @@
             this.btnPriva.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPriva.Font = new System.Drawing.Font("Dubai", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPriva.ForeColor = System.Drawing.Color.Black;
-            this.btnPriva.Location = new System.Drawing.Point(88, 10);
-            this.btnPriva.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnPriva.Location = new System.Drawing.Point(117, 12);
             this.btnPriva.Name = "btnPriva";
             this.btnPriva.Size = new System.Drawing.Size(163, 29);
             this.btnPriva.TabIndex = 2;
@@ -122,8 +119,7 @@
             this.btnAlternar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAlternar.Font = new System.Drawing.Font("Dubai", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAlternar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(39)))), ((int)(((byte)(70)))));
-            this.btnAlternar.Location = new System.Drawing.Point(233, 10);
-            this.btnAlternar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnAlternar.Location = new System.Drawing.Point(311, 12);
             this.btnAlternar.Name = "btnAlternar";
             this.btnAlternar.Size = new System.Drawing.Size(94, 29);
             this.btnAlternar.TabIndex = 3;
@@ -137,11 +133,11 @@
             this.btnAcceder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAcceder.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAcceder.ForeColor = System.Drawing.Color.White;
-            this.btnAcceder.Location = new System.Drawing.Point(71, 156);
-            this.btnAcceder.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAcceder.Location = new System.Drawing.Point(95, 192);
+            this.btnAcceder.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAcceder.Name = "btnAcceder";
-            this.btnAcceder.Size = new System.Drawing.Size(157, 32);
-            this.btnAcceder.TabIndex = 6;
+            this.btnAcceder.Size = new System.Drawing.Size(209, 39);
+            this.btnAcceder.TabIndex = 7;
             this.btnAcceder.Text = "Iniciar Sesión";
             this.btnAcceder.UseVisualStyleBackColor = false;
             this.btnAcceder.Click += new System.EventHandler(this.btnAcceder_Click);
@@ -150,11 +146,11 @@
             // 
             this.txtUsuario.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
-            this.txtUsuario.Location = new System.Drawing.Point(38, 57);
-            this.txtUsuario.Margin = new System.Windows.Forms.Padding(2);
+            this.txtUsuario.Location = new System.Drawing.Point(51, 70);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(212, 29);
-            this.txtUsuario.TabIndex = 7;
+            this.txtUsuario.Size = new System.Drawing.Size(281, 29);
+            this.txtUsuario.TabIndex = 2;
             this.txtUsuario.Text = "Usuario";
             this.txtUsuario.Enter += new System.EventHandler(this.txtUsuario_Enter);
             this.txtUsuario.Leave += new System.EventHandler(this.txtUsuario_Leave);
@@ -164,12 +160,12 @@
             // 
             this.txtContrasenia.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtContrasenia.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
-            this.txtContrasenia.Location = new System.Drawing.Point(38, 94);
-            this.txtContrasenia.Margin = new System.Windows.Forms.Padding(2);
+            this.txtContrasenia.Location = new System.Drawing.Point(51, 116);
+            this.txtContrasenia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtContrasenia.MaxLength = 16;
             this.txtContrasenia.Name = "txtContrasenia";
-            this.txtContrasenia.Size = new System.Drawing.Size(212, 29);
-            this.txtContrasenia.TabIndex = 8;
+            this.txtContrasenia.Size = new System.Drawing.Size(281, 29);
+            this.txtContrasenia.TabIndex = 4;
             this.txtContrasenia.Text = "Contraseña";
             this.txtContrasenia.Enter += new System.EventHandler(this.txtContrasenia_Enter);
             this.txtContrasenia.Leave += new System.EventHandler(this.txtContrasenia_Leave);
@@ -178,20 +174,18 @@
             // separador1
             // 
             this.separador1.AutoSize = true;
-            this.separador1.Location = new System.Drawing.Point(70, 15);
-            this.separador1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.separador1.Location = new System.Drawing.Point(93, 18);
             this.separador1.Name = "separador1";
-            this.separador1.Size = new System.Drawing.Size(10, 15);
+            this.separador1.Size = new System.Drawing.Size(10, 16);
             this.separador1.TabIndex = 9;
             this.separador1.Text = "|";
             // 
             // separador2
             // 
             this.separador2.AutoSize = true;
-            this.separador2.Location = new System.Drawing.Point(216, 15);
-            this.separador2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.separador2.Location = new System.Drawing.Point(288, 18);
             this.separador2.Name = "separador2";
-            this.separador2.Size = new System.Drawing.Size(10, 15);
+            this.separador2.Size = new System.Drawing.Size(10, 16);
             this.separador2.TabIndex = 10;
             this.separador2.Text = "|";
             // 
@@ -201,8 +195,7 @@
             this.btnRecuperar.AutoSize = true;
             this.btnRecuperar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRecuperar.Font = new System.Drawing.Font("Dubai", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRecuperar.Location = new System.Drawing.Point(75, 190);
-            this.btnRecuperar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.btnRecuperar.Location = new System.Drawing.Point(100, 234);
             this.btnRecuperar.Name = "btnRecuperar";
             this.btnRecuperar.Size = new System.Drawing.Size(195, 29);
             this.btnRecuperar.TabIndex = 11;
@@ -227,11 +220,11 @@
             this.grpInicioS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.grpInicioS.Font = new System.Drawing.Font("Dubai", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpInicioS.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(29)))), ((int)(((byte)(70)))));
-            this.grpInicioS.Location = new System.Drawing.Point(25, 82);
-            this.grpInicioS.Margin = new System.Windows.Forms.Padding(2);
+            this.grpInicioS.Location = new System.Drawing.Point(33, 101);
+            this.grpInicioS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.grpInicioS.Name = "grpInicioS";
-            this.grpInicioS.Padding = new System.Windows.Forms.Padding(2);
-            this.grpInicioS.Size = new System.Drawing.Size(285, 219);
+            this.grpInicioS.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.grpInicioS.Size = new System.Drawing.Size(380, 270);
             this.grpInicioS.TabIndex = 12;
             this.grpInicioS.TabStop = false;
             this.grpInicioS.Text = "Inciar seción en SIRETECH Poli";
@@ -239,9 +232,10 @@
             // iconoConfirmarContra
             // 
             this.iconoConfirmarContra.Image = ((System.Drawing.Image)(resources.GetObject("iconoConfirmarContra.Image")));
-            this.iconoConfirmarContra.Location = new System.Drawing.Point(223, 95);
+            this.iconoConfirmarContra.Location = new System.Drawing.Point(297, 117);
+            this.iconoConfirmarContra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconoConfirmarContra.Name = "iconoConfirmarContra";
-            this.iconoConfirmarContra.Size = new System.Drawing.Size(22, 22);
+            this.iconoConfirmarContra.Size = new System.Drawing.Size(29, 27);
             this.iconoConfirmarContra.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.iconoConfirmarContra.TabIndex = 21;
             this.iconoConfirmarContra.TabStop = false;
@@ -251,9 +245,10 @@
             // iconoContrasenia
             // 
             this.iconoContrasenia.Image = ((System.Drawing.Image)(resources.GetObject("iconoContrasenia.Image")));
-            this.iconoContrasenia.Location = new System.Drawing.Point(223, 95);
+            this.iconoContrasenia.Location = new System.Drawing.Point(297, 117);
+            this.iconoContrasenia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconoContrasenia.Name = "iconoContrasenia";
-            this.iconoContrasenia.Size = new System.Drawing.Size(22, 22);
+            this.iconoContrasenia.Size = new System.Drawing.Size(29, 27);
             this.iconoContrasenia.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.iconoContrasenia.TabIndex = 20;
             this.iconoContrasenia.TabStop = false;
@@ -262,9 +257,10 @@
             // lblMensajes
             // 
             this.lblMensajes.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMensajes.Location = new System.Drawing.Point(22, 32);
+            this.lblMensajes.Location = new System.Drawing.Point(29, 39);
+            this.lblMensajes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMensajes.Name = "lblMensajes";
-            this.lblMensajes.Size = new System.Drawing.Size(251, 16);
+            this.lblMensajes.Size = new System.Drawing.Size(335, 20);
             this.lblMensajes.TabIndex = 19;
             this.lblMensajes.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -274,8 +270,8 @@
             this.chkBoxRecordar.AutoSize = true;
             this.chkBoxRecordar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkBoxRecordar.Font = new System.Drawing.Font("Modern No. 20", 12F);
-            this.chkBoxRecordar.Location = new System.Drawing.Point(93, 130);
-            this.chkBoxRecordar.Margin = new System.Windows.Forms.Padding(2);
+            this.chkBoxRecordar.Location = new System.Drawing.Point(124, 166);
+            this.chkBoxRecordar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkBoxRecordar.Name = "chkBoxRecordar";
             this.chkBoxRecordar.Size = new System.Drawing.Size(134, 26);
             this.chkBoxRecordar.TabIndex = 12;
@@ -286,12 +282,12 @@
             // 
             this.txtCorreo.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCorreo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
-            this.txtCorreo.Location = new System.Drawing.Point(38, 57);
-            this.txtCorreo.Margin = new System.Windows.Forms.Padding(2);
+            this.txtCorreo.Location = new System.Drawing.Point(51, 70);
+            this.txtCorreo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCorreo.MaxLength = 20;
             this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.Size = new System.Drawing.Size(212, 29);
-            this.txtCorreo.TabIndex = 18;
+            this.txtCorreo.Size = new System.Drawing.Size(281, 29);
+            this.txtCorreo.TabIndex = 3;
             this.txtCorreo.Text = "Email";
             this.txtCorreo.Visible = false;
             this.txtCorreo.Enter += new System.EventHandler(this.txtCorreo_Enter);
@@ -302,11 +298,11 @@
             // 
             this.txtNombre.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
-            this.txtNombre.Location = new System.Drawing.Point(38, 57);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNombre.Location = new System.Drawing.Point(51, 70);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(212, 29);
-            this.txtNombre.TabIndex = 15;
+            this.txtNombre.Size = new System.Drawing.Size(281, 29);
+            this.txtNombre.TabIndex = 1;
             this.txtNombre.Text = "Nombre";
             this.txtNombre.Visible = false;
             this.txtNombre.Enter += new System.EventHandler(this.txtNombre_Enter);
@@ -317,12 +313,12 @@
             // 
             this.txtEdad.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEdad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
-            this.txtEdad.Location = new System.Drawing.Point(38, 94);
-            this.txtEdad.Margin = new System.Windows.Forms.Padding(2);
+            this.txtEdad.Location = new System.Drawing.Point(51, 116);
+            this.txtEdad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEdad.MaxLength = 20;
             this.txtEdad.Name = "txtEdad";
-            this.txtEdad.Size = new System.Drawing.Size(212, 29);
-            this.txtEdad.TabIndex = 17;
+            this.txtEdad.Size = new System.Drawing.Size(281, 29);
+            this.txtEdad.TabIndex = 6;
             this.txtEdad.Text = "Edad";
             this.txtEdad.Visible = false;
             this.txtEdad.Enter += new System.EventHandler(this.txtEdad_Enter);
@@ -334,12 +330,12 @@
             // 
             this.txtConfirmarContra.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtConfirmarContra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
-            this.txtConfirmarContra.Location = new System.Drawing.Point(38, 94);
-            this.txtConfirmarContra.Margin = new System.Windows.Forms.Padding(2);
+            this.txtConfirmarContra.Location = new System.Drawing.Point(51, 116);
+            this.txtConfirmarContra.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtConfirmarContra.MaxLength = 20;
             this.txtConfirmarContra.Name = "txtConfirmarContra";
-            this.txtConfirmarContra.Size = new System.Drawing.Size(212, 29);
-            this.txtConfirmarContra.TabIndex = 16;
+            this.txtConfirmarContra.Size = new System.Drawing.Size(281, 29);
+            this.txtConfirmarContra.TabIndex = 5;
             this.txtConfirmarContra.Text = "Confirmar Contraseña";
             this.txtConfirmarContra.Visible = false;
             this.txtConfirmarContra.Enter += new System.EventHandler(this.txtConfirmarContra_Enter);
@@ -360,8 +356,9 @@
             this.panInstitucion.Controls.Add(this.logoCecyt);
             this.panInstitucion.Dock = System.Windows.Forms.DockStyle.Top;
             this.panInstitucion.Location = new System.Drawing.Point(0, 0);
+            this.panInstitucion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panInstitucion.Name = "panInstitucion";
-            this.panInstitucion.Size = new System.Drawing.Size(782, 80);
+            this.panInstitucion.Size = new System.Drawing.Size(1043, 98);
             this.panInstitucion.TabIndex = 13;
             // 
             // lblLaTecnica
@@ -369,7 +366,8 @@
             this.lblLaTecnica.AutoSize = true;
             this.lblLaTecnica.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLaTecnica.ForeColor = System.Drawing.Color.White;
-            this.lblLaTecnica.Location = new System.Drawing.Point(481, 41);
+            this.lblLaTecnica.Location = new System.Drawing.Point(641, 50);
+            this.lblLaTecnica.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLaTecnica.Name = "lblLaTecnica";
             this.lblLaTecnica.Size = new System.Drawing.Size(275, 22);
             this.lblLaTecnica.TabIndex = 8;
@@ -379,9 +377,10 @@
             // 
             this.lblCecyt.Font = new System.Drawing.Font("Microsoft Tai Le", 10.75F, System.Drawing.FontStyle.Bold);
             this.lblCecyt.ForeColor = System.Drawing.Color.White;
-            this.lblCecyt.Location = new System.Drawing.Point(102, 9);
+            this.lblCecyt.Location = new System.Drawing.Point(136, 11);
+            this.lblCecyt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCecyt.Name = "lblCecyt";
-            this.lblCecyt.Size = new System.Drawing.Size(193, 41);
+            this.lblCecyt.Size = new System.Drawing.Size(257, 50);
             this.lblCecyt.TabIndex = 5;
             this.lblCecyt.Text = "Centro de Estudios Cientificos y Tecnologicos No. 13";
             this.lblCecyt.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -391,7 +390,8 @@
             this.lblIPN.AutoSize = true;
             this.lblIPN.Font = new System.Drawing.Font("Microsoft Tai Le", 10.75F, System.Drawing.FontStyle.Bold);
             this.lblIPN.ForeColor = System.Drawing.Color.White;
-            this.lblIPN.Location = new System.Drawing.Point(478, 22);
+            this.lblIPN.Location = new System.Drawing.Point(637, 27);
+            this.lblIPN.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIPN.Name = "lblIPN";
             this.lblIPN.Size = new System.Drawing.Size(262, 23);
             this.lblIPN.TabIndex = 7;
@@ -402,7 +402,8 @@
             this.lblRFM.AutoSize = true;
             this.lblRFM.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRFM.ForeColor = System.Drawing.Color.White;
-            this.lblRFM.Location = new System.Drawing.Point(124, 49);
+            this.lblRFM.Location = new System.Drawing.Point(165, 60);
+            this.lblRFM.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRFM.Name = "lblRFM";
             this.lblRFM.Size = new System.Drawing.Size(189, 22);
             this.lblRFM.TabIndex = 6;
@@ -411,17 +412,19 @@
             // linea1
             // 
             this.linea1.BackColor = System.Drawing.Color.Black;
-            this.linea1.Location = new System.Drawing.Point(391, 5);
+            this.linea1.Location = new System.Drawing.Point(521, 6);
+            this.linea1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.linea1.Name = "linea1";
-            this.linea1.Size = new System.Drawing.Size(1, 72);
+            this.linea1.Size = new System.Drawing.Size(1, 89);
             this.linea1.TabIndex = 4;
             // 
             // LogoIPN
             // 
             this.LogoIPN.Image = ((System.Drawing.Image)(resources.GetObject("LogoIPN.Image")));
-            this.LogoIPN.Location = new System.Drawing.Point(688, 8);
+            this.LogoIPN.Location = new System.Drawing.Point(917, 10);
+            this.LogoIPN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LogoIPN.Name = "LogoIPN";
-            this.LogoIPN.Size = new System.Drawing.Size(64, 64);
+            this.LogoIPN.Size = new System.Drawing.Size(85, 79);
             this.LogoIPN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.LogoIPN.TabIndex = 3;
             this.LogoIPN.TabStop = false;
@@ -429,9 +432,10 @@
             // LogoAniIPN
             // 
             this.LogoAniIPN.Image = ((System.Drawing.Image)(resources.GetObject("LogoAniIPN.Image")));
-            this.LogoAniIPN.Location = new System.Drawing.Point(408, 8);
+            this.LogoAniIPN.Location = new System.Drawing.Point(544, 10);
+            this.LogoAniIPN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LogoAniIPN.Name = "LogoAniIPN";
-            this.LogoAniIPN.Size = new System.Drawing.Size(64, 64);
+            this.LogoAniIPN.Size = new System.Drawing.Size(85, 79);
             this.LogoAniIPN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.LogoAniIPN.TabIndex = 2;
             this.LogoAniIPN.TabStop = false;
@@ -439,9 +443,10 @@
             // LogoAniCecyt
             // 
             this.LogoAniCecyt.Image = ((System.Drawing.Image)(resources.GetObject("LogoAniCecyt.Image")));
-            this.LogoAniCecyt.Location = new System.Drawing.Point(311, 8);
+            this.LogoAniCecyt.Location = new System.Drawing.Point(415, 10);
+            this.LogoAniCecyt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LogoAniCecyt.Name = "LogoAniCecyt";
-            this.LogoAniCecyt.Size = new System.Drawing.Size(64, 64);
+            this.LogoAniCecyt.Size = new System.Drawing.Size(85, 79);
             this.LogoAniCecyt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.LogoAniCecyt.TabIndex = 1;
             this.LogoAniCecyt.TabStop = false;
@@ -449,9 +454,10 @@
             // logoCecyt
             // 
             this.logoCecyt.Image = ((System.Drawing.Image)(resources.GetObject("logoCecyt.Image")));
-            this.logoCecyt.Location = new System.Drawing.Point(32, 8);
+            this.logoCecyt.Location = new System.Drawing.Point(43, 10);
+            this.logoCecyt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.logoCecyt.Name = "logoCecyt";
-            this.logoCecyt.Size = new System.Drawing.Size(64, 64);
+            this.logoCecyt.Size = new System.Drawing.Size(85, 79);
             this.logoCecyt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logoCecyt.TabIndex = 0;
             this.logoCecyt.TabStop = false;
@@ -466,9 +472,10 @@
             this.panAcceso.Controls.Add(this.btnAlternar);
             this.panAcceso.Controls.Add(this.separador1);
             this.panAcceso.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panAcceso.Location = new System.Drawing.Point(452, 80);
+            this.panAcceso.Location = new System.Drawing.Point(603, 98);
+            this.panAcceso.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panAcceso.Name = "panAcceso";
-            this.panAcceso.Size = new System.Drawing.Size(330, 373);
+            this.panAcceso.Size = new System.Drawing.Size(440, 460);
             this.panAcceso.TabIndex = 14;
             // 
             // panMarca
@@ -479,49 +486,53 @@
             this.panMarca.Controls.Add(this.linea2);
             this.panMarca.Controls.Add(this.lblTitulo);
             this.panMarca.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panMarca.Location = new System.Drawing.Point(0, 80);
+            this.panMarca.Location = new System.Drawing.Point(0, 98);
+            this.panMarca.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panMarca.Name = "panMarca";
-            this.panMarca.Size = new System.Drawing.Size(452, 373);
+            this.panMarca.Size = new System.Drawing.Size(603, 460);
             this.panMarca.TabIndex = 15;
             // 
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font("Harlow Solid Italic", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersion.Location = new System.Drawing.Point(12, 356);
+            this.lblVersion.Location = new System.Drawing.Point(16, 438);
+            this.lblVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(84, 22);
             this.lblVersion.TabIndex = 7;
-            this.lblVersion.Text = "Alph 0.2.8";
+            this.lblVersion.Text = "Alph 1.0.0";
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Location = new System.Drawing.Point(32, 98);
+            this.pictureBox4.Location = new System.Drawing.Point(43, 121);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(390, 223);
+            this.pictureBox4.Size = new System.Drawing.Size(520, 274);
             this.pictureBox4.TabIndex = 6;
             this.pictureBox4.TabStop = false;
             // 
             // linea2
             // 
             this.linea2.BackColor = System.Drawing.Color.Black;
-            this.linea2.Location = new System.Drawing.Point(452, 8);
+            this.linea2.Location = new System.Drawing.Point(603, 10);
+            this.linea2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.linea2.Name = "linea2";
-            this.linea2.Size = new System.Drawing.Size(2, 365);
+            this.linea2.Size = new System.Drawing.Size(3, 449);
             this.linea2.TabIndex = 5;
             // 
             // PanelAcceso
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(782, 453);
+            this.ClientSize = new System.Drawing.Size(1043, 558);
             this.Controls.Add(this.panMarca);
             this.Controls.Add(this.panAcceso);
             this.Controls.Add(this.panInstitucion);
             this.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.MaximumSize = new System.Drawing.Size(800, 500);
-            this.MinimumSize = new System.Drawing.Size(800, 500);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximumSize = new System.Drawing.Size(1061, 605);
+            this.MinimumSize = new System.Drawing.Size(1061, 605);
             this.Name = "PanelAcceso";
             this.Text = "Panel de Acceso.";
             this.grpInicioS.ResumeLayout(false);

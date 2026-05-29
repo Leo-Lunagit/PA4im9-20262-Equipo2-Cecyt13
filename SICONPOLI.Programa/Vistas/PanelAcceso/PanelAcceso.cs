@@ -1,5 +1,6 @@
 ﻿using PA4IM9_20262_Equipo2.Entidades;
 using PA4IM9_20262_Equipo2.Modulos;
+using PA4IM9_20262_Equipo2.Vistas.Panel_Principal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,10 +9,10 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
-using System.Text.RegularExpressions;
 
 namespace PA4IM9_20262_Equipo2
 {
@@ -87,7 +88,7 @@ namespace PA4IM9_20262_Equipo2
                             lector.Save(Sistema.rutaUsuarios);
                         }
                         // Mandar a llamar al menu principal.
-                        MessageBox.Show("Datos correctos. | Accediste al sistema.", "Acceso Permitido.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        AbrirMenuPrincipal();
                         // Si ya se abrio la ventana, se detiene el proseso y se debe cerrar esta ventana.
                         return;
                     }
@@ -133,7 +134,7 @@ namespace PA4IM9_20262_Equipo2
             escritor.Save(Sistema.rutaUsuarios); // Guardar Cambios
 
             // Accede al sistema.
-            MessageBox.Show("Datos correctos. | Accediste al sistema.", "Acceso Permitido.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            AbrirMenuPrincipal();
         }
 
         //
@@ -183,6 +184,12 @@ namespace PA4IM9_20262_Equipo2
         //
         // Logica de ventanas.
         //
+        private void AbrirMenuPrincipal()
+        {
+            MenuPrincipal ventana = new MenuPrincipal(); // Creamos la ventana del panel principal.
+            ventana.Show(); // la mostramos.
+            this.Hide(); // Ocultamos esta.
+        }
         // Cargar ventana de "Acerca de" Solo minimizar la de registro.
         private void btnAcerca_Click(object sender, EventArgs e) { MessageBox.Show("Conocenos.", "Acerca de.", MessageBoxButtons.OK, MessageBoxIcon.Information); }
         // Cargar ventana de "Politicas de Privacidad" Solo minimizar la de registro.
