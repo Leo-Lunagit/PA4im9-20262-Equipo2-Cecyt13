@@ -113,15 +113,16 @@ namespace PA4IM9_20262_Equipo2
             Perfil nuevoPerfil = new Perfil();
 
             // Se asignan los datos fundamentales.
-            nuevoPerfil.FechaCreacion = DateTime.Now;
-            nuevoPerfil.Rol = Sistema.Roles[0];
             nuevoPerfil.ID = Sistema.GenerarID();
+            nuevoPerfil.FechaCreacion = DateTime.Now;
             // Se registran los datos ingresados.
             nuevoPerfil.Nombre = txtNombre.Text;
             nuevoPerfil.Usuario = txtUsuario.Text;
             nuevoPerfil.Correo = txtCorreo.Text;
             nuevoPerfil.Contrasenia = txtContrasenia.Text;
             nuevoPerfil.Edad = int.Parse(txtEdad.Text);
+            // Dinamicamente asigna un Rol adecuado.
+            nuevoPerfil.Rol = nuevoPerfil.ID == "1001" ? Sistema.Roles[0] : nuevoPerfil.Edad > 17 ? Sistema.Roles[2] : Sistema.RolPredefinido;
 
             // Creamos un elemento Xml llenandolo con los datos del perfil antes llenado.
             XmlElement elementoPerfil = ConvertidorXml.ObjetoToElemento(escritor ,nuevoPerfil);
