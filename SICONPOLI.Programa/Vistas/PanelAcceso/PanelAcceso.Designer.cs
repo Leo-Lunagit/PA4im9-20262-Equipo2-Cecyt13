@@ -501,7 +501,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(84, 22);
             this.lblVersion.TabIndex = 7;
-            this.lblVersion.Text = "Alph 1.0.5";
+            this.lblVersion.Text = "Alph 1.0.7";
             // 
             // pictureBox4
             // 

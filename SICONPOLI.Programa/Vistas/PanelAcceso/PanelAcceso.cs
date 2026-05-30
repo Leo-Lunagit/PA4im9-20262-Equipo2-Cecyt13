@@ -28,8 +28,11 @@ namespace PA4IM9_20262_Equipo2
         }
         private void RecordarUsuario()
         {
+            // Verifica si el archivo de usuarios existe.
+            Sistema.VerificarArchivo(Sistema.rutaUsuarios, Sistema.raizUsuarios);
             XmlDocument lector = new XmlDocument(); // Crea el controlador de archivos xml.
             lector.Load(Sistema.rutaUsuarios); // Carga el archivo de usuarios
+            if (!ExistenUsuariosRegistrados(lector)) return; // Aprovechando la carga detecta si existen usuarios registrados.
 
             // Busca elementos con las coincidenias especificadas y los debuelve en una arreglo.
             // 'lector' -> Contiene el archivo. 'DocumentElement' -> Elemento raiz. '//' -> Ruta actual. "perfil" -> Todos los elementos de nombre perfil.
@@ -43,6 +46,18 @@ namespace PA4IM9_20262_Equipo2
                 txtContrasenia.Text = perfilRecordado["contrasenia"].InnerText;
                 chkBoxRecordar.Checked = true;
             }
+        }
+        private bool ExistenUsuariosRegistrados(XmlDocument lector)
+        {
+            // Crea una lista de elementos xml con los elementos de nombre perfil.
+            XmlNodeList perfiles = lector.DocumentElement.SelectNodes("perfil");
+            // Si su conteo es 0 (no hay usuarios) envia al panel de registro.
+            if (perfiles.Count == 0)
+            {
+                AlternarInicioRegistro(true); // Envia a la pantalla de registro.
+                return false;
+            }
+            return true;
         }
 
         //
@@ -66,7 +81,7 @@ namespace PA4IM9_20262_Equipo2
         private void IniciarSesion(XmlDocument lector, string usuario, string contrasenia)
         {
             // Si en el elemento raiz del archivo existen registros:
-            if (lector.DocumentElement.ChildNodes.Count > 0)
+            if (ExistenUsuariosRegistrados(lector))
             {
                 // Recorrera cada registro.
                 foreach (XmlElement elemento in lector.DocumentElement.ChildNodes)
@@ -100,11 +115,10 @@ namespace PA4IM9_20262_Equipo2
             // En caso de no existir ningun registro, se invita a registrarse amablemente.
             else
             {
+                // Notifica con una ventana que no existen usuarios.
                 MessageBox.Show("No existen usuarios. Por favor registrese.", "Sin usuarios.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                PonerPlaceHolder(txtUsuario, "Usuario");
-                PonerPlaceHolder(txtContrasenia, "Contraseña");
-                // Mandar a llamar el registro.
-                AlternarInicioRegistro(true);
+                PonerPlaceHolder(txtUsuario, "Usuario"); // Limpia el campo.
+                PonerPlaceHolder(txtContrasenia, "Contraseña"); // Limpia el campo.
             }
         }
         private void Registrarse(XmlDocument escritor)
