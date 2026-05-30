@@ -51,7 +51,7 @@ namespace PA4IM9_20262_Equipo2
         private void btnAcceder_Click(object sender, EventArgs e)
         {
             // Verifica que SOLO los datos en los campos sean adecuados.
-            if (CamposCorrectos()) return; // Si estan vacíos notifica con un texto y termina el proseso.
+            if (!CamposCorrectos()) return; // Si estan vacíos notifica con un texto y termina el proseso.
             lblMensajes.Text = ""; // Limpia el mensaje.
 
             Sistema.VerificarArchivo(Sistema.rutaUsuarios, Sistema.raizUsuarios); // Verifica la existencia del archivo
@@ -101,8 +101,8 @@ namespace PA4IM9_20262_Equipo2
             else
             {
                 MessageBox.Show("No existen usuarios. Por favor registrese.", "Sin usuarios.", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtUsuario.Text = "";
-                txtContrasenia.Text = "";
+                PonerPlaceHolder(txtUsuario, "Usuario");
+                PonerPlaceHolder(txtContrasenia, "Contraseña");
                 // Mandar a llamar el registro.
                 AlternarInicioRegistro(true);
             }
@@ -284,13 +284,28 @@ namespace PA4IM9_20262_Equipo2
                 return false; // Entonces faltaran datos y se notificara.
             }
             // En caso de que esten llenos los campos pero no coincidan las contraseñas,
-            else if (txtContrasenia.Text != txtConfirmarContra.Text) 
+            else if (txtContrasenia.Text != txtConfirmarContra.Text && txtConfirmarContra.Visible) 
             {
                 lblMensajes.Text = "Las contraseñas no coinciden."; // Indica que no son iguales las contraseñas.
                 txtConfirmarContra.Focus(); // Manda a corregir la contraseña.
                 return false;
             }
-            return false;
+            else if (txtEdad.Visible)
+            {
+                int edad = int.Parse(txtEdad.Text);
+                if (edad < 0 || edad >= 120)
+                {
+                    lblMensajes.Text = "Rango de edad no valido."; // Indica un rango de edad no valido
+                    txtEdad.Focus(); // Manda a corregir
+                    return false; 
+                } else if (edad < 10)
+                {
+                    lblMensajes.Text = "Solo mayores de 10 años.";
+                    txtEdad.Focus();
+                    return false;
+                }
+            }
+            return true;
         }
         private bool CorreoValido(string cadena)
         {
@@ -364,18 +379,6 @@ namespace PA4IM9_20262_Equipo2
             else e.Handled = true;
         }
 
-        private void txtEdad_Validating(object sender, CancelEventArgs e)
-        {
-            if (txtEdad.Text == "Edad") lblMensajes.Text = "Falta ingresar la edad.";
-            else
-            {
-                int edad = int.Parse(txtEdad.Text);
-                if (edad < 0 || edad > 120)
-                {
-                    lblMensajes.Text = "Rango de edad no valido.";
-                    txtEdad.Focus();
-                }
-            }
-        }
+        private void txtEdad_Validating(object sender, CancelEventArgs e) { if (txtEdad.Text == "Edad") lblMensajes.Text = "Falta ingresar la edad."; }
     }
 }

@@ -233,7 +233,7 @@
             // 
             this.iconoConfirmarContra.Image = ((System.Drawing.Image)(resources.GetObject("iconoConfirmarContra.Image")));
             this.iconoConfirmarContra.Location = new System.Drawing.Point(297, 117);
-            this.iconoConfirmarContra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.iconoConfirmarContra.Margin = new System.Windows.Forms.Padding(4);
             this.iconoConfirmarContra.Name = "iconoConfirmarContra";
             this.iconoConfirmarContra.Size = new System.Drawing.Size(29, 27);
             this.iconoConfirmarContra.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -246,7 +246,7 @@
             // 
             this.iconoContrasenia.Image = ((System.Drawing.Image)(resources.GetObject("iconoContrasenia.Image")));
             this.iconoContrasenia.Location = new System.Drawing.Point(297, 117);
-            this.iconoContrasenia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.iconoContrasenia.Margin = new System.Windows.Forms.Padding(4);
             this.iconoContrasenia.Name = "iconoContrasenia";
             this.iconoContrasenia.Size = new System.Drawing.Size(29, 27);
             this.iconoContrasenia.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -356,7 +356,7 @@
             this.panInstitucion.Controls.Add(this.logoCecyt);
             this.panInstitucion.Dock = System.Windows.Forms.DockStyle.Top;
             this.panInstitucion.Location = new System.Drawing.Point(0, 0);
-            this.panInstitucion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panInstitucion.Margin = new System.Windows.Forms.Padding(4);
             this.panInstitucion.Name = "panInstitucion";
             this.panInstitucion.Size = new System.Drawing.Size(1043, 98);
             this.panInstitucion.TabIndex = 13;
@@ -413,7 +413,7 @@
             // 
             this.linea1.BackColor = System.Drawing.Color.Black;
             this.linea1.Location = new System.Drawing.Point(521, 6);
-            this.linea1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.linea1.Margin = new System.Windows.Forms.Padding(4);
             this.linea1.Name = "linea1";
             this.linea1.Size = new System.Drawing.Size(1, 89);
             this.linea1.TabIndex = 4;
@@ -422,7 +422,7 @@
             // 
             this.LogoIPN.Image = ((System.Drawing.Image)(resources.GetObject("LogoIPN.Image")));
             this.LogoIPN.Location = new System.Drawing.Point(917, 10);
-            this.LogoIPN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LogoIPN.Margin = new System.Windows.Forms.Padding(4);
             this.LogoIPN.Name = "LogoIPN";
             this.LogoIPN.Size = new System.Drawing.Size(85, 79);
             this.LogoIPN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -433,7 +433,7 @@
             // 
             this.LogoAniIPN.Image = ((System.Drawing.Image)(resources.GetObject("LogoAniIPN.Image")));
             this.LogoAniIPN.Location = new System.Drawing.Point(544, 10);
-            this.LogoAniIPN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LogoAniIPN.Margin = new System.Windows.Forms.Padding(4);
             this.LogoAniIPN.Name = "LogoAniIPN";
             this.LogoAniIPN.Size = new System.Drawing.Size(85, 79);
             this.LogoAniIPN.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -444,7 +444,7 @@
             // 
             this.LogoAniCecyt.Image = ((System.Drawing.Image)(resources.GetObject("LogoAniCecyt.Image")));
             this.LogoAniCecyt.Location = new System.Drawing.Point(415, 10);
-            this.LogoAniCecyt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LogoAniCecyt.Margin = new System.Windows.Forms.Padding(4);
             this.LogoAniCecyt.Name = "LogoAniCecyt";
             this.LogoAniCecyt.Size = new System.Drawing.Size(85, 79);
             this.LogoAniCecyt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -455,7 +455,7 @@
             // 
             this.logoCecyt.Image = ((System.Drawing.Image)(resources.GetObject("logoCecyt.Image")));
             this.logoCecyt.Location = new System.Drawing.Point(43, 10);
-            this.logoCecyt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.logoCecyt.Margin = new System.Windows.Forms.Padding(4);
             this.logoCecyt.Name = "logoCecyt";
             this.logoCecyt.Size = new System.Drawing.Size(85, 79);
             this.logoCecyt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -473,7 +473,7 @@
             this.panAcceso.Controls.Add(this.separador1);
             this.panAcceso.Dock = System.Windows.Forms.DockStyle.Right;
             this.panAcceso.Location = new System.Drawing.Point(603, 98);
-            this.panAcceso.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panAcceso.Margin = new System.Windows.Forms.Padding(4);
             this.panAcceso.Name = "panAcceso";
             this.panAcceso.Size = new System.Drawing.Size(440, 460);
             this.panAcceso.TabIndex = 14;
@@ -487,7 +487,7 @@
             this.panMarca.Controls.Add(this.lblTitulo);
             this.panMarca.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panMarca.Location = new System.Drawing.Point(0, 98);
-            this.panMarca.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panMarca.Margin = new System.Windows.Forms.Padding(4);
             this.panMarca.Name = "panMarca";
             this.panMarca.Size = new System.Drawing.Size(603, 460);
             this.panMarca.TabIndex = 15;
@@ -496,17 +496,17 @@
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font("Harlow Solid Italic", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersion.Location = new System.Drawing.Point(16, 438);
+            this.lblVersion.Location = new System.Drawing.Point(16, 432);
             this.lblVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(84, 22);
             this.lblVersion.TabIndex = 7;
-            this.lblVersion.Text = "Alph 1.0.2";
+            this.lblVersion.Text = "Alph 1.0.5";
             // 
             // pictureBox4
             // 
             this.pictureBox4.Location = new System.Drawing.Point(43, 121);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(520, 274);
             this.pictureBox4.TabIndex = 6;
@@ -516,7 +516,7 @@
             // 
             this.linea2.BackColor = System.Drawing.Color.Black;
             this.linea2.Location = new System.Drawing.Point(603, 10);
-            this.linea2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.linea2.Margin = new System.Windows.Forms.Padding(4);
             this.linea2.Name = "linea2";
             this.linea2.Size = new System.Drawing.Size(3, 449);
             this.linea2.TabIndex = 5;
