@@ -19,7 +19,7 @@ namespace PA4IM9_20262_Equipo2.Entidades
         
 
         // Fragmento que identifica algun elemento como la DECLARACION que le sigue.
-        [XmlElement("id")]
+        [XmlAttribute("id")]
         public string ID { get; set; } // Methodos nesesarios para convertir los objetos a elementos xml
         [XmlElement("rol")]
         public string Rol { get; set; }

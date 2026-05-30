@@ -13,6 +13,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace PA4IM9_20262_Equipo2
 {
@@ -89,19 +90,8 @@ namespace PA4IM9_20262_Equipo2
                     // Verificara si los datos ingresados coinciden con los datos del registro.
                     if (elemento["usuario"].InnerText == usuario && elemento["contrasenia"].InnerText == contrasenia)
                     {
-                        // Se verifica la casilla de de recordar para guardar una BANDERA en el elemento en forma de atributo, para poder recordarlo.
-                        if (chkBoxRecordar.Checked == true)
-                        {
-                            elemento.Attributes.Append(lector.CreateAttribute("recordado"));
-                            lector.Save(Sistema.rutaUsuarios);
-                        }
-                        else if (elemento.HasAttribute("recordado"))
-                        {
-                            // Si el elemento tiene el recordar, se lo quita y guarda los cambios.
-                            // De sus atributos elimina el atributo de nombre recordado. Por regla de la clase se debe usar forzosamente un atributo.
-                            elemento.Attributes.RemoveNamedItem("recordado");
-                            lector.Save(Sistema.rutaUsuarios);
-                        }
+                        // Logica para manejar correctamente 
+                        VerificarRecordado(lector, elemento);
                         // Mandar a llamar al menu principal.
                         AbrirMenuPrincipal();
                         // Si ya se abrio la ventana, se detiene el proseso y se debe cerrar esta ventana.
@@ -127,8 +117,8 @@ namespace PA4IM9_20262_Equipo2
             Perfil nuevoPerfil = new Perfil();
 
             // Se asignan los datos fundamentales.
-            nuevoPerfil.ID = Sistema.GenerarID();
             nuevoPerfil.FechaCreacion = DateTime.Now;
+            nuevoPerfil.ID = Sistema.GenerarID();
             // Se registran los datos ingresados.
             nuevoPerfil.Nombre = txtNombre.Text;
             nuevoPerfil.Usuario = txtUsuario.Text;
@@ -137,19 +127,55 @@ namespace PA4IM9_20262_Equipo2
             nuevoPerfil.Edad = int.Parse(txtEdad.Text);
             // Dinamicamente asigna un Rol adecuado.
             nuevoPerfil.Rol = nuevoPerfil.ID == "1001" ? Sistema.Roles[0] : nuevoPerfil.Edad > 17 ? Sistema.Roles[2] : Sistema.RolPredefinido;
+            // Cargamos el perfil nuevo en la memoria del programa para las sesiones activas.
+            Sistema.CargarPerfilMemoria(nuevoPerfil);
 
             // Creamos un elemento Xml llenandolo con los datos del perfil antes llenado.
-            XmlElement elementoPerfil = ConvertidorXml.ObjetoToElemento(escritor ,nuevoPerfil);
+            XmlElement elementoPerfil = ConvertidorXml.ObjetoToElemento(escritor, nuevoPerfil);
 
             // Si esta marcada la casilla para recordar
             if (chkBoxRecordar.Checked == true) elementoPerfil.Attributes.Append(escritor.CreateAttribute("recordar"));
-            
+
             // Se agrega el perfil al contenedor principal, el de los perfiles.
             escritor.DocumentElement.AppendChild(elementoPerfil);
             escritor.Save(Sistema.rutaUsuarios); // Guardar Cambios
 
             // Accede al sistema.
             AbrirMenuPrincipal();
+        }
+        private void VerificarRecordado(XmlDocument escritor, XmlElement elemento)
+        {
+            bool tieneRecordado = elemento.HasAttribute("recordado");
+            bool aRecordar = chkBoxRecordar.Checked;
+
+            // Revisamos si ya cuenta con el atributo recordar (no contenido en la clase perfil).
+            // Si tiene el atributo primero devemos quitarselo y luego guardar el perfil.
+            if (tieneRecordado)
+            {
+                // Se elimina forsosamente el atributo del elemento Xml.
+                // De sus atributos elimina el atributo de nombre recordado.
+                elemento.Attributes.RemoveNamedItem("recordado");
+                // Si ya no se desea recordar se guardan los cambios, si aun se desea recordar no se DEBE guardar nada.
+                if (!aRecordar) escritor.Save(Sistema.rutaUsuarios);
+
+                // Transformamos el elemento xml a un objeto de tipo perfil.
+                Perfil PerfilLogueado = ConvertidorXml.ElementoToObjeto<Perfil>(elemento);
+                // Ese perfil coincidente lo guardamos en la memoria del programa.
+                Sistema.CargarPerfilMemoria(PerfilLogueado);
+            }
+            else // Si no tiene el atributo solamente lo guardamos en memoria.
+            {
+                // Lo mismo que en las lineas de arriba.
+                Perfil PerfilLogueado = ConvertidorXml.ElementoToObjeto<Perfil>(elemento);
+                Sistema.CargarPerfilMemoria(PerfilLogueado);
+
+                if (aRecordar) // Si se debe recordar.
+                {
+                    // Creamos y agregamos el atributo para recordar el elemento.
+                    elemento.Attributes.Append(escritor.CreateAttribute("recordado")); 
+                    escritor.Save(Sistema.rutaUsuarios); // Guardamos los cambios
+                }
+            }
         }
 
         //

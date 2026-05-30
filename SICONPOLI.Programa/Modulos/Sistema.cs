@@ -1,10 +1,12 @@
-﻿using System;
+﻿using PA4IM9_20262_Equipo2.Entidades;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml;
 
 namespace PA4IM9_20262_Equipo2.Modulos
@@ -18,6 +20,9 @@ namespace PA4IM9_20262_Equipo2.Modulos
         public static string raizUsuarios = "usuarios"; // Elemento raiz del archivo.
         public static string[] Roles = { "administrador", "colaborador", "cliente" };
         public static string RolPredefinido = Roles[2];
+        // Variables para guardar los perfiles logueados.
+        public static Perfil[] PerfilesLogueados;
+        public static Perfil PerfilActivo;
         
         // Verificacion de la existencia de un archivo XML.
         public static void VerificarArchivo(string ruta, string nombreRaiz)
@@ -64,7 +69,23 @@ namespace PA4IM9_20262_Equipo2.Modulos
         {
             XmlDocument lector = new XmlDocument();
             lector.Load(rutaUsuarios);
-            return $"1{(lector.DocumentElement.ChildNodes.Count + 1):D3}"; // El numero de perfiles mas 1, asegurandose que minimo tenga 3 cifras aunque con 0 a la izquierda.
+            // El numero de perfiles mas 1, asegurandose que minimo tenga 3 cifras aunque con 0 a la izquierda (:D3).
+            return $"1{(lector.DocumentElement.ChildNodes.Count + 1):D3}"; 
+        }
+
+        public static void CargarPerfilMemoria(Perfil PerfilLogueado)
+        {
+            // Si no hay pefiles lo guarda directo.
+            if (PerfilesLogueados == null || PerfilesLogueados.Length == 0)
+                // Es nesesario crear un nuevo arreglo y luego reemplazar el actual por el creado.
+                PerfilesLogueados = new Perfil[] { PerfilLogueado };
+            // Si hay perfiles. Y no existe ningun elemento donde coincidan los ides lo guarda.
+            else if (!PerfilesLogueados.Any(perfil => perfil.ID == PerfilLogueado.ID)) 
+                // Guarda el perfil junto a los perfiles antes logueados.
+                PerfilesLogueados.Append(PerfilLogueado);
+
+            // Siempre guarda o sobreescibe el perfil logueado como el perfil actual.
+            PerfilActivo = PerfilLogueado;
         }
     }
 }

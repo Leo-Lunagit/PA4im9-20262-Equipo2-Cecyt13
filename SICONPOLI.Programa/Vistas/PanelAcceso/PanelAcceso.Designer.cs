@@ -499,9 +499,9 @@
             this.lblVersion.Location = new System.Drawing.Point(16, 432);
             this.lblVersion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(84, 22);
+            this.lblVersion.Size = new System.Drawing.Size(92, 22);
             this.lblVersion.TabIndex = 7;
-            this.lblVersion.Text = "Alph 1.0.7";
+            this.lblVersion.Text = "Alph 1.0.20";
             // 
             // pictureBox4
             // 
