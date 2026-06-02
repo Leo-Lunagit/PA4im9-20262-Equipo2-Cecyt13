@@ -1,4 +1,7 @@
-﻿using System;
+﻿using PA4IM9_20262_Equipo2.Entidades;
+using PA4IM9_20262_Equipo2.Modulos;
+using PA4IM9_20262_Equipo2.Vistas.Panel_Principal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace PA4IM9_20262_Equipo2
 {
@@ -49,7 +53,6 @@ namespace PA4IM9_20262_Equipo2
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-        
             // 1. Validar que el campo Proveedor no esté vacío
             if (string.IsNullOrWhiteSpace(txtProveedor.Text))
             {
@@ -74,6 +77,47 @@ namespace PA4IM9_20262_Equipo2
 
             // 6. Limpiar los campos para la siguiente captura (Libertad creativa de UX)
             LimpiarCamposCaptura();
+
+            Subcuenta ObjMercancia = new Subcuenta();
+            ObjMercancia.Monto = (int)(costoUnitario * 100);
+            ObjMercancia.NombreSubcuenta = $"{cantidad} {producto} a ${costoUnitario} c/u";
+
+            Cuenta ObjAlmacen = new Cuenta();
+            ObjAlmacen.Monto = ObjMercancia.Monto;
+            ObjAlmacen.NombreCuenta = "almacen";
+            ObjAlmacen.Subcuentas = new Subcuenta[] { ObjMercancia };
+
+            Cuenta IVA = new Cuenta();
+            IVA.Monto = (int)(totalProducto * 16);
+            IVA.NombreCuenta = "IVA por Acreditar";
+
+            Subcuenta SubProveedor = new Subcuenta();
+            SubProveedor.Monto = (int)(totalProducto * 116);
+            SubProveedor.NombreSubcuenta = $"{proveedor} s/f 9999"; 
+
+            Cuenta ObjProveedor = new Cuenta();
+            ObjProveedor.NombreCuenta = "Provedores";
+            ObjProveedor.Monto = SubProveedor.Monto;
+            ObjProveedor.Subcuentas = new Subcuenta[] { SubProveedor };
+
+            Asiento registro = new Asiento();
+            registro.NoAsiento = 999;
+            registro.Fecha = DateTime.Now;
+            registro.Cargos = new Cuenta[] { ObjAlmacen, IVA };
+            registro.Abonos = new Cuenta[] { ObjProveedor };
+            registro.SumaCargos = IVA.Monto + ObjAlmacen.Monto;
+            registro.SumaAbonos = ObjProveedor.Monto;
+            registro.Concepto = $"Compra de mercancia s/f XXXX del proveedor {proveedor}.";
+
+            XmlDocument escritor = new XmlDocument();
+
+            XmlElement asiento = ConvertidorXml.ObjetoToElemento(escritor, registro);
+
+            Sistema.VerificarArchivo(Sistema.rutaAsientos, Sistema.raizAsientos);
+            escritor.Load(Sistema.rutaAsientos);
+
+            escritor.DocumentElement.AppendChild(asiento);
+            escritor.Save(Sistema.rutaAsientos);
         }
         private void CalcularTotalesGenerales()
         {

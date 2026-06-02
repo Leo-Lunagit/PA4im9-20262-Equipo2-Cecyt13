@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Datos\Asientos.xml" />
     <Content Include="Datos\Usuarios.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
