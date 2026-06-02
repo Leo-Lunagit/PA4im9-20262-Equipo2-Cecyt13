@@ -52,7 +52,7 @@
             // lblProductos
             // 
             this.lblProductos.AutoSize = true;
-            this.lblProductos.Location = new System.Drawing.Point(139, 9);
+            this.lblProductos.Location = new System.Drawing.Point(108, 9);
             this.lblProductos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProductos.Name = "lblProductos";
             this.lblProductos.Size = new System.Drawing.Size(87, 21);
@@ -82,7 +82,7 @@
             // lblProveedores
             // 
             this.lblProveedores.AutoSize = true;
-            this.lblProveedores.Location = new System.Drawing.Point(537, 9);
+            this.lblProveedores.Location = new System.Drawing.Point(590, 9);
             this.lblProveedores.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProveedores.Name = "lblProveedores";
             this.lblProveedores.Size = new System.Drawing.Size(106, 21);
@@ -92,7 +92,7 @@
             // lblCostounitario
             // 
             this.lblCostounitario.AutoSize = true;
-            this.lblCostounitario.Location = new System.Drawing.Point(379, 9);
+            this.lblCostounitario.Location = new System.Drawing.Point(400, 9);
             this.lblCostounitario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCostounitario.Name = "lblCostounitario";
             this.lblCostounitario.Size = new System.Drawing.Size(117, 21);
@@ -123,15 +123,15 @@
             // 
             this.cmbProductos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProductos.FormattingEnabled = true;
-            this.cmbProductos.Location = new System.Drawing.Point(106, 51);
+            this.cmbProductos.Location = new System.Drawing.Point(24, 51);
             this.cmbProductos.Margin = new System.Windows.Forms.Padding(4);
             this.cmbProductos.Name = "cmbProductos";
-            this.cmbProductos.Size = new System.Drawing.Size(157, 29);
+            this.cmbProductos.Size = new System.Drawing.Size(259, 29);
             this.cmbProductos.TabIndex = 12;
             // 
             // nudCantidad
             // 
-            this.nudCantidad.Location = new System.Drawing.Point(291, 51);
+            this.nudCantidad.Location = new System.Drawing.Point(304, 51);
             this.nudCantidad.Margin = new System.Windows.Forms.Padding(4);
             this.nudCantidad.Maximum = new decimal(new int[] {
             20,
@@ -176,12 +176,12 @@
             this.txtProveedor.Location = new System.Drawing.Point(541, 51);
             this.txtProveedor.Margin = new System.Windows.Forms.Padding(4);
             this.txtProveedor.Name = "txtProveedor";
-            this.txtProveedor.Size = new System.Drawing.Size(148, 27);
+            this.txtProveedor.Size = new System.Drawing.Size(199, 27);
             this.txtProveedor.TabIndex = 20;
             // 
             // nudCostoUnitario
             // 
-            this.nudCostoUnitario.Location = new System.Drawing.Point(399, 53);
+            this.nudCostoUnitario.Location = new System.Drawing.Point(420, 53);
             this.nudCostoUnitario.Margin = new System.Windows.Forms.Padding(4);
             this.nudCostoUnitario.Maximum = new decimal(new int[] {
             1410065408,
@@ -195,7 +195,7 @@
             // lblCantidad
             // 
             this.lblCantidad.AutoSize = true;
-            this.lblCantidad.Location = new System.Drawing.Point(273, 9);
+            this.lblCantidad.Location = new System.Drawing.Point(286, 9);
             this.lblCantidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(85, 21);
