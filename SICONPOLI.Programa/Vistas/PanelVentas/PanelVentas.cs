@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 {
-    public partial class PanelVentas : Form
+    public partial class Panel_Ventas : Form
     {
-        public PanelVentas()
+        public Panel_Ventas()
         {
             InitializeComponent();
         }

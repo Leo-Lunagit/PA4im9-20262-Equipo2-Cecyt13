@@ -1,6 +1,6 @@
 ﻿namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 {
-    partial class PanelVentas
+    partial class Panel_Ventas
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PanelVentas));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Panel_Ventas));
             this.dgvSubcuentas = new System.Windows.Forms.DataGridView();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.nudCostoUnitario = new System.Windows.Forms.NumericUpDown();
