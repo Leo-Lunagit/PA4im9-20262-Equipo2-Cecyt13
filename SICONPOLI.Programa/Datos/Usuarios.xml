@@ -9,4 +9,13 @@
     <nombre>Equipo 2</nombre>
     <edad>18</edad>
   </perfil>
+  <perfil id="1002" recordar="">
+    <rol>cliente</rol>
+    <fechaCreacion>2026-06-02T12:12:47.7482515-06:00</fechaCreacion>
+    <usuario>Poochy</usuario>
+    <correo>brunoj.cervantes@gmail.com</correo>
+    <contrasenia>1234</contrasenia>
+    <nombre>Bruno</nombre>
+    <edad>16</edad>
+  </perfil>
 </usuarios>

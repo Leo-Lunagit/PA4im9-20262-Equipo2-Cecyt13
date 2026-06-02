@@ -20,10 +20,12 @@ namespace PA4IM9_20262_Equipo2
         private void Panel_de_compras_Load(object sender, EventArgs e)
         {
             // 1. Agregar productos de ejemplo al ComboBox
-            cmbProductos.Items.Add("Laptop Dell");
-            cmbProductos.Items.Add("Monitor 24''");
-            cmbProductos.Items.Add("Teclado Mecánico");
-            cmbProductos.Items.Add("Mouse Ergonómico");
+            cmbProductos.Items.Add("Laptop");
+            cmbProductos.Items.Add("Monitor");
+            cmbProductos.Items.Add("Procesador de baja calidad");
+            cmbProductos.Items.Add("Procesador de media calidad");
+            cmbProductos.Items.Add("Procesador de alta calidad");
+            cmbProductos.Items.Add("Dispositivos Inteligentes");
             cmbProductos.SelectedIndex = 0; // Selecciona el primero por defecto
 
             // 2. Configurar las propiedades de los controles numéricos
