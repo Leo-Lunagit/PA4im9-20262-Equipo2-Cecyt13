@@ -131,7 +131,7 @@
             // 
             // nudCantidad
             // 
-            this.nudCantidad.Location = new System.Drawing.Point(304, 51);
+            this.nudCantidad.Location = new System.Drawing.Point(315, 51);
             this.nudCantidad.Margin = new System.Windows.Forms.Padding(4);
             this.nudCantidad.Maximum = new decimal(new int[] {
             20,
@@ -181,7 +181,7 @@
             // 
             // nudCostoUnitario
             // 
-            this.nudCostoUnitario.Location = new System.Drawing.Point(420, 53);
+            this.nudCostoUnitario.Location = new System.Drawing.Point(415, 51);
             this.nudCostoUnitario.Margin = new System.Windows.Forms.Padding(4);
             this.nudCostoUnitario.Maximum = new decimal(new int[] {
             1410065408,
@@ -195,7 +195,7 @@
             // lblCantidad
             // 
             this.lblCantidad.AutoSize = true;
-            this.lblCantidad.Location = new System.Drawing.Point(286, 9);
+            this.lblCantidad.Location = new System.Drawing.Point(297, 9);
             this.lblCantidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(85, 21);

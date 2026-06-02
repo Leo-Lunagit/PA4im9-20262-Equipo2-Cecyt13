@@ -22,8 +22,6 @@ namespace PA4IM9_20262_Equipo2
             // 1. Agregar productos de ejemplo al ComboBox
             cmbProductos.Items.Add("Laptop");
             cmbProductos.Items.Add("Monitor");
-            cmbProductos.Items.Add("Procesador de baja calidad");
-            cmbProductos.Items.Add("Procesador de media calidad");
             cmbProductos.Items.Add("Procesador de alta calidad");
             cmbProductos.Items.Add("Dispositivos Inteligentes");
             cmbProductos.SelectedIndex = 0; // Selecciona el primero por defecto
