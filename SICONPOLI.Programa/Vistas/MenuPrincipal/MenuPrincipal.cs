@@ -1,4 +1,8 @@
-﻿using System;
+﻿using PA4IM9_20262_Equipo2.Entidades;
+using PA4IM9_20262_Equipo2.Modulos;
+using PA4IM9_20262_Equipo2.Vistas.Panel_Principal;
+using PA4IM9_20262_Equipo2.Vistas.PanelVentas;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
 {
@@ -39,13 +44,13 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
             this.Contenedor.Tag = Panel; 
             Panel.Show(); // Muestra el panel.
         }
+        private void btnHome_Click(object sender, EventArgs e) { CerrarPaneles(); }
         private void btnEntradas_Click(object sender, EventArgs e) { AbrirPaneles(new Panel_de_compras()); }
-        private void btnSucursales_Click(object sender, EventArgs e) { CerrarPaneles(); }
-        private void btnSalidas_Click(object sender, EventArgs e) { CerrarPaneles(); }
+        private void btnSalidas_Click(object sender, EventArgs e) { AbrirPaneles(new Panel_Ventas()); }
         private void btnClientes_Click(object sender, EventArgs e) { CerrarPaneles(); }
         private void btnProvedores_Click(object sender, EventArgs e) { CerrarPaneles(); }
         private void btnAlmacen_Click(object sender, EventArgs e) { CerrarPaneles(); }
-        private void btnHome_Click(object sender, EventArgs e) { CerrarPaneles(); }
+        private void btnSucursales_Click(object sender, EventArgs e) { CerrarPaneles(); }
         private void btnUsuario_Click(object sender, EventArgs e) { CerrarPaneles(); }
         private void btnConfig_Click(object sender, EventArgs e) { CerrarPaneles(); }
         private void MenuPrincipal_FormClosing(object sender, FormClosingEventArgs e) { Application.Exit(); }

@@ -18,4 +18,22 @@
     <nombre>Bruno</nombre>
     <edad>16</edad>
   </perfil>
+  <perfil id="1003">
+    <rol>cliente</rol>
+    <fechaCreacion>2026-06-02T13:03:26.0826301-06:00</fechaCreacion>
+    <usuario>123</usuario>
+    <correo>123@gmail.com</correo>
+    <contrasenia>123</contrasenia>
+    <nombre>32</nombre>
+    <edad>23</edad>
+  </perfil>
+  <perfil id="1004">
+    <rol>cliente</rol>
+    <fechaCreacion>2026-06-02T13:06:03.4973554-06:00</fechaCreacion>
+    <usuario>321</usuario>
+    <correo>321@gmail.com</correo>
+    <contrasenia>123</contrasenia>
+    <nombre>12</nombre>
+    <edad>32</edad>
+  </perfil>
 </usuarios>
