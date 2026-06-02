@@ -17,7 +17,11 @@ namespace PA4IM9_20262_Equipo2.Modulos
         public static string rutaEjecusion = AppDomain.CurrentDomain.BaseDirectory;
         // Fusiona la ruta de ejecucion con una ruta nueva, regresa dos carpetas a la carpeta donde tenemos todo el codigo, se dirije a la carpeta de "Datos" y al arhivo.
         public static string rutaUsuarios = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Usuarios.xml");
+        public static string rutaConfiguracion = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Configuracion.xml");
+        public static string rutaAsientos = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Asientos.xml");
         public static string raizUsuarios = "usuarios"; // Elemento raiz del archivo.
+        public static string raizConfiguracion = "configuracion"; // Elemento raiz del archivo.
+        public static string raizAsientos = "asientos"; // Elemento raiz del archivo.
         public static string[] Roles = { "administrador", "colaborador", "cliente" };
         public static string RolPredefinido = Roles[2];
         // Variables para guardar los perfiles logueados.
