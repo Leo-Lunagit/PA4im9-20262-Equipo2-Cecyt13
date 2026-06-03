@@ -81,8 +81,28 @@ namespace PA4IM9_20262_Equipo2.Modulos
             // El numero de perfiles mas 1, asegurandose que minimo tenga 3 cifras aunque con 0 a la izquierda (:D3).
             return $"1{(lector.DocumentElement.ChildNodes.Count + 1):D3}"; 
         }
+        
+        public static void GuardarPerfil(XmlElement usuario) 
+        {
+            VerificarArchivo(rutaConfiguracion, raizConfiguracion);
+            XmlDocument config = new XmlDocument();
+            config.Load(rutaConfiguracion);
+            
+            XmlNode perfiles = config.DocumentElement["usuariosActivos"];
+            if (perfiles == null)
+            {
+                XmlElement usuariosActivos = config.CreateElement("usuariosActivos");
+                perfiles.AppendChild(usuariosActivos);
+            }
+            
+            if (!perfiles.Any(perfil => perfil["usuario"].InnerText == usuario["usuario"].InnerText)) 
+                // Guarda el perfil junto a los perfiles antes guardados.
+                perfiles.Append(usuario);
+                
+            config.Save(rutaConfiguracion);
+        }
 
-        public static void CargarPerfilMemoria(Perfil PerfilLogueado)
+        public static void CargarPerfil(Perfil PerfilLogueado)
         {
             // Si no hay pefiles lo guarda directo.
             if (PerfilesLogueados == null || PerfilesLogueados.Length == 0)
@@ -95,6 +115,40 @@ namespace PA4IM9_20262_Equipo2.Modulos
 
             // Siempre guarda o sobreescibe el perfil logueado como el perfil actual.
             PerfilActivo = PerfilLogueado;
+        }
+        
+        private void ManejarRecordado(XmlDocument escritor, XmlElement elemento, bool aRecordar)
+        {
+            bool tieneRecordado = elemento.HasAttribute("recordado");
+
+            // Revisamos si ya cuenta con el atributo recordar (no contenido en la clase perfil).
+            // Si tiene el atributo primero devemos quitarselo y luego guardar el perfil.
+            if (tieneRecordado)
+            {
+                // Se elimina forsosamente el atributo del elemento Xml.
+                // De sus atributos elimina el atributo de nombre recordado.
+                elemento.Attributes.RemoveNamedItem("recordado");
+                // Si ya no se desea recordar se guardan los cambios, si aun se desea recordar no se DEBE guardar nada.
+                if (!aRecordar) escritor.Save(Sistema.rutaUsuarios);
+
+                // Transformamos el elemento xml a un objeto de tipo perfil.
+                Perfil PerfilLogueado = ConvertidorXml.ElementoToObjeto<Perfil>(elemento);
+                // Ese perfil coincidente lo guardamos en la memoria del programa.
+                Sistema.CargarPerfil(PerfilLogueado);
+            }
+            else // Si no tiene el atributo solamente lo guardamos en memoria.
+            {
+                // Lo mismo que en las lineas de arriba.
+                Perfil PerfilLogueado = ConvertidorXml.ElementoToObjeto<Perfil>(elemento);
+                Sistema.CargarPerfil(PerfilLogueado);
+
+                if (aRecordar) // Si se debe recordar.
+                {
+                    // Creamos y agregamos el atributo para recordar el elemento.
+                    elemento.Attributes.Append(escritor.CreateAttribute("recordado")); 
+                    escritor.Save(Sistema.rutaUsuarios); // Guardamos los cambios
+                }
+            }
         }
     }
 }

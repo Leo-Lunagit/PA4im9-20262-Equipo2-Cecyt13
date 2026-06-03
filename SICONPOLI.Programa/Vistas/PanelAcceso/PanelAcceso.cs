@@ -27,6 +27,7 @@ namespace PA4IM9_20262_Equipo2
             InitializeComponent();
 
             Sistema.IniciarArchivos();
+            CargarUsuariosActivos();
             RecordarUsuario();
         }
         private void RecordarUsuario()
@@ -50,6 +51,23 @@ namespace PA4IM9_20262_Equipo2
                 chkBoxRecordar.Checked = true;
             }
         }
+        
+        private void CargarUsuariosActivos()
+        {
+            VerificarArchivo(Sistema.rutaConfiguracion, Sistema.raizConfiguracion);
+            XmlDocument config = new XmlDocument();
+            config.Load(rutaConfiguracion);
+            
+            XmlNode perfiles = config.DocumentElement["usuariosActivos"];
+            if (perfiles == null)
+            {
+                XmlElement usuariosActivos = config.CreateElement("usuariosActivos");
+                perfiles.AppendChild(usuariosActivos);
+                return
+            } 
+            else if (perfiles.Lenght == 0) return;
+        }
+        
         private bool ExistenUsuariosRegistrados(XmlDocument lector)
         {
             // Crea una lista de elementos xml con los elementos de nombre perfil.
@@ -100,8 +118,10 @@ namespace PA4IM9_20262_Equipo2
                     // Verificara si los datos ingresados coinciden con los datos del registro.
                     if (elemento["usuario"].InnerText == usuario && elemento["contrasenia"].InnerText == contrasenia)
                     {
+                        // Se guarda en archivos el usuario
+                        Sistema.GuardarPerfil(elemento);
                         // Logica para manejar correctamente 
-                        VerificarRecordado(lector, elemento);
+                        Sistema.ManejarRecordado(lector, elemento, chkBoxRecordar.Checked);
                         // Mandar a llamar al menu principal.
                         AbrirMenuPrincipal();
                         // Si ya se abrio la ventana, se detiene el proseso y se debe cerrar esta ventana.
@@ -146,6 +166,9 @@ namespace PA4IM9_20262_Equipo2
             // Si esta marcada la casilla para recordar
             if (chkBoxRecordar.Checked == true) elementoPerfil.Attributes.Append(escritor.CreateAttribute("recordar"));
 
+            // Guardar en archivos el perfil a la lista de perfiles activos.
+            Sistema.GuardarPerfil(elementoPerfil)
+
             // Se agrega el perfil al contenedor principal, el de los perfiles.
             escritor.DocumentElement.AppendChild(elementoPerfil);
             escritor.Save(Sistema.rutaUsuarios); // Guardar Cambios
@@ -153,41 +176,7 @@ namespace PA4IM9_20262_Equipo2
             // Accede al sistema.
             AbrirMenuPrincipal();
         }
-        private void VerificarRecordado(XmlDocument escritor, XmlElement elemento)
-        {
-            bool tieneRecordado = elemento.HasAttribute("recordado");
-            bool aRecordar = chkBoxRecordar.Checked;
-
-            // Revisamos si ya cuenta con el atributo recordar (no contenido en la clase perfil).
-            // Si tiene el atributo primero devemos quitarselo y luego guardar el perfil.
-            if (tieneRecordado)
-            {
-                // Se elimina forsosamente el atributo del elemento Xml.
-                // De sus atributos elimina el atributo de nombre recordado.
-                elemento.Attributes.RemoveNamedItem("recordado");
-                // Si ya no se desea recordar se guardan los cambios, si aun se desea recordar no se DEBE guardar nada.
-                if (!aRecordar) escritor.Save(Sistema.rutaUsuarios);
-
-                // Transformamos el elemento xml a un objeto de tipo perfil.
-                Perfil PerfilLogueado = ConvertidorXml.ElementoToObjeto<Perfil>(elemento);
-                // Ese perfil coincidente lo guardamos en la memoria del programa.
-                Sistema.CargarPerfilMemoria(PerfilLogueado);
-            }
-            else // Si no tiene el atributo solamente lo guardamos en memoria.
-            {
-                // Lo mismo que en las lineas de arriba.
-                Perfil PerfilLogueado = ConvertidorXml.ElementoToObjeto<Perfil>(elemento);
-                Sistema.CargarPerfilMemoria(PerfilLogueado);
-
-                if (aRecordar) // Si se debe recordar.
-                {
-                    // Creamos y agregamos el atributo para recordar el elemento.
-                    elemento.Attributes.Append(escritor.CreateAttribute("recordado")); 
-                    escritor.Save(Sistema.rutaUsuarios); // Guardamos los cambios
-                }
-            }
-        }
-
+        
         //
         // Logica de apariencias.
         //
