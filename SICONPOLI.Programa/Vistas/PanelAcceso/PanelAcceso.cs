@@ -198,6 +198,7 @@ namespace PA4IM9_20262_Equipo2
             // si cambia a inicio de secion se deben contrarestar las modificaiones (el inverso del numero {-1}).
             int sentido = deInicioToRegistro ? 1 : -1;
             grpInicioS.Height += 110 * sentido; // 130px entre 4 text y espacios, pero 20px menos del boton de recuperar contraseña
+            txtUsuario.Width += 20 * sentido;
             // Desplazar los controles un sierto tamaño.
             grpInicioS.Location = new Point(grpInicioS.Location.X, grpInicioS.Location.Y - 50 * sentido); // Hacia arriba (signo -) hay 50px a donde nos podemos mover.
             chkBoxRecordar.Location = new Point(chkBoxRecordar.Location.X, chkBoxRecordar.Location.Y + 20 * sentido); // Tomamos el espacio por debajo (signo +)
@@ -211,6 +212,7 @@ namespace PA4IM9_20262_Equipo2
             txtEdad.Location = new Point(txtEdad.Location.X, txtEdad.Location.Y + 35 * 4 * sentido);
             // Mostrar controles extra.
             btnRecuperar.Visible = !deInicioToRegistro;
+            cmbUsuarios.Visible = !deInicioToRegistro;
             txtNombre.Visible = deInicioToRegistro;
             txtCorreo.Visible = deInicioToRegistro;
             txtConfirmarContra.Visible = deInicioToRegistro;
