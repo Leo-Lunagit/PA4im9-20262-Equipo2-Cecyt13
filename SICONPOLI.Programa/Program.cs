@@ -16,7 +16,7 @@ namespace PA4IM9_20262_Equipo2
         [STAThread]
         static void Main()
         {
-            Sistema.CargarArchivos();
+            Sistema.IniciarArchivos();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

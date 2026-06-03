@@ -19,36 +19,9 @@ namespace PA4IM9_20262_Equipo2
         public Panel_de_compras()
         {
             InitializeComponent();
-        }
 
-        private void Panel_de_compras_Load(object sender, EventArgs e)
-        {
-            // 1. Agregar productos de ejemplo al ComboBox
-            cmbProductos.Items.Add("Laptop");
-            cmbProductos.Items.Add("Monitor");
-            cmbProductos.Items.Add("Procesador de alta calidad");
-            cmbProductos.Items.Add("Dispositivos Inteligentes");
-            cmbProductos.SelectedIndex = 0; // Selecciona el primero por defecto
-
-            // 2. Configurar las propiedades de los controles numéricos
-            nudCantidad.Minimum = 1;
-            nudCostoUnitario.DecimalPlaces = 2;
-            nudCostoUnitario.Maximum = 100000;
-
-            // 3. Configurar las columnas del DataGridView (el apartado de subcuentas)
-            dgvSubcuentas.Columns.Add("Producto", "Producto");
-            dgvSubcuentas.Columns.Add("Cantidad", "Cantidad");
-            dgvSubcuentas.Columns.Add("CostoUnitario", "Costo Unitario");
-            dgvSubcuentas.Columns.Add("Total", "Total Producto");
-            dgvSubcuentas.Columns.Add("Proveedor", "Proveedor");
-
-            // Ajuste estético para que las columnas ocupen todo el ancho disponible
-            dgvSubcuentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
+            // Selecciona el primer prodcutro por defecto.
+            cmbProductos.SelectedIndex = 0;
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
@@ -75,49 +48,55 @@ namespace PA4IM9_20262_Equipo2
             // 5. Recalcular los totales generales de la aplicación
             CalcularTotalesGenerales();
 
-            // 6. Limpiar los campos para la siguiente captura (Libertad creativa de UX)
+            // 6. Limpiar los campos para la siguiente captura.
             LimpiarCamposCaptura();
 
-            Subcuenta ObjMercancia = new Subcuenta();
-            ObjMercancia.Monto = (int)(costoUnitario * 100);
-            ObjMercancia.NombreSubcuenta = $"{cantidad} {producto} a ${costoUnitario} c/u";
+            // Crea la subcuenta del almacen y la llenamos con sus datos correspondientes.
+            Subcuenta SubAlmacen = new Subcuenta();
+            SubAlmacen.Monto = (int)(costoUnitario * 100);
+            SubAlmacen.NombreSubcuenta = $"{cantidad} {producto} a ${costoUnitario} c/u";
 
-            Cuenta ObjAlmacen = new Cuenta();
-            ObjAlmacen.Monto = ObjMercancia.Monto;
-            ObjAlmacen.NombreCuenta = "almacen";
-            ObjAlmacen.Subcuentas = new Subcuenta[] { ObjMercancia };
+            // Creamos la cienta del amacen y la llenamos con sus datos correspondientes.
+            Cuenta Almacen = new Cuenta();
+            Almacen.Monto = SubAlmacen.Monto;
+            Almacen.NombreCuenta = "almacen";
+            Almacen.Subcuentas = new Subcuenta[] { SubAlmacen };
 
+            // Creamos la cuenta del IVA y la lenamos con sus datos.
             Cuenta IVA = new Cuenta();
             IVA.Monto = (int)(totalProducto * 16);
             IVA.NombreCuenta = "IVA por Acreditar";
 
+            // Creamos la subcuenta del proveedor y la llenamos con sus datos.
             Subcuenta SubProveedor = new Subcuenta();
             SubProveedor.Monto = (int)(totalProducto * 116);
             SubProveedor.NombreSubcuenta = $"{proveedor} s/f 9999"; 
 
-            Cuenta ObjProveedor = new Cuenta();
-            ObjProveedor.NombreCuenta = "Provedores";
-            ObjProveedor.Monto = SubProveedor.Monto;
-            ObjProveedor.Subcuentas = new Subcuenta[] { SubProveedor };
+            // Creamos la cuenta del probeedor y la llenamos.
+            Cuenta Proveedor = new Cuenta();
+            Proveedor.NombreCuenta = "Provedores";
+            Proveedor.Monto = SubProveedor.Monto;
+            Proveedor.Subcuentas = new Subcuenta[] { SubProveedor };
 
+            // Creamos el asiento y lo llenamos.
             Asiento registro = new Asiento();
             registro.NoAsiento = 999;
             registro.Fecha = DateTime.Now;
-            registro.Cargos = new Cuenta[] { ObjAlmacen, IVA };
-            registro.Abonos = new Cuenta[] { ObjProveedor };
-            registro.SumaCargos = IVA.Monto + ObjAlmacen.Monto;
-            registro.SumaAbonos = ObjProveedor.Monto;
+            registro.Cargos = new Cuenta[] { Almacen, IVA };
+            registro.Abonos = new Cuenta[] { Proveedor };
+            registro.SumaCargos = IVA.Monto + Almacen.Monto;
+            registro.SumaAbonos = Proveedor.Monto;
             registro.Concepto = $"Compra de mercancia s/f XXXX del proveedor {proveedor}.";
 
             XmlDocument escritor = new XmlDocument();
-
+            // Transformamos la clase en elemento xml.
             XmlElement asiento = ConvertidorXml.ObjetoToElemento(escritor, registro);
 
-            Sistema.VerificarArchivo(Sistema.rutaAsientos, Sistema.raizAsientos);
-            escritor.Load(Sistema.rutaAsientos);
+            Sistema.VerificarArchivo(Sistema.rutaCompras, Sistema.raizCompras);
+            escritor.Load(Sistema.rutaCompras);
 
             escritor.DocumentElement.AppendChild(asiento);
-            escritor.Save(Sistema.rutaAsientos);
+            escritor.Save(Sistema.rutaCompras);
         }
         private void CalcularTotalesGenerales()
         {

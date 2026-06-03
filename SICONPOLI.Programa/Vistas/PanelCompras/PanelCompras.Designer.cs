@@ -44,6 +44,11 @@
             this.nudCostoUnitario = new System.Windows.Forms.NumericUpDown();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.dgvSubcuentas = new System.Windows.Forms.DataGridView();
+            this.producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.costoUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalProductos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proveedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCostoUnitario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubcuentas)).BeginInit();
@@ -55,7 +60,7 @@
             this.lblProductos.Location = new System.Drawing.Point(108, 9);
             this.lblProductos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProductos.Name = "lblProductos";
-            this.lblProductos.Size = new System.Drawing.Size(87, 21);
+            this.lblProductos.Size = new System.Drawing.Size(106, 23);
             this.lblProductos.TabIndex = 0;
             this.lblProductos.Text = "Productos";
             // 
@@ -65,7 +70,7 @@
             this.lblIVA.Location = new System.Drawing.Point(170, 195);
             this.lblIVA.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIVA.Name = "lblIVA";
-            this.lblIVA.Size = new System.Drawing.Size(37, 21);
+            this.lblIVA.Size = new System.Drawing.Size(45, 23);
             this.lblIVA.TabIndex = 1;
             this.lblIVA.Text = "IVA";
             // 
@@ -75,7 +80,7 @@
             this.lblPreciofinal.Location = new System.Drawing.Point(139, 262);
             this.lblPreciofinal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPreciofinal.Name = "lblPreciofinal";
-            this.lblPreciofinal.Size = new System.Drawing.Size(99, 21);
+            this.lblPreciofinal.Size = new System.Drawing.Size(122, 23);
             this.lblPreciofinal.TabIndex = 4;
             this.lblPreciofinal.Text = "Precio Final";
             // 
@@ -85,7 +90,7 @@
             this.lblProveedores.Location = new System.Drawing.Point(590, 9);
             this.lblProveedores.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProveedores.Name = "lblProveedores";
-            this.lblProveedores.Size = new System.Drawing.Size(106, 21);
+            this.lblProveedores.Size = new System.Drawing.Size(131, 23);
             this.lblProveedores.TabIndex = 5;
             this.lblProveedores.Text = "Proveedores";
             // 
@@ -95,7 +100,7 @@
             this.lblCostounitario.Location = new System.Drawing.Point(400, 9);
             this.lblCostounitario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCostounitario.Name = "lblCostounitario";
-            this.lblCostounitario.Size = new System.Drawing.Size(117, 21);
+            this.lblCostounitario.Size = new System.Drawing.Size(146, 23);
             this.lblCostounitario.TabIndex = 6;
             this.lblCostounitario.Text = "Costo Unitario";
             // 
@@ -105,7 +110,7 @@
             this.lblTotaldeproductos.Location = new System.Drawing.Point(139, 132);
             this.lblTotaldeproductos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotaldeproductos.Name = "lblTotaldeproductos";
-            this.lblTotaldeproductos.Size = new System.Drawing.Size(155, 21);
+            this.lblTotaldeproductos.Size = new System.Drawing.Size(191, 23);
             this.lblTotaldeproductos.TabIndex = 8;
             this.lblTotaldeproductos.Text = "Total de productos";
             // 
@@ -115,18 +120,22 @@
             this.txtTotalProductos.Location = new System.Drawing.Point(322, 129);
             this.txtTotalProductos.Margin = new System.Windows.Forms.Padding(4);
             this.txtTotalProductos.Name = "txtTotalProductos";
-            this.txtTotalProductos.Size = new System.Drawing.Size(102, 27);
+            this.txtTotalProductos.Size = new System.Drawing.Size(102, 32);
             this.txtTotalProductos.TabIndex = 10;
-            this.txtTotalProductos.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // cmbProductos
             // 
             this.cmbProductos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProductos.FormattingEnabled = true;
+            this.cmbProductos.Items.AddRange(new object[] {
+            "Laptops",
+            "Monitor",
+            "PCs",
+            "Dispositivos portatiles"});
             this.cmbProductos.Location = new System.Drawing.Point(24, 51);
             this.cmbProductos.Margin = new System.Windows.Forms.Padding(4);
             this.cmbProductos.Name = "cmbProductos";
-            this.cmbProductos.Size = new System.Drawing.Size(259, 29);
+            this.cmbProductos.Size = new System.Drawing.Size(259, 31);
             this.cmbProductos.TabIndex = 12;
             // 
             // nudCantidad
@@ -138,9 +147,19 @@
             0,
             0,
             0});
+            this.nudCantidad.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudCantidad.Name = "nudCantidad";
-            this.nudCantidad.Size = new System.Drawing.Size(48, 27);
+            this.nudCantidad.Size = new System.Drawing.Size(48, 32);
             this.nudCantidad.TabIndex = 13;
+            this.nudCantidad.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // txtIVA
             // 
@@ -148,7 +167,7 @@
             this.txtIVA.Location = new System.Drawing.Point(322, 195);
             this.txtIVA.Margin = new System.Windows.Forms.Padding(4);
             this.txtIVA.Name = "txtIVA";
-            this.txtIVA.Size = new System.Drawing.Size(102, 27);
+            this.txtIVA.Size = new System.Drawing.Size(102, 32);
             this.txtIVA.TabIndex = 16;
             // 
             // txtPrecioFinal
@@ -157,7 +176,7 @@
             this.txtPrecioFinal.Location = new System.Drawing.Point(322, 256);
             this.txtPrecioFinal.Margin = new System.Windows.Forms.Padding(4);
             this.txtPrecioFinal.Name = "txtPrecioFinal";
-            this.txtPrecioFinal.Size = new System.Drawing.Size(102, 27);
+            this.txtPrecioFinal.Size = new System.Drawing.Size(102, 32);
             this.txtPrecioFinal.TabIndex = 18;
             // 
             // btnRegistrar
@@ -176,21 +195,37 @@
             this.txtProveedor.Location = new System.Drawing.Point(541, 51);
             this.txtProveedor.Margin = new System.Windows.Forms.Padding(4);
             this.txtProveedor.Name = "txtProveedor";
-            this.txtProveedor.Size = new System.Drawing.Size(199, 27);
+            this.txtProveedor.Size = new System.Drawing.Size(199, 32);
             this.txtProveedor.TabIndex = 20;
             // 
             // nudCostoUnitario
             // 
-            this.nudCostoUnitario.Location = new System.Drawing.Point(415, 51);
+            this.nudCostoUnitario.DecimalPlaces = 2;
+            this.nudCostoUnitario.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudCostoUnitario.Location = new System.Drawing.Point(404, 51);
             this.nudCostoUnitario.Margin = new System.Windows.Forms.Padding(4);
             this.nudCostoUnitario.Maximum = new decimal(new int[] {
             1410065408,
             2,
             0,
             0});
+            this.nudCostoUnitario.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudCostoUnitario.Name = "nudCostoUnitario";
-            this.nudCostoUnitario.Size = new System.Drawing.Size(80, 27);
+            this.nudCostoUnitario.Size = new System.Drawing.Size(109, 32);
             this.nudCostoUnitario.TabIndex = 21;
+            this.nudCostoUnitario.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // lblCantidad
             // 
@@ -198,13 +233,20 @@
             this.lblCantidad.Location = new System.Drawing.Point(297, 9);
             this.lblCantidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCantidad.Name = "lblCantidad";
-            this.lblCantidad.Size = new System.Drawing.Size(85, 21);
+            this.lblCantidad.Size = new System.Drawing.Size(101, 23);
             this.lblCantidad.TabIndex = 23;
             this.lblCantidad.Text = "Cantidad";
             // 
             // dgvSubcuentas
             // 
+            this.dgvSubcuentas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSubcuentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSubcuentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.producto,
+            this.cantidad,
+            this.costoUnitario,
+            this.totalProductos,
+            this.proveedor});
             this.dgvSubcuentas.Location = new System.Drawing.Point(65, 308);
             this.dgvSubcuentas.Margin = new System.Windows.Forms.Padding(4);
             this.dgvSubcuentas.Name = "dgvSubcuentas";
@@ -212,9 +254,44 @@
             this.dgvSubcuentas.Size = new System.Drawing.Size(693, 254);
             this.dgvSubcuentas.TabIndex = 24;
             // 
+            // producto
+            // 
+            this.producto.HeaderText = "Producto";
+            this.producto.MinimumWidth = 6;
+            this.producto.Name = "producto";
+            this.producto.ReadOnly = true;
+            // 
+            // cantidad
+            // 
+            this.cantidad.HeaderText = "Cantidad";
+            this.cantidad.MinimumWidth = 6;
+            this.cantidad.Name = "cantidad";
+            this.cantidad.ReadOnly = true;
+            // 
+            // costoUnitario
+            // 
+            this.costoUnitario.HeaderText = "Costo Unitario";
+            this.costoUnitario.MinimumWidth = 6;
+            this.costoUnitario.Name = "costoUnitario";
+            this.costoUnitario.ReadOnly = true;
+            // 
+            // totalProductos
+            // 
+            this.totalProductos.HeaderText = "Subtotal";
+            this.totalProductos.MinimumWidth = 6;
+            this.totalProductos.Name = "totalProductos";
+            this.totalProductos.ReadOnly = true;
+            // 
+            // proveedor
+            // 
+            this.proveedor.HeaderText = "Proveedor";
+            this.proveedor.MinimumWidth = 6;
+            this.proveedor.Name = "proveedor";
+            this.proveedor.ReadOnly = true;
+            // 
             // Panel_de_compras
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Snow;
             this.ClientSize = new System.Drawing.Size(811, 575);
@@ -240,7 +317,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Panel_de_compras";
             this.Text = "Panel_de_compras";
-            this.Load += new System.EventHandler(this.Panel_de_compras_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCostoUnitario)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubcuentas)).EndInit();
@@ -267,5 +343,10 @@
         private System.Windows.Forms.NumericUpDown nudCostoUnitario;
         private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.DataGridView dgvSubcuentas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn producto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn costoUnitario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalProductos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn proveedor;
     }
 }

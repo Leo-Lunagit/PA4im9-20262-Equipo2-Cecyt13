@@ -30,23 +30,32 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
             // Si el contendero tiene elementos, los elimina
             if (this.Contenedor.Controls.Count > 0)
                 this.Contenedor.Controls.RemoveAt(0);
+            DesIndexarPanel();
         }
-        private void AbrirPaneles(object panel)
+        private void AbrirPaneles(object panel, object sender)
         {
             // Si el contendero tiene elementos, los elimina
-            if (this.Contenedor.Controls.Count > 0) 
+            if (this.Contenedor.Controls.Count > 0)
                 this.Contenedor.Controls.RemoveAt(0);
             // Transforma el objeto a formulario.
             Form Panel = panel as Form;
             Panel.TopLevel = false; // Indica que no es un formulario de alto nivel, si no subordinado.
             Panel.Dock = DockStyle.Fill; // Indica que ocupe todo el espacio.
             this.Contenedor.Controls.Add(Panel); // Agrega el control al contenedor.
-            this.Contenedor.Tag = Panel; 
+            this.Contenedor.Tag = Panel;
             Panel.Show(); // Muestra el panel.
+            IndexarPanel(sender);
         }
+        private void IndexarPanel(object sender)
+        {
+            Button boton = sender as Button;
+            Contenedor.TabIndex = boton.TabIndex++;
+            Contenedor.TabStop = true;
+        }
+        private void DesIndexarPanel() { Contenedor.TabStop = false; }
         private void btnHome_Click(object sender, EventArgs e) { CerrarPaneles(); }
-        private void btnEntradas_Click(object sender, EventArgs e) { AbrirPaneles(new Panel_de_compras()); }
-        private void btnSalidas_Click(object sender, EventArgs e) { AbrirPaneles(new Panel_Ventas()); }
+        private void btnEntradas_Click(object sender, EventArgs e) { AbrirPaneles(new Panel_de_compras(), sender); }
+        private void btnSalidas_Click(object sender, EventArgs e) { AbrirPaneles(new Panel_Ventas(), sender); }
         private void btnClientes_Click(object sender, EventArgs e) { CerrarPaneles(); }
         private void btnProvedores_Click(object sender, EventArgs e) { CerrarPaneles(); }
         private void btnAlmacen_Click(object sender, EventArgs e) { CerrarPaneles(); }
@@ -82,6 +91,14 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
                 HoverOpsiones = true;
                 panOpciones.Visible = false;
             }
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            PanelAcceso ventana = new PanelAcceso();
+            ventana.RecomendarActivo();
+            ventana.Show();
+            this.Hide();
         }
     }
 }

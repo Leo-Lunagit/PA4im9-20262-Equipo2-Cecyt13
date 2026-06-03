@@ -18,10 +18,12 @@ namespace PA4IM9_20262_Equipo2.Modulos
         // Fusiona la ruta de ejecucion con una ruta nueva, regresa dos carpetas a la carpeta donde tenemos todo el codigo, se dirije a la carpeta de "Datos" y al arhivo.
         public static string rutaUsuarios = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Usuarios.xml");
         public static string rutaConfiguracion = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Configuracion.xml");
-        public static string rutaAsientos = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Asientos.xml");
+        public static string rutaCompras = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Compras.xml");
+        public static string rutaVentas = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Ventas.xml");
         public static string raizUsuarios = "usuarios"; // Elemento raiz del archivo.
         public static string raizConfiguracion = "configuracion"; // Elemento raiz del archivo.
-        public static string raizAsientos = "asientos"; // Elemento raiz del archivo.
+        public static string raizCompras = "compras"; // Elemento raiz del archivo.
+        public static string raizVentas = "ventas"; // Elemento raiz del archivo.
         public static string[] Roles = { "administrador", "colaborador", "cliente" };
         public static string RolPredefinido = Roles[2];
         // Variables para guardar los perfiles logueados.
@@ -38,10 +40,10 @@ namespace PA4IM9_20262_Equipo2.Modulos
             try { documento.Load(ruta); } 
             // En caso de no poder cargar el archivo
             catch {
+                // Si existe obtenemos la ruta de la carpeta para poder evaluarla.
+                string directorio = Directory.GetParent(ruta)?.FullName;
                 // Si no existe la ruta padre del elemento, crea ese directorio (carpeta).
-                if (!Directory.Exists(Path.Combine(ruta, ".."))) Directory.CreateDirectory(Path.Combine(ruta, ".."));
-                // Verifica que exista el archivo, en caso contrario lo crea.
-                if (!File.Exists(ruta)) File.Create(ruta);
+                if (!Directory.Exists(directorio)) Directory.CreateDirectory(directorio);
                 // Si no existia el archivo, hay que llenarlo, si ya existia entonces estaba vasio, hay que llenarlo.
                 // Se crea un nodo (elemento con mas elementos dentro) con el manejador de archivos xml.
                 XmlNode elementoRaiz = documento.CreateElement(nombreRaiz);
@@ -53,6 +55,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
             if (documento.FirstChild is XmlDeclaration)
             {
                 // Guarda los cambios en el mismo archivo/ruta.
+                // Si no existe el archivo lo crea.
                 documento.Save(ruta);
                 return;
             }
@@ -64,9 +67,11 @@ namespace PA4IM9_20262_Equipo2.Modulos
             documento.Save(ruta);
         }
 
-        public static void CargarArchivos()
+        public static void IniciarArchivos()
         {
             VerificarArchivo(rutaUsuarios, raizUsuarios);
+            VerificarArchivo(rutaCompras, raizCompras);
+            VerificarArchivo(rutaVentas, raizVentas);
         }
 
         public static string GenerarID()

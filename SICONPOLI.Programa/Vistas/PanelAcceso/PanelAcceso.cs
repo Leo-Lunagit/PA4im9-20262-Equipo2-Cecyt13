@@ -25,6 +25,8 @@ namespace PA4IM9_20262_Equipo2
         public PanelAcceso()
         {
             InitializeComponent();
+
+            Sistema.IniciarArchivos();
             RecordarUsuario();
         }
         private void RecordarUsuario()
@@ -59,6 +61,14 @@ namespace PA4IM9_20262_Equipo2
                 return false;
             }
             return true;
+        }
+
+        public void RecomendarActivo()
+        {
+            // Sacamos los datos del perfil activo y los ponemos en los campos.
+            txtContrasenia.Text = Sistema.PerfilActivo.Contrasenia;
+            txtUsuario.Text = Sistema.PerfilActivo.Usuario;
+            chkBoxRecordar.Checked = true;
         }
 
         //

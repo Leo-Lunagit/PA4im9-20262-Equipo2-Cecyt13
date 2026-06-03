@@ -2,38 +2,11 @@
 <usuarios>
   <perfil id="1001">
     <rol>administrador</rol>
-    <fechaCreacion>2026-05-30T11:57:40.546511-06:00</fechaCreacion>
+    <fechaCreacion>2026-06-02T23:32:26.184362-06:00</fechaCreacion>
     <usuario>equipo2</usuario>
     <correo>equipo2@ipn.mx</correo>
     <contrasenia>1234</contrasenia>
     <nombre>Equipo 2</nombre>
-    <edad>18</edad>
-  </perfil>
-  <perfil id="1002" recordar="">
-    <rol>cliente</rol>
-    <fechaCreacion>2026-06-02T12:12:47.7482515-06:00</fechaCreacion>
-    <usuario>Poochy</usuario>
-    <correo>brunoj.cervantes@gmail.com</correo>
-    <contrasenia>1234</contrasenia>
-    <nombre>Bruno</nombre>
     <edad>16</edad>
-  </perfil>
-  <perfil id="1003">
-    <rol>cliente</rol>
-    <fechaCreacion>2026-06-02T13:03:26.0826301-06:00</fechaCreacion>
-    <usuario>123</usuario>
-    <correo>123@gmail.com</correo>
-    <contrasenia>123</contrasenia>
-    <nombre>32</nombre>
-    <edad>23</edad>
-  </perfil>
-  <perfil id="1004">
-    <rol>cliente</rol>
-    <fechaCreacion>2026-06-02T13:06:03.4973554-06:00</fechaCreacion>
-    <usuario>321</usuario>
-    <correo>321@gmail.com</correo>
-    <contrasenia>123</contrasenia>
-    <nombre>12</nombre>
-    <edad>32</edad>
   </perfil>
 </usuarios>

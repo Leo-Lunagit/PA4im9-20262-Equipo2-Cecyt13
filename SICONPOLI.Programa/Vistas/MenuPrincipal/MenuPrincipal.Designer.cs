@@ -57,6 +57,7 @@
             this.LogoAniIPN = new System.Windows.Forms.PictureBox();
             this.LogoAniCecyt = new System.Windows.Forms.PictureBox();
             this.logoCecyt = new System.Windows.Forms.PictureBox();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.BarraLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconoMarca)).BeginInit();
             this.panel5.SuspendLayout();
@@ -98,7 +99,7 @@
             this.btnSucursales.Location = new System.Drawing.Point(3, 544);
             this.btnSucursales.Name = "btnSucursales";
             this.btnSucursales.Size = new System.Drawing.Size(241, 46);
-            this.btnSucursales.TabIndex = 10;
+            this.btnSucursales.TabIndex = 12;
             this.btnSucursales.Text = "Sucursales";
             this.btnSucursales.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSucursales.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -147,7 +148,7 @@
             this.btnOpciones.Location = new System.Drawing.Point(3, 3);
             this.btnOpciones.Name = "btnOpciones";
             this.btnOpciones.Size = new System.Drawing.Size(241, 46);
-            this.btnOpciones.TabIndex = 9;
+            this.btnOpciones.TabIndex = 14;
             this.btnOpciones.Text = "Opciónes";
             this.btnOpciones.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOpciones.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -167,7 +168,7 @@
             this.btnAlmacen.Location = new System.Drawing.Point(3, 492);
             this.btnAlmacen.Name = "btnAlmacen";
             this.btnAlmacen.Size = new System.Drawing.Size(241, 46);
-            this.btnAlmacen.TabIndex = 5;
+            this.btnAlmacen.TabIndex = 10;
             this.btnAlmacen.Text = "Almacén";
             this.btnAlmacen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAlmacen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -185,7 +186,7 @@
             this.btnProvedores.Location = new System.Drawing.Point(3, 440);
             this.btnProvedores.Name = "btnProvedores";
             this.btnProvedores.Size = new System.Drawing.Size(241, 46);
-            this.btnProvedores.TabIndex = 4;
+            this.btnProvedores.TabIndex = 8;
             this.btnProvedores.Text = "Proveedores";
             this.btnProvedores.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnProvedores.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -203,7 +204,7 @@
             this.btnClientes.Location = new System.Drawing.Point(3, 388);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Size = new System.Drawing.Size(241, 46);
-            this.btnClientes.TabIndex = 3;
+            this.btnClientes.TabIndex = 6;
             this.btnClientes.Text = "Clientes";
             this.btnClientes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -221,7 +222,7 @@
             this.btnSalidas.Location = new System.Drawing.Point(3, 336);
             this.btnSalidas.Name = "btnSalidas";
             this.btnSalidas.Size = new System.Drawing.Size(241, 46);
-            this.btnSalidas.TabIndex = 2;
+            this.btnSalidas.TabIndex = 4;
             this.btnSalidas.Text = "Salidas";
             this.btnSalidas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSalidas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -239,7 +240,7 @@
             this.btnEntradas.Location = new System.Drawing.Point(3, 284);
             this.btnEntradas.Name = "btnEntradas";
             this.btnEntradas.Size = new System.Drawing.Size(241, 46);
-            this.btnEntradas.TabIndex = 1;
+            this.btnEntradas.TabIndex = 2;
             this.btnEntradas.Text = "Entradas";
             this.btnEntradas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEntradas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -267,11 +268,12 @@
             // panOpciones
             // 
             this.panOpciones.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.panOpciones.Controls.Add(this.btnLogout);
             this.panOpciones.Controls.Add(this.btnConfig);
             this.panOpciones.Controls.Add(this.btnUsuario);
-            this.panOpciones.Location = new System.Drawing.Point(81, 659);
+            this.panOpciones.Location = new System.Drawing.Point(81, 618);
             this.panOpciones.Name = "panOpciones";
-            this.panOpciones.Size = new System.Drawing.Size(163, 90);
+            this.panOpciones.Size = new System.Drawing.Size(163, 131);
             this.panOpciones.TabIndex = 11;
             this.panOpciones.Visible = false;
             this.panOpciones.MouseLeave += new System.EventHandler(this.panOpciones_MouseLeave);
@@ -280,16 +282,16 @@
             // btnConfig
             // 
             this.btnConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfig.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.btnConfig.BackColor = System.Drawing.Color.White;
             this.btnConfig.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfig.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfig.ForeColor = System.Drawing.Color.White;
+            this.btnConfig.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
             this.btnConfig.ImageIndex = 0;
             this.btnConfig.ImageList = this.imgListDesplegables;
-            this.btnConfig.Location = new System.Drawing.Point(10, 45);
+            this.btnConfig.Location = new System.Drawing.Point(10, 86);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(150, 36);
-            this.btnConfig.TabIndex = 9;
+            this.btnConfig.TabIndex = 16;
             this.btnConfig.Text = "Settings";
             this.btnConfig.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConfig.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -306,16 +308,16 @@
             // btnUsuario
             // 
             this.btnUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.btnUsuario.BackColor = System.Drawing.Color.White;
             this.btnUsuario.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUsuario.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUsuario.ForeColor = System.Drawing.Color.White;
+            this.btnUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
             this.btnUsuario.ImageIndex = 1;
             this.btnUsuario.ImageList = this.imgListDesplegables;
-            this.btnUsuario.Location = new System.Drawing.Point(10, 6);
+            this.btnUsuario.Location = new System.Drawing.Point(10, 47);
             this.btnUsuario.Name = "btnUsuario";
             this.btnUsuario.Size = new System.Drawing.Size(150, 36);
-            this.btnUsuario.TabIndex = 6;
+            this.btnUsuario.TabIndex = 18;
             this.btnUsuario.Text = "Usuario";
             this.btnUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUsuario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -331,7 +333,8 @@
             this.Contenedor.Location = new System.Drawing.Point(250, 96);
             this.Contenedor.Name = "Contenedor";
             this.Contenedor.Size = new System.Drawing.Size(1082, 707);
-            this.Contenedor.TabIndex = 3;
+            this.Contenedor.TabIndex = 1;
+            this.Contenedor.TabStop = true;
             // 
             // panInstitucion
             // 
@@ -453,6 +456,25 @@
             this.logoCecyt.TabIndex = 0;
             this.logoCecyt.TabStop = false;
             // 
+            // btnLogout
+            // 
+            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
+            this.btnLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogout.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.ForeColor = System.Drawing.Color.White;
+            this.btnLogout.ImageIndex = 1;
+            this.btnLogout.ImageList = this.imgListDesplegables;
+            this.btnLogout.Location = new System.Drawing.Point(10, 5);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(150, 36);
+            this.btnLogout.TabIndex = 20;
+            this.btnLogout.Text = "Log out";
+            this.btnLogout.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -507,5 +529,6 @@
         private System.Windows.Forms.PictureBox LogoAniIPN;
         private System.Windows.Forms.PictureBox LogoAniCecyt;
         private System.Windows.Forms.PictureBox logoCecyt;
+        private System.Windows.Forms.Button btnLogout;
     }
 }
