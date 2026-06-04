@@ -514,7 +514,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(92, 22);
             this.lblVersion.TabIndex = 7;
-            this.lblVersion.Text = "Alph 1.0.20";
+            this.lblVersion.Text = "Alph 1.0.37";
             // 
             // pictureBox4
             // 
@@ -543,11 +543,12 @@
             this.Controls.Add(this.panAcceso);
             this.Controls.Add(this.panInstitucion);
             this.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximumSize = new System.Drawing.Size(1061, 603);
             this.MinimumSize = new System.Drawing.Size(1061, 603);
             this.Name = "PanelAcceso";
-            this.Text = "Panel de Acceso.";
+            this.Text = "Panel de Acceso. SIRETECH Poli.";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PanelAcceso_FormClosing);
             this.grpInicioS.ResumeLayout(false);
             this.grpInicioS.PerformLayout();

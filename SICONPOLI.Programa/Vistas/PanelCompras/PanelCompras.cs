@@ -106,10 +106,10 @@ namespace PA4IM9_20262_Equipo2
             // Recorrer cada fila del DataGridView para sumar los totales de los productos
             foreach (DataGridViewRow fila in dgvSubcuentas.Rows)
             {
-                if (fila.Cells["Total"].Value != null)
+                if (fila.Cells["totalProductos"].Value != null)
                 {
                     // Reemplazamos el símbolo de moneda para poder convertirlo a decimal limpiamente
-                    string valorTexto = fila.Cells["Total"].Value.ToString().Replace("$", "");
+                    string valorTexto = fila.Cells["totalProductos"].Value.ToString().Replace("$", "");
                     subtotal += Convert.ToDecimal (valorTexto);
                 }
             }
@@ -129,7 +129,7 @@ namespace PA4IM9_20262_Equipo2
             // Restablece los controles superiores para agilizar el rellenado
             if (cmbProductos.Items.Count > 0) cmbProductos.SelectedIndex = 0;
             nudCantidad.Value = 1;
-            nudCostoUnitario.Value = 0;
+            nudCostoUnitario.Value = 1;
             txtProveedor.Clear();
             cmbProductos.Focus(); // Pone el cursor de vuelta en el producto
         }

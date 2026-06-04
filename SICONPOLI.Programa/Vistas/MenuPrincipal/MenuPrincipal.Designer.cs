@@ -43,8 +43,9 @@
             this.btnEntradas = new System.Windows.Forms.Button();
             this.btnHome = new System.Windows.Forms.Button();
             this.panOpciones = new System.Windows.Forms.Panel();
-            this.btnConfig = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.imgListDesplegables = new System.Windows.Forms.ImageList(this.components);
+            this.btnConfig = new System.Windows.Forms.Button();
             this.btnUsuario = new System.Windows.Forms.Button();
             this.Contenedor = new System.Windows.Forms.Panel();
             this.panInstitucion = new System.Windows.Forms.Panel();
@@ -57,7 +58,6 @@
             this.LogoAniIPN = new System.Windows.Forms.PictureBox();
             this.LogoAniCecyt = new System.Windows.Forms.PictureBox();
             this.logoCecyt = new System.Windows.Forms.PictureBox();
-            this.btnLogout = new System.Windows.Forms.Button();
             this.BarraLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconoMarca)).BeginInit();
             this.panel5.SuspendLayout();
@@ -279,6 +279,32 @@
             this.panOpciones.MouseLeave += new System.EventHandler(this.panOpciones_MouseLeave);
             this.panOpciones.MouseHover += new System.EventHandler(this.panOpciones_MouseHover);
             // 
+            // btnLogout
+            // 
+            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
+            this.btnLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogout.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.ForeColor = System.Drawing.Color.White;
+            this.btnLogout.ImageIndex = 1;
+            this.btnLogout.ImageList = this.imgListDesplegables;
+            this.btnLogout.Location = new System.Drawing.Point(10, 5);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(150, 36);
+            this.btnLogout.TabIndex = 20;
+            this.btnLogout.Text = "Log out";
+            this.btnLogout.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // imgListDesplegables
+            // 
+            this.imgListDesplegables.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgListDesplegables.ImageStream")));
+            this.imgListDesplegables.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgListDesplegables.Images.SetKeyName(0, "configuracion.png");
+            this.imgListDesplegables.Images.SetKeyName(1, "usuario.png");
+            // 
             // btnConfig
             // 
             this.btnConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -297,13 +323,6 @@
             this.btnConfig.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnConfig.UseVisualStyleBackColor = false;
             this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
-            // 
-            // imgListDesplegables
-            // 
-            this.imgListDesplegables.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgListDesplegables.ImageStream")));
-            this.imgListDesplegables.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgListDesplegables.Images.SetKeyName(0, "configuracion.png");
-            this.imgListDesplegables.Images.SetKeyName(1, "usuario.png");
             // 
             // btnUsuario
             // 
@@ -456,25 +475,6 @@
             this.logoCecyt.TabIndex = 0;
             this.logoCecyt.TabStop = false;
             // 
-            // btnLogout
-            // 
-            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
-            this.btnLogout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLogout.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.ForeColor = System.Drawing.Color.White;
-            this.btnLogout.ImageIndex = 1;
-            this.btnLogout.ImageList = this.imgListDesplegables;
-            this.btnLogout.Location = new System.Drawing.Point(10, 5);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(150, 36);
-            this.btnLogout.TabIndex = 20;
-            this.btnLogout.Text = "Log out";
-            this.btnLogout.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnLogout.UseVisualStyleBackColor = false;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -484,6 +484,7 @@
             this.Controls.Add(this.Contenedor);
             this.Controls.Add(this.BarraLateral);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MenuPrincipal";
             this.Text = "SIRETECH Poli.";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MenuPrincipal_FormClosing);

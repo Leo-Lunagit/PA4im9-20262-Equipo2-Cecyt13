@@ -122,39 +122,18 @@ namespace PA4IM9_20262_Equipo2.Modulos
             // Siempre guarda o sobreescibe el perfil logueado como el perfil actual.
             PerfilActivo = PerfilLogueado;
         }
-        
-        public static void ManejarRecordado(XmlDocument escritor, XmlElement elemento, bool aRecordar)
+
+        public static void LimpiarRecordado()
         {
-            bool tieneRecordado = elemento.HasAttribute(banderaRecordar);
+            VerificarArchivo(rutaUsuarios,raizUsuarios);
+            XmlDocument escritor = new XmlDocument();
+            escritor.Load(rutaUsuarios);
 
-            // Revisamos si ya cuenta con el atributo recordar (no contenido en la clase perfil).
-            // Si tiene el atributo primero devemos quitarselo y luego guardar el perfil.
-            if (tieneRecordado)
-            {
-                // Se elimina forsosamente el atributo del elemento Xml.
-                // De sus atributos elimina el atributo de nombre recordado.
-                elemento.Attributes.RemoveNamedItem(banderaRecordar);
-                // Si ya no se desea recordar se guardan los cambios, si aun se desea recordar no se DEBE guardar nada.
-                if (!aRecordar) escritor.Save(Sistema.rutaUsuarios);
-
-                // Transformamos el elemento xml a un objeto de tipo perfil.
-                Perfil PerfilLogueado = ConvertidorXml.ElementoToObjeto<Perfil>(elemento);
-                // Ese perfil coincidente lo guardamos en la memoria del programa.
-                Sistema.CargarPerfil(PerfilLogueado);
-            }
-            else // Si no tiene el atributo solamente lo guardamos en memoria.
-            {
-                // Lo mismo que en las lineas de arriba.
-                Perfil PerfilLogueado = ConvertidorXml.ElementoToObjeto<Perfil>(elemento);
-                Sistema.CargarPerfil(PerfilLogueado);
-
-                if (aRecordar) // Si se debe recordar.
-                {
-                    // Creamos y agregamos el atributo para recordar el elemento.
-                    elemento.Attributes.Append(escritor.CreateAttribute(banderaRecordar)); 
-                    escritor.Save(Sistema.rutaUsuarios); // Guardamos los cambios
-                }
-            }
+            XmlNode perfilRecordar = escritor.DocumentElement.SelectSingleNode("perfil[@recordado]");
+            if (perfilRecordar != null) 
+                perfilRecordar.Attributes.RemoveNamedItem("recordado");
+            
+            escritor.Save(rutaUsuarios);
         }
     }
 }
