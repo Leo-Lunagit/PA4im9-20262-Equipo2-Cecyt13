@@ -1,4 +1,5 @@
 ﻿using PA4IM9_20262_Equipo2.Modulos;
+using PA4IM9_20262_Equipo2.Vistas.Panel_Principal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace PA4IM9_20262_Equipo2
         [STAThread]
         static void Main()
         {
-            Sistema.CargarArchivos();
+            Sistema.IniciarArchivos();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

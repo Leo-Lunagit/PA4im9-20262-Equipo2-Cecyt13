@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<configuracion>
+  <usuariosActivos>
+    <perfil id="1001">
+      <rol>administrador</rol>
+      <fechaCreacion>2026-06-02T23:32:26.184362-06:00</fechaCreacion>
+      <usuario>equipo2</usuario>
+      <correo>equipo2@ipn.mx</correo>
+      <contrasenia>1234</contrasenia>
+      <nombre>Equipo 2</nombre>
+      <edad>16</edad>
+    </perfil>
+  </usuariosActivos>
+</configuracion>
