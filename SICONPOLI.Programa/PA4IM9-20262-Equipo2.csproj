@@ -116,6 +116,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Datos\Compras.xml" />
+    <Content Include="Datos\Configuracion.xml" />
     <Content Include="Datos\Usuarios.xml" />
     <Content Include="Datos\Ventas.xml" />
     <Content Include="Recursos\Iconos\clientes.png" />

@@ -29,6 +29,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
         // Variables para guardar los perfiles logueados.
         public static Perfil[] PerfilesLogueados;
         public static Perfil PerfilActivo;
+        public static string banderaRecordar = "recordado";
         
         // Verificacion de la existencia de un archivo XML.
         public static void VerificarArchivo(string ruta, string nombreRaiz)
@@ -84,20 +85,25 @@ namespace PA4IM9_20262_Equipo2.Modulos
         
         public static void GuardarPerfil(XmlElement usuario) 
         {
+            string PadreUsuarios = "usuariosActivos";
             VerificarArchivo(rutaConfiguracion, raizConfiguracion);
             XmlDocument config = new XmlDocument();
             config.Load(rutaConfiguracion);
             
-            XmlNode perfiles = config.DocumentElement["usuariosActivos"];
+            XmlNode perfiles = config.DocumentElement[PadreUsuarios];
             if (perfiles == null)
             {
-                XmlElement usuariosActivos = config.CreateElement("usuariosActivos");
-                perfiles.AppendChild(usuariosActivos);
+                XmlElement usuariosActivos = config.CreateElement(PadreUsuarios);
+                config.DocumentElement.AppendChild(usuariosActivos);
             }
-            
-            if (!perfiles.Any(perfil => perfil["usuario"].InnerText == usuario["usuario"].InnerText)) 
+
+            XmlNode coincidencia = config.DocumentElement.SelectSingleNode($"//perfil[@id='{usuario.Attributes["id"].Value}']");
+            if (coincidencia == null)
+            {
                 // Guarda el perfil junto a los perfiles antes guardados.
-                perfiles.Append(usuario);
+                XmlNode importado = config.ImportNode(usuario, true);
+                config.DocumentElement[PadreUsuarios].AppendChild(importado);
+            }
                 
             config.Save(rutaConfiguracion);
         }
@@ -111,15 +117,15 @@ namespace PA4IM9_20262_Equipo2.Modulos
             // Si hay perfiles. Y no existe ningun elemento donde coincidan los ides lo guarda.
             else if (!PerfilesLogueados.Any(perfil => perfil.ID == PerfilLogueado.ID)) 
                 // Guarda el perfil junto a los perfiles antes logueados.
-                PerfilesLogueados.Append(PerfilLogueado);
+                PerfilesLogueados = PerfilesLogueados.Append(PerfilLogueado).ToArray();
 
             // Siempre guarda o sobreescibe el perfil logueado como el perfil actual.
             PerfilActivo = PerfilLogueado;
         }
         
-        private void ManejarRecordado(XmlDocument escritor, XmlElement elemento, bool aRecordar)
+        public static void ManejarRecordado(XmlDocument escritor, XmlElement elemento, bool aRecordar)
         {
-            bool tieneRecordado = elemento.HasAttribute("recordado");
+            bool tieneRecordado = elemento.HasAttribute(banderaRecordar);
 
             // Revisamos si ya cuenta con el atributo recordar (no contenido en la clase perfil).
             // Si tiene el atributo primero devemos quitarselo y luego guardar el perfil.
@@ -127,7 +133,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
             {
                 // Se elimina forsosamente el atributo del elemento Xml.
                 // De sus atributos elimina el atributo de nombre recordado.
-                elemento.Attributes.RemoveNamedItem("recordado");
+                elemento.Attributes.RemoveNamedItem(banderaRecordar);
                 // Si ya no se desea recordar se guardan los cambios, si aun se desea recordar no se DEBE guardar nada.
                 if (!aRecordar) escritor.Save(Sistema.rutaUsuarios);
 
@@ -145,7 +151,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 if (aRecordar) // Si se debe recordar.
                 {
                     // Creamos y agregamos el atributo para recordar el elemento.
-                    elemento.Attributes.Append(escritor.CreateAttribute("recordado")); 
+                    elemento.Attributes.Append(escritor.CreateAttribute(banderaRecordar)); 
                     escritor.Save(Sistema.rutaUsuarios); // Guardamos los cambios
                 }
             }

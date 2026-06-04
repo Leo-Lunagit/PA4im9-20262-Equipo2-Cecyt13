@@ -27,8 +27,8 @@ namespace PA4IM9_20262_Equipo2
             InitializeComponent();
 
             Sistema.IniciarArchivos();
-            CargarUsuariosActivos();
             RecordarUsuario();
+            CargarUsuariosActivos();
         }
         private void RecordarUsuario()
         {
@@ -41,31 +41,17 @@ namespace PA4IM9_20262_Equipo2
             // Busca elementos con las coincidenias especificadas y los debuelve en una arreglo.
             // 'lector' -> Contiene el archivo. 'DocumentElement' -> Elemento raiz. '//' -> Ruta actual. "perfil" -> Todos los elementos de nombre perfil.
             // "@" -> Atributos. 'recordado' -> La bandera para recordar el perfil. Resultado: Todos los elementos "perfil" con atributo "recordado".
-            XmlNode perfilRecordado = lector.DocumentElement.SelectSingleNode("./perfil[@recordado]");
+            XmlNode perfilRecordado = lector.DocumentElement.SelectSingleNode($"./perfil[@{Sistema.banderaRecordar}]");
             // Si existe dicho elemento:
             if (perfilRecordado != null)
             {
                 // ["texto"] -> Elemento hijo con tal nombre. "InnerText" -> Su propiedad de texto, USAR ESTA Y NO "Value".
+                QuitarPlaceHolder(txtUsuario, "Usuario");
+                QuitarPlaceHolderContrasenias(txtContrasenia, "Contraseña");
                 txtUsuario.Text = perfilRecordado["usuario"].InnerText;
                 txtContrasenia.Text = perfilRecordado["contrasenia"].InnerText;
                 chkBoxRecordar.Checked = true;
             }
-        }
-        
-        private void CargarUsuariosActivos()
-        {
-            VerificarArchivo(Sistema.rutaConfiguracion, Sistema.raizConfiguracion);
-            XmlDocument config = new XmlDocument();
-            config.Load(rutaConfiguracion);
-            
-            XmlNode perfiles = config.DocumentElement["usuariosActivos"];
-            if (perfiles == null)
-            {
-                XmlElement usuariosActivos = config.CreateElement("usuariosActivos");
-                perfiles.AppendChild(usuariosActivos);
-                return
-            } 
-            else if (perfiles.Lenght == 0) return;
         }
         
         private bool ExistenUsuariosRegistrados(XmlDocument lector)
@@ -79,6 +65,33 @@ namespace PA4IM9_20262_Equipo2
                 return false;
             }
             return true;
+        }
+
+        private void CargarUsuariosActivos()
+        {
+            Sistema.VerificarArchivo(Sistema.rutaConfiguracion, Sistema.raizConfiguracion);
+            XmlDocument lector = new XmlDocument();
+            lector.Load(Sistema.rutaConfiguracion);
+
+            Perfil perfilActivoOriginal = Sistema.PerfilActivo;
+
+            XmlElement usuariosActivos = lector.DocumentElement["usuariosActivos"];
+            if (usuariosActivos == null)
+            {
+                lector.DocumentElement.AppendChild(lector.CreateElement("usuariosActivos"));
+                usuariosActivos = lector.DocumentElement["usuariosActivos"];
+                lector.Save(Sistema.rutaConfiguracion);
+            }
+            else if (usuariosActivos.ChildNodes.Count != 0)
+            {
+                foreach (XmlElement perfil in usuariosActivos.ChildNodes)
+                {
+                    cmbUsuarios.Items.Add(perfil["usuario"].InnerText);
+                    Perfil objPerfil = ConvertidorXml.ElementoToObjeto<Perfil>(perfil);
+                    Sistema.CargarPerfil(objPerfil);
+                }
+                Sistema.PerfilActivo = perfilActivoOriginal;
+            }
         }
 
         public void RecomendarActivo()
@@ -158,16 +171,16 @@ namespace PA4IM9_20262_Equipo2
             // Dinamicamente asigna un Rol adecuado.
             nuevoPerfil.Rol = nuevoPerfil.ID == "1001" ? Sistema.Roles[0] : nuevoPerfil.Edad > 17 ? Sistema.Roles[2] : Sistema.RolPredefinido;
             // Cargamos el perfil nuevo en la memoria del programa para las sesiones activas.
-            Sistema.CargarPerfilMemoria(nuevoPerfil);
+            Sistema.CargarPerfil(nuevoPerfil);
 
             // Creamos un elemento Xml llenandolo con los datos del perfil antes llenado.
             XmlElement elementoPerfil = ConvertidorXml.ObjetoToElemento(escritor, nuevoPerfil);
 
             // Si esta marcada la casilla para recordar
-            if (chkBoxRecordar.Checked == true) elementoPerfil.Attributes.Append(escritor.CreateAttribute("recordar"));
+            if (chkBoxRecordar.Checked == true) elementoPerfil.Attributes.Append(escritor.CreateAttribute(Sistema.banderaRecordar));
 
             // Guardar en archivos el perfil a la lista de perfiles activos.
-            Sistema.GuardarPerfil(elementoPerfil)
+            Sistema.GuardarPerfil(elementoPerfil);
 
             // Se agrega el perfil al contenedor principal, el de los perfiles.
             escritor.DocumentElement.AppendChild(elementoPerfil);
@@ -238,7 +251,10 @@ namespace PA4IM9_20262_Equipo2
         private void btnPriva_Click(object sender, EventArgs e) { MessageBox.Show("Conoce nuestras politicas", "Politicas.", MessageBoxButtons.OK, MessageBoxIcon.Information); }
         // Cargar ventana de "Recuperar contraseña".
         private void btnRecuperar_Click(object sender, EventArgs e) { MessageBox.Show("Enviaremos un correo a su direccion", "Recuperar.", MessageBoxButtons.OK, MessageBoxIcon.Information); }
-        
+        // Cierra el programa al cerrar esta ventana.
+        private void PanelAcceso_FormClosing(object sender, FormClosingEventArgs e) { Application.Exit(); }
+
+
         //
         // Logica de utiilidades.
         //
@@ -312,7 +328,14 @@ namespace PA4IM9_20262_Equipo2
         }
         private void iconoContrasenia_Click(object sender, EventArgs e) { AlternarVerContra(txtContrasenia, sender, "Contraseña"); }
         private void iconoConfirmarContra_Click(object sender, EventArgs e) { AlternarVerContra(txtConfirmarContra, sender, "Confirmar Contraseña"); }
-        
+
+        private void cmbUsuarios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Perfil perfilSelecionado = Sistema.PerfilesLogueados.Single(perfil => perfil.Usuario == cmbUsuarios.Text);
+            txtUsuario.Text = perfilSelecionado.Usuario;
+            txtContrasenia.Text = perfilSelecionado.Contrasenia;
+        }
+
         //
         // Logica de Validacion.
         //
