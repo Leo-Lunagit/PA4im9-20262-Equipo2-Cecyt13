@@ -52,6 +52,7 @@
     <Compile Include="Entidades\MovAuxiliar.cs" />
     <Compile Include="Entidades\Perfil.cs" />
     <Compile Include="Modulos\ConvertidorXml.cs" />
+    <Compile Include="Modulos\RegistradorProveedores.cs" />
     <Compile Include="Modulos\Sistema.cs" />
     <Compile Include="Vistas\PanelCompras\PanelCompras.cs">
       <SubType>Form</SubType>

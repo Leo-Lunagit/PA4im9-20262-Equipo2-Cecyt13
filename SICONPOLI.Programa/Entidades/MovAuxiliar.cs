@@ -46,7 +46,7 @@ namespace PA4IM9_20262_Equipo2.Entidades
         public string Cuenta { get; set; }
         [XmlAttribute("noTarjeta")]
         public string NoTargeta { get; set; }
-        [XmlElement("titular")]
+        [XmlAttribute("titular")]
         public string Titular { get; set; }
         [XmlArray("movAuxiliares")]
         [XmlArrayItem("renAuxiliar")]

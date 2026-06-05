@@ -140,59 +140,6 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 perfilRecordar.Attributes.RemoveNamedItem("recordado");
 
             escritor.Save(rutaUsuarios);
-        } 
-
-        public static void CompraToProveedor(Asiento asiento)
-        {
-            VerificarArchivo(rutaProveedores, raizProveedores);
-            XmlDocument escritor = new XmlDocument();
-            escritor.Load(rutaProveedores);
-
-            string textoSubProveedor = asiento.Abonos[0].Subcuentas[0].NombreSubcuenta;
-            string[] paraProveedor = textoSubProveedor.Split(new string[] { " s/f" }, StringSplitOptions.None);
-            string[] paraFactura = textoSubProveedor.Split(new string[] { "s/f " }, StringSplitOptions.None);
-
-            Movimiento debe = new Movimiento();
-            debe.Monto = asiento.SumaAbonos;
-            debe.Saldo = ((Saldos)1).ToString();
-
-            RenAuxiliar renglon = new RenAuxiliar();
-            renglon.Fecha = asiento.Fecha.ToString("dd/MM");
-            renglon.Factura = paraFactura[1];
-            renglon.Concepto = "Compra de mercancia.";
-            renglon.Movimiento = debe;
-
-            XmlNode proveedorExistente = escritor.DocumentElement.SelectSingleNode($"//Auxiliar[titular='{paraProveedor[0]}']");
-            if (proveedorExistente == null)
-            {
-                renglon.Folio = "1001";
-                renglon.MontoSaldo = renglon.Movimiento.Monto;
-
-                MayorAuxiliar proveedorNuevo = new MayorAuxiliar();
-                proveedorNuevo.Cuenta = "proveedor";
-                proveedorNuevo.NoTargeta = "99";
-                proveedorNuevo.Titular = paraProveedor[0];
-                proveedorNuevo.RenAuxiliares = new RenAuxiliar[] { renglon };
-
-                XmlElement registro = ConvertidorXml.ObjetoToElemento(escritor, proveedorNuevo);
-
-                escritor.DocumentElement.AppendChild(registro);
-                escritor.Save(rutaCompras);
-            }
-            else
-            {
-                MayorAuxiliar proveedor = ConvertidorXml.ElementoToObjeto<MayorAuxiliar>((XmlElement)proveedorExistente);
-
-                renglon.Folio = $"1{(proveedor.RenAuxiliares.Length + 1):D3}";
-                int sentido = renglon.Movimiento.Saldo == ((Saldos)1).ToString() ? 1 : -1;
-                renglon.MontoSaldo = renglon.Movimiento.Monto * sentido + proveedor.RenAuxiliares.Last().MontoSaldo;
-
-                proveedor.RenAuxiliares.Append(renglon).ToArray();
-
-                XmlElement proveedorActualizado = ConvertidorXml.ObjetoToElemento(escritor, proveedor);
-                escritor.DocumentElement.ReplaceChild(proveedorActualizado, proveedorExistente);
-                escritor.Save(rutaProveedores);
-            }
         }
     }
 }
