@@ -75,19 +75,13 @@ namespace PA4IM9_20262_Equipo2.Modulos
             VerificarArchivo(rutaVentas, raizVentas);
         }
 
-        public static string GenerarID()
+        public static string GenerarID(string Ruta, string Raiz, int Cifras)
         {
+            VerificarArchivo(Ruta, Raiz);
             XmlDocument lector = new XmlDocument();
-            lector.Load(rutaUsuarios);
+            lector.Load(Ruta);
             // El numero de perfiles mas 1, asegurandose que minimo tenga 3 cifras aunque con 0 a la izquierda (:D3).
-            return $"1{(lector.DocumentElement.ChildNodes.Count + 1):D3}"; 
-        }
-
-        public static string GenerarFolio()
-        {
-            XmlDocument folio = new XmlDocument();
-            folio.Load(rutaVentas);
-            return $"1{(folio.DocumentElement.ChildNodes.Count + 1):D5}";
+            return $"1{(lector.DocumentElement.ChildNodes.Count + 1).ToString($"D{Cifras}")}"; 
         }
 
         public static void GuardarPerfil(XmlElement usuario) 

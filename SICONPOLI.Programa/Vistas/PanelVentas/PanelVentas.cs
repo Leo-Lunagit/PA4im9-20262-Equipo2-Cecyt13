@@ -44,7 +44,6 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             int cantidad = (int)nudCantidad.Value;
             decimal costoUnitario = nudCostoUnitario.Value;
             string Cliente = txtCliente.Text.Trim();
-            string folio = Sistema.GenerarFolio();
             decimal subtotal = (cantidad * costoUnitario);
             decimal iva = cantidad * costoUnitario * (decimal).16;
             string fecha = "00:00";
@@ -92,7 +91,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 
             // Creamos el asiento y lo llenamos.
             Asiento registro = new Asiento();
-            registro.NoAsiento = 999;
+            registro.NoAsiento = Sistema.GenerarID(Sistema.rutaVentas, Sistema.raizVentas, 3);
             registro.Fecha = DateTime.Now;
             registro.Cargos = new Cuenta[] { Almacen, IVA };
             registro.Abonos = new Cuenta[] { cliente };
