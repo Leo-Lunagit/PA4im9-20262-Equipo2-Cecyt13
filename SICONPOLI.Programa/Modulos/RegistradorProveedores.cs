@@ -19,7 +19,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
 
             // Cargamos el archivo correspondiente.
             Sistema.VerificarArchivo(ruta, raiz);
-            XmlDocument escritor = new XmlDocument();
+            XmlDocument escritor = new XmlDocument(); 
             escritor.Load(ruta);
 
             Cuenta CuentaContenedora; // La cuenta que contiene las subcuentas.
