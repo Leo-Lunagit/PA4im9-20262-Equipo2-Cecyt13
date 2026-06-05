@@ -80,7 +80,7 @@ namespace PA4IM9_20262_Equipo2
 
             // Creamos el asiento y lo llenamos.
             Asiento registro = new Asiento();
-            registro.NoAsiento = Sistema.GenerarID(Sistema.rutaCompras, Sistema.raizCompras, 4);
+            registro.NoAsiento = Sistema.GenerarID(Rutas.Compras, Raices.Compras, 4);
             registro.Fecha = DateTime.Now;
             registro.Cargos = new Cuenta[] { Almacen, IVA };
             registro.Abonos = new Cuenta[] { Proveedor };
@@ -88,17 +88,17 @@ namespace PA4IM9_20262_Equipo2
             registro.SumaAbonos = Proveedor.Monto;
             registro.Concepto = $"Compra de mercancia s/f XXXX del proveedor {proveedor}.";
 
-            Sistema.CompraToProveedor(registro);
+            // RegistradorProveedores.CompraToProveedor(registro, Saldos.Acredor);
 
             XmlDocument escritor = new XmlDocument();
             // Transformamos la clase en elemento xml.
             XmlElement asiento = ConvertidorXml.ObjetoToElemento(escritor, registro);
 
-            Sistema.VerificarArchivo(Sistema.rutaCompras, Sistema.raizCompras);
-            escritor.Load(Sistema.rutaCompras);
+            Sistema.VerificarArchivo(Rutas.Compras, Raices.Compras);
+            escritor.Load(Rutas.Compras);
 
             escritor.DocumentElement.AppendChild(asiento);
-            escritor.Save(Sistema.rutaCompras);
+            escritor.Save(Rutas.Compras);
         }
         private void CalcularTotalesGenerales()
         {

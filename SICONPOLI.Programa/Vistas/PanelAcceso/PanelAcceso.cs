@@ -33,9 +33,9 @@ namespace PA4IM9_20262_Equipo2
         private void RecordarUsuario()
         {
             // Verifica si el archivo de usuarios existe.
-            Sistema.VerificarArchivo(Sistema.rutaUsuarios, Sistema.raizUsuarios);
+            Sistema.VerificarArchivo(Rutas.Usuarios, Raices.Usuarios);
             XmlDocument lector = new XmlDocument(); // Crea el controlador de archivos xml.
-            lector.Load(Sistema.rutaUsuarios); // Carga el archivo de usuarios
+            lector.Load(Rutas.Usuarios); // Carga el archivo de usuarios
             if (!ExistenUsuariosRegistrados(lector)) return; // Aprovechando la carga detecta si existen usuarios registrados.
 
             // Busca elementos con las coincidenias especificadas y los debuelve en una arreglo.
@@ -70,9 +70,9 @@ namespace PA4IM9_20262_Equipo2
         // Agrega los perfiles al desplegable.
         private void CargarUsuariosActivos()
         {
-            Sistema.VerificarArchivo(Sistema.rutaConfiguracion, Sistema.raizConfiguracion);
+            Sistema.VerificarArchivo(Rutas.Configuracion, Raices.Configuracion);
             XmlDocument lector = new XmlDocument();
-            lector.Load(Sistema.rutaConfiguracion);
+            lector.Load(Rutas.Configuracion);
 
             Perfil perfilActivoOriginal = Sistema.PerfilActivo;
 
@@ -81,7 +81,7 @@ namespace PA4IM9_20262_Equipo2
             {
                 lector.DocumentElement.AppendChild(lector.CreateElement("usuariosActivos"));
                 usuariosActivos = lector.DocumentElement["usuariosActivos"];
-                lector.Save(Sistema.rutaConfiguracion);
+                lector.Save(Rutas.Configuracion);
             }
             else if (usuariosActivos.ChildNodes.Count != 0)
             {
@@ -113,10 +113,10 @@ namespace PA4IM9_20262_Equipo2
             if (!CamposCorrectos()) return; // Si estan vacíos notifica con un texto y termina el proseso.
             lblMensajes.Text = ""; // Limpia el mensaje.
 
-            Sistema.VerificarArchivo(Sistema.rutaUsuarios, Sistema.raizUsuarios); // Verifica la existencia del archivo
+            Sistema.VerificarArchivo(Rutas.Usuarios, Raices.Usuarios); // Verifica la existencia del archivo
             // Crea el controlador de archivos xml y carga el documento en la ruta de usuarios.
             XmlDocument documento = new XmlDocument();
-            documento.Load(Sistema.rutaUsuarios);
+            documento.Load(Rutas.Usuarios);
 
             // Dependiendo del contenido en el boton enviara a inicios o registros de secion.
             if (btnAcceder.Text == "Iniciar Sesión") IniciarSesion(documento, txtUsuario.Text, txtContrasenia.Text);
@@ -146,7 +146,7 @@ namespace PA4IM9_20262_Equipo2
                         {
                             // Creamos y agregamos el atributo para recordar el elemento.
                             elemento.Attributes.Append(lector.CreateAttribute("recordado"));
-                            lector.Save(Sistema.rutaUsuarios); // Guardamos los cambios
+                            lector.Save(Rutas.Usuarios); // Guardamos los cambios
                         }
                         // Mandar a llamar al menu principal.
                         AbrirMenuPrincipal();
@@ -177,7 +177,7 @@ namespace PA4IM9_20262_Equipo2
 
             // Se asignan los datos fundamentales.
             nuevoPerfil.FechaCreacion = DateTime.Now;
-            nuevoPerfil.ID = Sistema.GenerarID(Sistema.rutaUsuarios, Sistema.raizUsuarios, 3);
+            nuevoPerfil.ID = Sistema.GenerarID(Rutas.Usuarios, Raices.Usuarios, 3);
             // Se registran los datos ingresados.
             nuevoPerfil.Nombre = txtNombre.Text;
             nuevoPerfil.Usuario = txtUsuario.Text;
@@ -201,7 +201,7 @@ namespace PA4IM9_20262_Equipo2
 
             // Se agrega el perfil al contenedor principal, el de los perfiles.
             escritor.DocumentElement.AppendChild(elementoPerfil);
-            escritor.Save(Sistema.rutaUsuarios); // Guardar Cambios
+            escritor.Save(Rutas.Usuarios); // Guardar Cambios
 
             // Accede al sistema.
             AbrirMenuPrincipal();
@@ -210,9 +210,9 @@ namespace PA4IM9_20262_Equipo2
         // Al moemnto de registrarse verifica que no existan perfiles con el mismo usuario o correo.
         private bool UsuarioRepetido()
         {
-            Sistema.VerificarArchivo(Sistema.rutaUsuarios, Sistema.raizUsuarios);
+            Sistema.VerificarArchivo(Rutas.Usuarios, Raices.Usuarios);
             XmlDocument lector = new XmlDocument();
-            lector.Load(Sistema.rutaUsuarios);
+            lector.Load(Rutas.Usuarios);
 
             XmlNode usuarioRepetido = lector.DocumentElement.SelectSingleNode($"//perfil[usuario='{txtUsuario.Text}']");
             XmlNode correoRepetido = lector.DocumentElement.SelectSingleNode($"//perfil[correo='{txtCorreo.Text}']");

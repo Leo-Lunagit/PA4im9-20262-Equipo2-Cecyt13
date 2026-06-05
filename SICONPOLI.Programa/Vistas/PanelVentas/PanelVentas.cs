@@ -35,28 +35,30 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             }
             if (string.IsNullOrEmpty(txtFactura.Text))
             {
-                MessageBox.Show("Por favor, ingresa el numnero de la factura.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, ingresa el numero de la factura.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             
             // 2. Capturar los datos de los controles
             int cantidad = (int)nudCantidad.Value;
             decimal costoUnitario = (int)nudCostoUnitario.Value;
-            string Cliente = txtCliente.Text.Trim();
             decimal subtotal = cantidad * costoUnitario;
             decimal iva = subtotal * .16m;
-            string folio = Sistema.GenerarID(Sistema.rutaVentas, Sistema.raizVentas, 3);
+
+            string Cliente = txtCliente.Text.Trim();
             int factura = int.Parse(txtFactura.Text);
 
             string concepto = $"Venta de mercancia s/f {factura}.";
+            string folio = Sistema.GenerarID(Rutas.Ventas, Raices.Ventas, 3);
             
-            // 3. Calcular el total de esta subcuenta específica
+            // 3. Calcular el total de esta subcuenta específica.
             decimal totalProducto = subtotal + iva;
 
             // 7. Muestra Datos en la forma
-            txtConcepto.Text = concepto.ToString();
             txtIVA.Text = iva.ToString();
             txtPrecioFinal.Text = totalProducto.ToString();
+
+            txtConcepto.Text = concepto.ToString();
             txtFolio.Text = folio.ToString();
 
             btnConfirmar.Enabled = true;
@@ -69,17 +71,17 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             string productos = cmbProductos.SelectedItem.ToString();
             int cantidad = (int)nudCantidad.Value;
             decimal costoUnitario = nudCostoUnitario.Value;
+            decimal subtotal = costoUnitario * cantidad;
+            decimal iva = decimal.Parse(txtIVA.Text);
+            decimal totalProducto = decimal.Parse(txtPrecioFinal.Text);
+
             string Cliente = txtCliente.Text.Trim();
-            int factura = int.Parse(txtFactura.Text);
-            decimal subtotal = cantidad * costoUnitario;
-            decimal iva = subtotal * .16m;
+            string factura = txtFactura.Text;
+
             DateTime fecha = DateTime.Now;
             string usuario = Sistema.PerfilActivo.Usuario;
             string concepto = $"Venta de mercancia s/f {factura}.";
-            string folio = Sistema.GenerarID(Sistema.rutaVentas, Sistema.raizVentas, 3);
-
-            // 2. Calcular el total de esta subcuenta específica
-            decimal totalProducto = subtotal + iva;
+            string folio = txtFolio.Text;
 
             // 3. Agregar la fila al DataGridView
             dgvSubcuentas.Rows.Add(fecha, productos, subtotal.ToString("C2"), iva.ToString("C2"), totalProducto.ToString("C2"), usuario, factura);
@@ -92,8 +94,8 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 
             // Crea la subcuenta del almacen y la llenamos con sus datos correspondientes.
             Subcuenta SubAlmacen = new Subcuenta();
-            SubAlmacen.Monto = (int)(costoUnitario * 100);
-            SubAlmacen.NombreSubcuenta = $"{cantidad} {productos} a ${costoUnitario} c/u";
+            SubAlmacen.Monto = (int)(subtotal * 100);
+            SubAlmacen.NombreSubcuenta = $"{cantidad} {productos} a ${costoUnitario:C2} c/u";
 
             // Creamos la cuenta del amacen y la llenamos con sus datos correspondientes.
             Cuenta Almacen = new Cuenta();
@@ -109,7 +111,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             // Creamos la subcuenta del cliente y la llenamos con sus datos.
             Subcuenta SubCliente = new Subcuenta();
             SubCliente.Monto = (int)(totalProducto * 100);
-            SubCliente.NombreSubcuenta = $"{Cliente} s/f {folio}";
+            SubCliente.NombreSubcuenta = $"{Cliente} s/f {factura}";
 
             // Creamos la cuenta del probeedor y la llenamos.
             Cuenta cliente = new Cuenta();
@@ -127,15 +129,15 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             registro.SumaAbonos = cliente.Monto;
             registro.Concepto = concepto;
 
+            Sistema.VerificarArchivo(Rutas.Ventas, Raices.Ventas);
             XmlDocument escritor = new XmlDocument();
+            escritor.Load(Rutas.Ventas);
+
             // Transformamos la clase en elemento xml.
             XmlElement asiento = ConvertidorXml.ObjetoToElemento(escritor, registro);
 
-            Sistema.VerificarArchivo(Sistema.rutaVentas, Sistema.raizVentas);
-            escritor.Load(Sistema.rutaVentas);
-
             escritor.DocumentElement.AppendChild(asiento);
-            escritor.Save(Sistema.rutaVentas);
+            escritor.Save(Rutas.Ventas);
 
             btnConfirmar.Enabled = false;
         }

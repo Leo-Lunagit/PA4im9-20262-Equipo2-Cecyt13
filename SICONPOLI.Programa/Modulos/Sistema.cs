@@ -11,28 +11,42 @@ using System.Xml;
 
 namespace PA4IM9_20262_Equipo2.Modulos
 {
-    internal static class Sistema
+    internal static class Rutas
     {
         // Mediante esos codigos se obtiene la ruta de archivos donde se esta ejecutando el programa.
-        public static string rutaEjecusion = AppDomain.CurrentDomain.BaseDirectory;
-        // Fusiona la ruta de ejecucion con una ruta nueva, regresa dos carpetas a la carpeta donde tenemos todo el codigo, se dirije a la carpeta de "Datos" y al arhivo.
-        public static string rutaUsuarios = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Usuarios.xml");
-        public static string rutaConfiguracion = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Configuracion.xml");
-        public static string rutaCompras = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Compras.xml");
-        public static string rutaVentas = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Ventas.xml");
-        public static string rutaAlmacen = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Almacen.xml");
-        public static string rutaProveedores = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Proveedores.xml");
-        public static string raizUsuarios = "usuarios"; // Elemento raiz del archivo.
-        public static string raizConfiguracion = "configuracion"; 
-        public static string raizCompras = "compras"; 
-        public static string raizVentas = "ventas"; 
-        public static string raizAlmacen = "almacen"; 
-        public static string raizProveedores = "proveedores"; 
-        public static string[] Roles = { "administrador", "colaborador", "cliente" };
-        public static string RolPredefinido = Roles[2];
+        private static string Ejecusion = AppDomain.CurrentDomain.BaseDirectory;
+        // Obtiene la carpeta padre de la carpeta padre de la carpeta donde se ejecuta el programa.
+        private static string Proyecto = Directory.GetParent(Directory.GetParent(Ejecusion).ToString()).ToString();
+        // Anida la carpeta 'Datos' dentro de la carpeta del proyecto.
+        public static string Datos = Path.Combine(Proyecto, "Datos");
+        public static string Usuarios = Path.Combine(Datos, "Usuarios.xml");
+        public static string Configuracion = Path.Combine(Datos, "Configuracion.xml");
+        public static string Compras = Path.Combine(Datos, "Compras.xml");
+        public static string Ventas = Path.Combine(Datos, "Ventas.xml");
+        public static string Proveedores = Path.Combine(Datos, "Proveedores.xml");
+        public static string Clientes = Path.Combine(Datos, "Clientes.xml");
+        public static string Almacen = Path.Combine(Datos, "Almacen.xml");
+    }
+
+    internal static class Raices // Nombre de los elementos raices de los archivos Xml.
+    {
+        public static string Usuarios = "usuarios";
+        public static string Configuracion = "configuracion";
+        public static string Compras = "compras";
+        public static string Ventas = "ventas";
+        public static string Proveedores = "proveedores";
+        public static string Clientes = "usuarios";
+        public static string Almacen = "almacen";
+    }
+
+    internal static class Sistema
+    {
         // Variables para guardar los perfiles logueados.
         public static Perfil[] PerfilesLogueados;
         public static Perfil PerfilActivo;
+        // Variables de informacion util para los perfiles.
+        public static string[] Roles = { "administrador", "colaborador", "cliente" };
+        public static string RolPredefinido = Roles[2];
         public static string banderaRecordar = "recordado";
 
         // Verificacion de la existencia de un archivo XML.
@@ -74,11 +88,13 @@ namespace PA4IM9_20262_Equipo2.Modulos
 
         public static void IniciarArchivos()
         {
-            VerificarArchivo(rutaUsuarios, raizUsuarios);
-            VerificarArchivo(rutaCompras, raizCompras);
-            VerificarArchivo(rutaVentas, raizVentas);
-            VerificarArchivo(rutaAlmacen, raizAlmacen);
-            VerificarArchivo(rutaProveedores, raizProveedores);
+            VerificarArchivo(Rutas.Usuarios, Raices.Usuarios);
+            VerificarArchivo(Rutas.Configuracion, Raices.Configuracion);
+            VerificarArchivo(Rutas.Compras, Raices.Compras);
+            VerificarArchivo(Rutas.Ventas, Raices.Ventas);
+            VerificarArchivo(Rutas.Proveedores, Raices.Proveedores);
+            VerificarArchivo(Rutas.Clientes, Raices.Clientes);
+            VerificarArchivo(Rutas.Almacen, Raices.Almacen);
         }
 
         public static string GenerarID(string Ruta, string Raiz, int Cifras)
@@ -93,9 +109,9 @@ namespace PA4IM9_20262_Equipo2.Modulos
         public static void GuardarPerfil(XmlElement usuario)
         {
             string PadreUsuarios = "usuariosActivos";
-            VerificarArchivo(rutaConfiguracion, raizConfiguracion);
+            VerificarArchivo(Rutas.Configuracion, Raices.Configuracion);
             XmlDocument config = new XmlDocument();
-            config.Load(rutaConfiguracion);
+            config.Load(Rutas.Configuracion);
 
             XmlNode perfiles = config.DocumentElement[PadreUsuarios];
             if (perfiles == null)
@@ -112,7 +128,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 config.DocumentElement[PadreUsuarios].AppendChild(importado);
             }
 
-            config.Save(rutaConfiguracion);
+            config.Save(Rutas.Configuracion);
         }
 
         public static void CargarPerfil(Perfil PerfilLogueado)
@@ -132,100 +148,19 @@ namespace PA4IM9_20262_Equipo2.Modulos
 
         public static void LimpiarRecordado()
         {
-            VerificarArchivo(rutaUsuarios, raizUsuarios);
+            VerificarArchivo(Rutas.Usuarios, Raices.Usuarios);
             XmlDocument escritor = new XmlDocument();
-            escritor.Load(rutaUsuarios);
+            escritor.Load(Rutas.Usuarios);
 
+            // Buscamos un elemento con el atributo recordar
             XmlNode perfilRecordar = escritor.DocumentElement.SelectSingleNode("perfil[@recordado]");
+            // Si existe el elemento buscado:
             if (perfilRecordar != null)
+            {
+                // Eliminamos el atributo del elemento y guardamos el cambio.
                 perfilRecordar.Attributes.RemoveNamedItem("recordado");
-
-            escritor.Save(rutaUsuarios);
-        } 
-
-        public static void CompraToProveedor(Asiento asiento)
-        {
-            VerificarArchivo(rutaProveedores, raizProveedores);
-            XmlDocument escritor = new XmlDocument();
-            escritor.Load(rutaProveedores);
-
-            string textoSubProveedor = asiento.Abonos[0].Subcuentas[0].NombreSubcuenta;
-            string[] paraProveedor = textoSubProveedor.Split(new string[] { " s/f" }, StringSplitOptions.None);
-            string[] paraFactura = textoSubProveedor.Split(new string[] { "s/f " }, StringSplitOptions.None);
-
-            Movimiento debe = new Movimiento();
-            debe.Monto = asiento.SumaAbonos;
-            debe.Saldo = ((Saldos)1).ToString();
-
-            RenAuxiliar renglon = new RenAuxiliar();
-            renglon.Fecha = asiento.Fecha.ToString("dd/MM");
-            renglon.Factura = paraFactura[1];
-            renglon.Concepto = "Compra de mercancia.";
-            renglon.Movimiento = debe;
-
-            XmlNode proveedorExistente = escritor.DocumentElement.SelectSingleNode($"//Auxiliar[titular='{paraProveedor[0]}']");
-            if (proveedorExistente == null)
-            {
-                renglon.Folio = "1001";
-                renglon.MontoSaldo = renglon.Movimiento.Monto;
-
-                MayorAuxiliar proveedorNuevo = new MayorAuxiliar();
-                proveedorNuevo.Cuenta = "proveedor";
-                proveedorNuevo.NoTargeta = "99";
-                proveedorNuevo.Titular = paraProveedor[0];
-                proveedorNuevo.RenAuxiliares = new RenAuxiliar[] { renglon };
-
-                XmlElement registro = ConvertidorXml.ObjetoToElemento(escritor, proveedorNuevo);
-
-                escritor.DocumentElement.AppendChild(registro);
-                escritor.Save(rutaCompras);
+                escritor.Save(Rutas.Usuarios);
             }
-            else
-            {
-                MayorAuxiliar proveedor = ConvertidorXml.ElementoToObjeto<MayorAuxiliar>((XmlElement)proveedorExistente);
-
-                renglon.Folio = $"1{(proveedor.RenAuxiliares.Length + 1):D3}";
-                int sentido = renglon.Movimiento.Saldo == ((Saldos)1).ToString() ? 1 : -1;
-                renglon.MontoSaldo = renglon.Movimiento.Monto * sentido + proveedor.RenAuxiliares.Last().MontoSaldo;
-
-                proveedor.RenAuxiliares.Append(renglon).ToArray();
-
-                XmlElement proveedorActualizado = ConvertidorXml.ObjetoToElemento(escritor, proveedor);
-                escritor.DocumentElement.ReplaceChild(proveedorActualizado, proveedorExistente);
-                escritor.Save(rutaProveedores);
-            }
-        }
-        public static void PagoToProveedor(Asiento asiento)
-        {
-            VerificarArchivo(rutaProveedores, raizProveedores);
-            XmlDocument escritor = new XmlDocument();
-            escritor.Load(rutaProveedores);
-
-            string textoSubProveedor = asiento.Abonos[0].Subcuentas[0].NombreSubcuenta;
-            string[] paraProveedor = textoSubProveedor.Split(new string[] { " s/f" }, StringSplitOptions.None);
-            string[] paraFactura = textoSubProveedor.Split(new string[] { "s/f " }, StringSplitOptions.None);
-
-            XmlNode proveedorGuardado = escritor.DocumentElement.SelectSingleNode($"//Auxiliar[titular='{paraProveedor[0]}']");
-            MayorAuxiliar proveedor = ConvertidorXml.ElementoToObjeto<MayorAuxiliar>((XmlElement)proveedorGuardado);
-
-            Movimiento debe = new Movimiento();
-            debe.Monto = asiento.Cargos[0].Monto;
-            debe.Saldo = ((Saldos)0).ToString();
-
-            RenAuxiliar renglon = new RenAuxiliar();
-            renglon.Fecha = asiento.Fecha.ToString("dd/MM");
-            renglon.Factura = paraFactura[1];
-            renglon.Concepto = "Pago de compra.";
-            renglon.Folio = $"1{(proveedor.RenAuxiliares.Length + 1):D3}";
-            renglon.Movimiento = debe;
-            int sentido = renglon.Movimiento.Saldo == ((Saldos)1).ToString() ? 1 : -1;
-            renglon.MontoSaldo = renglon.Movimiento.Monto * sentido + proveedor.RenAuxiliares.Last().MontoSaldo;
-
-            proveedor.RenAuxiliares.Append(renglon).ToArray();
-
-            XmlElement proveedorActualizado = ConvertidorXml.ObjetoToElemento(escritor, proveedor);
-            escritor.DocumentElement.ReplaceChild(proveedorActualizado, proveedorGuardado);
-            escritor.Save(rutaProveedores);
         }
     }
 }
