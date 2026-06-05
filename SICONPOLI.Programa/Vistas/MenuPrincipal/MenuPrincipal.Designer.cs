@@ -220,6 +220,7 @@
             this.btnSalidas.ImageIndex = 2;
             this.btnSalidas.ImageList = this.imgListBotones;
             this.btnSalidas.Location = new System.Drawing.Point(2, 273);
+            this.btnSalidas.Name = "btnSalidas";
             this.btnSalidas.Size = new System.Drawing.Size(181, 37);
             this.btnSalidas.TabIndex = 4;
             this.btnSalidas.Text = "Salidas";
@@ -348,9 +349,9 @@
             this.Contenedor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Contenedor.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.Contenedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(47)))), ((int)(((byte)(87)))));
-            this.Contenedor.Location = new System.Drawing.Point(188, 116);
+            this.Contenedor.Location = new System.Drawing.Point(188, 79);
             this.Contenedor.Name = "Contenedor";
-            this.Contenedor.Size = new System.Drawing.Size(1020, 536);
+            this.Contenedor.Size = new System.Drawing.Size(1020, 573);
             this.Contenedor.TabIndex = 1;
             this.Contenedor.TabStop = true;
             // 
@@ -404,7 +405,6 @@
             this.lblIPN.ForeColor = System.Drawing.Color.White;
             this.lblIPN.Location = new System.Drawing.Point(478, 22);
             this.lblIPN.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-
             this.lblIPN.Name = "lblIPN";
             this.lblIPN.Size = new System.Drawing.Size(215, 19);
             this.lblIPN.TabIndex = 7;
@@ -485,7 +485,7 @@
             this.Controls.Add(this.BarraLateral);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MenuPrincipal";
             this.Text = "SIRETECH Poli.";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MenuPrincipal_FormClosing);

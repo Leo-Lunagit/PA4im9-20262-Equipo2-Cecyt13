@@ -33,7 +33,12 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
                 MessageBox.Show("Por favor, ingresa el nombre del cliente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
+            if (string.IsNullOrEmpty(txtFactura.Text))
+            {
+                MessageBox.Show("Por favor, ingresa el numnero de la factura.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            
             // 2. Capturar los datos de los controles
             int cantidad = (int)nudCantidad.Value;
             decimal costoUnitario = (int)nudCostoUnitario.Value;
@@ -41,9 +46,10 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             decimal subtotal = cantidad * costoUnitario;
             decimal iva = subtotal * .16m;
             string folio = Sistema.GenerarID(Sistema.rutaVentas, Sistema.raizVentas, 3);
-            string concepto = $"Compra de mercancia s/f {folio} del proveedor {Cliente}.";
+            int factura = int.Parse(txtFactura.Text);
 
-
+            string concepto = $"Venta de mercancia s/f {factura}.";
+            
             // 3. Calcular el total de esta subcuenta específica
             decimal totalProducto = subtotal + iva;
 
@@ -64,12 +70,12 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             int cantidad = (int)nudCantidad.Value;
             decimal costoUnitario = nudCostoUnitario.Value;
             string Cliente = txtCliente.Text.Trim();
-            string factura = txtFolio.Text;
+            int factura = int.Parse(txtFactura.Text);
             decimal subtotal = cantidad * costoUnitario;
             decimal iva = subtotal * .16m;
             DateTime fecha = DateTime.Now;
             string usuario = Sistema.PerfilActivo.Usuario;
-            string concepto = $"Compra de mercancia s/f {factura} del proveedor {Cliente}.";
+            string concepto = $"Venta de mercancia s/f {factura}.";
             string folio = Sistema.GenerarID(Sistema.rutaVentas, Sistema.raizVentas, 3);
 
             // 2. Calcular el total de esta subcuenta específica
@@ -130,6 +136,8 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 
             escritor.DocumentElement.AppendChild(asiento);
             escritor.Save(Sistema.rutaVentas);
+
+            btnConfirmar.Enabled = false;
         }
 
         private void CalcularTotalesGenerales()
@@ -169,6 +177,32 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             txtIVA.Clear();
             txtConcepto.Clear();
             txtPrecioFinal.Clear();
+        }
+
+        private void txtFactura_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo números y la tecla de retroceso
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloquea la entrada
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            //Verifica que haya una celda seleccionada
+            if(this.dgvSubcuentas.SelectedRows.Count == 1)
+            {
+                //carga los datos que hay actualmente en los txt a el datagridview
+                int filaSeleccionada = dgvSubcuentas.CurrentRow.Index;
+                dgvSubcuentas.Rows[filaSeleccionada].Cells[0].Value = DateTime.Now;
+                dgvSubcuentas.Rows[filaSeleccionada].Cells[1].Value = cmbProductos.SelectedItem;
+                dgvSubcuentas.Rows[filaSeleccionada].Cells[2].Value = ((int)nudCantidad.Value)*(nudCostoUnitario.Value);
+                dgvSubcuentas.Rows[filaSeleccionada].Cells[3].Value = ((int)nudCantidad.Value) * (nudCostoUnitario.Value) * (0.16m);
+                dgvSubcuentas.Rows[filaSeleccionada].Cells[4].Value = ((int)nudCantidad.Value) * (nudCostoUnitario.Value) * (1.16m);
+                dgvSubcuentas.Rows[filaSeleccionada].Cells[5].Value = Sistema.PerfilActivo.Usuario;
+            }
+            btnConfirmar.Enabled = false;
         }
     }
 }
