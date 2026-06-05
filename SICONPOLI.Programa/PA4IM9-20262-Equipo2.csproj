@@ -98,6 +98,9 @@
     <EmbeddedResource Include="Vistas\MenuPrincipal\MenuPrincipal.resx">
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\PanelVentas\PanelVentas.es-419.resx">
+      <DependentUpon>PanelVentas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\PanelVentas\PanelVentas.resx">
       <DependentUpon>PanelVentas.cs</DependentUpon>
     </EmbeddedResource>

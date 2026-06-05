@@ -177,7 +177,7 @@ namespace PA4IM9_20262_Equipo2
 
             // Se asignan los datos fundamentales.
             nuevoPerfil.FechaCreacion = DateTime.Now;
-            nuevoPerfil.ID = Sistema.GenerarID();
+            nuevoPerfil.ID = Sistema.GenerarID(Sistema.rutaUsuarios, Sistema.raizUsuarios, 3);
             // Se registran los datos ingresados.
             nuevoPerfil.Nombre = txtNombre.Text;
             nuevoPerfil.Usuario = txtUsuario.Text;

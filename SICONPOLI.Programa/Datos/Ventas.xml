@@ -1,2 +1,377 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ventas />
+<ventas>
+  <asiento noAsiento="999">
+    <fecha>2026-06-04T20:50:45.7920517-06:00</fecha>
+    <cargos>
+      <cuenta>
+        <nombreCuenta>almacen</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>1 Laptops a $100 c/u</nombreSubcuenta>
+            <monto>10000</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>10000</monto>
+      </cuenta>
+      <cuenta>
+        <nombreCuenta>IVA por Acreditar</nombreCuenta>
+        <monto>1856</monto>
+      </cuenta>
+    </cargos>
+    <abonos>
+      <cuenta>
+        <nombreCuenta>Clientes</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>poochy s/f 9999</nombreSubcuenta>
+            <monto>13456</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>13456</monto>
+      </cuenta>
+    </abonos>
+    <sumaCargos>11856</sumaCargos>
+    <sumaAbonos>13456</sumaAbonos>
+    <concepto>Compra de mercancia s/f XXXX del proveedor PA4IM9_20262_Equipo2.Entidades.Cuenta.</concepto>
+  </asiento>
+  <asiento noAsiento="999">
+    <fecha>2026-06-04T21:04:03.2410192-06:00</fecha>
+    <cargos>
+      <cuenta>
+        <nombreCuenta>almacen</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>1 Monitor a $100 c/u</nombreSubcuenta>
+            <monto>10000</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>10000</monto>
+      </cuenta>
+      <cuenta>
+        <nombreCuenta>IVA por Acreditar</nombreCuenta>
+        <monto>1856</monto>
+      </cuenta>
+    </cargos>
+    <abonos>
+      <cuenta>
+        <nombreCuenta>Clientes</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>poochy s/f 100002</nombreSubcuenta>
+            <monto>13456</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>13456</monto>
+      </cuenta>
+    </abonos>
+    <sumaCargos>11856</sumaCargos>
+    <sumaAbonos>13456</sumaAbonos>
+    <concepto>Compra de mercancia s/f 100002 del proveedor poochy.</concepto>
+  </asiento>
+  <asiento noAsiento="9999">
+    <fecha>2026-06-04T21:31:04.0963122-06:00</fecha>
+    <cargos>
+      <cuenta>
+        <nombreCuenta>almacen</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>1 Monitor a $100 c/u</nombreSubcuenta>
+            <monto>10000</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>10000</monto>
+      </cuenta>
+      <cuenta>
+        <nombreCuenta>IVA por Acreditar</nombreCuenta>
+        <monto>1856</monto>
+      </cuenta>
+    </cargos>
+    <abonos>
+      <cuenta>
+        <nombreCuenta>Clientes</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>Poochy s/f 100003</nombreSubcuenta>
+            <monto>13456</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>13456</monto>
+      </cuenta>
+    </abonos>
+    <sumaCargos>11856</sumaCargos>
+    <sumaAbonos>13456</sumaAbonos>
+    <concepto>Compra de mercancia s/f 100003 del proveedor Poochy.</concepto>
+  </asiento>
+  <asiento noAsiento="9999">
+    <fecha>2026-06-04T21:31:28.2306995-06:00</fecha>
+    <cargos>
+      <cuenta>
+        <nombreCuenta>almacen</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>1 Dispositivos portatiles a $100 c/u</nombreSubcuenta>
+            <monto>10000</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>10000</monto>
+      </cuenta>
+      <cuenta>
+        <nombreCuenta>IVA por Acreditar</nombreCuenta>
+        <monto>1856</monto>
+      </cuenta>
+    </cargos>
+    <abonos>
+      <cuenta>
+        <nombreCuenta>Clientes</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>yo s/f 100004</nombreSubcuenta>
+            <monto>13456</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>13456</monto>
+      </cuenta>
+    </abonos>
+    <sumaCargos>11856</sumaCargos>
+    <sumaAbonos>13456</sumaAbonos>
+    <concepto>Compra de mercancia s/f 100004 del proveedor yo.</concepto>
+  </asiento>
+  <asiento noAsiento="9999">
+    <fecha>2026-06-04T21:34:40.5111002-06:00</fecha>
+    <cargos>
+      <cuenta>
+        <nombreCuenta>almacen</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>1 Monitor a $100 c/u</nombreSubcuenta>
+            <monto>10000</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>10000</monto>
+      </cuenta>
+      <cuenta>
+        <nombreCuenta>IVA por Acreditar</nombreCuenta>
+        <monto>1856</monto>
+      </cuenta>
+    </cargos>
+    <abonos>
+      <cuenta>
+        <nombreCuenta>Clientes</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>Poochy s/f 100005</nombreSubcuenta>
+            <monto>13456</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>13456</monto>
+      </cuenta>
+    </abonos>
+    <sumaCargos>11856</sumaCargos>
+    <sumaAbonos>13456</sumaAbonos>
+    <concepto>Compra de mercancia s/f 100005 del proveedor Poochy.</concepto>
+  </asiento>
+  <asiento noAsiento="9999">
+    <fecha>2026-06-04T21:39:36.6654081-06:00</fecha>
+    <cargos>
+      <cuenta>
+        <nombreCuenta>almacen</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>5 PCs a $1000 c/u</nombreSubcuenta>
+            <monto>100000</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>100000</monto>
+      </cuenta>
+      <cuenta>
+        <nombreCuenta>IVA por Acreditar</nombreCuenta>
+        <monto>92800</monto>
+      </cuenta>
+    </cargos>
+    <abonos>
+      <cuenta>
+        <nombreCuenta>Clientes</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>Bruno s/f 100006</nombreSubcuenta>
+            <monto>672800</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>672800</monto>
+      </cuenta>
+    </abonos>
+    <sumaCargos>192800</sumaCargos>
+    <sumaAbonos>672800</sumaAbonos>
+    <concepto>Compra de mercancia s/f 100006 del proveedor Bruno.</concepto>
+  </asiento>
+  <asiento noAsiento="9999">
+    <fecha>2026-06-04T21:43:30.2880746-06:00</fecha>
+    <cargos>
+      <cuenta>
+        <nombreCuenta>almacen</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>3 Monitor a $200 c/u</nombreSubcuenta>
+            <monto>20000</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>20000</monto>
+      </cuenta>
+      <cuenta>
+        <nombreCuenta>IVA por Acreditar</nombreCuenta>
+        <monto>11136</monto>
+      </cuenta>
+    </cargos>
+    <abonos>
+      <cuenta>
+        <nombreCuenta>Clientes</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>Juan s/f DataGridViewTextBoxColumn { Name=folio, Index=6 }</nombreSubcuenta>
+            <monto>80736</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>80736</monto>
+      </cuenta>
+    </abonos>
+    <sumaCargos>31136</sumaCargos>
+    <sumaAbonos>80736</sumaAbonos>
+    <concepto>Compra de mercancia s/f DataGridViewTextBoxColumn { Name=folio, Index=6 } del proveedor Juan.</concepto>
+  </asiento>
+  <asiento noAsiento="9999">
+    <fecha>2026-06-04T21:45:42.4166783-06:00</fecha>
+    <cargos>
+      <cuenta>
+        <nombreCuenta>almacen</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>2 Dispositivos portatiles a $1000 c/u</nombreSubcuenta>
+            <monto>100000</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>100000</monto>
+      </cuenta>
+      <cuenta>
+        <nombreCuenta>IVA por Acreditar</nombreCuenta>
+        <monto>37120</monto>
+      </cuenta>
+    </cargos>
+    <abonos>
+      <cuenta>
+        <nombreCuenta>Clientes</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>Carlos s/f 100008</nombreSubcuenta>
+            <monto>269120</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>269120</monto>
+      </cuenta>
+    </abonos>
+    <sumaCargos>137120</sumaCargos>
+    <sumaAbonos>269120</sumaAbonos>
+    <concepto>Compra de mercancia s/f 100008 del proveedor Carlos.</concepto>
+  </asiento>
+  <asiento noAsiento="9999">
+    <fecha>2026-06-04T21:48:39.2796629-06:00</fecha>
+    <cargos>
+      <cuenta>
+        <nombreCuenta>almacen</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>2 Laptops a $200 c/u</nombreSubcuenta>
+            <monto>20000</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>20000</monto>
+      </cuenta>
+      <cuenta>
+        <nombreCuenta>IVA por Acreditar</nombreCuenta>
+        <monto>7424</monto>
+      </cuenta>
+    </cargos>
+    <abonos>
+      <cuenta>
+        <nombreCuenta>Clientes</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>Juanito s/f 100009</nombreSubcuenta>
+            <monto>53824</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>53824</monto>
+      </cuenta>
+    </abonos>
+    <sumaCargos>27424</sumaCargos>
+    <sumaAbonos>53824</sumaAbonos>
+    <concepto>Compra de mercancia s/f 100009 del proveedor Juanito.</concepto>
+  </asiento>
+  <asiento noAsiento="1010">
+    <fecha>2026-06-05T09:03:51.9308882-06:00</fecha>
+    <cargos>
+      <cuenta>
+        <nombreCuenta>almacen</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>8 Monitor a $560 c/u</nombreSubcuenta>
+            <monto>56000</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>56000</monto>
+      </cuenta>
+      <cuenta>
+        <nombreCuenta>IVA por Acreditar</nombreCuenta>
+        <monto>83148</monto>
+      </cuenta>
+    </cargos>
+    <abonos>
+      <cuenta>
+        <nombreCuenta>Clientes</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>Mi perrazo s/f DataGridViewTextBoxColumn { Name=folio, Index=6 }</nombreSubcuenta>
+            <monto>602828</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>602828</monto>
+      </cuenta>
+    </abonos>
+    <sumaCargos>139148</sumaCargos>
+    <sumaAbonos>602828</sumaAbonos>
+    <concepto>Compra de mercancia s/f 769 del proveedor Mi perrazo.</concepto>
+  </asiento>
+  <asiento noAsiento="1011">
+    <fecha>2026-06-05T09:14:18.8922497-06:00</fecha>
+    <cargos>
+      <cuenta>
+        <nombreCuenta>almacen</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>5 Monitor a $596 c/u</nombreSubcuenta>
+            <monto>59600</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>59600</monto>
+      </cuenta>
+      <cuenta>
+        <nombreCuenta>IVA por Acreditar</nombreCuenta>
+        <monto>47680</monto>
+      </cuenta>
+    </cargos>
+    <abonos>
+      <cuenta>
+        <nombreCuenta>Clientes</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>juan s/f DataGridViewTextBoxColumn { Name=folio, Index=6 }</nombreSubcuenta>
+            <monto>345680</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>345680</monto>
+      </cuenta>
+    </abonos>
+    <sumaCargos>107280</sumaCargos>
+    <sumaAbonos>345680</sumaAbonos>
+    <concepto>Compra de mercancia s/f 453 del proveedor juan.</concepto>
+  </asiento>
+</ventas>

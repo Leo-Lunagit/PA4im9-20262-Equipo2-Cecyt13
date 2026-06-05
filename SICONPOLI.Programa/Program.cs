@@ -1,5 +1,6 @@
 ﻿using PA4IM9_20262_Equipo2.Modulos;
 using PA4IM9_20262_Equipo2.Vistas.Panel_Principal;
+using PA4IM9_20262_Equipo2.Vistas.PanelVentas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
