@@ -49,6 +49,7 @@
     <Compile Include="Entidades\LabelVertical.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Entidades\MovAuxiliar.cs" />
     <Compile Include="Entidades\Perfil.cs" />
     <Compile Include="Modulos\ConvertidorXml.cs" />
     <Compile Include="Modulos\Sistema.cs" />
@@ -115,8 +116,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Datos\Almacen.xml" />
     <Content Include="Datos\Compras.xml" />
     <Content Include="Datos\Configuracion.xml" />
+    <Content Include="Datos\Proveedores.xml" />
     <Content Include="Datos\Usuarios.xml" />
     <Content Include="Datos\Ventas.xml" />
     <Content Include="Recursos\Iconos\clientes.png" />
