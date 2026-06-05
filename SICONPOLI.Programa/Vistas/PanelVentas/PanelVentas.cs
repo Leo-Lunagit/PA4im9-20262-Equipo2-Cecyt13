@@ -35,16 +35,13 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             }
 
             // 2. Capturar los datos de los controles
-            string productos = cmbProductos.SelectedItem.ToString();
             int cantidad = (int)nudCantidad.Value;
             decimal costoUnitario = (int)nudCostoUnitario.Value;
             string Cliente = txtCliente.Text.Trim();
             decimal subtotal = cantidad * costoUnitario;
             decimal iva = subtotal * .16m;
-            DateTime fecha = DateTime.Now;
-            string factura = txtFactura.Text.Trim();
-            string usuario = Sistema.PerfilActivo.Usuario; 
-            string concepto = $"Compra de mercancia s/f {factura} del proveedor {Cliente}.";
+            string folio = Sistema.GenerarID(Sistema.rutaVentas, Sistema.raizVentas, 3);
+            string concepto = $"Compra de mercancia s/f {folio} del proveedor {Cliente}.";
 
 
             // 3. Calcular el total de esta subcuenta específica
@@ -54,41 +51,37 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             txtConcepto.Text = concepto.ToString();
             txtIVA.Text = iva.ToString();
             txtPrecioFinal.Text = totalProducto.ToString();
+            txtFolio.Text = folio.ToString();
 
             btnConfirmar.Enabled = true;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            // 1. Validar que el campo Cliente no esté vacío
-            if (string.IsNullOrWhiteSpace(txtConcepto.Text))
-            {
-                MessageBox.Show("Por favor, primero REGISTRE los datos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
-            // 2. Capturar los datos de los controles
+            // 1. Capturar los datos de los controles
             string productos = cmbProductos.SelectedItem.ToString();
             int cantidad = (int)nudCantidad.Value;
             decimal costoUnitario = nudCostoUnitario.Value;
             string Cliente = txtCliente.Text.Trim();
-            string factura = txtFactura.Text;
+            string factura = txtFolio.Text;
             decimal subtotal = cantidad * costoUnitario;
             decimal iva = subtotal * .16m;
             DateTime fecha = DateTime.Now;
             string usuario = Sistema.PerfilActivo.Usuario;
             string concepto = $"Compra de mercancia s/f {factura} del proveedor {Cliente}.";
+            string folio = Sistema.GenerarID(Sistema.rutaVentas, Sistema.raizVentas, 3);
 
-            // 3. Calcular el total de esta subcuenta específica
+            // 2. Calcular el total de esta subcuenta específica
             decimal totalProducto = subtotal + iva;
 
-            // 4. Agregar la fila al DataGridView
+            // 3. Agregar la fila al DataGridView
             dgvSubcuentas.Rows.Add(fecha, productos, subtotal.ToString("C2"), iva.ToString("C2"), totalProducto.ToString("C2"), usuario, factura);
 
-            // 5. Recalcular los totales generales de la aplicación
+            // 4. Recalcular los totales generales de la aplicación
             CalcularTotalesGenerales();
 
-            // 6. Limpiar los campos para la siguiente captura.
+            // 5. Limpiar los campos para la siguiente captura.
             LimpiarCamposCaptura();
 
             // Crea la subcuenta del almacen y la llenamos con sus datos correspondientes.
@@ -120,7 +113,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 
             // Creamos el asiento y lo llenamos.
             Asiento registro = new Asiento();
-            registro.NoAsiento = Sistema.GenerarID(Sistema.rutaVentas, Sistema.raizVentas, 3);
+            registro.NoAsiento = folio;
             registro.Fecha = fecha;
             registro.Cargos = new Cuenta[] { Almacen, IVA };
             registro.Abonos = new Cuenta[] { cliente };
@@ -172,7 +165,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             nudCostoUnitario.Value = 1;
             txtCliente.Clear();
             cmbProductos.Focus(); // Pone el cursor de vuelta en el producto
-            txtFactura.Clear();
+            txtFolio.Clear();
             txtIVA.Clear();
             txtConcepto.Clear();
             txtPrecioFinal.Clear();
