@@ -44,11 +44,11 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             int cantidad = (int)nudCantidad.Value;
             decimal costoUnitario = nudCostoUnitario.Value;
             string Cliente = txtCliente.Text.Trim();
-            string folio = "xxxxx";
+            string folio = Sistema.GenerarFolio();
             decimal subtotal = (cantidad * costoUnitario);
             decimal iva = cantidad * costoUnitario * (decimal).16;
             string fecha = "00:00";
-            string usuario = "nombre"; 
+            string usuario = Sistema.PerfilActivo.Usuario; 
             
 
             // 3. Calcular el total de esta subcuenta específica
