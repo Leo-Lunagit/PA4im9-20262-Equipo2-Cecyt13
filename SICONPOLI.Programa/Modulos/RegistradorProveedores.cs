@@ -13,9 +13,9 @@ namespace PA4IM9_20262_Equipo2.Modulos
 
         public static void CompraToProveedor(Asiento asiento, Saldos saldo)
         {
-            Sistema.VerificarArchivo(Sistema.rutaProveedores, Sistema.raizProveedores);
+            Sistema.VerificarArchivo(Rutas.Proveedores, Raices.Proveedores);
             XmlDocument escritor = new XmlDocument();
-            escritor.Load(Sistema.rutaProveedores);
+            escritor.Load(Rutas.Proveedores);
 
             Cuenta Proveedores = saldo == (Saldos)2 ? asiento.Abonos[0] : asiento.Cargos[0];
 
@@ -62,7 +62,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
 
                     // Lo guardamos en el siguiente espacio.
                     escritor.DocumentElement.AppendChild(registro);
-                    escritor.Save(Sistema.rutaCompras);
+                    escritor.Save(Rutas.Compras);
                 }
                 else // Si ya existia el registro del proveedor.
                 {
@@ -82,7 +82,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                     XmlElement proveedorActualizado = ConvertidorXml.ObjetoToElemento(escritor, Proveedor);
                     // Reemplazamos el objeto obtenido al principio (sin modificar) por el que modificamos.
                     escritor.DocumentElement.ReplaceChild(proveedorActualizado, proveedorExistente);
-                    escritor.Save(Sistema.rutaProveedores); // Guardamos.
+                    escritor.Save(Rutas.Proveedores); // Guardamos.
                 }
 
             }
