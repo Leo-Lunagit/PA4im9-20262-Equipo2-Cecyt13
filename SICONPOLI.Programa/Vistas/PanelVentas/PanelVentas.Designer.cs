@@ -28,11 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Panel_Ventas));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvSubcuentas = new System.Windows.Forms.DataGridView();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.nudCostoUnitario = new System.Windows.Forms.NumericUpDown();
-            this.txtProveedor = new System.Windows.Forms.TextBox();
+            this.txtCliente = new System.Windows.Forms.TextBox();
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.txtPrecioFinal = new System.Windows.Forms.TextBox();
             this.txtIVA = new System.Windows.Forms.TextBox();
@@ -45,133 +51,372 @@
             this.lblPreciofinal = new System.Windows.Forms.Label();
             this.lblIVA = new System.Windows.Forms.Label();
             this.lblProductos = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalProductos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iva = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.folio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubcuentas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCostoUnitario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvSubcuentas
             // 
-            resources.ApplyResources(this.dgvSubcuentas, "dgvSubcuentas");
             this.dgvSubcuentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSubcuentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.fecha,
+            this.productos,
+            this.totalProductos,
+            this.iva,
+            this.total,
+            this.usuario,
+            this.folio});
+            this.dgvSubcuentas.Location = new System.Drawing.Point(25, 317);
+            this.dgvSubcuentas.Margin = new System.Windows.Forms.Padding(4);
             this.dgvSubcuentas.Name = "dgvSubcuentas";
+            this.dgvSubcuentas.RowHeadersWidth = 51;
+            this.dgvSubcuentas.Size = new System.Drawing.Size(970, 206);
+            this.dgvSubcuentas.TabIndex = 40;
             // 
             // lblCantidad
             // 
-            resources.ApplyResources(this.lblCantidad, "lblCantidad");
+            this.lblCantidad.AutoSize = true;
+            this.lblCantidad.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.lblCantidad.Location = new System.Drawing.Point(287, 16);
+            this.lblCantidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCantidad.Name = "lblCantidad";
+            this.lblCantidad.Size = new System.Drawing.Size(85, 21);
+            this.lblCantidad.TabIndex = 39;
+            this.lblCantidad.Text = "Cantidad";
             // 
             // nudCostoUnitario
             // 
-            resources.ApplyResources(this.nudCostoUnitario, "nudCostoUnitario");
+            this.nudCostoUnitario.DecimalPlaces = 2;
+            this.nudCostoUnitario.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.nudCostoUnitario.Location = new System.Drawing.Point(406, 56);
+            this.nudCostoUnitario.Margin = new System.Windows.Forms.Padding(4);
             this.nudCostoUnitario.Maximum = new decimal(new int[] {
             1410065408,
             2,
             0,
             0});
+            this.nudCostoUnitario.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudCostoUnitario.Name = "nudCostoUnitario";
+            this.nudCostoUnitario.Size = new System.Drawing.Size(80, 27);
+            this.nudCostoUnitario.TabIndex = 38;
+            this.nudCostoUnitario.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
-            // txtProveedor
+            // txtCliente
             // 
-            resources.ApplyResources(this.txtProveedor, "txtProveedor");
-            this.txtProveedor.Name = "txtProveedor";
+            this.txtCliente.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.txtCliente.Location = new System.Drawing.Point(18, 52);
+            this.txtCliente.Name = "txtCliente";
+            this.txtCliente.Size = new System.Drawing.Size(144, 27);
+            this.txtCliente.TabIndex = 37;
             // 
             // btnRegistrar
             // 
-            resources.ApplyResources(this.btnRegistrar, "btnRegistrar");
+            this.btnRegistrar.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.btnRegistrar.Location = new System.Drawing.Point(501, 251);
+            this.btnRegistrar.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegistrar.Name = "btnRegistrar";
+            this.btnRegistrar.Size = new System.Drawing.Size(112, 43);
+            this.btnRegistrar.TabIndex = 36;
+            this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = true;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // txtPrecioFinal
             // 
-            resources.ApplyResources(this.txtPrecioFinal, "txtPrecioFinal");
+            this.txtPrecioFinal.Enabled = false;
+            this.txtPrecioFinal.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.txtPrecioFinal.Location = new System.Drawing.Point(282, 281);
+            this.txtPrecioFinal.Margin = new System.Windows.Forms.Padding(4);
             this.txtPrecioFinal.Name = "txtPrecioFinal";
+            this.txtPrecioFinal.Size = new System.Drawing.Size(102, 27);
+            this.txtPrecioFinal.TabIndex = 35;
             // 
             // txtIVA
             // 
-            resources.ApplyResources(this.txtIVA, "txtIVA");
+            this.txtIVA.Enabled = false;
+            this.txtIVA.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.txtIVA.Location = new System.Drawing.Point(282, 259);
+            this.txtIVA.Margin = new System.Windows.Forms.Padding(4);
             this.txtIVA.Name = "txtIVA";
+            this.txtIVA.Size = new System.Drawing.Size(102, 27);
+            this.txtIVA.TabIndex = 34;
             // 
             // nudCantidad
             // 
-            resources.ApplyResources(this.nudCantidad, "nudCantidad");
+            this.nudCantidad.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.nudCantidad.Location = new System.Drawing.Point(308, 56);
+            this.nudCantidad.Margin = new System.Windows.Forms.Padding(4);
             this.nudCantidad.Maximum = new decimal(new int[] {
             20,
             0,
             0,
             0});
+            this.nudCantidad.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudCantidad.Name = "nudCantidad";
+            this.nudCantidad.Size = new System.Drawing.Size(48, 27);
+            this.nudCantidad.TabIndex = 33;
+            this.nudCantidad.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // cmbProductos
             // 
-            resources.ApplyResources(this.cmbProductos, "cmbProductos");
             this.cmbProductos.BackColor = System.Drawing.Color.Snow;
             this.cmbProductos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProductos.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.cmbProductos.FormattingEnabled = true;
+            this.cmbProductos.Items.AddRange(new object[] {
+            "Laptops",
+            "Monitor",
+            "PCs",
+            "Dispositivos portatiles"});
+            this.cmbProductos.Location = new System.Drawing.Point(15, 56);
+            this.cmbProductos.Margin = new System.Windows.Forms.Padding(4);
             this.cmbProductos.Name = "cmbProductos";
+            this.cmbProductos.Size = new System.Drawing.Size(259, 29);
+            this.cmbProductos.TabIndex = 32;
             // 
             // txtTotalProductos
             // 
-            resources.ApplyResources(this.txtTotalProductos, "txtTotalProductos");
+            this.txtTotalProductos.Enabled = false;
+            this.txtTotalProductos.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.txtTotalProductos.Location = new System.Drawing.Point(282, 233);
+            this.txtTotalProductos.Margin = new System.Windows.Forms.Padding(4);
             this.txtTotalProductos.Name = "txtTotalProductos";
+            this.txtTotalProductos.Size = new System.Drawing.Size(102, 27);
+            this.txtTotalProductos.TabIndex = 31;
             // 
             // lblTotaldeproductos
             // 
-            resources.ApplyResources(this.lblTotaldeproductos, "lblTotaldeproductos");
+            this.lblTotaldeproductos.AutoSize = true;
+            this.lblTotaldeproductos.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.lblTotaldeproductos.Location = new System.Drawing.Point(99, 236);
+            this.lblTotaldeproductos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotaldeproductos.Name = "lblTotaldeproductos";
+            this.lblTotaldeproductos.Size = new System.Drawing.Size(155, 21);
+            this.lblTotaldeproductos.TabIndex = 30;
+            this.lblTotaldeproductos.Text = "Total de productos";
             // 
             // lblCostounitario
             // 
-            resources.ApplyResources(this.lblCostounitario, "lblCostounitario");
+            this.lblCostounitario.AutoSize = true;
+            this.lblCostounitario.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.lblCostounitario.Location = new System.Drawing.Point(393, 16);
+            this.lblCostounitario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCostounitario.Name = "lblCostounitario";
+            this.lblCostounitario.Size = new System.Drawing.Size(121, 21);
+            this.lblCostounitario.TabIndex = 29;
+            this.lblCostounitario.Text = "Precio Unitario";
             // 
             // lblClientes
             // 
-            resources.ApplyResources(this.lblClientes, "lblClientes");
+            this.lblClientes.AutoSize = true;
+            this.lblClientes.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.lblClientes.Location = new System.Drawing.Point(56, 16);
+            this.lblClientes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblClientes.Name = "lblClientes";
+            this.lblClientes.Size = new System.Drawing.Size(65, 21);
+            this.lblClientes.TabIndex = 28;
+            this.lblClientes.Text = "Cliente";
             // 
             // lblPreciofinal
             // 
-            resources.ApplyResources(this.lblPreciofinal, "lblPreciofinal");
+            this.lblPreciofinal.AutoSize = true;
+            this.lblPreciofinal.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.lblPreciofinal.Location = new System.Drawing.Point(99, 287);
+            this.lblPreciofinal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPreciofinal.Name = "lblPreciofinal";
+            this.lblPreciofinal.Size = new System.Drawing.Size(99, 21);
+            this.lblPreciofinal.TabIndex = 27;
+            this.lblPreciofinal.Text = "Precio Final";
             // 
             // lblIVA
             // 
-            resources.ApplyResources(this.lblIVA, "lblIVA");
+            this.lblIVA.AutoSize = true;
+            this.lblIVA.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.lblIVA.Location = new System.Drawing.Point(130, 259);
+            this.lblIVA.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIVA.Name = "lblIVA";
+            this.lblIVA.Size = new System.Drawing.Size(37, 21);
+            this.lblIVA.TabIndex = 26;
+            this.lblIVA.Text = "IVA";
             // 
             // lblProductos
             // 
-            resources.ApplyResources(this.lblProductos, "lblProductos");
+            this.lblProductos.AutoSize = true;
+            this.lblProductos.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.lblProductos.Location = new System.Drawing.Point(111, 16);
+            this.lblProductos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProductos.Name = "lblProductos";
+            this.lblProductos.Size = new System.Drawing.Size(87, 21);
+            this.lblProductos.TabIndex = 25;
+            this.lblProductos.Text = "Productos";
             // 
-            // PanelVentas
+            // groupBox1
             // 
-            resources.ApplyResources(this, "$this");
+            this.groupBox1.Controls.Add(this.lblProductos);
+            this.groupBox1.Controls.Add(this.cmbProductos);
+            this.groupBox1.Controls.Add(this.nudCostoUnitario);
+            this.groupBox1.Controls.Add(this.lblCantidad);
+            this.groupBox1.Controls.Add(this.nudCantidad);
+            this.groupBox1.Controls.Add(this.lblCostounitario);
+            this.groupBox1.Font = new System.Drawing.Font("Century Gothic", 8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.groupBox1.Location = new System.Drawing.Point(12, 18);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(529, 188);
+            this.groupBox1.TabIndex = 41;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Productos";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.lblClientes);
+            this.groupBox2.Controls.Add(this.txtCliente);
+            this.groupBox2.Font = new System.Drawing.Font("Century Gothic", 8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.groupBox2.Location = new System.Drawing.Point(686, 18);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(309, 188);
+            this.groupBox2.TabIndex = 42;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Clientes";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Enabled = false;
+            this.textBox2.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.textBox2.Location = new System.Drawing.Point(187, 52);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(102, 27);
+            this.textBox2.TabIndex = 43;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label2.Location = new System.Drawing.Point(204, 16);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 21);
+            this.label2.TabIndex = 44;
+            this.label2.Text = "Factura";
+            // 
+            // fecha
+            // 
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.fecha.DefaultCellStyle = dataGridViewCellStyle8;
+            this.fecha.HeaderText = "Fecha";
+            this.fecha.MinimumWidth = 6;
+            this.fecha.Name = "fecha";
+            this.fecha.ReadOnly = true;
+            this.fecha.Width = 128;
+            // 
+            // productos
+            // 
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.productos.DefaultCellStyle = dataGridViewCellStyle9;
+            this.productos.HeaderText = "Productos";
+            this.productos.Name = "productos";
+            this.productos.Width = 128;
+            // 
+            // totalProductos
+            // 
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.totalProductos.DefaultCellStyle = dataGridViewCellStyle10;
+            this.totalProductos.HeaderText = "Subtotal";
+            this.totalProductos.Name = "totalProductos";
+            this.totalProductos.Width = 128;
+            // 
+            // iva
+            // 
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.iva.DefaultCellStyle = dataGridViewCellStyle11;
+            this.iva.HeaderText = "IVA";
+            this.iva.Name = "iva";
+            this.iva.Width = 128;
+            // 
+            // total
+            // 
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.total.DefaultCellStyle = dataGridViewCellStyle12;
+            this.total.HeaderText = "Total";
+            this.total.Name = "total";
+            this.total.Width = 128;
+            // 
+            // usuario
+            // 
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.usuario.DefaultCellStyle = dataGridViewCellStyle13;
+            this.usuario.HeaderText = "Usuario";
+            this.usuario.Name = "usuario";
+            this.usuario.Width = 128;
+            // 
+            // folio
+            // 
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.folio.DefaultCellStyle = dataGridViewCellStyle14;
+            this.folio.HeaderText = "Folio";
+            this.folio.Name = "folio";
+            this.folio.Width = 128;
+            // 
+            // Panel_Ventas
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Snow;
+            this.ClientSize = new System.Drawing.Size(1020, 536);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvSubcuentas);
-            this.Controls.Add(this.lblCantidad);
-            this.Controls.Add(this.nudCostoUnitario);
-            this.Controls.Add(this.txtProveedor);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.txtPrecioFinal);
             this.Controls.Add(this.txtIVA);
-            this.Controls.Add(this.nudCantidad);
-            this.Controls.Add(this.cmbProductos);
             this.Controls.Add(this.txtTotalProductos);
             this.Controls.Add(this.lblTotaldeproductos);
-            this.Controls.Add(this.lblCostounitario);
-            this.Controls.Add(this.lblClientes);
             this.Controls.Add(this.lblPreciofinal);
             this.Controls.Add(this.lblIVA);
-            this.Controls.Add(this.lblProductos);
             this.ForeColor = System.Drawing.Color.DarkRed;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "PanelVentas";
+            this.Name = "Panel_Ventas";
+            this.Text = "Ventas";
             this.Load += new System.EventHandler(this.PanelVentas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubcuentas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCostoUnitario)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,7 +427,7 @@
         private System.Windows.Forms.DataGridView dgvSubcuentas;
         private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.NumericUpDown nudCostoUnitario;
-        private System.Windows.Forms.TextBox txtProveedor;
+        private System.Windows.Forms.TextBox txtCliente;
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.TextBox txtPrecioFinal;
         private System.Windows.Forms.TextBox txtIVA;
@@ -195,5 +440,16 @@
         private System.Windows.Forms.Label lblPreciofinal;
         private System.Windows.Forms.Label lblIVA;
         private System.Windows.Forms.Label lblProductos;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalProductos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iva;
+        private System.Windows.Forms.DataGridViewTextBoxColumn total;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn folio;
     }
 }

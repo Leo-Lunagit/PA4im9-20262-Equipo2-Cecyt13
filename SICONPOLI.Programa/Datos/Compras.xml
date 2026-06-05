@@ -1,2 +1,71 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<compras />
+<compras>
+  <asiento noAsiento="999">
+    <fecha>2026-06-04T19:45:31.5300155-06:00</fecha>
+    <cargos>
+      <cuenta>
+        <nombreCuenta>almacen</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>1 Laptops a $100 c/u</nombreSubcuenta>
+            <monto>10000</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>10000</monto>
+      </cuenta>
+      <cuenta>
+        <nombreCuenta>IVA por Acreditar</nombreCuenta>
+        <monto>1600</monto>
+      </cuenta>
+    </cargos>
+    <abonos>
+      <cuenta>
+        <nombreCuenta>Provedores</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>yo s/f 9999</nombreSubcuenta>
+            <monto>11600</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>11600</monto>
+      </cuenta>
+    </abonos>
+    <sumaCargos>11600</sumaCargos>
+    <sumaAbonos>11600</sumaAbonos>
+    <concepto>Compra de mercancia s/f XXXX del proveedor yo.</concepto>
+  </asiento>
+  <asiento noAsiento="999">
+    <fecha>2026-06-04T19:48:13.7378908-06:00</fecha>
+    <cargos>
+      <cuenta>
+        <nombreCuenta>almacen</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>1 Laptops a $100 c/u</nombreSubcuenta>
+            <monto>10000</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>10000</monto>
+      </cuenta>
+      <cuenta>
+        <nombreCuenta>IVA por Acreditar</nombreCuenta>
+        <monto>1600</monto>
+      </cuenta>
+    </cargos>
+    <abonos>
+      <cuenta>
+        <nombreCuenta>Provedores</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>yo s/f 9999</nombreSubcuenta>
+            <monto>11600</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>11600</monto>
+      </cuenta>
+    </abonos>
+    <sumaCargos>11600</sumaCargos>
+    <sumaAbonos>11600</sumaAbonos>
+    <concepto>Compra de mercancia s/f XXXX del proveedor yo.</concepto>
+  </asiento>
+</compras>

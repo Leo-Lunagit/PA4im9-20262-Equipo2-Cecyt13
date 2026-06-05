@@ -1,2 +1,173 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ventas />
+<ventas>
+  <asiento noAsiento="999">
+    <fecha>2026-06-04T19:57:26.442524-06:00</fecha>
+    <cargos>
+      <cuenta>
+        <nombreCuenta>almacen</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>1 Laptops a $100 c/u</nombreSubcuenta>
+            <monto>10000</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>10000</monto>
+      </cuenta>
+      <cuenta>
+        <nombreCuenta>IVA por Acreditar</nombreCuenta>
+        <monto>256</monto>
+      </cuenta>
+    </cargos>
+    <abonos>
+      <cuenta>
+        <nombreCuenta>Clientes</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>yo s/f 9999</nombreSubcuenta>
+            <monto>1856</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>1856</monto>
+      </cuenta>
+    </abonos>
+    <sumaCargos>10256</sumaCargos>
+    <sumaAbonos>1856</sumaAbonos>
+    <concepto>Compra de mercancia s/f XXXX del proveedor PA4IM9_20262_Equipo2.Entidades.Cuenta.</concepto>
+  </asiento>
+  <asiento noAsiento="999">
+    <fecha>2026-06-04T20:05:02.010956-06:00</fecha>
+    <cargos>
+      <cuenta>
+        <nombreCuenta>almacen</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>1 Laptops a $100 c/u</nombreSubcuenta>
+            <monto>10000</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>10000</monto>
+      </cuenta>
+      <cuenta>
+        <nombreCuenta>IVA por Acreditar</nombreCuenta>
+        <monto>1856</monto>
+      </cuenta>
+    </cargos>
+    <abonos>
+      <cuenta>
+        <nombreCuenta>Clientes</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>yo s/f 9999</nombreSubcuenta>
+            <monto>13456</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>13456</monto>
+      </cuenta>
+    </abonos>
+    <sumaCargos>11856</sumaCargos>
+    <sumaAbonos>13456</sumaAbonos>
+    <concepto>Compra de mercancia s/f XXXX del proveedor PA4IM9_20262_Equipo2.Entidades.Cuenta.</concepto>
+  </asiento>
+  <asiento noAsiento="999">
+    <fecha>2026-06-04T20:08:01.5227727-06:00</fecha>
+    <cargos>
+      <cuenta>
+        <nombreCuenta>almacen</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>1 Laptops a $100 c/u</nombreSubcuenta>
+            <monto>10000</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>10000</monto>
+      </cuenta>
+      <cuenta>
+        <nombreCuenta>IVA por Acreditar</nombreCuenta>
+        <monto>1856</monto>
+      </cuenta>
+    </cargos>
+    <abonos>
+      <cuenta>
+        <nombreCuenta>Clientes</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>yo s/f 9999</nombreSubcuenta>
+            <monto>13456</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>13456</monto>
+      </cuenta>
+    </abonos>
+    <sumaCargos>11856</sumaCargos>
+    <sumaAbonos>13456</sumaAbonos>
+    <concepto>Compra de mercancia s/f XXXX del proveedor PA4IM9_20262_Equipo2.Entidades.Cuenta.</concepto>
+  </asiento>
+  <asiento noAsiento="999">
+    <fecha>2026-06-04T20:08:21.7136843-06:00</fecha>
+    <cargos>
+      <cuenta>
+        <nombreCuenta>almacen</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>1 Laptops a $11 c/u</nombreSubcuenta>
+            <monto>1100</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>1100</monto>
+      </cuenta>
+      <cuenta>
+        <nombreCuenta>IVA por Acreditar</nombreCuenta>
+        <monto>204</monto>
+      </cuenta>
+    </cargos>
+    <abonos>
+      <cuenta>
+        <nombreCuenta>Clientes</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>tu s/f 9999</nombreSubcuenta>
+            <monto>1480</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>1480</monto>
+      </cuenta>
+    </abonos>
+    <sumaCargos>1304</sumaCargos>
+    <sumaAbonos>1480</sumaAbonos>
+    <concepto>Compra de mercancia s/f XXXX del proveedor PA4IM9_20262_Equipo2.Entidades.Cuenta.</concepto>
+  </asiento>
+  <asiento noAsiento="999">
+    <fecha>2026-06-04T20:18:36.507551-06:00</fecha>
+    <cargos>
+      <cuenta>
+        <nombreCuenta>almacen</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>0 Laptops a $100 c/u</nombreSubcuenta>
+            <monto>10000</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>10000</monto>
+      </cuenta>
+      <cuenta>
+        <nombreCuenta>IVA por Acreditar</nombreCuenta>
+        <monto>0</monto>
+      </cuenta>
+    </cargos>
+    <abonos>
+      <cuenta>
+        <nombreCuenta>Clientes</nombreCuenta>
+        <subcuentas>
+          <subcuenta>
+            <nombreSubcuenta>yo s/f 9999</nombreSubcuenta>
+            <monto>0</monto>
+          </subcuenta>
+        </subcuentas>
+        <monto>0</monto>
+      </cuenta>
+    </abonos>
+    <sumaCargos>10000</sumaCargos>
+    <sumaAbonos>0</sumaAbonos>
+    <concepto>Compra de mercancia s/f XXXX del proveedor PA4IM9_20262_Equipo2.Entidades.Cuenta.</concepto>
+  </asiento>
+</ventas>
