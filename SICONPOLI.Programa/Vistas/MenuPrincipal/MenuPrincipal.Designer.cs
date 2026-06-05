@@ -504,6 +504,7 @@
         }
 
         #endregion
+
         private System.Windows.Forms.Panel BarraLateral;
         private System.Windows.Forms.Panel Contenedor;
         private System.Windows.Forms.Button btnHome;

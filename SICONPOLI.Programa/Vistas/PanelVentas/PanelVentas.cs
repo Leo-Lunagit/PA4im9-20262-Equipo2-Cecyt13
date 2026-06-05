@@ -25,11 +25,6 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             cmbProductos.SelectedIndex = 0;
         }
 
-        private void PanelVentas_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             // 1. Validar que el campo Cliente no esté vacío
@@ -42,30 +37,59 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             // 2. Capturar los datos de los controles
             string productos = cmbProductos.SelectedItem.ToString();
             int cantidad = (int)nudCantidad.Value;
-            decimal costoUnitario = nudCostoUnitario.Value;
+            decimal costoUnitario = (int)nudCostoUnitario.Value;
             string Cliente = txtCliente.Text.Trim();
-            decimal subtotal = (cantidad * costoUnitario);
-            decimal iva = cantidad * costoUnitario * (decimal).16;
+            decimal subtotal = cantidad * costoUnitario;
+            decimal iva = subtotal * .16m;
             DateTime fecha = DateTime.Now;
+            string factura = txtFactura.Text.Trim();
             string usuario = Sistema.PerfilActivo.Usuario; 
-            string concepto = $"Compra de mercancia s/f {folio} del proveedor {Cliente}.";
+            string concepto = $"Compra de mercancia s/f {factura} del proveedor {Cliente}.";
 
 
             // 3. Calcular el total de esta subcuenta específica
-            decimal totalProducto = (cantidad * costoUnitario) * 1.16m;
+            decimal totalProducto = subtotal + iva;
+
+            // 7. Muestra Datos en la forma
+            txtConcepto.Text = concepto.ToString();
+            txtIVA.Text = iva.ToString();
+            txtPrecioFinal.Text = totalProducto.ToString();
+
+            btnConfirmar.Enabled = true;
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            // 1. Validar que el campo Cliente no esté vacío
+            if (string.IsNullOrWhiteSpace(txtConcepto.Text))
+            {
+                MessageBox.Show("Por favor, primero REGISTRE los datos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2. Capturar los datos de los controles
+            string productos = cmbProductos.SelectedItem.ToString();
+            int cantidad = (int)nudCantidad.Value;
+            decimal costoUnitario = nudCostoUnitario.Value;
+            string Cliente = txtCliente.Text.Trim();
+            string factura = txtFactura.Text;
+            decimal subtotal = cantidad * costoUnitario;
+            decimal iva = subtotal * .16m;
+            DateTime fecha = DateTime.Now;
+            string usuario = Sistema.PerfilActivo.Usuario;
+            string concepto = $"Compra de mercancia s/f {factura} del proveedor {Cliente}.";
+
+            // 3. Calcular el total de esta subcuenta específica
+            decimal totalProducto = subtotal + iva;
 
             // 4. Agregar la fila al DataGridView
-            dgvSubcuentas.Rows.Add(fecha, productos, subtotal.ToString("C2"), iva, totalProducto.ToString("C2"), usuario, folio);
+            dgvSubcuentas.Rows.Add(fecha, productos, subtotal.ToString("C2"), iva.ToString("C2"), totalProducto.ToString("C2"), usuario, factura);
 
             // 5. Recalcular los totales generales de la aplicación
             CalcularTotalesGenerales();
 
             // 6. Limpiar los campos para la siguiente captura.
             LimpiarCamposCaptura();
-
-            // 7. Muestra Datos en la forma
-            txtConcepto.Text = concepto.ToString();
-            txtFactura.Text = folio.ToString();
 
             // Crea la subcuenta del almacen y la llenamos con sus datos correspondientes.
             Subcuenta SubAlmacen = new Subcuenta();
@@ -80,12 +104,12 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 
             // Creamos la cuenta del IVA y la lenamos con sus datos.
             Cuenta IVA = new Cuenta();
-            IVA.Monto = (int)(totalProducto * 16);
+            IVA.Monto = (int)(iva * 100);
             IVA.NombreCuenta = "IVA por Acreditar";
 
             // Creamos la subcuenta del cliente y la llenamos con sus datos.
             Subcuenta SubCliente = new Subcuenta();
-            SubCliente.Monto = (int)(totalProducto * 116);
+            SubCliente.Monto = (int)(totalProducto * 100);
             SubCliente.NombreSubcuenta = $"{Cliente} s/f {folio}";
 
             // Creamos la cuenta del probeedor y la llenamos.
@@ -96,7 +120,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 
             // Creamos el asiento y lo llenamos.
             Asiento registro = new Asiento();
-            registro.NoAsiento = Sistema.GenerarID(Sistema.rutaVentas, Sistema.raizVentas, 3); 
+            registro.NoAsiento = Sistema.GenerarID(Sistema.rutaVentas, Sistema.raizVentas, 3);
             registro.Fecha = fecha;
             registro.Cargos = new Cuenta[] { Almacen, IVA };
             registro.Abonos = new Cuenta[] { cliente };
@@ -148,6 +172,10 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             nudCostoUnitario.Value = 1;
             txtCliente.Clear();
             cmbProductos.Focus(); // Pone el cursor de vuelta en el producto
+            txtFactura.Clear();
+            txtIVA.Clear();
+            txtConcepto.Clear();
+            txtPrecioFinal.Clear();
         }
     }
 }
