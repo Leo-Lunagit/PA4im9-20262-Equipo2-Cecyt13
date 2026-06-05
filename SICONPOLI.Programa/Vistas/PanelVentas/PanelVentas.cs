@@ -20,6 +20,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
         public Panel_Ventas()
         {
             InitializeComponent();
+            btnConfirmar.Enabled = false;
 
             // Selecciona el primer prodcutro por defecto.
             cmbProductos.SelectedIndex = 0;
@@ -55,6 +56,78 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             // 3. Calcular el total de esta subcuenta específica
             decimal totalProducto = (cantidad * costoUnitario) * 1.16m;
 
+            // 7. Muestra Datos en la forma
+            txtConcepto.Text = concepto.ToString();
+            txtFactura.Text = folio.ToString();
+            txtIVA.Text = iva.ToString();
+            txtPrecioFinal.Text = totalProducto.ToString();
+
+            btnConfirmar.Enabled = true;
+        }
+
+        private void CalcularTotalesGenerales()
+        {
+            decimal subtotal = 0;
+            const decimal PorcentajeIVA = 0.16m; // Ajustable según la tasa de tu región (ej. 16%)
+
+            // Recorrer cada fila del DataGridView para sumar los totales de los productos
+            foreach (DataGridViewRow fila in dgvSubcuentas.Rows)
+            {
+                if (fila.Cells["totalProductos"].Value != null)
+                {
+                    // Reemplazamos el símbolo de moneda para poder convertirlo a decimal limpiamente
+                    string valorTexto = fila.Cells["totalProductos"].Value.ToString().Replace("$", "");
+                    subtotal += Convert.ToDecimal(valorTexto);
+                }
+            }
+
+            // Calcular IVA y Precio Final
+            decimal iva = subtotal * PorcentajeIVA;
+            decimal precioFinal = subtotal + iva;
+
+            // Mostrar los resultados formateados como moneda local
+            txtIVA.Text = iva.ToString("C2");
+            txtPrecioFinal.Text = precioFinal.ToString("C2");
+        }
+
+        private void LimpiarCamposCaptura()
+        {
+            // Restablece los controles superiores para agilizar el rellenado
+            if (cmbProductos.Items.Count > 0) cmbProductos.SelectedIndex = 0;
+            nudCantidad.Value = 1;
+            nudCostoUnitario.Value = 1;
+            txtCliente.Clear();
+            cmbProductos.Focus(); // Pone el cursor de vuelta en el producto
+            txtFactura.Clear();
+            txtIVA.Clear();
+            txtConcepto.Clear();
+            txtPrecioFinal.Clear();
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            // 1. Validar que el campo Cliente no esté vacío
+            if (string.IsNullOrWhiteSpace(txtConcepto.Text))
+            {
+                MessageBox.Show("Por favor, primero REGISTRE los datos.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2. Capturar los datos de los controles
+            string productos = cmbProductos.SelectedItem.ToString();
+            int cantidad = (int)nudCantidad.Value;
+            decimal costoUnitario = nudCostoUnitario.Value;
+            string Cliente = txtCliente.Text.Trim();
+            string folio = Sistema.GenerarFolio();
+            decimal subtotal = (cantidad * costoUnitario);
+            decimal iva = cantidad * costoUnitario * (decimal).16;
+            DateTime fecha = DateTime.Now;
+            string usuario = Sistema.PerfilActivo.Usuario;
+            string concepto = $"Compra de mercancia s/f {folio} del proveedor {Cliente}.";
+
+            // 3. Calcular el total de esta subcuenta específica
+            decimal totalProducto = (cantidad * costoUnitario) * 1.16m;
+
             // 4. Agregar la fila al DataGridView
             dgvSubcuentas.Rows.Add(fecha, productos, subtotal.ToString("C2"), iva, totalProducto.ToString("C2"), usuario, folio);
 
@@ -63,10 +136,6 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 
             // 6. Limpiar los campos para la siguiente captura.
             LimpiarCamposCaptura();
-
-            // 7. Muestra Datos en la forma
-            txtConcepto.Text = concepto.ToString();
-            txtFactura.Text = folio.ToString();
 
             // Crea la subcuenta del almacen y la llenamos con sus datos correspondientes.
             Subcuenta SubAlmacen = new Subcuenta();
@@ -97,7 +166,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 
             // Creamos el asiento y lo llenamos.
             Asiento registro = new Asiento();
-            registro.NoAsiento = 999;
+            registro.NoAsiento = "9999";
             registro.Fecha = fecha;
             registro.Cargos = new Cuenta[] { Almacen, IVA };
             registro.Abonos = new Cuenta[] { cliente };
@@ -114,42 +183,8 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 
             escritor.DocumentElement.AppendChild(asiento);
             escritor.Save(Sistema.rutaVentas);
-        }
 
-        private void CalcularTotalesGenerales()
-        {
-            decimal subtotal = 0;
-            const decimal PorcentajeIVA = 0.16m; // Ajustable según la tasa de tu región (ej. 16%)
-
-            // Recorrer cada fila del DataGridView para sumar los totales de los productos
-            foreach (DataGridViewRow fila in dgvSubcuentas.Rows)
-            {
-                if (fila.Cells["totalProductos"].Value != null)
-                {
-                    // Reemplazamos el símbolo de moneda para poder convertirlo a decimal limpiamente
-                    string valorTexto = fila.Cells["totalProductos"].Value.ToString().Replace("$", "");
-                    subtotal += Convert.ToDecimal(valorTexto);
-                }
-            }
-
-            // Calcular IVA y Precio Final
-            decimal iva = subtotal * PorcentajeIVA;
-            decimal precioFinal = subtotal + iva;
-
-            // Mostrar los resultados formateados como moneda local
-            txtTotalProductos.Text = subtotal.ToString("C2");
-            txtIVA.Text = iva.ToString("C2");
-            txtPrecioFinal.Text = precioFinal.ToString("C2");
-        }
-
-        private void LimpiarCamposCaptura()
-        {
-            // Restablece los controles superiores para agilizar el rellenado
-            if (cmbProductos.Items.Count > 0) cmbProductos.SelectedIndex = 0;
-            nudCantidad.Value = 1;
-            nudCostoUnitario.Value = 1;
-            txtCliente.Clear();
-            cmbProductos.Focus(); // Pone el cursor de vuelta en el producto
+            btnConfirmar.Enabled = false;
         }
     }
 }

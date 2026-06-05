@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvSubcuentas = new System.Windows.Forms.DataGridView();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.nudCostoUnitario = new System.Windows.Forms.NumericUpDown();
@@ -53,6 +53,9 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtFactura = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtConcepto = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnConfirmar = new System.Windows.Forms.Button();
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalProductos = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,8 +63,6 @@
             this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.folio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtConcepto = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubcuentas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCostoUnitario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
@@ -134,7 +135,7 @@
             // btnRegistrar
             // 
             this.btnRegistrar.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.btnRegistrar.Location = new System.Drawing.Point(25, 231);
+            this.btnRegistrar.Location = new System.Drawing.Point(396, 241);
             this.btnRegistrar.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(112, 43);
@@ -316,64 +317,6 @@
             this.label2.TabIndex = 44;
             this.label2.Text = "Factura";
             // 
-            // fecha
-            // 
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.fecha.DefaultCellStyle = dataGridViewCellStyle8;
-            this.fecha.HeaderText = "Fecha y Hora";
-            this.fecha.MinimumWidth = 6;
-            this.fecha.Name = "fecha";
-            this.fecha.ReadOnly = true;
-            this.fecha.Width = 200;
-            // 
-            // productos
-            // 
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.productos.DefaultCellStyle = dataGridViewCellStyle9;
-            this.productos.HeaderText = "Productos";
-            this.productos.Name = "productos";
-            this.productos.Width = 128;
-            // 
-            // totalProductos
-            // 
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.totalProductos.DefaultCellStyle = dataGridViewCellStyle10;
-            this.totalProductos.HeaderText = "Subtotal";
-            this.totalProductos.Name = "totalProductos";
-            this.totalProductos.Width = 128;
-            // 
-            // iva
-            // 
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.iva.DefaultCellStyle = dataGridViewCellStyle11;
-            this.iva.HeaderText = "IVA";
-            this.iva.Name = "iva";
-            this.iva.Width = 80;
-            // 
-            // total
-            // 
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.total.DefaultCellStyle = dataGridViewCellStyle12;
-            this.total.HeaderText = "Total";
-            this.total.Name = "total";
-            this.total.Width = 128;
-            // 
-            // usuario
-            // 
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.usuario.DefaultCellStyle = dataGridViewCellStyle13;
-            this.usuario.HeaderText = "Usuario";
-            this.usuario.Name = "usuario";
-            this.usuario.Width = 128;
-            // 
-            // folio
-            // 
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.folio.DefaultCellStyle = dataGridViewCellStyle14;
-            this.folio.HeaderText = "Folio";
-            this.folio.Name = "folio";
-            this.folio.Width = 115;
-            // 
             // txtConcepto
             // 
             this.txtConcepto.BackColor = System.Drawing.SystemColors.Window;
@@ -396,12 +339,83 @@
             this.label1.TabIndex = 45;
             this.label1.Text = "Concepto:";
             // 
+            // btnConfirmar
+            // 
+            this.btnConfirmar.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.btnConfirmar.Location = new System.Drawing.Point(540, 241);
+            this.btnConfirmar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnConfirmar.Name = "btnConfirmar";
+            this.btnConfirmar.Size = new System.Drawing.Size(112, 43);
+            this.btnConfirmar.TabIndex = 43;
+            this.btnConfirmar.Text = "Confirmar";
+            this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
+            // 
+            // fecha
+            // 
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.fecha.DefaultCellStyle = dataGridViewCellStyle1;
+            this.fecha.HeaderText = "Fecha y Hora";
+            this.fecha.MinimumWidth = 6;
+            this.fecha.Name = "fecha";
+            this.fecha.ReadOnly = true;
+            this.fecha.Width = 210;
+            // 
+            // productos
+            // 
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.productos.DefaultCellStyle = dataGridViewCellStyle2;
+            this.productos.HeaderText = "Productos";
+            this.productos.Name = "productos";
+            this.productos.Width = 128;
+            // 
+            // totalProductos
+            // 
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.totalProductos.DefaultCellStyle = dataGridViewCellStyle3;
+            this.totalProductos.HeaderText = "Subtotal";
+            this.totalProductos.Name = "totalProductos";
+            this.totalProductos.Width = 128;
+            // 
+            // iva
+            // 
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.iva.DefaultCellStyle = dataGridViewCellStyle4;
+            this.iva.HeaderText = "IVA";
+            this.iva.Name = "iva";
+            this.iva.Width = 80;
+            // 
+            // total
+            // 
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.total.DefaultCellStyle = dataGridViewCellStyle5;
+            this.total.HeaderText = "Total";
+            this.total.Name = "total";
+            this.total.Width = 128;
+            // 
+            // usuario
+            // 
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.usuario.DefaultCellStyle = dataGridViewCellStyle6;
+            this.usuario.HeaderText = "Usuario";
+            this.usuario.Name = "usuario";
+            this.usuario.Width = 118;
+            // 
+            // folio
+            // 
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.folio.DefaultCellStyle = dataGridViewCellStyle7;
+            this.folio.HeaderText = "Folio";
+            this.folio.Name = "folio";
+            this.folio.Width = 115;
+            // 
             // Panel_Ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Snow;
             this.ClientSize = new System.Drawing.Size(1020, 536);
+            this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvSubcuentas);
@@ -442,6 +456,9 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtFactura;
+        private System.Windows.Forms.TextBox txtConcepto;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn productos;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalProductos;
@@ -449,7 +466,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
         private System.Windows.Forms.DataGridViewTextBoxColumn usuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn folio;
-        private System.Windows.Forms.TextBox txtConcepto;
-        private System.Windows.Forms.Label label1;
     }
 }

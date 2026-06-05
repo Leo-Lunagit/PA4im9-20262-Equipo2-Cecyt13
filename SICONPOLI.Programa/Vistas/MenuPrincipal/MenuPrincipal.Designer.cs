@@ -364,10 +364,10 @@
             this.Contenedor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Contenedor.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.Contenedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(47)))), ((int)(((byte)(87)))));
-            this.Contenedor.Location = new System.Drawing.Point(188, 116);
+            this.Contenedor.Location = new System.Drawing.Point(188, 77);
             this.Contenedor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Contenedor.Name = "Contenedor";
-            this.Contenedor.Size = new System.Drawing.Size(1020, 536);
+            this.Contenedor.Size = new System.Drawing.Size(1020, 575);
             this.Contenedor.TabIndex = 1;
             this.Contenedor.TabStop = true;
             // 

@@ -80,7 +80,7 @@ namespace PA4IM9_20262_Equipo2
 
             // Creamos el asiento y lo llenamos.
             Asiento registro = new Asiento();
-            registro.NoAsiento = 999;
+            registro.NoAsiento = "999";
             registro.Fecha = DateTime.Now;
             registro.Cargos = new Cuenta[] { Almacen, IVA };
             registro.Abonos = new Cuenta[] { Proveedor };

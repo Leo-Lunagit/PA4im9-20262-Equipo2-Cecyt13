@@ -31,7 +31,7 @@ namespace PA4IM9_20262_Equipo2.Entidades
     public class Asiento
     {
         [XmlAttribute("noAsiento")] // Indica que no sera un atributo, si no un metadato.
-        public int NoAsiento { get; set; }
+        public string NoAsiento { get; set; }
         [XmlElement("fecha")]
         public DateTime Fecha { get; set; }
         [XmlArray("cargos")]
