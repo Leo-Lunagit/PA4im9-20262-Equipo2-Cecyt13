@@ -88,6 +88,8 @@ namespace PA4IM9_20262_Equipo2
             registro.SumaAbonos = Proveedor.Monto;
             registro.Concepto = $"Compra de mercancia s/f XXXX del proveedor {proveedor}.";
 
+            Sistema.CompraToProveedor(registro);
+
             XmlDocument escritor = new XmlDocument();
             // Transformamos la clase en elemento xml.
             XmlElement asiento = ConvertidorXml.ObjetoToElemento(escritor, registro);

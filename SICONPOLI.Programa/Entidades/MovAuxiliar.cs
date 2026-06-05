@@ -28,7 +28,7 @@ namespace PA4IM9_20262_Equipo2.Entidades
         [XmlAttribute("folio")]
         public string Folio { get; set; }
         [XmlElement("fecha")]
-        public DateTime Fecha { get; set; }
+        public string Fecha { get; set; }
         [XmlElement("factura")]
         public string Factura { get; set; }
         [XmlElement("concepto")]
@@ -39,7 +39,7 @@ namespace PA4IM9_20262_Equipo2.Entidades
         public int MontoSaldo { get; set; }
     }
 
-    [XmlRoot("Auxiliar")]
+    [XmlRoot("auxiliar")]
     public class MayorAuxiliar
     {
         [XmlAttribute("cuenta")]
@@ -50,6 +50,6 @@ namespace PA4IM9_20262_Equipo2.Entidades
         public string Titular { get; set; }
         [XmlArray("movAuxiliares")]
         [XmlArrayItem("renAuxiliar")]
-        public RenAuxiliar[] RenAuxiliar { get; set; }
+        public RenAuxiliar[] RenAuxiliares { get; set; }
     }
 }

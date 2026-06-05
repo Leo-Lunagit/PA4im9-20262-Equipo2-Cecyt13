@@ -21,11 +21,13 @@ namespace PA4IM9_20262_Equipo2.Modulos
         public static string rutaCompras = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Compras.xml");
         public static string rutaVentas = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Ventas.xml");
         public static string rutaAlmacen = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Almacen.xml");
+        public static string rutaProveedores = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Proveedores.xml");
         public static string raizUsuarios = "usuarios"; // Elemento raiz del archivo.
-        public static string raizConfiguracion = "configuracion"; // Elemento raiz del archivo.
-        public static string raizCompras = "compras"; // Elemento raiz del archivo.
-        public static string raizVentas = "ventas"; // Elemento raiz del archivo.
-        public static string raizAlmacen = "almacen"; // Elemento raiz del archivo.
+        public static string raizConfiguracion = "configuracion"; 
+        public static string raizCompras = "compras"; 
+        public static string raizVentas = "ventas"; 
+        public static string raizAlmacen = "almacen"; 
+        public static string raizProveedores = "proveedores"; 
         public static string[] Roles = { "administrador", "colaborador", "cliente" };
         public static string RolPredefinido = Roles[2];
         // Variables para guardar los perfiles logueados.
@@ -76,6 +78,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
             VerificarArchivo(rutaCompras, raizCompras);
             VerificarArchivo(rutaVentas, raizVentas);
             VerificarArchivo(rutaAlmacen, raizAlmacen);
+            VerificarArchivo(rutaProveedores, raizProveedores);
         }
 
         public static string GenerarID()
@@ -138,5 +141,58 @@ namespace PA4IM9_20262_Equipo2.Modulos
 
             escritor.Save(rutaUsuarios);
         } 
+
+        public static void CompraToProveedor(Asiento asiento)
+        {
+            VerificarArchivo(rutaProveedores, raizProveedores);
+            XmlDocument escritor = new XmlDocument();
+            escritor.Load(rutaProveedores);
+
+            string textoSubProveedor = asiento.Abonos[0].Subcuentas[0].NombreSubcuenta;
+            string[] paraProveedor = textoSubProveedor.Split(new string[] { " s/f" }, StringSplitOptions.None);
+            string[] paraFactura = textoSubProveedor.Split(new string[] { "s/f " }, StringSplitOptions.None);
+
+            Movimiento debe = new Movimiento();
+            debe.Monto = asiento.SumaAbonos;
+            debe.Saldo = ((Saldos)1).ToString();
+
+            RenAuxiliar renglon = new RenAuxiliar();
+            renglon.Fecha = asiento.Fecha.ToString("dd/MM");
+            renglon.Factura = paraFactura[1];
+            renglon.Concepto = "Compra de mercancia.";
+            renglon.Movimiento = debe;
+
+            XmlNode proveedorExistente = escritor.DocumentElement.SelectSingleNode($"//Auxiliar[titular='{paraProveedor[0]}']");
+            if (proveedorExistente == null)
+            {
+                renglon.Folio = "1001";
+                renglon.MontoSaldo = renglon.Movimiento.Monto;
+
+                MayorAuxiliar proveedorNuevo = new MayorAuxiliar();
+                proveedorNuevo.Cuenta = "proveedor";
+                proveedorNuevo.NoTargeta = "99";
+                proveedorNuevo.Titular = paraProveedor[0];
+                proveedorNuevo.RenAuxiliares = new RenAuxiliar[] { renglon };
+
+                XmlElement registro = ConvertidorXml.ObjetoToElemento(escritor, proveedorNuevo);
+
+                escritor.DocumentElement.AppendChild(registro);
+                escritor.Save(rutaCompras);
+            }
+            else
+            {
+                MayorAuxiliar proveedor = ConvertidorXml.ElementoToObjeto<MayorAuxiliar>((XmlElement)proveedorExistente);
+
+                renglon.Folio = $"1{(proveedor.RenAuxiliares.Length + 1):D3}";
+                int sentido = renglon.Movimiento.Saldo == ((Saldos)1).ToString() ? 1 : -1;
+                renglon.MontoSaldo = renglon.Movimiento.Monto * sentido + proveedor.RenAuxiliares.Last().MontoSaldo;
+
+                proveedor.RenAuxiliares.Append(renglon).ToArray();
+
+                XmlElement proveedorActualizado = ConvertidorXml.ObjetoToElemento(escritor, proveedor);
+                escritor.DocumentElement.ReplaceChild(proveedorActualizado, proveedorExistente);
+                escritor.Save(rutaProveedores);
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <usuarios>
-  <perfil id="1001">
+  <perfil id="1001" recordado="">
     <rol>administrador</rol>
     <fechaCreacion>2026-06-02T23:32:26.184362-06:00</fechaCreacion>
     <usuario>equipo2</usuario>
