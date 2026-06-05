@@ -49,6 +49,7 @@
     <Compile Include="Entidades\LabelVertical.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Entidades\MovAuxiliar.cs" />
     <Compile Include="Entidades\Perfil.cs" />
     <Compile Include="Modulos\ConvertidorXml.cs" />
     <Compile Include="Modulos\Sistema.cs" />

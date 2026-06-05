@@ -20,17 +20,19 @@ namespace PA4IM9_20262_Equipo2.Modulos
         public static string rutaConfiguracion = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Configuracion.xml");
         public static string rutaCompras = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Compras.xml");
         public static string rutaVentas = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Ventas.xml");
+        public static string rutaAlmacen = Path.Combine(rutaEjecusion, "..", "..", "Datos", "Almacen.xml");
         public static string raizUsuarios = "usuarios"; // Elemento raiz del archivo.
         public static string raizConfiguracion = "configuracion"; // Elemento raiz del archivo.
         public static string raizCompras = "compras"; // Elemento raiz del archivo.
         public static string raizVentas = "ventas"; // Elemento raiz del archivo.
+        public static string raizAlmacen = "almacen"; // Elemento raiz del archivo.
         public static string[] Roles = { "administrador", "colaborador", "cliente" };
         public static string RolPredefinido = Roles[2];
         // Variables para guardar los perfiles logueados.
         public static Perfil[] PerfilesLogueados;
         public static Perfil PerfilActivo;
         public static string banderaRecordar = "recordado";
-        
+
         // Verificacion de la existencia de un archivo XML.
         public static void VerificarArchivo(string ruta, string nombreRaiz)
         {
@@ -38,7 +40,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
             XmlDocument documento = new XmlDocument();
 
             // Intenta cargar el archivo contenido en la ruta especificada.
-            try { documento.Load(ruta); } 
+            try { documento.Load(ruta); }
             // En caso de no poder cargar el archivo
             catch {
                 // Si existe obtenemos la ruta de la carpeta para poder evaluarla.
@@ -73,6 +75,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
             VerificarArchivo(rutaUsuarios, raizUsuarios);
             VerificarArchivo(rutaCompras, raizCompras);
             VerificarArchivo(rutaVentas, raizVentas);
+            VerificarArchivo(rutaAlmacen, raizAlmacen);
         }
 
         public static string GenerarID()
@@ -80,16 +83,16 @@ namespace PA4IM9_20262_Equipo2.Modulos
             XmlDocument lector = new XmlDocument();
             lector.Load(rutaUsuarios);
             // El numero de perfiles mas 1, asegurandose que minimo tenga 3 cifras aunque con 0 a la izquierda (:D3).
-            return $"1{(lector.DocumentElement.ChildNodes.Count + 1):D3}"; 
+            return $"1{(lector.DocumentElement.ChildNodes.Count + 1):D3}";
         }
-        
-        public static void GuardarPerfil(XmlElement usuario) 
+
+        public static void GuardarPerfil(XmlElement usuario)
         {
             string PadreUsuarios = "usuariosActivos";
             VerificarArchivo(rutaConfiguracion, raizConfiguracion);
             XmlDocument config = new XmlDocument();
             config.Load(rutaConfiguracion);
-            
+
             XmlNode perfiles = config.DocumentElement[PadreUsuarios];
             if (perfiles == null)
             {
@@ -104,7 +107,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 XmlNode importado = config.ImportNode(usuario, true);
                 config.DocumentElement[PadreUsuarios].AppendChild(importado);
             }
-                
+
             config.Save(rutaConfiguracion);
         }
 
@@ -115,7 +118,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 // Es nesesario crear un nuevo arreglo y luego reemplazar el actual por el creado.
                 PerfilesLogueados = new Perfil[] { PerfilLogueado };
             // Si hay perfiles. Y no existe ningun elemento donde coincidan los ides lo guarda.
-            else if (!PerfilesLogueados.Any(perfil => perfil.ID == PerfilLogueado.ID)) 
+            else if (!PerfilesLogueados.Any(perfil => perfil.ID == PerfilLogueado.ID))
                 // Guarda el perfil junto a los perfiles antes logueados.
                 PerfilesLogueados = PerfilesLogueados.Append(PerfilLogueado).ToArray();
 
@@ -125,15 +128,15 @@ namespace PA4IM9_20262_Equipo2.Modulos
 
         public static void LimpiarRecordado()
         {
-            VerificarArchivo(rutaUsuarios,raizUsuarios);
+            VerificarArchivo(rutaUsuarios, raizUsuarios);
             XmlDocument escritor = new XmlDocument();
             escritor.Load(rutaUsuarios);
 
             XmlNode perfilRecordar = escritor.DocumentElement.SelectSingleNode("perfil[@recordado]");
-            if (perfilRecordar != null) 
+            if (perfilRecordar != null)
                 perfilRecordar.Attributes.RemoveNamedItem("recordado");
-            
+
             escritor.Save(rutaUsuarios);
-        }
+        } 
     }
 }
