@@ -47,9 +47,10 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             string folio = Sistema.GenerarFolio();
             decimal subtotal = (cantidad * costoUnitario);
             decimal iva = cantidad * costoUnitario * (decimal).16;
-            string fecha = "00:00";
+            DateTime fecha = DateTime.Now;
             string usuario = Sistema.PerfilActivo.Usuario; 
-            
+            string concepto = $"Compra de mercancia s/f {folio} del proveedor {Cliente}.";
+
 
             // 3. Calcular el total de esta subcuenta específica
             decimal totalProducto = (cantidad * costoUnitario) * 1.16m;
@@ -62,6 +63,10 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 
             // 6. Limpiar los campos para la siguiente captura.
             LimpiarCamposCaptura();
+
+            // 7. Muestra Datos en la forma
+            txtConcepto.Text = concepto.ToString();
+            txtFactura.Text = folio.ToString();
 
             // Crea la subcuenta del almacen y la llenamos con sus datos correspondientes.
             Subcuenta SubAlmacen = new Subcuenta();
@@ -82,7 +87,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             // Creamos la subcuenta del cliente y la llenamos con sus datos.
             Subcuenta SubCliente = new Subcuenta();
             SubCliente.Monto = (int)(totalProducto * 116);
-            SubCliente.NombreSubcuenta = $"{Cliente} s/f 9999";
+            SubCliente.NombreSubcuenta = $"{Cliente} s/f {folio}";
 
             // Creamos la cuenta del probeedor y la llenamos.
             Cuenta cliente = new Cuenta();
@@ -93,12 +98,12 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             // Creamos el asiento y lo llenamos.
             Asiento registro = new Asiento();
             registro.NoAsiento = 999;
-            registro.Fecha = DateTime.Now;
+            registro.Fecha = fecha;
             registro.Cargos = new Cuenta[] { Almacen, IVA };
             registro.Abonos = new Cuenta[] { cliente };
             registro.SumaCargos = IVA.Monto + Almacen.Monto;
             registro.SumaAbonos = cliente.Monto;
-            registro.Concepto = $"Compra de mercancia s/f XXXX del proveedor {cliente}.";
+            registro.Concepto = concepto;
 
             XmlDocument escritor = new XmlDocument();
             // Transformamos la clase en elemento xml.
