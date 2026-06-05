@@ -7,6 +7,13 @@ using System.Xml.Serialization;
 
 namespace PA4IM9_20262_Equipo2.Entidades
 {
+    public enum Cuentas
+    {
+        Almacen = 1,
+        Clientes = 2,
+        Proveedores = 3,
+    }
+
     // Para poderse usar y asignar en el saldo del movimiento usar
     // ((Saldos)1).ToString() : el 1 puede cambiar por el 2
     public enum Saldos
