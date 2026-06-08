@@ -41,7 +41,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             
             // 2. Capturar los datos de los controles
             int cantidad = (int)nudCantidad.Value;
-            decimal costoUnitario = (int)nudCostoUnitario.Value;
+            decimal costoUnitario = decimal.Parse(txtCostoUni.Text);
             decimal subtotal = cantidad * costoUnitario;
             decimal iva = subtotal * .16m;
 
@@ -70,7 +70,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             // 1. Capturar los datos de los controles
             string productos = cmbProductos.SelectedItem.ToString();
             int cantidad = (int)nudCantidad.Value;
-            decimal costoUnitario = nudCostoUnitario.Value;
+            decimal costoUnitario = decimal.Parse(txtCostoUni.Text);
             decimal subtotal = costoUnitario * cantidad;
             decimal iva = decimal.Parse(txtIVA.Text);
             decimal totalProducto = decimal.Parse(txtPrecioFinal.Text);
@@ -172,7 +172,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             // Restablece los controles superiores para agilizar el rellenado
             if (cmbProductos.Items.Count > 0) cmbProductos.SelectedIndex = 0;
             nudCantidad.Value = 1;
-            nudCostoUnitario.Value = 1;
+            txtCostoUni.Text = "1";
             txtCliente.Clear();
             cmbProductos.Focus(); // Pone el cursor de vuelta en el producto
             txtFolio.Clear();
@@ -199,12 +199,30 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
                 int filaSeleccionada = dgvSubcuentas.CurrentRow.Index;
                 dgvSubcuentas.Rows[filaSeleccionada].Cells[0].Value = DateTime.Now;
                 dgvSubcuentas.Rows[filaSeleccionada].Cells[1].Value = cmbProductos.SelectedItem;
-                dgvSubcuentas.Rows[filaSeleccionada].Cells[2].Value = ((int)nudCantidad.Value)*(nudCostoUnitario.Value);
-                dgvSubcuentas.Rows[filaSeleccionada].Cells[3].Value = ((int)nudCantidad.Value) * (nudCostoUnitario.Value) * (0.16m);
-                dgvSubcuentas.Rows[filaSeleccionada].Cells[4].Value = ((int)nudCantidad.Value) * (nudCostoUnitario.Value) * (1.16m);
+                dgvSubcuentas.Rows[filaSeleccionada].Cells[2].Value = ((int)nudCantidad.Value) * decimal.Parse(txtCostoUni.Text);
+                dgvSubcuentas.Rows[filaSeleccionada].Cells[3].Value = ((int)nudCantidad.Value) * decimal.Parse(txtCostoUni.Text) * (0.16m);
+                dgvSubcuentas.Rows[filaSeleccionada].Cells[4].Value = ((int)nudCantidad.Value) * decimal.Parse(txtCostoUni.Text) * (1.16m);
                 dgvSubcuentas.Rows[filaSeleccionada].Cells[5].Value = Sistema.PerfilActivo.Usuario;
             }
             btnConfirmar.Enabled = false;
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox txt = (TextBox)sender;
+
+            // 1. Permitir números, borrar, espacios y el punto (si no existe ya)
+            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsSeparator(e.KeyChar)) e.Handled = false;
+            else if (e.KeyChar == '.' && !txt.Text.Contains(".")) e.Handled = false;
+            else e.Handled = true;
+
+            // 2. Controlar las 2 cifras decimales (solo si ya hay punto y no estás borrando)
+            if (!e.Handled && txt.Text.Contains(".") && !char.IsControl(e.KeyChar))
+            {
+                // Bloquea solo si el cursor está parado después del punto y ya hay 2 dígitos
+                if (txt.SelectionStart > txt.Text.IndexOf('.') && txt.Text.Length - txt.Text.IndexOf('.') > 2)
+                    e.Handled = true;
+            }
         }
     }
 }

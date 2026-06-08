@@ -31,23 +31,31 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuPrincipal));
             this.BarraLateral = new System.Windows.Forms.Panel();
-            this.btnSucursales = new System.Windows.Forms.Button();
-            this.imgListBotones = new System.Windows.Forms.ImageList(this.components);
-            this.iconoMarca = new System.Windows.Forms.PictureBox();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.btnOpciones = new System.Windows.Forms.Button();
+            this.lineaBtn7 = new System.Windows.Forms.Panel();
+            this.imgListBotones = new System.Windows.Forms.ImageList(this.components);
+            this.btnSucursales = new System.Windows.Forms.Button();
+            this.lineaBtn6 = new System.Windows.Forms.Panel();
+            this.iconoMarca = new System.Windows.Forms.PictureBox();
             this.btnAlmacen = new System.Windows.Forms.Button();
+            this.lineaBtn5 = new System.Windows.Forms.Panel();
             this.btnProvedores = new System.Windows.Forms.Button();
+            this.lineaBtn4 = new System.Windows.Forms.Panel();
             this.btnClientes = new System.Windows.Forms.Button();
+            this.lineaBtn3 = new System.Windows.Forms.Panel();
             this.btnSalidas = new System.Windows.Forms.Button();
+            this.lineaBtn2 = new System.Windows.Forms.Panel();
             this.btnEntradas = new System.Windows.Forms.Button();
+            this.lineaBtn1 = new System.Windows.Forms.Panel();
             this.btnHome = new System.Windows.Forms.Button();
+            this.lineaBtn0 = new System.Windows.Forms.Panel();
             this.panOpciones = new System.Windows.Forms.Panel();
             this.btnLogout = new System.Windows.Forms.Button();
             this.imgListDesplegables = new System.Windows.Forms.ImageList(this.components);
             this.btnConfig = new System.Windows.Forms.Button();
             this.btnUsuario = new System.Windows.Forms.Button();
             this.Contenedor = new System.Windows.Forms.Panel();
+            this.marcaAgua = new System.Windows.Forms.PictureBox();
             this.panInstitucion = new System.Windows.Forms.Panel();
             this.lblLaTecnica = new System.Windows.Forms.Label();
             this.lblCecyt = new System.Windows.Forms.Label();
@@ -59,9 +67,18 @@
             this.LogoAniCecyt = new System.Windows.Forms.PictureBox();
             this.logoCecyt = new System.Windows.Forms.PictureBox();
             this.BarraLateral.SuspendLayout();
+            this.btnOpciones.SuspendLayout();
+            this.btnSucursales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconoMarca)).BeginInit();
-            this.panel5.SuspendLayout();
+            this.btnAlmacen.SuspendLayout();
+            this.btnProvedores.SuspendLayout();
+            this.btnClientes.SuspendLayout();
+            this.btnSalidas.SuspendLayout();
+            this.btnEntradas.SuspendLayout();
+            this.btnHome.SuspendLayout();
             this.panOpciones.SuspendLayout();
+            this.Contenedor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.marcaAgua)).BeginInit();
             this.panInstitucion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoIPN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LogoAniIPN)).BeginInit();
@@ -71,10 +88,10 @@
             // 
             // BarraLateral
             // 
-            this.BarraLateral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(29)))), ((int)(((byte)(70)))));
+            this.BarraLateral.BackColor = System.Drawing.Color.Transparent;
+            this.BarraLateral.Controls.Add(this.btnOpciones);
             this.BarraLateral.Controls.Add(this.btnSucursales);
             this.BarraLateral.Controls.Add(this.iconoMarca);
-            this.BarraLateral.Controls.Add(this.panel5);
             this.BarraLateral.Controls.Add(this.btnAlmacen);
             this.BarraLateral.Controls.Add(this.btnProvedores);
             this.BarraLateral.Controls.Add(this.btnClientes);
@@ -83,28 +100,44 @@
             this.BarraLateral.Controls.Add(this.btnHome);
             this.BarraLateral.Controls.Add(this.panOpciones);
             this.BarraLateral.Dock = System.Windows.Forms.DockStyle.Left;
-            this.BarraLateral.Location = new System.Drawing.Point(0, 0);
+            this.BarraLateral.Location = new System.Drawing.Point(0, 80);
             this.BarraLateral.Name = "BarraLateral";
-            this.BarraLateral.Size = new System.Drawing.Size(188, 652);
+            this.BarraLateral.Size = new System.Drawing.Size(188, 572);
             this.BarraLateral.TabIndex = 1;
             // 
-            // btnSucursales
+            // btnOpciones
             // 
-            this.btnSucursales.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnSucursales.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSucursales.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSucursales.ForeColor = System.Drawing.Color.Black;
-            this.btnSucursales.ImageIndex = 6;
-            this.btnSucursales.ImageList = this.imgListBotones;
-            this.btnSucursales.Location = new System.Drawing.Point(2, 442);
-            this.btnSucursales.Name = "btnSucursales";
-            this.btnSucursales.Size = new System.Drawing.Size(181, 37);
-            this.btnSucursales.TabIndex = 12;
-            this.btnSucursales.Text = "Sucursales";
-            this.btnSucursales.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSucursales.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSucursales.UseVisualStyleBackColor = true;
-            this.btnSucursales.Click += new System.EventHandler(this.btnSucursales_Click);
+            this.btnOpciones.BackColor = System.Drawing.Color.White;
+            this.btnOpciones.Controls.Add(this.lineaBtn7);
+            this.btnOpciones.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOpciones.FlatAppearance.BorderSize = 0;
+            this.btnOpciones.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.btnOpciones.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.btnOpciones.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(220)))), ((int)(((byte)(215)))));
+            this.btnOpciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpciones.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpciones.ForeColor = System.Drawing.Color.Black;
+            this.btnOpciones.ImageIndex = 7;
+            this.btnOpciones.ImageList = this.imgListBotones;
+            this.btnOpciones.Location = new System.Drawing.Point(2, 524);
+            this.btnOpciones.Name = "btnOpciones";
+            this.btnOpciones.Size = new System.Drawing.Size(188, 37);
+            this.btnOpciones.TabIndex = 14;
+            this.btnOpciones.Text = "Opciónes";
+            this.btnOpciones.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOpciones.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnOpciones.UseVisualStyleBackColor = false;
+            this.btnOpciones.Click += new System.EventHandler(this.btnOpciones_Click);
+            this.btnOpciones.MouseLeave += new System.EventHandler(this.btnOpciones_MouseLeave);
+            this.btnOpciones.MouseHover += new System.EventHandler(this.btnOpciones_MouseHover);
+            // 
+            // lineaBtn7
+            // 
+            this.lineaBtn7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.lineaBtn7.Location = new System.Drawing.Point(0, 0);
+            this.lineaBtn7.Name = "lineaBtn7";
+            this.lineaBtn7.Size = new System.Drawing.Size(5, 37);
+            this.lineaBtn7.TabIndex = 30;
             // 
             // imgListBotones
             // 
@@ -119,151 +152,246 @@
             this.imgListBotones.Images.SetKeyName(6, "sucursales.png");
             this.imgListBotones.Images.SetKeyName(7, "opsiones.png");
             // 
+            // btnSucursales
+            // 
+            this.btnSucursales.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnSucursales.BackColor = System.Drawing.Color.White;
+            this.btnSucursales.Controls.Add(this.lineaBtn6);
+            this.btnSucursales.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSucursales.FlatAppearance.BorderSize = 0;
+            this.btnSucursales.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.btnSucursales.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.btnSucursales.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(220)))), ((int)(((byte)(215)))));
+            this.btnSucursales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSucursales.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSucursales.ForeColor = System.Drawing.Color.Black;
+            this.btnSucursales.ImageIndex = 6;
+            this.btnSucursales.ImageList = this.imgListBotones;
+            this.btnSucursales.Location = new System.Drawing.Point(1, 348);
+            this.btnSucursales.Name = "btnSucursales";
+            this.btnSucursales.Size = new System.Drawing.Size(188, 37);
+            this.btnSucursales.TabIndex = 12;
+            this.btnSucursales.Text = "Sucursales";
+            this.btnSucursales.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSucursales.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSucursales.UseVisualStyleBackColor = false;
+            this.btnSucursales.Click += new System.EventHandler(this.btnSucursales_Click);
+            // 
+            // lineaBtn6
+            // 
+            this.lineaBtn6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.lineaBtn6.Location = new System.Drawing.Point(0, 0);
+            this.lineaBtn6.Name = "lineaBtn6";
+            this.lineaBtn6.Size = new System.Drawing.Size(5, 37);
+            this.lineaBtn6.TabIndex = 29;
+            // 
             // iconoMarca
             // 
             this.iconoMarca.Image = ((System.Drawing.Image)(resources.GetObject("iconoMarca.Image")));
-            this.iconoMarca.Location = new System.Drawing.Point(1, 6);
+            this.iconoMarca.Location = new System.Drawing.Point(4, 7);
             this.iconoMarca.Name = "iconoMarca";
-            this.iconoMarca.Size = new System.Drawing.Size(185, 155);
+            this.iconoMarca.Size = new System.Drawing.Size(178, 78);
             this.iconoMarca.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.iconoMarca.TabIndex = 0;
             this.iconoMarca.TabStop = false;
             // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.btnOpciones);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 602);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(188, 50);
-            this.panel5.TabIndex = 8;
-            // 
-            // btnOpciones
-            // 
-            this.btnOpciones.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOpciones.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpciones.ForeColor = System.Drawing.Color.Black;
-            this.btnOpciones.ImageIndex = 7;
-            this.btnOpciones.ImageList = this.imgListBotones;
-            this.btnOpciones.Location = new System.Drawing.Point(2, 2);
-            this.btnOpciones.Name = "btnOpciones";
-            this.btnOpciones.Size = new System.Drawing.Size(181, 37);
-            this.btnOpciones.TabIndex = 14;
-            this.btnOpciones.Text = "Opciónes";
-            this.btnOpciones.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOpciones.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnOpciones.UseVisualStyleBackColor = true;
-            this.btnOpciones.Click += new System.EventHandler(this.btnOpciones_Click);
-            this.btnOpciones.MouseLeave += new System.EventHandler(this.btnOpciones_MouseLeave);
-            this.btnOpciones.MouseHover += new System.EventHandler(this.btnOpciones_MouseHover);
-            // 
             // btnAlmacen
             // 
             this.btnAlmacen.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnAlmacen.BackColor = System.Drawing.Color.White;
+            this.btnAlmacen.Controls.Add(this.lineaBtn5);
             this.btnAlmacen.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAlmacen.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlmacen.FlatAppearance.BorderSize = 0;
+            this.btnAlmacen.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.btnAlmacen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.btnAlmacen.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(220)))), ((int)(((byte)(215)))));
+            this.btnAlmacen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAlmacen.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAlmacen.ForeColor = System.Drawing.Color.Black;
             this.btnAlmacen.ImageIndex = 5;
             this.btnAlmacen.ImageList = this.imgListBotones;
-            this.btnAlmacen.Location = new System.Drawing.Point(2, 400);
+            this.btnAlmacen.Location = new System.Drawing.Point(1, 306);
             this.btnAlmacen.Name = "btnAlmacen";
-            this.btnAlmacen.Size = new System.Drawing.Size(181, 37);
+            this.btnAlmacen.Size = new System.Drawing.Size(188, 37);
             this.btnAlmacen.TabIndex = 10;
             this.btnAlmacen.Text = "Almacén";
             this.btnAlmacen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAlmacen.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAlmacen.UseVisualStyleBackColor = true;
+            this.btnAlmacen.UseVisualStyleBackColor = false;
             this.btnAlmacen.Click += new System.EventHandler(this.btnAlmacen_Click);
+            // 
+            // lineaBtn5
+            // 
+            this.lineaBtn5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.lineaBtn5.Location = new System.Drawing.Point(0, 0);
+            this.lineaBtn5.Name = "lineaBtn5";
+            this.lineaBtn5.Size = new System.Drawing.Size(5, 37);
+            this.lineaBtn5.TabIndex = 28;
             // 
             // btnProvedores
             // 
             this.btnProvedores.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnProvedores.BackColor = System.Drawing.Color.White;
+            this.btnProvedores.Controls.Add(this.lineaBtn4);
             this.btnProvedores.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnProvedores.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProvedores.FlatAppearance.BorderSize = 0;
+            this.btnProvedores.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.btnProvedores.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.btnProvedores.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(220)))), ((int)(((byte)(215)))));
+            this.btnProvedores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProvedores.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProvedores.ForeColor = System.Drawing.Color.Black;
             this.btnProvedores.ImageIndex = 4;
             this.btnProvedores.ImageList = this.imgListBotones;
-            this.btnProvedores.Location = new System.Drawing.Point(2, 358);
+            this.btnProvedores.Location = new System.Drawing.Point(1, 264);
             this.btnProvedores.Name = "btnProvedores";
-            this.btnProvedores.Size = new System.Drawing.Size(181, 37);
+            this.btnProvedores.Size = new System.Drawing.Size(188, 37);
             this.btnProvedores.TabIndex = 8;
             this.btnProvedores.Text = "Proveedores";
             this.btnProvedores.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnProvedores.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnProvedores.UseVisualStyleBackColor = true;
+            this.btnProvedores.UseVisualStyleBackColor = false;
             this.btnProvedores.Click += new System.EventHandler(this.btnProvedores_Click);
+            // 
+            // lineaBtn4
+            // 
+            this.lineaBtn4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.lineaBtn4.Location = new System.Drawing.Point(0, 0);
+            this.lineaBtn4.Name = "lineaBtn4";
+            this.lineaBtn4.Size = new System.Drawing.Size(5, 37);
+            this.lineaBtn4.TabIndex = 27;
             // 
             // btnClientes
             // 
             this.btnClientes.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnClientes.BackColor = System.Drawing.Color.White;
+            this.btnClientes.Controls.Add(this.lineaBtn3);
             this.btnClientes.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClientes.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClientes.FlatAppearance.BorderSize = 0;
+            this.btnClientes.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.btnClientes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.btnClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(220)))), ((int)(((byte)(215)))));
+            this.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClientes.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClientes.ForeColor = System.Drawing.Color.Black;
             this.btnClientes.ImageIndex = 3;
             this.btnClientes.ImageList = this.imgListBotones;
-            this.btnClientes.Location = new System.Drawing.Point(2, 315);
+            this.btnClientes.Location = new System.Drawing.Point(1, 221);
             this.btnClientes.Name = "btnClientes";
-            this.btnClientes.Size = new System.Drawing.Size(181, 37);
+            this.btnClientes.Size = new System.Drawing.Size(188, 37);
             this.btnClientes.TabIndex = 6;
             this.btnClientes.Text = "Clientes";
             this.btnClientes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnClientes.UseVisualStyleBackColor = true;
+            this.btnClientes.UseVisualStyleBackColor = false;
             this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
+            // 
+            // lineaBtn3
+            // 
+            this.lineaBtn3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.lineaBtn3.Location = new System.Drawing.Point(0, 0);
+            this.lineaBtn3.Name = "lineaBtn3";
+            this.lineaBtn3.Size = new System.Drawing.Size(5, 37);
+            this.lineaBtn3.TabIndex = 26;
             // 
             // btnSalidas
             // 
             this.btnSalidas.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnSalidas.BackColor = System.Drawing.Color.White;
+            this.btnSalidas.Controls.Add(this.lineaBtn2);
             this.btnSalidas.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSalidas.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalidas.FlatAppearance.BorderSize = 0;
+            this.btnSalidas.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.btnSalidas.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.btnSalidas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(220)))), ((int)(((byte)(215)))));
+            this.btnSalidas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalidas.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalidas.ForeColor = System.Drawing.Color.Black;
             this.btnSalidas.ImageIndex = 2;
             this.btnSalidas.ImageList = this.imgListBotones;
-            this.btnSalidas.Location = new System.Drawing.Point(2, 273);
+            this.btnSalidas.Location = new System.Drawing.Point(1, 179);
             this.btnSalidas.Name = "btnSalidas";
-            this.btnSalidas.Size = new System.Drawing.Size(181, 37);
+            this.btnSalidas.Size = new System.Drawing.Size(188, 37);
             this.btnSalidas.TabIndex = 4;
             this.btnSalidas.Text = "Salidas";
             this.btnSalidas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSalidas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSalidas.UseVisualStyleBackColor = true;
+            this.btnSalidas.UseVisualStyleBackColor = false;
             this.btnSalidas.Click += new System.EventHandler(this.btnSalidas_Click);
+            // 
+            // lineaBtn2
+            // 
+            this.lineaBtn2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.lineaBtn2.Location = new System.Drawing.Point(0, 0);
+            this.lineaBtn2.Name = "lineaBtn2";
+            this.lineaBtn2.Size = new System.Drawing.Size(5, 37);
+            this.lineaBtn2.TabIndex = 25;
             // 
             // btnEntradas
             // 
             this.btnEntradas.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnEntradas.BackColor = System.Drawing.Color.White;
+            this.btnEntradas.Controls.Add(this.lineaBtn1);
             this.btnEntradas.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEntradas.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEntradas.FlatAppearance.BorderSize = 0;
+            this.btnEntradas.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.btnEntradas.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.btnEntradas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(220)))), ((int)(((byte)(215)))));
+            this.btnEntradas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEntradas.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEntradas.ForeColor = System.Drawing.Color.Black;
             this.btnEntradas.ImageIndex = 1;
             this.btnEntradas.ImageList = this.imgListBotones;
-            this.btnEntradas.Location = new System.Drawing.Point(2, 231);
+            this.btnEntradas.Location = new System.Drawing.Point(1, 136);
             this.btnEntradas.Name = "btnEntradas";
-            this.btnEntradas.Size = new System.Drawing.Size(181, 37);
+            this.btnEntradas.Size = new System.Drawing.Size(188, 37);
             this.btnEntradas.TabIndex = 2;
             this.btnEntradas.Text = "Entradas";
             this.btnEntradas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEntradas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEntradas.UseVisualStyleBackColor = true;
+            this.btnEntradas.UseVisualStyleBackColor = false;
             this.btnEntradas.Click += new System.EventHandler(this.btnEntradas_Click);
+            // 
+            // lineaBtn1
+            // 
+            this.lineaBtn1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.lineaBtn1.Location = new System.Drawing.Point(0, 0);
+            this.lineaBtn1.Name = "lineaBtn1";
+            this.lineaBtn1.Size = new System.Drawing.Size(5, 37);
+            this.lineaBtn1.TabIndex = 24;
             // 
             // btnHome
             // 
             this.btnHome.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnHome.BackColor = System.Drawing.Color.White;
+            this.btnHome.Controls.Add(this.lineaBtn0);
             this.btnHome.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHome.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHome.FlatAppearance.BorderSize = 0;
+            this.btnHome.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.btnHome.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.btnHome.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(220)))), ((int)(((byte)(215)))));
+            this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHome.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHome.ForeColor = System.Drawing.Color.Black;
             this.btnHome.ImageIndex = 0;
             this.btnHome.ImageList = this.imgListBotones;
-            this.btnHome.Location = new System.Drawing.Point(2, 188);
+            this.btnHome.Location = new System.Drawing.Point(1, 93);
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(181, 37);
+            this.btnHome.Size = new System.Drawing.Size(188, 37);
             this.btnHome.TabIndex = 0;
             this.btnHome.Text = "Home";
             this.btnHome.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnHome.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnHome.UseVisualStyleBackColor = true;
+            this.btnHome.UseVisualStyleBackColor = false;
             this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            // 
+            // lineaBtn0
+            // 
+            this.lineaBtn0.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(154)))), ((int)(((byte)(146)))));
+            this.lineaBtn0.Location = new System.Drawing.Point(0, 0);
+            this.lineaBtn0.Name = "lineaBtn0";
+            this.lineaBtn0.Size = new System.Drawing.Size(5, 37);
+            this.lineaBtn0.TabIndex = 23;
             // 
             // panOpciones
             // 
@@ -271,10 +399,10 @@
             this.panOpciones.Controls.Add(this.btnLogout);
             this.panOpciones.Controls.Add(this.btnConfig);
             this.panOpciones.Controls.Add(this.btnUsuario);
-            this.panOpciones.Location = new System.Drawing.Point(61, 502);
+            this.panOpciones.Location = new System.Drawing.Point(61, 424);
             this.panOpciones.Name = "panOpciones";
             this.panOpciones.Size = new System.Drawing.Size(122, 106);
-            this.panOpciones.TabIndex = 11;
+            this.panOpciones.TabIndex = 22;
             this.panOpciones.Visible = false;
             this.panOpciones.MouseLeave += new System.EventHandler(this.panOpciones_MouseLeave);
             this.panOpciones.MouseHover += new System.EventHandler(this.panOpciones_MouseHover);
@@ -282,11 +410,11 @@
             // btnLogout
             // 
             this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(101)))), ((int)(((byte)(105)))));
+            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(144)))), ((int)(((byte)(86)))));
             this.btnLogout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLogout.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
             this.btnLogout.ForeColor = System.Drawing.Color.White;
-            this.btnLogout.ImageIndex = 1;
+            this.btnLogout.ImageIndex = 2;
             this.btnLogout.ImageList = this.imgListDesplegables;
             this.btnLogout.Location = new System.Drawing.Point(8, 4);
             this.btnLogout.Name = "btnLogout";
@@ -304,14 +432,15 @@
             this.imgListDesplegables.TransparentColor = System.Drawing.Color.Transparent;
             this.imgListDesplegables.Images.SetKeyName(0, "configuracion.png");
             this.imgListDesplegables.Images.SetKeyName(1, "usuario.png");
+            this.imgListDesplegables.Images.SetKeyName(2, "logout.png");
             // 
             // btnConfig
             // 
             this.btnConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnConfig.BackColor = System.Drawing.Color.White;
             this.btnConfig.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnConfig.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfig.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.btnConfig.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
+            this.btnConfig.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(88)))), ((int)(((byte)(77)))));
             this.btnConfig.ImageIndex = 0;
             this.btnConfig.ImageList = this.imgListDesplegables;
             this.btnConfig.Location = new System.Drawing.Point(8, 70);
@@ -329,8 +458,8 @@
             this.btnUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUsuario.BackColor = System.Drawing.Color.White;
             this.btnUsuario.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUsuario.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(117)))), ((int)(((byte)(35)))), ((int)(((byte)(67)))));
+            this.btnUsuario.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
+            this.btnUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(88)))), ((int)(((byte)(77)))));
             this.btnUsuario.ImageIndex = 1;
             this.btnUsuario.ImageList = this.imgListDesplegables;
             this.btnUsuario.Location = new System.Drawing.Point(8, 38);
@@ -347,13 +476,24 @@
             // 
             this.Contenedor.BackColor = System.Drawing.Color.White;
             this.Contenedor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Contenedor.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Contenedor.Controls.Add(this.marcaAgua);
+            this.Contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Contenedor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(47)))), ((int)(((byte)(87)))));
-            this.Contenedor.Location = new System.Drawing.Point(188, 79);
+            this.Contenedor.Location = new System.Drawing.Point(188, 80);
             this.Contenedor.Name = "Contenedor";
-            this.Contenedor.Size = new System.Drawing.Size(1020, 573);
+            this.Contenedor.Size = new System.Drawing.Size(967, 572);
             this.Contenedor.TabIndex = 1;
             this.Contenedor.TabStop = true;
+            // 
+            // marcaAgua
+            // 
+            this.marcaAgua.Image = ((System.Drawing.Image)(resources.GetObject("marcaAgua.Image")));
+            this.marcaAgua.Location = new System.Drawing.Point(334, 137);
+            this.marcaAgua.Name = "marcaAgua";
+            this.marcaAgua.Size = new System.Drawing.Size(300, 300);
+            this.marcaAgua.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.marcaAgua.TabIndex = 0;
+            this.marcaAgua.TabStop = false;
             // 
             // panInstitucion
             // 
@@ -368,18 +508,20 @@
             this.panInstitucion.Controls.Add(this.LogoAniCecyt);
             this.panInstitucion.Controls.Add(this.logoCecyt);
             this.panInstitucion.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panInstitucion.Location = new System.Drawing.Point(188, 0);
+            this.panInstitucion.Location = new System.Drawing.Point(0, 0);
             this.panInstitucion.Margin = new System.Windows.Forms.Padding(4);
             this.panInstitucion.Name = "panInstitucion";
-            this.panInstitucion.Size = new System.Drawing.Size(1020, 80);
+            this.panInstitucion.Size = new System.Drawing.Size(1155, 80);
             this.panInstitucion.TabIndex = 14;
             // 
             // lblLaTecnica
             // 
+            this.lblLaTecnica.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLaTecnica.AutoSize = true;
             this.lblLaTecnica.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLaTecnica.ForeColor = System.Drawing.Color.White;
-            this.lblLaTecnica.Location = new System.Drawing.Point(481, 41);
+            this.lblLaTecnica.Location = new System.Drawing.Point(694, 40);
             this.lblLaTecnica.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLaTecnica.Name = "lblLaTecnica";
             this.lblLaTecnica.Size = new System.Drawing.Size(210, 16);
@@ -388,22 +530,26 @@
             // 
             // lblCecyt
             // 
+            this.lblCecyt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCecyt.Font = new System.Drawing.Font("Microsoft Tai Le", 10.75F, System.Drawing.FontStyle.Bold);
             this.lblCecyt.ForeColor = System.Drawing.Color.White;
-            this.lblCecyt.Location = new System.Drawing.Point(102, 9);
+            this.lblCecyt.Location = new System.Drawing.Point(316, 8);
             this.lblCecyt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCecyt.Name = "lblCecyt";
-            this.lblCecyt.Size = new System.Drawing.Size(193, 41);
+            this.lblCecyt.Size = new System.Drawing.Size(140, 41);
             this.lblCecyt.TabIndex = 5;
             this.lblCecyt.Text = "Centro de Estudios Cientificos y Tecnologicos No. 13";
             this.lblCecyt.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblIPN
             // 
+            this.lblIPN.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblIPN.AutoSize = true;
             this.lblIPN.Font = new System.Drawing.Font("Microsoft Tai Le", 10.75F, System.Drawing.FontStyle.Bold);
             this.lblIPN.ForeColor = System.Drawing.Color.White;
-            this.lblIPN.Location = new System.Drawing.Point(478, 22);
+            this.lblIPN.Location = new System.Drawing.Point(692, 21);
             this.lblIPN.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIPN.Name = "lblIPN";
             this.lblIPN.Size = new System.Drawing.Size(215, 19);
@@ -412,10 +558,12 @@
             // 
             // lblRFM
             // 
+            this.lblRFM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRFM.AutoSize = true;
             this.lblRFM.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRFM.ForeColor = System.Drawing.Color.White;
-            this.lblRFM.Location = new System.Drawing.Point(124, 49);
+            this.lblRFM.Location = new System.Drawing.Point(338, 48);
             this.lblRFM.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRFM.Name = "lblRFM";
             this.lblRFM.Size = new System.Drawing.Size(147, 16);
@@ -424,17 +572,21 @@
             // 
             // linea1
             // 
+            this.linea1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.linea1.BackColor = System.Drawing.Color.Black;
-            this.linea1.Location = new System.Drawing.Point(391, 5);
+            this.linea1.Location = new System.Drawing.Point(604, 5);
             this.linea1.Margin = new System.Windows.Forms.Padding(4);
             this.linea1.Name = "linea1";
-            this.linea1.Size = new System.Drawing.Size(1, 72);
+            this.linea1.Size = new System.Drawing.Size(2, 71);
             this.linea1.TabIndex = 4;
             // 
             // LogoIPN
             // 
+            this.LogoIPN.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LogoIPN.Image = ((System.Drawing.Image)(resources.GetObject("LogoIPN.Image")));
-            this.LogoIPN.Location = new System.Drawing.Point(688, 8);
+            this.LogoIPN.Location = new System.Drawing.Point(902, 7);
             this.LogoIPN.Margin = new System.Windows.Forms.Padding(4);
             this.LogoIPN.Name = "LogoIPN";
             this.LogoIPN.Size = new System.Drawing.Size(64, 64);
@@ -444,8 +596,10 @@
             // 
             // LogoAniIPN
             // 
+            this.LogoAniIPN.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LogoAniIPN.Image = ((System.Drawing.Image)(resources.GetObject("LogoAniIPN.Image")));
-            this.LogoAniIPN.Location = new System.Drawing.Point(408, 8);
+            this.LogoAniIPN.Location = new System.Drawing.Point(622, 7);
             this.LogoAniIPN.Margin = new System.Windows.Forms.Padding(4);
             this.LogoAniIPN.Name = "LogoAniIPN";
             this.LogoAniIPN.Size = new System.Drawing.Size(64, 64);
@@ -455,8 +609,10 @@
             // 
             // LogoAniCecyt
             // 
+            this.LogoAniCecyt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LogoAniCecyt.Image = ((System.Drawing.Image)(resources.GetObject("LogoAniCecyt.Image")));
-            this.LogoAniCecyt.Location = new System.Drawing.Point(311, 8);
+            this.LogoAniCecyt.Location = new System.Drawing.Point(525, 7);
             this.LogoAniCecyt.Margin = new System.Windows.Forms.Padding(4);
             this.LogoAniCecyt.Name = "LogoAniCecyt";
             this.LogoAniCecyt.Size = new System.Drawing.Size(64, 64);
@@ -466,8 +622,10 @@
             // 
             // logoCecyt
             // 
+            this.logoCecyt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.logoCecyt.Image = ((System.Drawing.Image)(resources.GetObject("logoCecyt.Image")));
-            this.logoCecyt.Location = new System.Drawing.Point(32, 8);
+            this.logoCecyt.Location = new System.Drawing.Point(246, 7);
             this.logoCecyt.Margin = new System.Windows.Forms.Padding(4);
             this.logoCecyt.Name = "logoCecyt";
             this.logoCecyt.Size = new System.Drawing.Size(64, 64);
@@ -479,20 +637,30 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1208, 652);
-            this.Controls.Add(this.panInstitucion);
+            this.ClientSize = new System.Drawing.Size(1155, 652);
             this.Controls.Add(this.Contenedor);
             this.Controls.Add(this.BarraLateral);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Controls.Add(this.panInstitucion);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MenuPrincipal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SIRETECH Poli.";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MenuPrincipal_FormClosing);
             this.BarraLateral.ResumeLayout(false);
+            this.btnOpciones.ResumeLayout(false);
+            this.btnSucursales.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconoMarca)).EndInit();
-            this.panel5.ResumeLayout(false);
+            this.btnAlmacen.ResumeLayout(false);
+            this.btnProvedores.ResumeLayout(false);
+            this.btnClientes.ResumeLayout(false);
+            this.btnSalidas.ResumeLayout(false);
+            this.btnEntradas.ResumeLayout(false);
+            this.btnHome.ResumeLayout(false);
             this.panOpciones.ResumeLayout(false);
+            this.Contenedor.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.marcaAgua)).EndInit();
             this.panInstitucion.ResumeLayout(false);
             this.panInstitucion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoIPN)).EndInit();
@@ -506,32 +674,40 @@
         #endregion
 
         private System.Windows.Forms.Panel BarraLateral;
-        private System.Windows.Forms.Panel Contenedor;
-        private System.Windows.Forms.Button btnHome;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button btnUsuario;
-        private System.Windows.Forms.Button btnAlmacen;
-        private System.Windows.Forms.Button btnProvedores;
-        private System.Windows.Forms.Button btnClientes;
-        private System.Windows.Forms.Button btnSalidas;
-        private System.Windows.Forms.Button btnEntradas;
-        private System.Windows.Forms.Button btnOpciones;
         private System.Windows.Forms.PictureBox iconoMarca;
-        private System.Windows.Forms.Button btnConfig;
+        private System.Windows.Forms.Button btnHome;
+        private System.Windows.Forms.Button btnEntradas;
+        private System.Windows.Forms.Button btnSalidas;
+        private System.Windows.Forms.Button btnClientes;
+        private System.Windows.Forms.Button btnProvedores;
+        private System.Windows.Forms.Button btnAlmacen;
         private System.Windows.Forms.Button btnSucursales;
-        private System.Windows.Forms.ImageList imgListBotones;
-        private System.Windows.Forms.ImageList imgListDesplegables;
+        private System.Windows.Forms.Button btnOpciones;
         private System.Windows.Forms.Panel panOpciones;
+        private System.Windows.Forms.Button btnConfig;
+        private System.Windows.Forms.Button btnUsuario;
+        private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Panel panInstitucion;
-        private System.Windows.Forms.Label lblLaTecnica;
+        private System.Windows.Forms.PictureBox logoCecyt;
         private System.Windows.Forms.Label lblCecyt;
-        private System.Windows.Forms.Label lblIPN;
         private System.Windows.Forms.Label lblRFM;
+        private System.Windows.Forms.PictureBox LogoAniCecyt;
         private System.Windows.Forms.Panel linea1;
         private System.Windows.Forms.PictureBox LogoIPN;
+        private System.Windows.Forms.Label lblIPN;
+        private System.Windows.Forms.Label lblLaTecnica;
         private System.Windows.Forms.PictureBox LogoAniIPN;
-        private System.Windows.Forms.PictureBox LogoAniCecyt;
-        private System.Windows.Forms.PictureBox logoCecyt;
-        private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Panel Contenedor;
+        private System.Windows.Forms.PictureBox marcaAgua;
+        private System.Windows.Forms.ImageList imgListBotones;
+        private System.Windows.Forms.ImageList imgListDesplegables;
+        private System.Windows.Forms.Panel lineaBtn0;
+        private System.Windows.Forms.Panel lineaBtn2;
+        private System.Windows.Forms.Panel lineaBtn1;
+        private System.Windows.Forms.Panel lineaBtn7;
+        private System.Windows.Forms.Panel lineaBtn6;
+        private System.Windows.Forms.Panel lineaBtn5;
+        private System.Windows.Forms.Panel lineaBtn4;
+        private System.Windows.Forms.Panel lineaBtn3;
     }
 }
