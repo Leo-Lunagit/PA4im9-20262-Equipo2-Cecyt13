@@ -64,6 +64,10 @@
             this.lblVersion = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.linea2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.grpInicioS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconoConfirmarContra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconoContrasenia)).BeginInit();
@@ -79,14 +83,14 @@
             // 
             // lblTitulo
             // 
-            this.lblTitulo.Font = new System.Drawing.Font("Harrington", 19.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(29)))), ((int)(((byte)(70)))));
-            this.lblTitulo.Location = new System.Drawing.Point(26, 10);
+            this.lblTitulo.Font = new System.Drawing.Font("Harrington", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(68)))), ((int)(((byte)(38)))));
+            this.lblTitulo.Location = new System.Drawing.Point(2, 10);
             this.lblTitulo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(402, 80);
+            this.lblTitulo.Size = new System.Drawing.Size(446, 36);
             this.lblTitulo.TabIndex = 0;
-            this.lblTitulo.Text = "Sistema de Reciclaje Tecnológico en el Poilitécnico";
+            this.lblTitulo.Text = "Sistema de Reciclaje Tecnológico";
             this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnAcerca
@@ -488,6 +492,10 @@
             // panMarca
             // 
             this.panMarca.BackColor = System.Drawing.Color.White;
+            this.panMarca.Controls.Add(this.label4);
+            this.panMarca.Controls.Add(this.label3);
+            this.panMarca.Controls.Add(this.label2);
+            this.panMarca.Controls.Add(this.label1);
             this.panMarca.Controls.Add(this.lblVersion);
             this.panMarca.Controls.Add(this.pictureBox4);
             this.panMarca.Controls.Add(this.linea2);
@@ -502,17 +510,20 @@
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font("Harlow Solid Italic", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersion.Location = new System.Drawing.Point(12, 351);
+            this.lblVersion.Location = new System.Drawing.Point(5, 357);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(69, 16);
             this.lblVersion.TabIndex = 7;
-            this.lblVersion.Text = "Alph 1.0.37";
+            this.lblVersion.Text = "Alph 1.3.12";
+            this.lblVersion.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Location = new System.Drawing.Point(32, 98);
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(127, 114);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(390, 223);
+            this.pictureBox4.Size = new System.Drawing.Size(200, 200);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 6;
             this.pictureBox4.TabStop = false;
             // 
@@ -523,6 +534,51 @@
             this.linea2.Name = "linea2";
             this.linea2.Size = new System.Drawing.Size(2, 365);
             this.linea2.TabIndex = 5;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(88)))), ((int)(((byte)(77)))));
+            this.label1.Location = new System.Drawing.Point(180, 95);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 21);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Informatica";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(144)))), ((int)(((byte)(86)))));
+            this.label2.Location = new System.Drawing.Point(54, 317);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(105, 21);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "GRUPO 4IM9";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(144)))), ((int)(((byte)(86)))));
+            this.label3.Location = new System.Drawing.Point(301, 317);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 21);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "EQUIPO 2";
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Harrington", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(29)))), ((int)(((byte)(70)))));
+            this.label4.Location = new System.Drawing.Point(2, 46);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(446, 35);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "en el Poilitécnico";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // PanelAcceso
             // 
@@ -598,6 +654,10 @@
         private System.Windows.Forms.PictureBox iconoContrasenia;
         private System.Windows.Forms.PictureBox iconoConfirmarContra;
         private System.Windows.Forms.ComboBox cmbUsuarios;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
     }
 }
 
