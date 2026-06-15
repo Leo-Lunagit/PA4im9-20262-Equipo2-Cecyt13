@@ -1,5 +1,6 @@
 ﻿using PA4IM9_20262_Equipo2.Entidades;
 using PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas;
+using PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros;
 using PA4IM9_20262_Equipo2.Vistas.PanelVentas;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
         public static string Compras = "compras";
         public static string Ventas = "ventas";
         public static string Proveedores = "proveedores";
-        public static string Clientes = "usuarios";
+        public static string Clientes = "clientes";
         public static string Almacen = "almacen";
     }
 
@@ -194,7 +195,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
             Controles.Dock = DockStyle.Top;
             Contenedor.Controls.Add(Controles);
         }
-        public static void IndexarCampos(FormularioVentas Suscriber, Panel Contenedor, Campos Controles, Cuentas Cuenta)
+        public static void IndexarCampos(Formulario Suscriber, Panel Contenedor, Campos Controles, Cuentas Cuenta)
         {
             // Lo dispone en la parte superior (automaticamente lo coloca arriba de su hermano.)
             Controles.Dock = DockStyle.Top;

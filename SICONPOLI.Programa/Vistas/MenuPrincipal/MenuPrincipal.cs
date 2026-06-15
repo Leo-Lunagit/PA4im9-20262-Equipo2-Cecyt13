@@ -55,8 +55,8 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
             boton.BackColor = Color.FromArgb(200, 220, 215);
         }
         private void btnHome_Click(object sender, EventArgs e) { CerrarPaneles(sender); }
-        private void btnEntradas_Click(object sender, EventArgs e) { AbrirPaneles(new Panel_de_compras(), sender); }
-        private void btnSalidas_Click(object sender, EventArgs e) { AbrirPaneles(new Panel_Ventas(), sender); }
+        private void btnEntradas_Click(object sender, EventArgs e) { AbrirPaneles(new PanelRegistros(Cuentas.Proveedores), sender); }
+        private void btnSalidas_Click(object sender, EventArgs e) { AbrirPaneles(new PanelRegistros(Cuentas.Clientes), sender); }
         private void btnClientes_Click(object sender, EventArgs e) { CerrarPaneles(sender); }
         private void btnProvedores_Click(object sender, EventArgs e) { CerrarPaneles(sender); }
         private void btnAlmacen_Click(object sender, EventArgs e) { CerrarPaneles(sender); }

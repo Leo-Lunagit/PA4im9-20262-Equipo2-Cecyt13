@@ -52,7 +52,7 @@
     <Compile Include="Entidades\MovAuxiliar.cs" />
     <Compile Include="Entidades\Perfil.cs" />
     <Compile Include="Modulos\ConvertidorXml.cs" />
-    <Compile Include="Modulos\RegistradorProveedores.cs" />
+    <Compile Include="Modulos\RegistradorMayor.cs" />
     <Compile Include="Modulos\Sistema.cs" />
     <Compile Include="Vistas\CamposSubCuentas\Campos.cs">
       <SubType>UserControl</SubType>
@@ -72,11 +72,23 @@
     <Compile Include="Vistas\CamposSubCuentas\CamposProducto.Designer.cs">
       <DependentUpon>CamposProducto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\PanelCompras\PanelCompras.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Vistas\FormulariosRegistros\Formulario.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Vistas\PanelCompras\PanelCompras.Designer.cs">
-      <DependentUpon>PanelCompras.cs</DependentUpon>
+    <Compile Include="Vistas\FormulariosRegistros\Formulario.Designer.cs">
+      <DependentUpon>Formulario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\FormulariosRegistros\FormularioFacturaciones.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vistas\FormulariosRegistros\FormularioFacturaciones.Designer.cs">
+      <DependentUpon>FormularioFacturaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\FormulariosRegistros\FormularioTransacciones.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vistas\FormulariosRegistros\FormularioTransacciones.Designer.cs">
+      <DependentUpon>FormularioTransacciones.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\PanelAcceso\PanelAcceso.cs">
       <SubType>Form</SubType>
@@ -86,23 +98,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Vistas\PanelVentas\FormularioCobros.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Vistas\PanelVentas\FormularioCobros.Designer.cs">
-      <DependentUpon>FormularioCobros.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Vistas\PanelVentas\FormularioVentas.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Vistas\PanelVentas\FormularioVentas.Designer.cs">
-      <DependentUpon>FormularioVentas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Vistas\PanelVentas\PanelVentas.cs">
+    <Compile Include="Vistas\PanelesRegistros\PanelRegistros.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Vistas\PanelVentas\PanelVentas.Designer.cs">
-      <DependentUpon>PanelVentas.cs</DependentUpon>
+    <Compile Include="Vistas\PanelesRegistros\PanelRegistros.Designer.cs">
+      <DependentUpon>PanelRegistros.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Vistas\CamposSubCuentas\Campos.resx">
       <DependentUpon>Campos.cs</DependentUpon>
@@ -113,8 +113,14 @@
     <EmbeddedResource Include="Vistas\CamposSubCuentas\CamposProducto.resx">
       <DependentUpon>CamposProducto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\PanelCompras\PanelCompras.resx">
-      <DependentUpon>PanelCompras.cs</DependentUpon>
+    <EmbeddedResource Include="Vistas\FormulariosRegistros\Formulario.resx">
+      <DependentUpon>Formulario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FormulariosRegistros\FormularioFacturaciones.resx">
+      <DependentUpon>FormularioFacturaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\FormulariosRegistros\FormularioTransacciones.resx">
+      <DependentUpon>FormularioTransacciones.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Vistas\MenuPrincipal\MenuPrincipal.cs">
       <SubType>Form</SubType>
@@ -139,17 +145,11 @@
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\PanelVentas\FormularioCobros.resx">
-      <DependentUpon>FormularioCobros.cs</DependentUpon>
+    <EmbeddedResource Include="Vistas\PanelesRegistros\PanelRegistros.es-419.resx">
+      <DependentUpon>PanelRegistros.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\PanelVentas\FormularioVentas.resx">
-      <DependentUpon>FormularioVentas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\PanelVentas\PanelVentas.es-419.resx">
-      <DependentUpon>PanelVentas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\PanelVentas\PanelVentas.resx">
-      <DependentUpon>PanelVentas.cs</DependentUpon>
+    <EmbeddedResource Include="Vistas\PanelesRegistros\PanelRegistros.resx">
+      <DependentUpon>PanelRegistros.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

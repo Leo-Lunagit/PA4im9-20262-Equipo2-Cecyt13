@@ -28,9 +28,9 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             InitializeComponent();
 
             // Incrusta un lote controles para los campos de productos.
-            Sistema.IndexarCampos(this, this.ContenedorProductos, new CamposProducto(), Cuentas.Almacen);
+            //Sistema.IndexarCampos(this, this.ContenedorProductos, new CamposProducto(), Cuentas.Almacen);
             // Incrusta un lote de controles para los campos de clientes.
-            Sistema.IndexarCampos(this, this.ContenedorClientes, new CamposTitular(), Cuentas.Clientes);
+            //Sistema.IndexarCampos(this, this.ContenedorClientes, new CamposTitular(), Cuentas.Clientes);
         }
         //
         // Logica de validaciones.
@@ -92,7 +92,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             };
 
             // Agregamos una nueva fila de campos.
-            Sistema.IndexarCampos(this, Elementos.Contenedor, Elementos.Campos, Cuenta);
+            //Sistema.IndexarCampos(this, Elementos.Contenedor, Elementos.Campos, Cuenta);
             // Obtenemos el numero de filas.
             int CamposTotal = Elementos.Contenedor.Controls.Count;
             // Indicamos el numero de filas.

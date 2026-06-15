@@ -173,19 +173,22 @@ namespace PA4IM9_20262_Equipo2
             if (UsuarioRepetido()) return;
 
             // Crea un objeto para el perfil.
-            Perfil nuevoPerfil = new Perfil();
-
-            // Se asignan los datos fundamentales.
-            nuevoPerfil.FechaCreacion = DateTime.Now;
-            nuevoPerfil.ID = Sistema.GenerarID(Rutas.Usuarios, Raices.Usuarios, 3);
-            // Se registran los datos ingresados.
-            nuevoPerfil.Nombre = txtNombre.Text;
-            nuevoPerfil.Usuario = txtUsuario.Text;
-            nuevoPerfil.Correo = txtCorreo.Text;
-            nuevoPerfil.Contrasenia = txtContrasenia.Text;
-            nuevoPerfil.Edad = int.Parse(txtEdad.Text);
-            // Dinamicamente asigna un Rol adecuado.
+            Perfil nuevoPerfil = new Perfil
+            {
+                // Se asignan los datos fundamentales.
+                FechaCreacion = DateTime.Now,
+                ID = Sistema.GenerarID(Rutas.Usuarios, Raices.Usuarios, 3),
+                // Se registran los datos ingresados,
+                Nombre = txtNombre.Text,
+                Usuario = txtUsuario.Text,
+                Correo = txtCorreo.Text,
+                Contrasenia = txtContrasenia.Text,
+                Edad = int.Parse(txtEdad.Text),
+            };
+            // Dinamicamente asigna un Rol adecuado,
             nuevoPerfil.Rol = nuevoPerfil.ID == "1001" ? Sistema.Roles[0] : nuevoPerfil.Edad > 17 ? Sistema.Roles[2] : Sistema.RolPredefinido;
+
+            
             // Cargamos el perfil nuevo en la memoria del programa para las sesiones activas.
             Sistema.CargarPerfil(nuevoPerfil);
 

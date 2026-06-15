@@ -1,6 +1,6 @@
 ﻿namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 {
-    partial class Panel_Ventas
+    partial class PanelRegistros
     {
         /// <summary>
         /// Required designer variable.

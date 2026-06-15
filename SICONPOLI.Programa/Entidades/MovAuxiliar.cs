@@ -17,9 +17,10 @@ namespace PA4IM9_20262_Equipo2.Entidades
 
     public enum Cuentas
     {
-        Almacen = 1,
-        Clientes = 2,
-        Proveedores = 3,
+        Bancos = 1,
+        Almacen = 2,
+        Clientes = 3,
+        Proveedores = 4,
     }
 
     // Para poderse usar y asignar en el saldo del movimiento usar

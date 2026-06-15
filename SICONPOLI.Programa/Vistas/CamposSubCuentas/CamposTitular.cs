@@ -15,6 +15,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
         public CamposTitular()
         {
             InitializeComponent();
+            cmbNombreItem.Items.Clear();
         }
 
         private void txtFactura_KeyPress(object sender, KeyPressEventArgs e)
