@@ -103,7 +103,6 @@ namespace PA4IM9_20262_Equipo2.Modulos
                     escritor.DocumentElement.ReplaceChild(titularActualizado, titularExistente);
                     escritor.Save(ruta); // Guardamos.
                 }
-
             }
         }
     }

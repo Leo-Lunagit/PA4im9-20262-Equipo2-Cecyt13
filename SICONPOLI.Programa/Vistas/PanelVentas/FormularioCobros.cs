@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 {
-    public partial class FormularioCobro : Form
+    public partial class FormularioCobros : UserControl
     {
-        public FormularioCobro()
+        public FormularioCobros()
         {
             InitializeComponent();
         }

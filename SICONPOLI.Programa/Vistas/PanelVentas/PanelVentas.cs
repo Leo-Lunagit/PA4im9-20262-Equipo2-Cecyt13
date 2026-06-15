@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using PA4IM9_20262_Equipo2.Entidades;
 using PA4IM9_20262_Equipo2.Modulos;
+using PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas;
 using PA4IM9_20262_Equipo2.Vistas.Panel_Principal;
 using System;
 using System.Collections.Generic;
@@ -12,182 +13,178 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using System.Globalization;
 
 namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 {
     public partial class Panel_Ventas : Form
     {
+        private static string[] Conceptos = { "Venta de mercancia.", "Cobro de venta de mercancia." };
+        private string ConceptoPorDefecto = Conceptos[0];
+        //
+        // Logica de carga.
+        //
         public Panel_Ventas()
         {
             InitializeComponent();
-
-            // Selecciona el primer prodcutro por defecto.
-            // cmbProductos.SelectedIndex = 0;
+            CompletarComponentes();
         }
 
+        private void CompletarComponentes()
+        {
+            // Incrusta los controles del formulario de ventas.
+            Sistema.IndexarControles(this.panFormularios, new FormularioVentas());
+            XmlDocument lector = new XmlDocument();
+            // Asigna el folio corresposndiente.
+            txtFolio.Text = Sistema.GenerarID(Rutas.Ventas, Raices.Ventas, 3);
+            // Asignando el concepto por defecto.
+            txtConcepto.Text = Conceptos[0];
+
+        }
+        //
+        // Logica de registros
+        //
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-        //    // 1. Validar que el campo Cliente no esté vacío
-        //    if (string.IsNullOrWhiteSpace(txtCliente.Text))
-        //    {
-        //        MessageBox.Show("Por favor, ingresa el nombre del cliente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //        return;
-        //    }
-        //    if (string.IsNullOrEmpty(txtFactura.Text))
-        //    {
-        //        MessageBox.Show("Por favor, ingresa el numero de la factura.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //        return;
-        //    }
-            
-        //    // 2. Capturar los datos de los controles
-        //    int cantidad = (int)nudCantidad.Value;
-        //    decimal costoUnitario = decimal.Parse(txtCostoUni.Text);
-        //    decimal subtotal = cantidad * costoUnitario;
-        //    decimal iva = subtotal * .16m;
+            VerificarCampos();
 
-        //    string Cliente = txtCliente.Text.Trim();
-        //    int factura = int.Parse(txtFactura.Text);
+            //    // 1. Validar que el campo Cliente no esté vacío
+            //    if (string.IsNullOrWhiteSpace(txtCliente.Text))
+            //    {
+            //        MessageBox.Show("Por favor, ingresa el nombre del cliente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //        return;
+            //    }
+            //    if (string.IsNullOrEmpty(txtFactura.Text))
+            //    {
+            //        MessageBox.Show("Por favor, ingresa el numero de la factura.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //        return;
+            //    }
 
-        //    string concepto = $"Venta de mercancia s/f {factura}.";
-        //    string folio = Sistema.GenerarID(Rutas.Ventas, Raices.Ventas, 3);
-            
-        //    // 3. Calcular el total de esta subcuenta específica.
-        //    decimal totalProducto = subtotal + iva;
+            Asiento Registro = AsientoVenta();
+            GuardarVenta(Registro);
+            MostrarMovimiento(Registro);
 
-        //    // 7. Muestra Datos en la forma
-        //    txtIVA.Text = iva.ToString();
-        //    txtPrecioFinal.Text = totalProducto.ToString();
-
-        //    txtConcepto.Text = concepto.ToString();
-        //    txtFolio.Text = folio.ToString();
-
-        //    btnPagar.Enabled = true;
+            LimpiarFormulario();
         }
 
-        private void btnConfirmar_Click(object sender, EventArgs e)
+        private Asiento AsientoVenta()
         {
+            FormularioVentas Formulario = panFormularios.Controls[0] as FormularioVentas;
 
-        //    // 1. Capturar los datos de los controles
-        //    string productos = cmbProductos.SelectedItem.ToString();
-        //    int cantidad = (int)nudCantidad.Value;
-        //    decimal costoUnitario = decimal.Parse(txtCostoUni.Text);
-        //    decimal subtotal = costoUnitario * cantidad;
-        //    decimal iva = decimal.Parse(txtIVA.Text);
-        //    decimal totalProducto = decimal.Parse(txtPrecioFinal.Text);
-
-        //    string Cliente = txtCliente.Text.Trim();
-        //    string factura = txtFactura.Text;
-
-        //    DateTime fecha = DateTime.Now;
-        //    string usuario = Sistema.PerfilActivo.Usuario;
-        //    string concepto = $"Venta de mercancia s/f {factura}.";
-        //    string folio = txtFolio.Text;
-
-        //    // 3. Agregar la fila al DataGridView
-        //    TablaMovimientos.Rows.Add(fecha, productos, subtotal.ToString("C2"), iva.ToString("C2"), totalProducto.ToString("C2"), usuario, factura);
-
-        //    // 4. Recalcular los totales generales de la aplicación
-        //    CalcularTotalesGenerales();
-
-        //    // 5. Limpiar los campos para la siguiente captura.
-        //    LimpiarCamposCaptura();
-
-        //    // Crea la subcuenta del almacen y la llenamos con sus datos correspondientes.
-        //    Subcuenta SubAlmacen = new Subcuenta();
-        //    SubAlmacen.Monto = (int)(subtotal * 100);
-        //    SubAlmacen.NombreSubcuenta = $"{cantidad} {productos} a ${costoUnitario:C2} c/u";
-
-        //    // Creamos la cuenta del amacen y la llenamos con sus datos correspondientes.
-        //    Cuenta Almacen = new Cuenta();
-        //    Almacen.Monto = SubAlmacen.Monto;
-        //    Almacen.NombreCuenta = "almacen";
-        //    Almacen.Subcuentas = new Subcuenta[] { SubAlmacen };
-
-        //    // Creamos la cuenta del IVA y la lenamos con sus datos.
-        //    Cuenta IVA = new Cuenta();
-        //    IVA.Monto = (int)(iva * 100);
-        //    IVA.NombreCuenta = "IVA por Acreditar";
-
-        //    // Creamos la subcuenta del cliente y la llenamos con sus datos.
-        //    Subcuenta SubCliente = new Subcuenta();
-        //    SubCliente.Monto = (int)(totalProducto * 100);
-        //    SubCliente.NombreSubcuenta = $"{Cliente} s/f {factura}";
-
-        //    // Creamos la cuenta del probeedor y la llenamos.
-        //    Cuenta cliente = new Cuenta();
-        //    cliente.NombreCuenta = "Clientes";
-        //    cliente.Monto = SubCliente.Monto;
-        //    cliente.Subcuentas = new Subcuenta[] { SubCliente };
-
-        //    // Creamos el asiento y lo llenamos.
-        //    Asiento registro = new Asiento();
-        //    registro.NoAsiento = folio;
-        //    registro.Fecha = fecha;
-        //    registro.Cargos = new Cuenta[] { Almacen, IVA };
-        //    registro.Abonos = new Cuenta[] { cliente };
-        //    registro.SumaCargos = IVA.Monto + Almacen.Monto;
-        //    registro.SumaAbonos = cliente.Monto;
-        //    registro.Concepto = concepto;
-
-        //    Sistema.VerificarArchivo(Rutas.Ventas, Raices.Ventas);
-        //    XmlDocument escritor = new XmlDocument();
-        //    escritor.Load(Rutas.Ventas);
-
-        //    // Transformamos la clase en elemento xml.
-        //    XmlElement asiento = ConvertidorXml.ObjetoToElemento(escritor, registro);
-
-        //    escritor.DocumentElement.AppendChild(asiento);
-        //    escritor.Save(Rutas.Ventas);
-
-        //    btnPagar.Enabled = false;
-        }
-
-        private void CalcularTotalesGenerales()
-        {
-        //    decimal subtotal = 0;
-        //    const decimal PorcentajeIVA = 0.16m; // Ajustable según la tasa de tu región (ej. 16%)
-
-        //    // Recorrer cada fila del DataGridView para sumar los totales de los productos
-        //    foreach (DataGridViewRow fila in TablaMovimientos.Rows)
-        //    {
-        //        if (fila.Cells["totalProductos"].Value != null)
-        //        {
-        //            // Reemplazamos el símbolo de moneda para poder convertirlo a decimal limpiamente
-        //            string valorTexto = fila.Cells["totalProductos"].Value.ToString().Replace("$", "");
-        //            subtotal += Convert.ToDecimal(valorTexto);
-        //        }
-        //    }
-
-        //    // Calcular IVA y Precio Final
-        //    decimal iva = subtotal * PorcentajeIVA;
-        //    decimal precioFinal = subtotal + iva;
-
-        //    // Mostrar los resultados formateados como moneda local
-        //    txtIVA.Text = iva.ToString("C2");
-        //    txtPrecioFinal.Text = precioFinal.ToString("C2");
-        }
-
-        private void LimpiarCamposCaptura()
-        {
-        //    // Restablece los controles superiores para agilizar el rellenado
-        //    if (cmbProductos.Items.Count > 0) cmbProductos.SelectedIndex = 0;
-        //    nudCantidad.Value = 1;
-        //    txtCostoUni.Text = "1";
-        //    txtCliente.Clear();
-        //    cmbProductos.Focus(); // Pone el cursor de vuelta en el producto
-        //    txtFolio.Clear();
-        //    txtIVA.Clear();
-        //    txtConcepto.Clear();
-        //    txtPrecioFinal.Clear();
-        }
-
-        private void txtFactura_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Permitir solo números y la tecla de retroceso
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            int sumaProductos = 0;
+            Subcuenta[] Cargos = { new Subcuenta() };
+            foreach (CamposProducto Producto in Formulario.ContenedorProductos.Controls)
             {
-                e.Handled = true; // Bloquea la entrada
+                // Si estan todos sus campos vacios, no hace nada.
+                if (Producto.CampoNulo()) continue;
+
+                string Nombre = $"{Producto.nudCantidad.Value} {Producto.cmbNombreItem.Text} a {Producto.txtCostoUni.Text:C} c/u.";
+                decimal monto = decimal.Parse(Producto.txtMonto.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
+                Subcuenta producto = new Subcuenta
+                {
+                    NombreSubcuenta = Nombre,
+                    Monto = (int)(monto * 100)
+                };
+                sumaProductos += producto.Monto;
+                Cargos.Append(producto);
             }
+            Cargos = Cargos.Skip(1).ToArray();
+
+            Cuenta Almacen = new Cuenta
+            {
+                NombreCuenta = Cuentas.Almacen.ToString(),
+                Subcuentas = Cargos,
+                Monto = sumaProductos
+            };
+
+            decimal iva = decimal.Parse(Formulario.txtIVA.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
+            Cuenta IVA = new Cuenta
+            {
+                NombreCuenta = "IVA por Acreditar",
+                Monto = (int)(iva * 100)
+            };
+
+            int sumaClientes = 0;
+            Subcuenta[] Abonos = { new Subcuenta() };
+            foreach (CamposTitular Cliente in Formulario.ContenedorClientes.Controls)
+            {
+                // Si estan todos sus campos vacios, no hace nada.
+                if (Cliente.CampoNulo()) continue;
+
+                string Nombre = $"{Cliente.cmbNombreItem.Text} s/f {Cliente.txtFactura}";
+                decimal monto = decimal.Parse(Cliente.txtMonto.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
+                Subcuenta cliente = new Subcuenta
+                {
+                    NombreSubcuenta = Nombre,
+                    Monto = (int)(decimal.Parse(Cliente.txtMonto.Text) * 100)
+                };
+                sumaClientes += cliente.Monto;
+                Abonos.Append(cliente);
+            }
+            Abonos = Abonos.Skip(1).ToArray();
+
+            Cuenta Clientes = new Cuenta
+            {
+                NombreCuenta = Cuentas.Clientes.ToString(),
+                Subcuentas = Abonos,
+                Monto = sumaClientes
+            };
+
+            Asiento Registro = new Asiento
+            {
+                Registrador = Sistema.PerfilActivo.Nombre,
+                NoAsiento = txtFolio.Text,
+                Fecha = DateTime.Now,
+                Cargos = new Cuenta[] { Almacen, IVA },
+                SumaCargos = Almacen.Monto + IVA.Monto,
+                Abonos = new Cuenta[] { Clientes },
+                SumaAbonos = Clientes.Monto,
+                Concepto = $"{Acciones.Venta.ToString()}:{txtConcepto.Text}"
+            };
+
+            return Registro;
+        }
+
+        private void GuardarVenta(Asiento Registro)
+        {
+            Sistema.VerificarArchivo(Rutas.Ventas, Raices.Ventas);
+            XmlDocument escritor = new XmlDocument();
+            escritor.Load(Rutas.Ventas);
+
+            // Transformamos la clase en elemento xml.
+            XmlElement asiento = ConvertidorXml.ObjetoToElemento(escritor, Registro);
+
+            escritor.DocumentElement.AppendChild(asiento);
+            //escritor.Save(Rutas.Ventas);
+        }
+        private void MostrarMovimiento(Asiento Registro)
+        {
+            string[] paraAccion = Registro.Concepto.Split(':');
+            int Subtotal = Registro.Cargos[0].Monto;
+            int IVA = Registro.Cargos[1].Monto;
+            int Total = Registro.SumaAbonos;
+            TablaMovimientos.Rows.Add
+            (
+                Registro.Fecha, Registro.NoAsiento, paraAccion[0], $"{(Subtotal / 100):C}", 
+                $"{(IVA / 100):C}", $"{(Total / 100):C}", Registro.Registrador
+            );
+        }
+
+        private void LimpiarFormulario()
+        {
+            txtFolio.Text = Sistema.GenerarID(Rutas.Ventas, Raices.Ventas, 3);
+            cmbOpcionesConcepto.SelectedIndex = 0;
+
+            FormularioVentas Formulario = panFormularios.Controls[0] as FormularioVentas;
+
+            Formulario.txtCostoFinal.Text = "";
+            Formulario.txtIVA.Text = "";
+            Formulario.txtMontoTotal.Text = "";
+
+            Formulario.ContenedorProductos.Controls.Clear();
+            Sistema.IndexarCampos(Formulario, Formulario.ContenedorProductos, new CamposProducto(), Cuentas.Almacen);
+            Formulario.ContenedorClientes.Controls.Clear();
+            Sistema.IndexarCampos(Formulario, Formulario.ContenedorClientes, new CamposTitular(), Cuentas.Clientes);
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -206,22 +203,51 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
         //    }
         //    btnPagar.Enabled = false;
         }
-
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        public bool VerificarCampos()
         {
-            TextBox txt = (TextBox)sender;
+            FormularioVentas formulario = panFormularios.Controls[0] as FormularioVentas;
+            bool FormularioCompleto = formulario.CamposCompletos();
 
-            // 1. Permitir números, borrar, espacios y el punto (si no existe ya)
-            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsSeparator(e.KeyChar)) e.Handled = false;
-            else if (e.KeyChar == '.' && !txt.Text.Contains(".")) e.Handled = false;
-            else e.Handled = true;
+            bool Completos = FormularioCompleto && txtConcepto.Text != "";
 
-            // 2. Controlar las 2 cifras decimales (solo si ya hay punto y no estás borrando)
-            if (!e.Handled && txt.Text.Contains(".") && !char.IsControl(e.KeyChar))
+            if (!Completos)
+                MessageBox.Show("Por favor complete los campos vacios", "Campos vacios", MessageBoxButtons.OK);
+            return Completos;
+        }
+        //
+        // Logica de utilidades
+        //
+
+        // Ultimo para registrar
+        private void btnIntercalar_Click(object sender, EventArgs e)
+        {
+            // Dinamicamente manda a incrustar el formulario adecuado.
+            if (btnIntercalar.Text == "COBRAR")
             {
-                // Bloquea solo si el cursor está parado después del punto y ya hay 2 dígitos
-                if (txt.SelectionStart > txt.Text.IndexOf('.') && txt.Text.Length - txt.Text.IndexOf('.') > 2)
-                    e.Handled = true;
+                Sistema.IndexarControles(this.panFormularios, new FormularioCobros());
+                btnIntercalar.Text = "VENDER";
+                ConceptoPorDefecto = Conceptos[1];
+            }
+            else
+            {
+                Sistema.IndexarControles(this.panFormularios, new FormularioVentas());
+                btnIntercalar.Text = "COBRAR";
+                ConceptoPorDefecto = Conceptos[0];
+            }
+        }
+
+        private void cmbOpcionesConcepto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbOpcionesConcepto.Text == "Por Defecto")
+            {
+                txtConcepto.Text = ConceptoPorDefecto;
+                txtConcepto.ReadOnly = true;
+            }
+            else
+            {
+                txtConcepto.Text = "";
+                txtConcepto.ReadOnly = false;
+                txtConcepto.Focus();
             }
         }
     }

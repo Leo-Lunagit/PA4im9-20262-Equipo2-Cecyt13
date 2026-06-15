@@ -1,4 +1,6 @@
 ﻿using PA4IM9_20262_Equipo2.Entidades;
+using PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas;
+using PA4IM9_20262_Equipo2.Vistas.PanelVentas;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +18,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
         // Mediante esos codigos se obtiene la ruta de archivos donde se esta ejecutando el programa.
         private static string Ejecusion = AppDomain.CurrentDomain.BaseDirectory;
         // Obtiene la carpeta padre de la carpeta padre de la carpeta donde se ejecuta el programa.
-        private static string Proyecto = Directory.GetParent(Directory.GetParent(Ejecusion).ToString()).ToString();
+        private static string Proyecto = Directory.GetParent(Directory.GetParent(Directory.GetParent(Ejecusion).ToString()).ToString()).ToString();
         // Anida la carpeta 'Datos' dentro de la carpeta del proyecto.
         public static string Datos = Path.Combine(Proyecto, "Datos");
         public static string Usuarios = Path.Combine(Datos, "Usuarios.xml");
@@ -32,6 +34,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
     {
         public static string Usuarios = "usuarios";
         public static string Configuracion = "configuracion";
+        public static string PadreUsuarios = "usuariosActivos";
         public static string Compras = "compras";
         public static string Ventas = "ventas";
         public static string Proveedores = "proveedores";
@@ -108,15 +111,14 @@ namespace PA4IM9_20262_Equipo2.Modulos
 
         public static void GuardarPerfil(XmlElement usuario)
         {
-            string PadreUsuarios = "usuariosActivos";
             VerificarArchivo(Rutas.Configuracion, Raices.Configuracion);
             XmlDocument config = new XmlDocument();
             config.Load(Rutas.Configuracion);
 
-            XmlNode perfiles = config.DocumentElement[PadreUsuarios];
+            XmlNode perfiles = config.DocumentElement[Raices.PadreUsuarios];
             if (perfiles == null)
             {
-                XmlElement usuariosActivos = config.CreateElement(PadreUsuarios);
+                XmlElement usuariosActivos = config.CreateElement(Raices.PadreUsuarios);
                 config.DocumentElement.AppendChild(usuariosActivos);
             }
 
@@ -125,7 +127,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
             {
                 // Guarda el perfil junto a los perfiles antes guardados.
                 XmlNode importado = config.ImportNode(usuario, true);
-                config.DocumentElement[PadreUsuarios].AppendChild(importado);
+                config.DocumentElement[Raices.PadreUsuarios].AppendChild(importado);
             }
 
             config.Save(Rutas.Configuracion);
@@ -161,6 +163,49 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 perfilRecordar.Attributes.RemoveNamedItem("recordado");
                 escritor.Save(Rutas.Usuarios);
             }
+        }
+
+        public static void IndexarFormulario(object ObjContenedor, object ObjFormHijo) 
+        {
+            // Trasnformamos el objeto del panel en un panel.
+            Panel Contenedor = ObjContenedor as Panel;
+            // Tranformamos el objeto de formulario en un formulario.
+            Form FormHijo = ObjFormHijo as Form;
+
+            // Si el contendero tiene elementos, los elimina
+            if (Contenedor.Controls.Count > 0)
+                Contenedor.Controls.RemoveAt(0);
+
+            FormHijo.TopLevel = false; // Indica que no es un formulario de alto nivel, si no subordinado.
+            FormHijo.Dock = DockStyle.Fill; // Indica que ocupe todo el espacio.   
+            Contenedor.Controls.Add(FormHijo); // Agrega el control al contenedor.
+            Contenedor.Tag = FormHijo;
+            FormHijo.Show(); // Muestra el panel.
+        }
+
+        public static void IndexarControles(object ObjContenedor,object ObjControles)
+        {
+            // Trasnformamos el objeto del panel en un panel.
+            Panel Contenedor = ObjContenedor as Panel;
+            // Tranformamos el objeto del UserControls en un Contol normal.
+            Control Controles = ObjControles as Control;
+
+            Controles.BringToFront();
+            Controles.Dock = DockStyle.Top;
+            Contenedor.Controls.Add(Controles);
+        }
+        public static void IndexarCampos(FormularioVentas Suscriber, Panel Contenedor, Campos Controles, Cuentas Cuenta)
+        {
+            // Lo dispone en la parte superior (automaticamente lo coloca arriba de su hermano.)
+            Controles.Dock = DockStyle.Top;
+            Controles.Cuenta = Cuenta;
+
+            // Vincula los eventos, hace que le notifique en cuanto ocurra dicho evento para que el escucha ejecute la funcion.
+            Controles.CambiarCostoTotal += Suscriber.CambiarSumaTotal;
+            Controles.AgregarEspacioItem += Suscriber.AgregarCampos;
+            Controles.LlamarAutoEliminacion += Suscriber.ElinarCampos;
+
+            Contenedor.Controls.Add(Controles);
         }
     }
 }

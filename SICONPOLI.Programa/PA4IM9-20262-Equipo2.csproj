@@ -54,6 +54,24 @@
     <Compile Include="Modulos\ConvertidorXml.cs" />
     <Compile Include="Modulos\RegistradorProveedores.cs" />
     <Compile Include="Modulos\Sistema.cs" />
+    <Compile Include="Vistas\CamposSubCuentas\Campos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vistas\CamposSubCuentas\Campos.Designer.cs">
+      <DependentUpon>Campos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\CamposSubCuentas\CamposTitular.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vistas\CamposSubCuentas\CamposTitular.Designer.cs">
+      <DependentUpon>CamposTitular.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\CamposSubCuentas\CamposProducto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vistas\CamposSubCuentas\CamposProducto.Designer.cs">
+      <DependentUpon>CamposProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\PanelCompras\PanelCompras.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,17 +86,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Vistas\PanelVentas\FormularioCobro.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Vistas\PanelVentas\FormularioCobros.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Vistas\PanelVentas\FormularioCobro.Designer.cs">
-      <DependentUpon>FormularioCobro.cs</DependentUpon>
+    <Compile Include="Vistas\PanelVentas\FormularioCobros.Designer.cs">
+      <DependentUpon>FormularioCobros.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\PanelVentas\FormularioVenta.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Vistas\PanelVentas\FormularioVentas.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Vistas\PanelVentas\FormularioVenta.Designer.cs">
-      <DependentUpon>FormularioVenta.cs</DependentUpon>
+    <Compile Include="Vistas\PanelVentas\FormularioVentas.Designer.cs">
+      <DependentUpon>FormularioVentas.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\PanelVentas\PanelVentas.cs">
       <SubType>Form</SubType>
@@ -86,6 +104,15 @@
     <Compile Include="Vistas\PanelVentas\PanelVentas.Designer.cs">
       <DependentUpon>PanelVentas.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Vistas\CamposSubCuentas\Campos.resx">
+      <DependentUpon>Campos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\CamposSubCuentas\CamposTitular.resx">
+      <DependentUpon>CamposTitular.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\CamposSubCuentas\CamposProducto.resx">
+      <DependentUpon>CamposProducto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\PanelCompras\PanelCompras.resx">
       <DependentUpon>PanelCompras.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,11 +139,11 @@
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\PanelVentas\FormularioCobro.resx">
-      <DependentUpon>FormularioCobro.cs</DependentUpon>
+    <EmbeddedResource Include="Vistas\PanelVentas\FormularioCobros.resx">
+      <DependentUpon>FormularioCobros.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\PanelVentas\FormularioVenta.resx">
-      <DependentUpon>FormularioVenta.cs</DependentUpon>
+    <EmbeddedResource Include="Vistas\PanelVentas\FormularioVentas.resx">
+      <DependentUpon>FormularioVentas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\PanelVentas\PanelVentas.es-419.resx">
       <DependentUpon>PanelVentas.cs</DependentUpon>
@@ -140,6 +167,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Datos\Almacen.xml" />
+    <Content Include="Datos\Clientes.xml" />
     <Content Include="Datos\Compras.xml" />
     <Content Include="Datos\Configuracion.xml" />
     <Content Include="Datos\Proveedores.xml" />

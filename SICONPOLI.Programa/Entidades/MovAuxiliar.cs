@@ -7,6 +7,14 @@ using System.Xml.Serialization;
 
 namespace PA4IM9_20262_Equipo2.Entidades
 {
+    public enum Acciones
+    {
+        Compra = 1,
+        Pago = 2,
+        Venta = 3,
+        Cobro = 4,
+    }
+
     public enum Cuentas
     {
         Almacen = 1,

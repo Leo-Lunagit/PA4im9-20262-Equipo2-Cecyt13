@@ -36,15 +36,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TablaMovimientos = new System.Windows.Forms.DataGridView();
-            this.btnRegistrar = new System.Windows.Forms.Button();
-            this.txtFolio = new System.Windows.Forms.TextBox();
-            this.lblFolio = new System.Windows.Forms.Label();
-            this.lblConcepto = new System.Windows.Forms.Label();
-            this.txtConcepto = new System.Windows.Forms.TextBox();
-            this.btnPagar = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
-            this.panRegistros = new System.Windows.Forms.Panel();
-            this.panMovimientos = new System.Windows.Forms.Panel();
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.folio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.accion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +43,15 @@
             this.iva = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnRegistrar = new System.Windows.Forms.Button();
+            this.txtFolio = new System.Windows.Forms.TextBox();
+            this.lblFolio = new System.Windows.Forms.Label();
+            this.lblConcepto = new System.Windows.Forms.Label();
+            this.txtConcepto = new System.Windows.Forms.TextBox();
+            this.btnIntercalar = new System.Windows.Forms.Button();
+            this.btnModificar = new System.Windows.Forms.Button();
+            this.panFormularios = new System.Windows.Forms.Panel();
+            this.panMovimientos = new System.Windows.Forms.Panel();
             this.cmbOpcionesConcepto = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.TablaMovimientos)).BeginInit();
             this.panMovimientos.SuspendLayout();
@@ -78,115 +78,6 @@
             this.TablaMovimientos.RowHeadersWidth = 51;
             this.TablaMovimientos.Size = new System.Drawing.Size(920, 200);
             this.TablaMovimientos.TabIndex = 40;
-            // 
-            // btnRegistrar
-            // 
-            this.btnRegistrar.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.btnRegistrar.Location = new System.Drawing.Point(815, 55);
-            this.btnRegistrar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(112, 35);
-            this.btnRegistrar.TabIndex = 36;
-            this.btnRegistrar.Text = "Registrar";
-            this.btnRegistrar.UseVisualStyleBackColor = true;
-            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
-            // 
-            // txtFolio
-            // 
-            this.txtFolio.Enabled = false;
-            this.txtFolio.Font = new System.Drawing.Font("Modern No. 20", 12F);
-            this.txtFolio.Location = new System.Drawing.Point(140, 14);
-            this.txtFolio.Margin = new System.Windows.Forms.Padding(4);
-            this.txtFolio.Name = "txtFolio";
-            this.txtFolio.Size = new System.Drawing.Size(102, 25);
-            this.txtFolio.TabIndex = 43;
-            // 
-            // lblFolio
-            // 
-            this.lblFolio.AutoSize = true;
-            this.lblFolio.Font = new System.Drawing.Font("Dubai", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFolio.Location = new System.Drawing.Point(91, 14);
-            this.lblFolio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFolio.Name = "lblFolio";
-            this.lblFolio.Size = new System.Drawing.Size(53, 25);
-            this.lblFolio.TabIndex = 44;
-            this.lblFolio.Text = "Folio : ";
-            // 
-            // lblConcepto
-            // 
-            this.lblConcepto.AutoSize = true;
-            this.lblConcepto.Font = new System.Drawing.Font("Dubai", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConcepto.Location = new System.Drawing.Point(389, 14);
-            this.lblConcepto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblConcepto.Name = "lblConcepto";
-            this.lblConcepto.Size = new System.Drawing.Size(94, 25);
-            this.lblConcepto.TabIndex = 45;
-            this.lblConcepto.Text = "Descripción :";
-            // 
-            // txtConcepto
-            // 
-            this.txtConcepto.BackColor = System.Drawing.SystemColors.Window;
-            this.txtConcepto.Enabled = false;
-            this.txtConcepto.Font = new System.Drawing.Font("Modern No. 20", 12F);
-            this.txtConcepto.Location = new System.Drawing.Point(483, 14);
-            this.txtConcepto.Name = "txtConcepto";
-            this.txtConcepto.ReadOnly = true;
-            this.txtConcepto.Size = new System.Drawing.Size(388, 25);
-            this.txtConcepto.TabIndex = 45;
-            // 
-            // btnPagar
-            // 
-            this.btnPagar.Enabled = false;
-            this.btnPagar.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.btnPagar.Location = new System.Drawing.Point(40, 55);
-            this.btnPagar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnPagar.Name = "btnPagar";
-            this.btnPagar.Size = new System.Drawing.Size(112, 35);
-            this.btnPagar.TabIndex = 43;
-            this.btnPagar.Text = "COBRAR";
-            this.btnPagar.UseVisualStyleBackColor = true;
-            this.btnPagar.Click += new System.EventHandler(this.btnConfirmar_Click);
-            // 
-            // btnModificar
-            // 
-            this.btnModificar.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.btnModificar.Location = new System.Drawing.Point(688, 55);
-            this.btnModificar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(112, 35);
-            this.btnModificar.TabIndex = 44;
-            this.btnModificar.Text = "Modificar";
-            this.btnModificar.UseVisualStyleBackColor = true;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
-            // 
-            // panRegistros
-            // 
-            this.panRegistros.BackColor = System.Drawing.Color.Transparent;
-            this.panRegistros.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panRegistros.Location = new System.Drawing.Point(0, 0);
-            this.panRegistros.Margin = new System.Windows.Forms.Padding(2);
-            this.panRegistros.Name = "panRegistros";
-            this.panRegistros.Size = new System.Drawing.Size(967, 262);
-            this.panRegistros.TabIndex = 45;
-            // 
-            // panMovimientos
-            // 
-            this.panMovimientos.BackColor = System.Drawing.Color.Transparent;
-            this.panMovimientos.Controls.Add(this.btnPagar);
-            this.panMovimientos.Controls.Add(this.txtFolio);
-            this.panMovimientos.Controls.Add(this.TablaMovimientos);
-            this.panMovimientos.Controls.Add(this.btnRegistrar);
-            this.panMovimientos.Controls.Add(this.lblFolio);
-            this.panMovimientos.Controls.Add(this.btnModificar);
-            this.panMovimientos.Controls.Add(this.txtConcepto);
-            this.panMovimientos.Controls.Add(this.lblConcepto);
-            this.panMovimientos.Controls.Add(this.cmbOpcionesConcepto);
-            this.panMovimientos.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panMovimientos.Location = new System.Drawing.Point(0, 262);
-            this.panMovimientos.Margin = new System.Windows.Forms.Padding(2);
-            this.panMovimientos.Name = "panMovimientos";
-            this.panMovimientos.Size = new System.Drawing.Size(967, 310);
-            this.panMovimientos.TabIndex = 46;
             // 
             // fecha
             // 
@@ -251,8 +142,116 @@
             this.usuario.Name = "usuario";
             this.usuario.ReadOnly = true;
             // 
+            // btnRegistrar
+            // 
+            this.btnRegistrar.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.btnRegistrar.Location = new System.Drawing.Point(815, 55);
+            this.btnRegistrar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRegistrar.Name = "btnRegistrar";
+            this.btnRegistrar.Size = new System.Drawing.Size(112, 35);
+            this.btnRegistrar.TabIndex = 36;
+            this.btnRegistrar.Text = "Registrar";
+            this.btnRegistrar.UseVisualStyleBackColor = true;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            // 
+            // txtFolio
+            // 
+            this.txtFolio.Font = new System.Drawing.Font("Modern No. 20", 12F);
+            this.txtFolio.Location = new System.Drawing.Point(140, 14);
+            this.txtFolio.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFolio.Name = "txtFolio";
+            this.txtFolio.ReadOnly = true;
+            this.txtFolio.Size = new System.Drawing.Size(102, 25);
+            this.txtFolio.TabIndex = 43;
+            // 
+            // lblFolio
+            // 
+            this.lblFolio.AutoSize = true;
+            this.lblFolio.Font = new System.Drawing.Font("Dubai", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFolio.Location = new System.Drawing.Point(91, 14);
+            this.lblFolio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFolio.Name = "lblFolio";
+            this.lblFolio.Size = new System.Drawing.Size(53, 25);
+            this.lblFolio.TabIndex = 44;
+            this.lblFolio.Text = "Folio : ";
+            // 
+            // lblConcepto
+            // 
+            this.lblConcepto.AutoSize = true;
+            this.lblConcepto.Font = new System.Drawing.Font("Dubai", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConcepto.Location = new System.Drawing.Point(389, 14);
+            this.lblConcepto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblConcepto.Name = "lblConcepto";
+            this.lblConcepto.Size = new System.Drawing.Size(94, 25);
+            this.lblConcepto.TabIndex = 45;
+            this.lblConcepto.Text = "Descripción :";
+            // 
+            // txtConcepto
+            // 
+            this.txtConcepto.BackColor = System.Drawing.SystemColors.Window;
+            this.txtConcepto.Font = new System.Drawing.Font("Modern No. 20", 12F);
+            this.txtConcepto.Location = new System.Drawing.Point(483, 14);
+            this.txtConcepto.Name = "txtConcepto";
+            this.txtConcepto.ReadOnly = true;
+            this.txtConcepto.Size = new System.Drawing.Size(388, 25);
+            this.txtConcepto.TabIndex = 45;
+            // 
+            // btnIntercalar
+            // 
+            this.btnIntercalar.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.btnIntercalar.Location = new System.Drawing.Point(40, 55);
+            this.btnIntercalar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnIntercalar.Name = "btnIntercalar";
+            this.btnIntercalar.Size = new System.Drawing.Size(112, 35);
+            this.btnIntercalar.TabIndex = 43;
+            this.btnIntercalar.Text = "COBRAR";
+            this.btnIntercalar.UseVisualStyleBackColor = true;
+            this.btnIntercalar.Click += new System.EventHandler(this.btnIntercalar_Click);
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.btnModificar.Location = new System.Drawing.Point(688, 55);
+            this.btnModificar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(112, 35);
+            this.btnModificar.TabIndex = 44;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
+            // panFormularios
+            // 
+            this.panFormularios.BackColor = System.Drawing.Color.Transparent;
+            this.panFormularios.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panFormularios.Location = new System.Drawing.Point(0, 0);
+            this.panFormularios.Margin = new System.Windows.Forms.Padding(2);
+            this.panFormularios.Name = "panFormularios";
+            this.panFormularios.Size = new System.Drawing.Size(967, 262);
+            this.panFormularios.TabIndex = 45;
+            // 
+            // panMovimientos
+            // 
+            this.panMovimientos.BackColor = System.Drawing.Color.Transparent;
+            this.panMovimientos.Controls.Add(this.btnIntercalar);
+            this.panMovimientos.Controls.Add(this.txtFolio);
+            this.panMovimientos.Controls.Add(this.TablaMovimientos);
+            this.panMovimientos.Controls.Add(this.btnRegistrar);
+            this.panMovimientos.Controls.Add(this.lblFolio);
+            this.panMovimientos.Controls.Add(this.btnModificar);
+            this.panMovimientos.Controls.Add(this.txtConcepto);
+            this.panMovimientos.Controls.Add(this.lblConcepto);
+            this.panMovimientos.Controls.Add(this.cmbOpcionesConcepto);
+            this.panMovimientos.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panMovimientos.Location = new System.Drawing.Point(0, 262);
+            this.panMovimientos.Margin = new System.Windows.Forms.Padding(2);
+            this.panMovimientos.Name = "panMovimientos";
+            this.panMovimientos.Size = new System.Drawing.Size(967, 310);
+            this.panMovimientos.TabIndex = 46;
+            // 
             // cmbOpcionesConcepto
             // 
+            this.cmbOpcionesConcepto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOpcionesConcepto.Font = new System.Drawing.Font("Modern No. 20", 12F);
             this.cmbOpcionesConcepto.FormattingEnabled = true;
             this.cmbOpcionesConcepto.Items.AddRange(new object[] {
@@ -262,6 +261,7 @@
             this.cmbOpcionesConcepto.Name = "cmbOpcionesConcepto";
             this.cmbOpcionesConcepto.Size = new System.Drawing.Size(405, 26);
             this.cmbOpcionesConcepto.TabIndex = 46;
+            this.cmbOpcionesConcepto.SelectedIndexChanged += new System.EventHandler(this.cmbOpcionesConcepto_SelectedIndexChanged);
             // 
             // Panel_Ventas
             // 
@@ -269,7 +269,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(967, 572);
-            this.Controls.Add(this.panRegistros);
+            this.Controls.Add(this.panFormularios);
             this.Controls.Add(this.panMovimientos);
             this.ForeColor = System.Drawing.Color.DarkRed;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -290,9 +290,9 @@
         private System.Windows.Forms.TextBox txtFolio;
         private System.Windows.Forms.TextBox txtConcepto;
         private System.Windows.Forms.Label lblConcepto;
-        private System.Windows.Forms.Button btnPagar;
+        private System.Windows.Forms.Button btnIntercalar;
         private System.Windows.Forms.Button btnModificar;
-        private System.Windows.Forms.Panel panRegistros;
+        private System.Windows.Forms.Panel panFormularios;
         private System.Windows.Forms.Panel panMovimientos;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn folio;

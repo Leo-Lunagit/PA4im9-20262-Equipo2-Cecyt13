@@ -36,24 +36,14 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
 
             // Agrega (hace aparecer) el picture box con el logo.
             this.Contenedor.Controls.Add(this.marcaAgua);
-            DesIndexarPanel();
         }
-        private void AbrirPaneles(object panel, object sender)
+        private void AbrirPaneles(object formularioHijo, object sender)
         {
             // Da el fondo clarito al boton seleccionado.
             ColorearSeleccion(sender);
 
-            // Si el contendero tiene elementos, los elimina
-            if (this.Contenedor.Controls.Count > 0)
-                this.Contenedor.Controls.RemoveAt(0);
-            // Transforma el objeto a formulario.
-            Form Panel = panel as Form;
-            Panel.TopLevel = false; // Indica que no es un formulario de alto nivel, si no subordinado.
-            Panel.Dock = DockStyle.Fill; // Indica que ocupe todo el espacio.   
-            this.Contenedor.Controls.Add(Panel); // Agrega el control al contenedor.
-            this.Contenedor.Tag = Panel;
-            Panel.Show(); // Muestra el panel.
-            IndexarPanel(sender);
+            // Incrusta el formulario en el panel.
+            Sistema.IndexarFormulario(this.Contenedor, formularioHijo);
         }
         private void ColorearSeleccion(object sender)
         {
@@ -64,13 +54,6 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
             Button boton = sender as Button;
             boton.BackColor = Color.FromArgb(200, 220, 215);
         }
-        private void IndexarPanel(object sender)
-        {
-            Button boton = sender as Button;
-            Contenedor.TabIndex = boton.TabIndex++;
-            Contenedor.TabStop = true;
-        }
-        private void DesIndexarPanel() { Contenedor.TabStop = false; }
         private void btnHome_Click(object sender, EventArgs e) { CerrarPaneles(sender); }
         private void btnEntradas_Click(object sender, EventArgs e) { AbrirPaneles(new Panel_de_compras(), sender); }
         private void btnSalidas_Click(object sender, EventArgs e) { AbrirPaneles(new Panel_Ventas(), sender); }
