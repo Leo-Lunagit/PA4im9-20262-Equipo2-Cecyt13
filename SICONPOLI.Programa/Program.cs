@@ -1,5 +1,6 @@
 ﻿using PA4IM9_20262_Equipo2.Modulos;
 using PA4IM9_20262_Equipo2.Vistas.Panel_Principal;
+using PA4IM9_20262_Equipo2.Vistas.PanelMapa;
 using PA4IM9_20262_Equipo2.Vistas.PanelVentas;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace PA4IM9_20262_Equipo2
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PanelAcceso());
+            Application.Run(new MenuPrincipal());
         }
     }
 }
