@@ -22,7 +22,7 @@ namespace PA4IM9_20262_Equipo2
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MenuPrincipal());
+            Application.Run(new PanelAcceso());
         }
     }
 }

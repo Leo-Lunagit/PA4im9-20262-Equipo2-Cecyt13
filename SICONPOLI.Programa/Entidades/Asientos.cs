@@ -27,9 +27,11 @@ namespace PA4IM9_20262_Equipo2.Entidades
     }
     // Unicamente este tendra la etiqueta root, solo este sera el elemento padre, no puede aver mas de uno.
     // Para cada clase se le especifica la etiqueta contenedora (su padre) con XmlElement o XmlArray.
-    [XmlRoot("asiento")] 
+    [XmlRoot("asiento")]
     public class Asiento
     {
+        [XmlAttribute("registrador")]
+        public string Registrador { get; set; }
         [XmlAttribute("noAsiento")] // Indica que no sera un atributo, si no un metadato.
         public string NoAsiento { get; set; }
         [XmlElement("fecha")]

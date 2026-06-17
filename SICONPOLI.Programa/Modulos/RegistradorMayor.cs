@@ -8,9 +8,8 @@ using System.Xml;
 
 namespace PA4IM9_20262_Equipo2.Modulos
 {
-    internal class RegistradorProveedores
+    internal class RegistradorMayor
     {
-
         public static void AsientoToAuxiliar(Asiento asiento, Saldos saldo, Cuentas cuenta)
         {
             // Dinamicamente obtenemos la ruta y raiz del archivo correspondiente.
@@ -31,8 +30,8 @@ namespace PA4IM9_20262_Equipo2.Modulos
             // Dinamicame determinamos que operacion se realiza para mostrarla en el concepto.
             string operacion;
             if (cuenta == Cuentas.Clientes)
-                operacion = saldo == Saldos.Deudor ? "Venta" : "Cobro";
-            else operacion = saldo == Saldos.Acredor ? "Compra" : "Pago";
+                operacion = saldo == Saldos.Deudor ? Acciones.Venta.ToString() : Acciones.Cobro.ToString();
+            else operacion = saldo == Saldos.Acredor ? Acciones.Compra.ToString() : Acciones.Pago.ToString();
 
             // Para cada proveedor registrado
             foreach (Subcuenta Subcuenta in CuentaContenedora.Subcuentas)
@@ -46,16 +45,20 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 string[] paraFactura = textoSubcuenta.Split(new string[] { "s/f " }, StringSplitOptions.None);
 
                 // Creamos el movimiento que forzosamente debe ser acredor y debe sumarse.
-                Movimiento movimiento = new Movimiento();
-                movimiento.Monto = Subcuenta.Monto;  
-                movimiento.Saldo = saldo.ToString();
+                Movimiento movimiento = new Movimiento
+                {
+                    Monto = Subcuenta.Monto,
+                    Saldo = saldo.ToString()
+                };
 
                 // Creamos el renglon del mayor auxiliar con los datos que si disponemos.
-                RenAuxiliar renglon = new RenAuxiliar();
-                renglon.Fecha = asiento.Fecha.ToString("dd/MM");
-                renglon.Factura = paraFactura[1];
-                renglon.Concepto = $"{operacion} de mercancia.";
-                renglon.Movimiento = movimiento;
+                RenMayor renglon = new RenMayor
+                {
+                    Fecha = asiento.Fecha.ToString("dd/MM"),
+                    Factura = paraFactura[1],
+                    Concepto = $"{operacion} de mercancia.",
+                    Movimiento = movimiento,
+                };
 
                 // Verificamos si es un nuevo proveedor o si ya existia.
                 XmlNode titularExistente = escritor.DocumentElement.SelectSingleNode($"//auxiliar[@titular='{paraTitular[0]}']");
@@ -66,11 +69,13 @@ namespace PA4IM9_20262_Equipo2.Modulos
                     renglon.MontoSaldo = renglon.Movimiento.Monto;
 
                     // Asignamos las propiedades fundamentales de la targeta y el primer reenglon auxiliar.
-                    MayorAuxiliar titularNuevo = new MayorAuxiliar();
-                    titularNuevo.Cuenta = "proveedor";
-                    titularNuevo.NoTargeta = "99";
-                    titularNuevo.Titular = paraTitular[0];
-                    titularNuevo.RenAuxiliares = new RenAuxiliar[] { renglon };
+                    Mayor titularNuevo = new Mayor
+                    {
+                        Cuenta = "proveedor",
+                        NoTargeta = "99",
+                        Titular = paraTitular[0],
+                        RenMayores = new RenMayor[] { renglon }
+                    };
 
                     // Convertimos el objeto en elemento.
                     XmlElement registro = ConvertidorXml.ObjetoToElemento(escritor, titularNuevo);
@@ -82,7 +87,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 else // Si ya existia el registro del proveedor.
                 {
                     // Convertir el registro en un objeto de mayor auxiliar.
-                    MayorAuxiliar Titular = ConvertidorXml.ElementoToObjeto<MayorAuxiliar>((XmlElement)titularExistente);
+                    Mayor Titular = ConvertidorXml.ElementoToObjeto<Mayor>((XmlElement)titularExistente);
 
                     // Dinamicame determinamos si el movimiento se debe sumar o restal al saldo anterior.
                     int sentido;
@@ -91,11 +96,11 @@ namespace PA4IM9_20262_Equipo2.Modulos
                     else sentido = saldo == Saldos.Acredor ? 1 : -1;
 
                     // Asignamos con respecto a los registros anteriores los datos consecutivos.
-                    renglon.Folio = $"1{(Titular.RenAuxiliares.Length + 1):D3}";
-                    renglon.MontoSaldo = Titular.RenAuxiliares.Last().MontoSaldo + renglon.Movimiento.Monto * sentido;
+                    renglon.Folio = $"1{(Titular.RenMayores.Length + 1):D3}";
+                    renglon.MontoSaldo = Titular.RenMayores.Last().MontoSaldo + renglon.Movimiento.Monto * sentido;
 
                     // Agregamos el renglon a la siguiente posicion de los reenglones.
-                    Titular.RenAuxiliares = Titular.RenAuxiliares.Append(renglon).ToArray();
+                    Titular.RenMayores = Titular.RenMayores.Append(renglon).ToArray();
 
                     // Lo reeconvertimos a elemento Xml.
                     XmlElement titularActualizado = ConvertidorXml.ObjetoToElemento(escritor, Titular);
@@ -103,7 +108,6 @@ namespace PA4IM9_20262_Equipo2.Modulos
                     escritor.DocumentElement.ReplaceChild(titularActualizado, titularExistente);
                     escritor.Save(ruta); // Guardamos.
                 }
-
             }
         }
     }

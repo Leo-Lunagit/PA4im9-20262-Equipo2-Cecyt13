@@ -7,11 +7,20 @@ using System.Xml.Serialization;
 
 namespace PA4IM9_20262_Equipo2.Entidades
 {
+    public enum Acciones
+    {
+        Compra = 1,
+        Pago = 2,
+        Venta = 3,
+        Cobro = 4,
+    }
+
     public enum Cuentas
     {
-        Almacen = 1,
-        Clientes = 2,
-        Proveedores = 3,
+        Bancos = 1,
+        Almacen = 2,
+        Clientes = 3,
+        Proveedores = 4,
     }
 
     // Para poderse usar y asignar en el saldo del movimiento usar
@@ -30,7 +39,7 @@ namespace PA4IM9_20262_Equipo2.Entidades
         public int Monto { get; set; }
     } 
 
-    public class RenAuxiliar
+    public class RenMayor
     {
         [XmlAttribute("folio")]
         public string Folio { get; set; }
@@ -47,7 +56,7 @@ namespace PA4IM9_20262_Equipo2.Entidades
     }
 
     [XmlRoot("auxiliar")]
-    public class MayorAuxiliar
+    public class Mayor
     {
         [XmlAttribute("cuenta")]
         public string Cuenta { get; set; }
@@ -57,6 +66,6 @@ namespace PA4IM9_20262_Equipo2.Entidades
         public string Titular { get; set; }
         [XmlArray("movAuxiliares")]
         [XmlArrayItem("renAuxiliar")]
-        public RenAuxiliar[] RenAuxiliares { get; set; }
+        public RenMayor[] RenMayores { get; set; }
     }
 }
