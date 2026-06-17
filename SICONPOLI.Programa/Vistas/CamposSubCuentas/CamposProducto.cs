@@ -67,6 +67,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
         }
         public override bool CampoNulo()
         {
+            base.CampoNulo();
             bool CampoNulo = nudCantidad.Value == 1 && cmbNombreItem.Text == "" && txtCostoUni.Text == "";
             return CampoNulo;
         }

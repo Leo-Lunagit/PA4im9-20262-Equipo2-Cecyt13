@@ -40,7 +40,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             CuentaTitular = cuenta;
             bool EsVentas = CuentaTitular == Cuentas.Clientes;
             
-            ConceptoPorDefecto = EsVentas ? Conceptos[2] : Conceptos[1];
+            ConceptoPorDefecto = EsVentas ? Conceptos[2] : Conceptos[0];
             Ruta = EsVentas ? Rutas.Ventas : Rutas.Compras;
             Raiz = EsVentas ? Raices.Ventas : Raices.Compras;
 
@@ -90,8 +90,10 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             GuardarVenta(Registro);
             MostrarMovimiento(Registro);
 
-            RegistradorMayor.AsientoToAuxiliar(Registro, Saldos.Deudor, Cuentas.Almacen);
-            RegistradorMayor.AsientoToAuxiliar(Registro, Saldos.Acredor, Cuentas.Clientes);
+            Saldos saldoProducto = CuentaTitular == Cuentas.Proveedores ? Saldos.Deudor : Saldos.Acredor;
+            Saldos saldoTitular = CuentaTitular == Cuentas.Proveedores ? Saldos.Acredor : Saldos.Deudor;
+            RegistradorMayor.AsientoToAuxiliar(Registro, saldoTitular, CuentaTitular);
+            RegistradorMayor.AsientoToAlmacen(Registro, saldoProducto);
 
             LimpiarFormulario();
         }
@@ -167,13 +169,13 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             // Dinamicamente manda a incrustar el formulario adecuado.
             if (btnIntercalar.Text == "PAGAR" || btnIntercalar.Text == "COBRAR")
             {
-                Sistema.IndexarControles(this.panFormularios, new FormularioFacturaciones(CuentaTitular));
+                Sistema.IndexarControles(this.panFormularios, new FormularioTransacciones(CuentaTitular));
                 btnIntercalar.Text = EsCompra ? "COMPRAR" : "VENDER";
                 ConceptoPorDefecto = EsCompra ? Conceptos[1] : Conceptos[3] ;
             }
             else
             {
-                Sistema.IndexarControles(this.panFormularios, new FormularioTransacciones(CuentaTitular));
+                Sistema.IndexarControles(this.panFormularios, new FormularioFacturaciones(CuentaTitular));
                 btnIntercalar.Text = EsCompra ? "PAGAR" : "COBRAR";
                 ConceptoPorDefecto = EsCompra ? Conceptos[0] : Conceptos[2];
             }
@@ -193,6 +195,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
                 txtConcepto.Focus();
             }
         }
+
         //
         // Registro de Asientos.
         //
@@ -207,14 +210,14 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
                 // Si estan todos sus campos vacios, no hace nada.
                 if (Producto.CampoNulo()) continue;
 
-                string Nombre = $"{Producto.nudCantidad.Value} {Producto.cmbNombreItem.Text} a {Producto.txtCostoUni.Text:C} c/u.";
+                string Nombre = $"{Producto.nudCantidad.Value} {Producto.cmbNombreItem.Text} a {decimal.Parse(Producto.txtCostoUni.Text):C} c/u.";
                 decimal Monto = decimal.Parse(Producto.txtMonto.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
                 Subcuenta producto = new Subcuenta
                 {
                     NombreSubcuenta = Nombre,
                     Monto = (int)(Monto * 100)
                 };
-                Productos.Append(producto);
+                Productos = Productos.Append(producto).ToArray();
             }
             Productos = Productos.Skip(1).ToArray();
             int sumaProductos = (int)(decimal.Parse(Formulario.txtSumaTotal.Text, NumberStyles.Currency, CultureInfo.CurrentCulture) * 100);
@@ -246,7 +249,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
                     NombreSubcuenta = Nombre,
                     Monto = (int)(decimal.Parse(Titular.txtMonto.Text) * 100)
                 };
-                Empresas.Append(cliente);
+                Empresas = Empresas.Append(cliente).ToArray();
             }
             Empresas = Empresas.Skip(1).ToArray();
             int sumaTitulares = (int)(decimal.Parse(Formulario.txtMontoTotal.Text, NumberStyles.Currency, CultureInfo.CurrentCulture) * 100);

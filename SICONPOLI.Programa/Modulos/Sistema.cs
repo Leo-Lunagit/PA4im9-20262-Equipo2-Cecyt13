@@ -52,6 +52,8 @@ namespace PA4IM9_20262_Equipo2.Modulos
         public static string[] Roles = { "administrador", "colaborador", "cliente" };
         public static string RolPredefinido = Roles[2];
         public static string banderaRecordar = "recordado";
+        //
+        public static int PorcentajeUtilida = 50;
 
         // Verificacion de la existencia de un archivo XML.
         public static void VerificarArchivo(string ruta, string nombreRaiz)

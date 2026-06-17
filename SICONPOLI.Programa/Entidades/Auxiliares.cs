@@ -39,6 +39,10 @@ namespace PA4IM9_20262_Equipo2.Entidades
         public int Monto { get; set; }
     } 
 
+    //
+    // Libros mayores.
+    //
+
     public class RenMayor
     {
         [XmlAttribute("folio")]
@@ -55,17 +59,56 @@ namespace PA4IM9_20262_Equipo2.Entidades
         public int MontoSaldo { get; set; }
     }
 
-    [XmlRoot("auxiliar")]
+    [XmlRoot("mayor")]
     public class Mayor
     {
         [XmlAttribute("cuenta")]
         public string Cuenta { get; set; }
         [XmlAttribute("noTarjeta")]
         public string NoTargeta { get; set; }
-        [XmlAttribute("titular")]
+        [XmlElement("titular")]
         public string Titular { get; set; }
-        [XmlArray("movAuxiliares")]
-        [XmlArrayItem("renAuxiliar")]
+        [XmlArray("movMayores")]
+        [XmlArrayItem("renMayores")]
         public RenMayor[] RenMayores { get; set; }
+    }
+
+    // 
+    // Targetas de almacen.
+    //
+
+    public class RenAlmacen
+    {
+        [XmlAttribute("folio")]
+        public string Folio { get; set; }
+        [XmlElement("fecha")]
+        public string Fecha { get; set; }
+        [XmlElement("factura")]
+        public string Factura { get; set; }
+        [XmlElement("movInventario")]
+        public Movimiento MovInventario { get; set; }
+        [XmlElement("Existencia")]
+        public int Existencia { get; set; }
+        [XmlElement("costo")]
+        public int CostoUnitario { get; set; }
+        [XmlElement("movValor")]
+        public int CostoPromedio { get; set; }
+        public Movimiento MovValor { get; set; }
+        [XmlElement("montoSaldo")]
+        public int MontoSaldo { get; set; }
+    }
+
+    [XmlRoot("almacen")]
+    public class Almacen
+    {
+        [XmlAttribute("noTarjeta")]
+        public string NoTarjeta { get; set; }
+        [XmlElement("producto")]
+        public string Producto { get; set; }
+        [XmlElement("costoUnitario")]
+        public int CostoUnitario { get; set; }
+        [XmlArray("movAlmacen")]
+        [XmlArrayItem("renAlmacen")]
+        public RenAlmacen[] RenAlmacens { get; set; }
     }
 }
