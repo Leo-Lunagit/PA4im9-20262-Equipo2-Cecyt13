@@ -52,6 +52,7 @@
     <Compile Include="Entidades\Auxiliares.cs" />
     <Compile Include="Entidades\Perfil.cs" />
     <Compile Include="Modulos\ConvertidorXml.cs" />
+    <Compile Include="Entidades\PlantillasCorreo.cs" />
     <Compile Include="Modulos\RegistradorMayor.cs" />
     <Compile Include="Modulos\Sistema.cs" />
     <Compile Include="Vistas\CamposSubCuentas\Campos.cs">

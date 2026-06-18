@@ -1,0 +1,157 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web;
+
+namespace PA4IM9_20262_Equipo2.Modulos
+{
+    public static class PlantillasCorreo
+    {
+        private static string Declaracion = @"
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Código de Verificación - SIRETECH Poli</title>
+</head>";
+        private static string Header = @"
+        <tr>
+            <td bgcolor='#6f1d46' style='padding: 10px 15px; text-align: center;'>
+                <table width='100%' border='0' cellpadding='0' cellspacing='0'>
+                    <tr>
+                        <td width='75' align='left'>
+                            <img alt='IPN' src='https://onceninasyninos.tv/wp-content/uploads/2018/04/Banner-logos-ipn-e1523046221576.png' style='height: 65px; display: block;'>
+                        </td>
+                        <td align='center' style='color: #FFFFFF; font-size: 11px; line-height: 14px; padding: 0 10px;'>
+                            <strong style='display: block; margin-bottom: 2px; font-size: 12px;'>INSTITUTO POLITÉCNICO NACIONAL</strong>
+                            <span style='font-style: italic; opacity: 0.9; display: block; margin-bottom: 2px;'>""La Técnica al Servicio de la Patria""</span>
+                            <span style='opacity: 0.8; display: block;'>CECyT 13 ""Ricardo Flores Magón""</span>
+                        </td>
+                        <td width='75' align='right'>
+                            <img alt='CECyT 13' src='https://raw.githubusercontent.com/Leo-Lunagit/PA4im9-20262-Equipo2-Cecyt13/refs/heads/main/SICONPOLI.Programa/Recursos/Multimedia/cecyt13-blanco.png' style='height: 65px; display: block;'>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td style='padding: 35px 20px; text-align: center;'>";
+
+        private static string Footer = @"
+            </td>
+        </tr>
+        
+        <tr>
+            <td bgcolor='#6f1d46' style='padding: 25px 30px; text-align: center; color: #E2E8F0; font-size: 11px; line-height: 16px;'>
+                <strong style='color: #F1F9F3; font-size: 13px; display: block; margin-bottom: 5px;'>SIRETECH Poli © {DateTime.Now.Year}</strong>
+                <span style='display: block; margin-bottom: 15px; opacity: 0.9;'>Sistema de Gestión de Reciclaje Tecnológico</span>
+                <hr style='border: 0; border-top: 1px solid rgba(255, 255, 255, 0.15); margin-bottom: 15px;'>
+                <p style='color: #CBD5E0; margin: 0 0 8px 0;'>
+                    <strong>Aviso de seguridad:</strong> Si tú no solicitaste este código o no reconoces esta cuenta de correo, por favor haz caso omiso de este mensaje y elimínalo de inmediato.
+                </p>
+                <p style='color: #A0AEC0; margin: 0;'>
+                    Este es un correo generado automáticamente. Por favor, no respondas a este mensaje.
+                </p>
+            </td>
+        </tr>";
+
+        private static string Logo = @"<img alt='SIRETECH' src='https://github.com/Leo-Lunagit/PA4im9-20262-Equipo2-Cecyt13/blob/main/SICONPOLI.Programa/Recursos/Multimedia/SIRETECH-Ver.png?raw=true' style='width: 170px; max-width: 100%; height: auto; margin-bottom: 15px;'>";
+
+        private static string InicioTabla = @"
+<body style='font-family: ""Gill Sans"", ""Gill Sans MT"", Calibri, ""Trebuchet MS"", sans-serif; margin: 0; padding: 20px; background-color: #F4F6F8;'>
+    <table align='center' border='0' cellpadding='0' cellspacing='0' width='100%' style='max-width: 550px; background-color: #ffffff; border-radius: 16px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #E2E8F0;'>";
+        private static string FinTabla = @"
+    </table>
+</body>
+</html";
+
+        public static string Verificacion(string codigoVerificacion)
+        {
+            return $@"
+{Declaracion}
+{InicioTabla}
+        {Header}
+                {Logo}
+                
+                <h1 style='color: #184725; font-size: 22px; margin: 0 0 15px 0; font-weight: 700;'>
+                    ¡Hola, Futuro del Reciclaje!
+                </h1>
+                
+                <p style='color: #4A5568; font-size: 14px; line-height: 20px; margin: 0 0 20px 0;'>
+                    Estás a un solo paso de unirte a la red más importante de <strong>Reciclaje Tecnológico en el Politécnico</strong>. Hemos recibido tu solicitud de acceso a la plataforma <strong>SIRETECH Poli</strong>.
+                </p>
+                
+                <p style='color: #718096; font-size: 13px; margin-bottom: 15px;'>
+                    Usa el siguiente código de seguridad para verificar tu identidad y activar tu cuenta:
+                </p>
+
+                <table align='center' border='0' cellpadding='0' cellspacing='0' style='margin: 10px auto 25px auto;'>
+                    <tr>
+                        <td align='center' style='background-color: #F1F9F3; border: 2px dashed #5D8E1E; border-radius: 12px; padding: 15px 35px;'>
+                            <span style='font-family: ""Courier New"", Courier, monospace; font-size: 32px; font-weight: bold; color: #184725; letter-spacing: 6px; display: block;'>
+                                {codigoVerificacion}
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+
+                <p style='color: #A0AEC0; font-size: 11px; margin: 0;'>
+                    Este código es confidencial y tiene un tiempo de expiración de 15 minutos. No lo compartas con nadie.
+                </p>
+            {Footer}
+    {FinTabla}";
+        }
+
+        public static string Recuperacion(string usuario, string correo, string contrasenia)
+        {
+            return $@"
+{Declaracion}
+{InicioTabla}
+        {Header}
+                {Logo}        
+                
+                <h1 style='color: #184725; font-size: 22px; margin: 0 0 10px 0; font-weight: 700;'>
+                    ¿Olvidaste tu contraseña, {usuario}?
+                </h1>
+                
+                <p style='color: #4A5568; font-size: 14px; line-height: 20px; margin: 0 0 20px 0;'>
+                    No te preocupes, a cualquiera le pasa. Hemos recibido una solicitud para restablecer las credenciales de acceso de tu cuenta en <strong>SIRETECH Poli</strong>.
+                </p>
+
+                <!-- Campo de Detalles de Solicitud (Sutil) -->
+                <table align='center' border='0' cellpadding='0' cellspacing='0' style='background-color: #F8FAFC; border-radius: 8px; width: 100%; max-width: 400px; margin-bottom: 20px; border: 1px solid #EDF2F7;'>
+                    <tr>
+                        <td style='padding: 10px 15px; text-align: left; font-size: 12px; color: #718096; line-height: 18px;'>
+                            <strong>Usuario:</strong> {usuario}<br>
+                            <strong>Solicitado desde:</strong> <span style='color: #4A5568; font-family: monospace;'>{correoDestinatario}</span>
+                        </td>
+                    </tr>
+                </table>
+                
+                <p style='color: #718096; font-size: 13px; margin-bottom: 15px;'>
+                    Ingresa este código de seguridad temporal en la aplicación para restablecer tu contraseña:
+                </p>
+
+                <!-- CAJA DE CÓDIGO -->
+                <table align='center' border='0' cellpadding='0' cellspacing='0' style='margin: 10px auto 25px auto;'>
+                    <tr>
+                        <td align='center' style='background-color: #F1F9F3; border: 2px dashed #5D8E1E; border-radius: 12px; padding: 15px 35px;'>
+                            <span style='font-family: ""Courier New"", Courier, monospace; font-size: 32px; font-weight: bold; color: #184725; letter-spacing: 6px; display: block;'>
+                                {contrasenia}
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+
+                <p style='color: #A0AEC0; font-size: 11px; margin: 0;'>
+                    Por motivos de seguridad, este código es de un solo uso y expirará en 15 minutos.
+                </p>
+            {Footer}
+    {FinTabla}";
+        }
+    }
+}
