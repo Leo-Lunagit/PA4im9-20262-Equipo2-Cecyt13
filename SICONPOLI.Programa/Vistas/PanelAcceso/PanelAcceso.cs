@@ -29,6 +29,9 @@ namespace PA4IM9_20262_Equipo2
             Sistema.IniciarArchivos();
             RecordarUsuario();
             CargarUsuariosActivos();
+
+            Pruebas prueba = new Pruebas();
+            prueba.Iniciar();
         }
         private void RecordarUsuario()
         {

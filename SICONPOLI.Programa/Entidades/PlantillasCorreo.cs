@@ -9,6 +9,10 @@ namespace PA4IM9_20262_Equipo2.Modulos
 {
     public static class PlantillasCorreo
     {
+        private static string[] Deslindados = 
+        {
+
+        };
         private static string Declaracion = @"
 <!DOCTYPE html>
 <html lang='es'>
@@ -41,7 +45,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
         <tr>
             <td style='padding: 35px 20px; text-align: center;'>";
 
-        private static string Footer = @"
+        private static string Footer = $@"
             </td>
         </tr>
         
@@ -51,15 +55,12 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 <span style='display: block; margin-bottom: 15px; opacity: 0.9;'>Sistema de Gestión de Reciclaje Tecnológico</span>
                 <hr style='border: 0; border-top: 1px solid rgba(255, 255, 255, 0.15); margin-bottom: 15px;'>
                 <p style='color: #CBD5E0; margin: 0 0 8px 0;'>
-                    <strong>Aviso de seguridad:</strong> Si tú no solicitaste este código o no reconoces esta cuenta de correo, por favor haz caso omiso de este mensaje y elimínalo de inmediato.
-                </p>
+                    <strong>Aviso de seguridad:</strong>                 </p>
                 <p style='color: #A0AEC0; margin: 0;'>
                     Este es un correo generado automáticamente. Por favor, no respondas a este mensaje.
                 </p>
             </td>
         </tr>";
-
-        private static string Logo = @"<img alt='SIRETECH' src='https://github.com/Leo-Lunagit/PA4im9-20262-Equipo2-Cecyt13/blob/main/SICONPOLI.Programa/Recursos/Multimedia/SIRETECH-Ver.png?raw=true' style='width: 170px; max-width: 100%; height: auto; margin-bottom: 15px;'>";
 
         private static string InicioTabla = @"
 <body style='font-family: ""Gill Sans"", ""Gill Sans MT"", Calibri, ""Trebuchet MS"", sans-serif; margin: 0; padding: 20px; background-color: #F4F6F8;'>
@@ -68,6 +69,15 @@ namespace PA4IM9_20262_Equipo2.Modulos
     </table>
 </body>
 </html";
+        private static string LogoVer = @"<img alt='SIRETECH' src='https://github.com/Leo-Lunagit/PA4im9-20262-Equipo2-Cecyt13/blob/main/SICONPOLI.Programa/Recursos/Multimedia/SIRETECH-Ver.png?raw=true' style='width: 170px; max-width: 100%; height: auto; margin-bottom: 15px;'>";
+        private static string LogoHor = @"
+                <table width='100%' border='0' cellpadding='0' cellspacing='0' style='margin-bottom: 20px;'>
+                    <tr>
+                        <td align='center'>
+                            <img alt='SIRETECH' src='https://github.com/Leo-Lunagit/PA4im9-20262-Equipo2-Cecyt13/blob/main/SICONPOLI.Programa/Recursos/Multimedia/SIRETECH-Hor.png?raw=true' style='height: 48px; max-width: 100%; display: block;'>
+                        </td>
+                    </tr>
+                </table>";
 
         public static string Verificacion(string codigoVerificacion)
         {
@@ -75,7 +85,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
 {Declaracion}
 {InicioTabla}
         {Header}
-                {Logo}
+                {LogoVer}
                 
                 <h1 style='color: #184725; font-size: 22px; margin: 0 0 15px 0; font-weight: 700;'>
                     ¡Hola, Futuro del Reciclaje!
@@ -112,7 +122,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
 {Declaracion}
 {InicioTabla}
         {Header}
-                {Logo}        
+                {LogoVer}        
                 
                 <h1 style='color: #184725; font-size: 22px; margin: 0 0 10px 0; font-weight: 700;'>
                     ¿Olvidaste tu contraseña, {usuario}?
@@ -127,7 +137,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                     <tr>
                         <td style='padding: 10px 15px; text-align: left; font-size: 12px; color: #718096; line-height: 18px;'>
                             <strong>Usuario:</strong> {usuario}<br>
-                            <strong>Solicitado desde:</strong> <span style='color: #4A5568; font-family: monospace;'>{correoDestinatario}</span>
+                            <strong>Solicitado desde:</strong> <span style='color: #4A5568; font-family: monospace;'>{correo}</span>
                         </td>
                     </tr>
                 </table>
@@ -152,6 +162,87 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 </p>
             {Footer}
     {FinTabla}";
+        }
+        public static string Producto()
+        {
+            return $@"
+                        <tr style='border-bottom: 1px solid #EDF2F7; font-family: ""Segoe UI"", ""Gill Sans"", Calibri, sans-serif;'>
+                            <td style='padding: 10px; color: #4A5568;'>Gabinete Acteck (E-Waste Clase B)</td>
+                            <td align='center' style='color: #4A5568;'>2</td>
+                            <td align='right' style='font-family: monospace; color: #4A5568;'>$120.00</td>
+                        </tr>";
+        }
+        public static string Tiket(string ProductosHtml, int Subtotal, int IVA, int Total, string usuario, string EmpresaDestino, DateTime FechaExpiracion, DateTime FechaEmision, string Folio)
+        {
+            return $@"
+{Declaracion}
+{InicioTabla}
+    {Header}
+            {LogoHor}
+
+            <h2 style='color: #184725; font-size: 20px; margin: 0 0 15px 0; text-align: center; font-weight: 700;'>
+                    Comprobante de Operación Digital
+                </h2>
+
+                <p style='color: #4A5568; font-size: 13px; line-height: 18px; margin: 0 0 20px 0; text-align: center;'>
+                    Gracias por contribuir al cuidado ambiental mediante el reciclaje tecnológico ordenado. A continuación, se detallan los datos correspondientes a tu última transacción.
+                </p>
+
+                <!-- DETALLES DE TICKET ESTILO ""USUARIO/CONTRASEÑA"" -->
+                <table align='center' border='0' cellpadding='0' cellspacing='0' style='background-color: #F8FAFC; border-radius: 10px; width: 100%; margin-bottom: 25px; border: 1px solid #EDF2F7;'>
+                    <tr>
+                        <td style='padding: 15px; font-size: 12px; color: #4A5568; line-height: 20px;'>
+                            <table width='100%' border='0' cellpadding='0' cellspacing='0'>
+                                <tr>
+                                    <td width='50%' style='vertical-align: top; padding-right: 10px;'>
+                                        <strong style='color: #184725;'>No. de Folio:</strong> <span style='font-family: monospace; font-weight: bold;'>{Folio}</span><br>
+                                        <strong>Operador:</strong> {usuario}<br>
+                                        <strong>Destinatario:</strong> {EmpresaDestino}
+                                    </td>
+                                    <td width='50%' style='vertical-align: top; border-left: 1px solid #E2E8F0; padding-left: 15px;'>
+                                        <strong>Emisión:</strong> {FechaEmision}<br>
+                                        <strong>Expiración:</strong> {FechaExpiracion}<br>
+                                        <strong>Estado:</strong> <span style='background-color: #DCFCE7; color: #15803D; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;'>Procesado</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- TABLA DE PRODUCTOS / COMPONENTES -->
+                <table width='100%' border='0' cellpadding='8' cellspacing='0' style='border-collapse: collapse; font-size: 13px; margin-bottom: 20px; border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden;'>
+                    <thead>
+                        <tr style='background-color: #F1F9F3; border-bottom: 2px solid #5D8E1E;'>
+                            <th align='left' style='color: #184725; font-weight: bold; font-size: 12px; padding: 10px;'>Descripción del Componente</th>
+                            <th align='center' style='color: #184725; font-weight: bold; font-size: 12px; width: 60px;'>Cant.</th>
+                            <th align='right' style='color: #184725; font-weight: bold; font-size: 12px; width: 90px; padding: 10px;'>Monto/Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {ProductosHtml}
+                    </tbody>
+                </table>
+
+                <!-- SECCIÓN DE DESGLOSE DE TOTALES -->
+                <table align='right' border='0' cellpadding='4' cellspacing='0' style='width: 100%; max-width: 240px; font-size: 13px; color: #4A5568; margin-bottom: 20px;'>
+                    <tr>
+                        <td align='left'>Subtotal:</td>
+                        <td align='right' style='font-family: monospace;'>{Subtotal}</td>
+                    </tr>
+                    <tr>
+                        <td align='left'>I.V.A (16%):</td>
+                        <td align='right' style='font-family: monospace;'>{IVA}</td>
+                    </tr>
+                    <tr style='border-top: 1px solid #E2E8F0;'>
+                        <td align='left' style='font-weight: bold; color: #184725; font-size: 14px; padding-top: 8px;'>Total:</td>
+                        <td align='right' style='font-weight: bold; color: #184725; font-size: 15px; font-family: monospace; padding-top: 8px;'>{Total}</td>
+                    </tr>
+                </table>
+                
+                <div style='clear: both;'></div>
+            {Footer}
+        {FinTabla}";
         }
     }
 }

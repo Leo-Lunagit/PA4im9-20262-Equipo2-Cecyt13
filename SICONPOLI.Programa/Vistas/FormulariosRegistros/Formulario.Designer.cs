@@ -29,11 +29,8 @@
         private void InitializeComponent()
         {
             this.grpTitulares = new System.Windows.Forms.GroupBox();
-            this.ContenedorTitulares = new System.Windows.Forms.Panel();
-            this.lblNoTitulares = new System.Windows.Forms.Label();
             this.txtMontoTotal = new System.Windows.Forms.TextBox();
             this.lblMontoTotal = new System.Windows.Forms.Label();
-            this.lblMonto = new System.Windows.Forms.Label();
             this.lblFactura = new System.Windows.Forms.Label();
             this.lblTitulares = new System.Windows.Forms.Label();
             this.grpRecursos = new System.Windows.Forms.GroupBox();
@@ -46,6 +43,9 @@
             this.lblSuma = new System.Windows.Forms.Label();
             this.lblIDMovimiento = new System.Windows.Forms.Label();
             this.lblRecursos = new System.Windows.Forms.Label();
+            this.lblMonto = new System.Windows.Forms.Label();
+            this.ContenedorTitulares = new System.Windows.Forms.Panel();
+            this.lblNoTitulares = new System.Windows.Forms.Label();
             this.grpTitulares.SuspendLayout();
             this.grpRecursos.SuspendLayout();
             this.SuspendLayout();
@@ -67,25 +67,6 @@
             this.grpTitulares.TabStop = false;
             this.grpTitulares.Text = "Titulares";
             // 
-            // ContenedorTitulares
-            // 
-            this.ContenedorTitulares.AutoScroll = true;
-            this.ContenedorTitulares.Location = new System.Drawing.Point(5, 56);
-            this.ContenedorTitulares.Name = "ContenedorTitulares";
-            this.ContenedorTitulares.Size = new System.Drawing.Size(417, 129);
-            this.ContenedorTitulares.TabIndex = 80;
-            // 
-            // lblNoTitulares
-            // 
-            this.lblNoTitulares.AutoSize = true;
-            this.lblNoTitulares.Font = new System.Drawing.Font("Dubai", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoTitulares.Location = new System.Drawing.Point(125, 28);
-            this.lblNoTitulares.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblNoTitulares.Name = "lblNoTitulares";
-            this.lblNoTitulares.Size = new System.Drawing.Size(20, 25);
-            this.lblNoTitulares.TabIndex = 78;
-            this.lblNoTitulares.Text = "1";
-            // 
             // txtMontoTotal
             // 
             this.txtMontoTotal.Font = new System.Drawing.Font("Modern No. 20", 12F);
@@ -106,17 +87,6 @@
             this.lblMontoTotal.Size = new System.Drawing.Size(98, 25);
             this.lblMontoTotal.TabIndex = 49;
             this.lblMontoTotal.Text = "Monto Total :";
-            // 
-            // lblMonto
-            // 
-            this.lblMonto.AutoSize = true;
-            this.lblMonto.Font = new System.Drawing.Font("Dubai", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMonto.Location = new System.Drawing.Point(306, 28);
-            this.lblMonto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblMonto.Name = "lblMonto";
-            this.lblMonto.Size = new System.Drawing.Size(55, 25);
-            this.lblMonto.TabIndex = 49;
-            this.lblMonto.Text = "Monto";
             // 
             // lblFactura
             // 
@@ -253,6 +223,36 @@
             this.lblRecursos.TabIndex = 28;
             this.lblRecursos.Text = "Recursos";
             // 
+            // lblMonto
+            // 
+            this.lblMonto.AutoSize = true;
+            this.lblMonto.Font = new System.Drawing.Font("Dubai", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMonto.Location = new System.Drawing.Point(306, 28);
+            this.lblMonto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMonto.Name = "lblMonto";
+            this.lblMonto.Size = new System.Drawing.Size(55, 25);
+            this.lblMonto.TabIndex = 49;
+            this.lblMonto.Text = "Monto";
+            // 
+            // ContenedorTitulares
+            // 
+            this.ContenedorTitulares.AutoScroll = true;
+            this.ContenedorTitulares.Location = new System.Drawing.Point(5, 56);
+            this.ContenedorTitulares.Name = "ContenedorTitulares";
+            this.ContenedorTitulares.Size = new System.Drawing.Size(417, 129);
+            this.ContenedorTitulares.TabIndex = 80;
+            // 
+            // lblNoTitulares
+            // 
+            this.lblNoTitulares.AutoSize = true;
+            this.lblNoTitulares.Font = new System.Drawing.Font("Dubai", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoTitulares.Location = new System.Drawing.Point(125, 28);
+            this.lblNoTitulares.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNoTitulares.Name = "lblNoTitulares";
+            this.lblNoTitulares.Size = new System.Drawing.Size(20, 25);
+            this.lblNoTitulares.TabIndex = 78;
+            this.lblNoTitulares.Text = "1";
+            // 
             // Formulario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -274,7 +274,6 @@
         public System.Windows.Forms.TextBox txtMontoTotal;
         private System.Windows.Forms.Label lblMontoTotal;
         protected System.Windows.Forms.GroupBox grpTitulares;
-        protected System.Windows.Forms.Label lblMonto;
         protected System.Windows.Forms.Label lblFactura;
         protected System.Windows.Forms.GroupBox grpRecursos;
         protected System.Windows.Forms.Label lblNoRecursos;
@@ -285,9 +284,10 @@
         protected System.Windows.Forms.Label lblSumaTotal;
         public System.Windows.Forms.TextBox txtSumaTotal;
         public System.Windows.Forms.TextBox txtIVA;
-        public System.Windows.Forms.Panel ContenedorTitulares;
         public System.Windows.Forms.Panel ContenedorRecursos;
-        public System.Windows.Forms.Label lblNoTitulares;
         public System.Windows.Forms.Label lblTitulares;
+        public System.Windows.Forms.Panel ContenedorTitulares;
+        public System.Windows.Forms.Label lblNoTitulares;
+        protected System.Windows.Forms.Label lblMonto;
     }
 }
