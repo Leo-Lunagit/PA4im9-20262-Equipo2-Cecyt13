@@ -1,2 +1,51 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<almacen />
+<almacen>
+  <almacen noTarjeta="1001">
+    <producto />
+    <costoUnitario>10000</costoUnitario>
+    <movAlmacen>
+      <renAlmacen folio="1001">
+        <fecha>19/06/2026</fecha>
+        <factura>System.Windows.Forms.TextBox, Text: </factura>
+        <movInventario saldo="Deudor">
+          <monto>4</monto>
+        </movInventario>
+        <Existencia>4</Existencia>
+        <costo>10000</costo>
+        <movValor>10000</movValor>
+        <MovValor saldo="Deudor">
+          <monto>40000</monto>
+        </MovValor>
+        <montoSaldo>40000</montoSaldo>
+      </renAlmacen>
+      <renAlmacen folio="1002">
+        <fecha>19/06/2026</fecha>
+        <factura>System.Windows.Forms.TextBox, Text: </factura>
+        <movInventario saldo="Deudor">
+          <monto>4</monto>
+        </movInventario>
+        <Existencia>4</Existencia>
+        <costo>6000</costo>
+        <movValor>6000</movValor>
+        <MovValor saldo="Deudor">
+          <monto>24000</monto>
+        </MovValor>
+        <montoSaldo>24000</montoSaldo>
+      </renAlmacen>
+      <renAlmacen folio="1003">
+        <fecha>19/06/2026</fecha>
+        <factura>System.Windows.Forms.TextBox, Text: </factura>
+        <movInventario saldo="Deudor">
+          <monto>1</monto>
+        </movInventario>
+        <Existencia>1</Existencia>
+        <costo>10000</costo>
+        <movValor>10000</movValor>
+        <MovValor saldo="Deudor">
+          <monto>10000</monto>
+        </MovValor>
+        <montoSaldo>10000</montoSaldo>
+      </renAlmacen>
+    </movAlmacen>
+  </almacen>
+</almacen>

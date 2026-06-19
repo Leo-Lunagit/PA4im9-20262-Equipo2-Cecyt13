@@ -133,14 +133,12 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 
             Formulario Formulario = panFormularios.Controls.OfType<Formulario>().First();
 
-            Formulario.txtSumaTotal.Text = "";
+            Formulario.txtSubTotal.Text = "";
             Formulario.txtIVA.Text = "";
             Formulario.txtMontoTotal.Text = "";
 
             Formulario.ContenedorRecursos.Controls.Clear();
             Sistema.IndexarCampos(Formulario, Formulario.ContenedorRecursos, new CamposProducto(), Cuentas.Almacen);
-            Formulario.ContenedorTitulares.Controls.Clear();
-            Sistema.IndexarCampos(Formulario, Formulario.ContenedorTitulares, new CamposTitular(), CuentaTitular);
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -220,7 +218,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
                 Productos = Productos.Append(producto).ToArray();
             }
             Productos = Productos.Skip(1).ToArray();
-            int sumaProductos = (int)(decimal.Parse(Formulario.txtSumaTotal.Text, NumberStyles.Currency, CultureInfo.CurrentCulture) * 100);
+            int sumaProductos = (int)(decimal.Parse(Formulario.txtSubTotal.Text, NumberStyles.Currency, CultureInfo.CurrentCulture) * 100);
 
             Cuenta Almacen = new Cuenta
             {
@@ -232,33 +230,22 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             decimal iva = decimal.Parse(Formulario.txtIVA.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
             Cuenta IVA = new Cuenta
             {
-                NombreCuenta = "IVA por Acreditar",
+                NombreCuenta = EsCompra ? "IVA por Acreditar" : "IVA por Transladar",
                 Monto = (int)(iva * 100)
             };
 
-            Subcuenta[] Empresas = { new Subcuenta() };
-            foreach (CamposTitular Titular in Formulario.ContenedorTitulares.Controls)
-            {
-                // Si estan todos sus campos vacios, no hace nada.
-                if (Titular.CampoNulo()) continue;
 
-                string Nombre = $"{Titular.cmbNombreItem.Text} s/f {Titular.txtFactura}";
-                decimal monto = decimal.Parse(Titular.txtMonto.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
-                Subcuenta cliente = new Subcuenta
-                {
-                    NombreSubcuenta = Nombre,
-                    Monto = (int)(decimal.Parse(Titular.txtMonto.Text) * 100)
-                };
-                Empresas = Empresas.Append(cliente).ToArray();
-            }
-            Empresas = Empresas.Skip(1).ToArray();
             int sumaTitulares = (int)(decimal.Parse(Formulario.txtMontoTotal.Text, NumberStyles.Currency, CultureInfo.CurrentCulture) * 100);
-
+            Subcuenta Titular = new Subcuenta
+            {
+                NombreSubcuenta = $"{Formulario.txtTitular} s/f {Formulario.txtFactura}",
+                Monto = sumaTitulares
+            };
             Cuenta Titulares = new Cuenta
             {
                 NombreCuenta = CuentaTitular.ToString(),
-                Subcuentas = Empresas,
-                Monto = sumaTitulares
+                Monto = sumaTitulares,
+                Subcuentas = new Subcuenta[] { Titular }
             };
 
             Asiento Registro = new Asiento

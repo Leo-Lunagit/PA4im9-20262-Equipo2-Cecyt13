@@ -34,11 +34,10 @@
             // 
             // grpTitulares
             // 
-            this.grpTitulares.Location = new System.Drawing.Point(505, 18);
+            this.grpTitulares.Location = new System.Drawing.Point(600, 68);
             // 
             // grpRecursos
             // 
-            this.grpRecursos.Location = new System.Drawing.Point(35, 18);
             this.grpRecursos.Text = "Bancos";
             // 
             // lblNoRecursos

@@ -1,6 +1,6 @@
 ﻿namespace PA4IM9_20262_Equipo2
 {
-    partial class PanelAcceso
+    partial class Panel_Acceso
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PanelAcceso));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Panel_Acceso));
             this.lblTitulo = new System.Windows.Forms.Label();
             this.btnAcerca = new System.Windows.Forms.Label();
             this.btnPriva = new System.Windows.Forms.Label();

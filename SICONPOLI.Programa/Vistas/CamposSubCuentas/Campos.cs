@@ -60,13 +60,6 @@ namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
                 CostoAnterior = Costo;
             }
         }
-
-        private void cmbProductos_TextChange(object sender, EventArgs e)
-        {
-            int NoCampos = this.Parent.Controls.Count;
-            if (NoCampos == int.Parse(lblNoItem.Text) && NoCampos < 4)
-                AgregarEspacioItem?.Invoke((Cuentas)Cuenta);
-        }
         //
         // Logica de validaciones.
         //

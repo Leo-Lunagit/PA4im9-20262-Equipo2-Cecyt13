@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
 {
-    public partial class CamposTitular : Campos
+    public partial class CamposBancos : Campos
     {
-        public CamposTitular()
+        public CamposBancos()
         {
             InitializeComponent();
             cmbNombreItem.Items.Clear();

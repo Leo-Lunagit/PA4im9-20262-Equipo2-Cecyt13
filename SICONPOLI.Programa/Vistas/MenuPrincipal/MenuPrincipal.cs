@@ -2,11 +2,11 @@
 using PA4IM9_20262_Equipo2.Modulos;
 using PA4IM9_20262_Equipo2.Vistas.Panel_Principal;
 using PA4IM9_20262_Equipo2.Vistas.PanelVentas;
-using PA4IM9_20262_Equipo2.Vistas.PanelMapa;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -61,7 +61,14 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
         private void btnClientes_Click(object sender, EventArgs e) { CerrarPaneles(sender); }
         private void btnProvedores_Click(object sender, EventArgs e) { CerrarPaneles(sender); }
         private void btnAlmacen_Click(object sender, EventArgs e) { CerrarPaneles(sender); }
-        private void btnSucursales_Click(object sender, EventArgs e) { AbrirPaneles(new Panel_Mapa(), sender); }
+        private void btnSucursales_Click(object sender, EventArgs e) 
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://www.google.com/maps/search/recicaldora+de+electronicos+coyoacan/@19.3728181,-99.1949944,15z?entry=ttu&g_ep=EgoyMDI2MDYxNi4wIKXMDSoASAFQAw%3D%3D",
+                UseShellExecute = true
+            });
+        }
         private void btnUsuario_Click(object sender, EventArgs e) { CerrarPaneles(sender); }
         private void btnConfig_Click(object sender, EventArgs e) { CerrarPaneles(sender); }
         private void MenuPrincipal_FormClosing(object sender, FormClosingEventArgs e) { Application.Exit(); }
@@ -97,7 +104,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            PanelAcceso ventana = new PanelAcceso();
+            Panel_Acceso ventana = new Panel_Acceso();
             ventana.RecomendarActivo();
             ventana.Show();
             this.Hide();

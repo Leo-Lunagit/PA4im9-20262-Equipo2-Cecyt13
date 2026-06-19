@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MimeKit;
 using MailKit.Net.Smtp;
 using MailKit.Security;
+using System.Windows.Forms;
 
 namespace PA4IM9_20262_Equipo2.Modulos
 {
@@ -25,11 +26,14 @@ namespace PA4IM9_20262_Equipo2.Modulos
             try
             {
                 await Cartero.ConnectAsync("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-                await Cartero.AuthenticateAsync("siretechpoli@gmail.com", "iswe tszu lug t tt dfz");
+                await Cartero.AuthenticateAsync("siretechpoli@gmail.com", "oqoy cpzn nsya gmpg");
                 await Cartero.SendAsync(Mensaje);
             }
-            catch (Exception ex) { Console.Write("Fallo el envio"); }
-            finally { await Cartero.DisconnectAsync(true); }
+            catch (Exception ex) { MessageBox.Show("Fallo el envio" + ex); }
+            finally { 
+                    await Cartero.DisconnectAsync(true);
+                    MessageBox.Show("Corre Enviado con exito");
+                }
         }
     }
 
@@ -37,7 +41,6 @@ namespace PA4IM9_20262_Equipo2.Modulos
     {
         public MailboxAddress Destinatario;
         public string Asunto;
-        public string Mensaje;
         public string MensajeHtml;
     }
 }

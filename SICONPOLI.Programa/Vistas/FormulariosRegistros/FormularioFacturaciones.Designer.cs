@@ -28,30 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioFacturaciones));
             this.lblCantidad = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.grpTitulares.SuspendLayout();
             this.grpRecursos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAgregar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // grpRecursos
             // 
+            this.grpRecursos.Controls.Add(this.pictureBox1);
             this.grpRecursos.Controls.Add(this.lblCantidad);
+            this.grpRecursos.Location = new System.Drawing.Point(50, 18);
             this.grpRecursos.Size = new System.Drawing.Size(500, 230);
             this.grpRecursos.Text = "Productos";
+            this.grpRecursos.Controls.SetChildIndex(this.btnAgregar, 0);
             this.grpRecursos.Controls.SetChildIndex(this.lblRecursos, 0);
             this.grpRecursos.Controls.SetChildIndex(this.lblIDMovimiento, 0);
             this.grpRecursos.Controls.SetChildIndex(this.lblSuma, 0);
             this.grpRecursos.Controls.SetChildIndex(this.lblNoRecursos, 0);
             this.grpRecursos.Controls.SetChildIndex(this.ContenedorRecursos, 0);
-            this.grpRecursos.Controls.SetChildIndex(this.lblSumaTotal, 0);
+            this.grpRecursos.Controls.SetChildIndex(this.lblSubTotal, 0);
             this.grpRecursos.Controls.SetChildIndex(this.txtIVA, 0);
             this.grpRecursos.Controls.SetChildIndex(this.lblIVA, 0);
-            this.grpRecursos.Controls.SetChildIndex(this.txtSumaTotal, 0);
+            this.grpRecursos.Controls.SetChildIndex(this.txtSubTotal, 0);
             this.grpRecursos.Controls.SetChildIndex(this.lblCantidad, 0);
+            this.grpRecursos.Controls.SetChildIndex(this.pictureBox1, 0);
             // 
             // lblNoRecursos
             // 
-            this.lblNoRecursos.Location = new System.Drawing.Point(204, 28);
+            this.lblNoRecursos.Location = new System.Drawing.Point(192, 28);
             // 
             // lblSuma
             // 
@@ -67,7 +75,7 @@
             // 
             // lblRecursos
             // 
-            this.lblRecursos.Location = new System.Drawing.Point(124, 28);
+            this.lblRecursos.Location = new System.Drawing.Point(112, 28);
             this.lblRecursos.Size = new System.Drawing.Size(79, 25);
             this.lblRecursos.Text = "Productos";
             // 
@@ -75,15 +83,15 @@
             // 
             this.lblIVA.Location = new System.Drawing.Point(70, 195);
             // 
-            // lblSumaTotal
+            // lblSubTotal
             // 
-            this.lblSumaTotal.Location = new System.Drawing.Point(212, 195);
-            this.lblSumaTotal.Size = new System.Drawing.Size(96, 25);
-            this.lblSumaTotal.Text = "Costo Total : ";
+            this.lblSubTotal.Location = new System.Drawing.Point(212, 195);
+            this.lblSubTotal.Size = new System.Drawing.Size(96, 25);
+            this.lblSubTotal.Text = "Costo Total : ";
             // 
-            // txtSumaTotal
+            // txtSubTotal
             // 
-            this.txtSumaTotal.Location = new System.Drawing.Point(308, 195);
+            this.txtSubTotal.Location = new System.Drawing.Point(308, 195);
             // 
             // txtIVA
             // 
@@ -104,6 +112,17 @@
             this.lblCantidad.TabIndex = 85;
             this.lblCantidad.Text = "Cantidad";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(211, 28);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 86;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // FormularioFacturaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -113,6 +132,8 @@
             this.grpTitulares.PerformLayout();
             this.grpRecursos.ResumeLayout(false);
             this.grpRecursos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAgregar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -120,5 +141,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblCantidad;
+        protected System.Windows.Forms.PictureBox pictureBox1;
     }
 }

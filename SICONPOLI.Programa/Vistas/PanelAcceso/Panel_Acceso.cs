@@ -1,6 +1,7 @@
 ﻿using PA4IM9_20262_Equipo2.Entidades;
 using PA4IM9_20262_Equipo2.Modulos;
 using PA4IM9_20262_Equipo2.Vistas.Panel_Principal;
+using PA4IM9_20262_Equipo2.Vistas.PanelAcceso;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,21 +18,18 @@ using System.Xml.Linq;
 
 namespace PA4IM9_20262_Equipo2
 {
-    public partial class PanelAcceso : Form
+    public partial class Panel_Acceso : Form
     {
         //
         // Logica de carga.
         //
-        public PanelAcceso()
+        public Panel_Acceso()
         {
             InitializeComponent();
 
             Sistema.IniciarArchivos();
             RecordarUsuario();
             CargarUsuariosActivos();
-
-            Pruebas prueba = new Pruebas();
-            prueba.Iniciar();
         }
         private void RecordarUsuario()
         {
@@ -297,7 +295,11 @@ namespace PA4IM9_20262_Equipo2
         // Cargar ventana de "Politicas de Privacidad" Solo minimizar la de registro.
         private void btnPriva_Click(object sender, EventArgs e) { MessageBox.Show("Conoce nuestras politicas", "Politicas.", MessageBoxButtons.OK, MessageBoxIcon.Information); }
         // Cargar ventana de "Recuperar contraseña".
-        private void btnRecuperar_Click(object sender, EventArgs e) { MessageBox.Show("Enviaremos un correo a su direccion", "Recuperar.", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+        private void btnRecuperar_Click(object sender, EventArgs e) 
+        {
+            CorreoRecuperacion ventana = new CorreoRecuperacion();
+            ventana.Show();
+        }
         // Cierra el programa al cerrar esta ventana.
         private void PanelAcceso_FormClosing(object sender, FormClosingEventArgs e) { Application.Exit(); }
 

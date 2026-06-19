@@ -18,22 +18,15 @@ namespace PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros
         //
         // Logica de Carga.
         //
-        public FormularioTransacciones(Cuentas cuentaTitular) : base(cuentaTitular)
+        public FormularioTransacciones(Cuentas cuentaTitular)
         {
             InitializeComponent();
+            CompletarComponentes(cuentaTitular);
         }
         protected override void CompletarComponentes(Cuentas cuenta)
         {
             base.CompletarComponentes(cuenta);
-            Sistema.IndexarCampos(this, this.ContenedorRecursos, new CamposTitular(), Cuentas.Bancos);
-        }
-        //
-        // Logica de Validacion
-        //
-        public override bool SumasIguales()
-        {
-            bool Iguales = txtSumaTotal.Text == txtMontoTotal.Text;
-            return Iguales;
+            Sistema.IndexarCampos(this, this.ContenedorRecursos, new CamposBancos(), Cuentas.Bancos);
         }
     }
 }
