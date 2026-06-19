@@ -2,6 +2,7 @@
 using PA4IM9_20262_Equipo2.Modulos;
 using PA4IM9_20262_Equipo2.Vistas.Panel_Principal;
 using PA4IM9_20262_Equipo2.Vistas.PanelVentas;
+using PA4IM9_20262_Equipo2.Vistas.Catalogos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -60,7 +61,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
         private void btnSalidas_Click(object sender, EventArgs e) { AbrirPaneles(new PanelRegistros(Cuentas.Clientes), sender); }
         private void btnClientes_Click(object sender, EventArgs e) { CerrarPaneles(sender); }
         private void btnProvedores_Click(object sender, EventArgs e) { CerrarPaneles(sender); }
-        private void btnAlmacen_Click(object sender, EventArgs e) { CerrarPaneles(sender); }
+        private void btnAlmacen_Click(object sender, EventArgs e) { AbrirPaneles(new Catalogo(), sender); }
         private void btnSucursales_Click(object sender, EventArgs e) 
         {
             Process.Start(new ProcessStartInfo

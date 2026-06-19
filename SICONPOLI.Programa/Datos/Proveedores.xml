@@ -1,21 +1,2 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<proveedores>
-  <Subcuenta>
-    <nombreSubcuenta>System.Windows.Forms.TextBox, Text:  s/f System.Windows.Forms.TextBox, Text: </nombreSubcuenta>
-    <monto>27840</monto>
-  </Subcuenta>
-  <mayor cuenta="Proveedores" noTarjeta="1002">
-    <titular>System.Windows.Forms.TextBox, Text: </titular>
-    <movMayores>
-      <renMayores folio="1001">
-        <fecha>19/06</fecha>
-        <factura>System.Windows.Forms.TextBox, Text: </factura>
-        <concepto>Compra de mercancia.</concepto>
-        <movimiento saldo="Acredor">
-          <monto>11600</monto>
-        </movimiento>
-        <montoSaldo>11600</montoSaldo>
-      </renMayores>
-    </movMayores>
-  </mayor>
-</proveedores>
+<proveedores />

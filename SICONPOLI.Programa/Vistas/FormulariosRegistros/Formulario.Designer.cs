@@ -169,7 +169,6 @@
             this.txtSubTotal.ReadOnly = true;
             this.txtSubTotal.Size = new System.Drawing.Size(122, 25);
             this.txtSubTotal.TabIndex = 84;
-            this.txtSubTotal.TextChanged += new System.EventHandler(this.txtSubTotal_TextChanged);
             // 
             // lblIVA
             // 

@@ -107,6 +107,8 @@ namespace PA4IM9_20262_Equipo2.Entidades
         public string Producto { get; set; }
         [XmlElement("costoUnitario")]
         public int CostoUnitario { get; set; }
+        [XmlElement("stock")]
+        public int Stock { get; set; }
         [XmlArray("movAlmacen")]
         [XmlArrayItem("renAlmacen")]
         public RenAlmacen[] RenAlmacens { get; set; }

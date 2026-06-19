@@ -85,20 +85,13 @@ namespace PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros
             SumaTotal += CostoCambiado;
             // La refleja en el txt.
             txtSubTotal.Text = $"{SumaTotal:C}";
+
+            txtIVA.Text = $"{(SumaTotal * .16m):C2}";
+            txtMontoTotal.Text = $"{(SumaTotal * 1.16m):C2}";
         }
         private void txtSubTotal_TextChanged(object sender, EventArgs e)
         {
-            if (txtSubTotal.Text != "" || txtSubTotal.Text != $"{0:C}")
-            {
-                decimal SubTotal = decimal.Parse(txtSubTotal.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
-                txtIVA.Text = $"{(SubTotal * .16m):C2}";
-                txtMontoTotal.Text = $"{(SubTotal * 1.16m):C2}";
-            }
-            else
-            {
-                txtIVA.Text = string.Empty;
-                txtMontoTotal.Text = string.Empty;
-            }
+
         }
         public void AgregarCampos(Cuentas Cuenta)
         {

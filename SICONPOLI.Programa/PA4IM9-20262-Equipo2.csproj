@@ -106,6 +106,24 @@
     <Compile Include="Vistas\CamposSubCuentas\CamposProducto.Designer.cs">
       <DependentUpon>CamposProducto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\Catalogos\Catalogo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Catalogos\Catalogo.Designer.cs">
+      <DependentUpon>Catalogo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Catalogos\Productos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vistas\Catalogos\Productos.Designer.cs">
+      <DependentUpon>Productos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Catalogos\Titulares.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vistas\Catalogos\Titulares.Designer.cs">
+      <DependentUpon>Titulares.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\FormulariosRegistros\Formulario.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -123,6 +141,12 @@
     </Compile>
     <Compile Include="Vistas\FormulariosRegistros\FormularioTransacciones.Designer.cs">
       <DependentUpon>FormularioTransacciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Mayores\EsquemaAuxiliar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Mayores\EsquemaAuxiliar.Designer.cs">
+      <DependentUpon>EsquemaAuxiliar.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\PanelAcceso\CorreoRecuperacion.cs">
       <SubType>Form</SubType>
@@ -153,6 +177,12 @@
     <EmbeddedResource Include="Vistas\CamposSubCuentas\CamposProducto.resx">
       <DependentUpon>CamposProducto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Catalogos\Catalogo.resx">
+      <DependentUpon>Catalogo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Catalogos\Productos.resx">
+      <DependentUpon>Productos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FormulariosRegistros\Formulario.resx">
       <DependentUpon>Formulario.cs</DependentUpon>
     </EmbeddedResource>
@@ -178,6 +208,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Vistas\Mayores\EsquemaAuxiliar.resx">
+      <DependentUpon>EsquemaAuxiliar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\PanelAcceso\CorreoRecuperacion.resx">
       <DependentUpon>CorreoRecuperacion.cs</DependentUpon>
     </EmbeddedResource>

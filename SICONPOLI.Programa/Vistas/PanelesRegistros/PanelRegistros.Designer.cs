@@ -263,7 +263,7 @@
             this.cmbOpcionesConcepto.TabIndex = 46;
             this.cmbOpcionesConcepto.SelectedIndexChanged += new System.EventHandler(this.cmbOpcionesConcepto_SelectedIndexChanged);
             // 
-            // Panel_Ventas
+            // PanelRegistros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -273,7 +273,7 @@
             this.Controls.Add(this.panMovimientos);
             this.ForeColor = System.Drawing.Color.DarkRed;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Panel_Ventas";
+            this.Name = "PanelRegistros";
             this.Text = "pan";
             ((System.ComponentModel.ISupportInitialize)(this.TablaMovimientos)).EndInit();
             this.panMovimientos.ResumeLayout(false);

@@ -1,4 +1,5 @@
 ﻿using PA4IM9_20262_Equipo2.Entidades;
+using PA4IM9_20262_Equipo2.Vistas.Mayores;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -40,7 +41,6 @@ namespace PA4IM9_20262_Equipo2.Modulos
             // Para cada proveedor registrado
             foreach (Subcuenta Titular in Titulares.Subcuentas)
             {
-
                 // De la subcuenta obtenemos al titular y la factura.
                 string textoSubcuenta = Titular.NombreSubcuenta;
                 // Con base en la cadena ' s/f ' dividimos en dos, una de la cadena hacia atras (donde esta el proveedor)
@@ -171,7 +171,8 @@ namespace PA4IM9_20262_Equipo2.Modulos
                         NoTarjeta = Sistema.GenerarID(Rutas.Almacen, Raices.Almacen, 3),
                         Producto = nombreProducto,
                         CostoUnitario = renAlmacen.CostoPromedio,
-                        RenAlmacens = new RenAlmacen[] { renAlmacen }
+                        RenAlmacens = new RenAlmacen[] { renAlmacen },
+                        Stock = renAlmacen.Existencia
                     };
 
                     XmlElement RegistroProducto = ConvertidorXml.ObjetoToElemento(lector, NuevoProducto);
@@ -188,6 +189,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                     renAlmacen.CostoPromedio = renAlmacen.MontoSaldo / renAlmacen.Existencia;
 
                     Producto.RenAlmacens = Producto.RenAlmacens.Append(renAlmacen).ToArray();
+                    Producto.Stock = renAlmacen.Existencia;
 
                     XmlElement ProductoModificado = ConvertidorXml.ObjetoToElemento(lector, Producto);
                     lector.DocumentElement.ReplaceChild(ProductoModificado, ProductoExistente);

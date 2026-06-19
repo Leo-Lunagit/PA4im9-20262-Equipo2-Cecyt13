@@ -15,6 +15,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Globalization;
 using PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros;
+using PA4IM9_20262_Equipo2.Vistas.Mayores;
 
 namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 {
@@ -94,6 +95,8 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             Saldos saldoTitular = CuentaTitular == Cuentas.Proveedores ? Saldos.Acredor : Saldos.Deudor;
             RegistradorMayor.AsientoToAuxiliar(Registro, saldoTitular, CuentaTitular);
             RegistradorMayor.AsientoToAlmacen(Registro, saldoProducto);
+
+            
 
             LimpiarFormulario();
         }
