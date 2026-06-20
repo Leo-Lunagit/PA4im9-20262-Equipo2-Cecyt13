@@ -59,9 +59,9 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
         private void btnHome_Click(object sender, EventArgs e) { CerrarPaneles(sender); }
         private void btnEntradas_Click(object sender, EventArgs e) { AbrirPaneles(new PanelRegistros(Cuentas.Proveedores), sender); }
         private void btnSalidas_Click(object sender, EventArgs e) { AbrirPaneles(new PanelRegistros(Cuentas.Clientes), sender); }
-        private void btnClientes_Click(object sender, EventArgs e) { CerrarPaneles(sender); }
-        private void btnProvedores_Click(object sender, EventArgs e) { CerrarPaneles(sender); }
-        private void btnAlmacen_Click(object sender, EventArgs e) { AbrirPaneles(new Catalogo(), sender); }
+        private void btnClientes_Click(object sender, EventArgs e) { AbrirPaneles(new Catalogo(Cuentas.Clientes), sender); }
+        private void btnProvedores_Click(object sender, EventArgs e) { AbrirPaneles(new Catalogo(Cuentas.Proveedores), sender); }
+        private void btnAlmacen_Click(object sender, EventArgs e) { AbrirPaneles(new Catalogo(Cuentas.Almacen), sender); }
         private void btnSucursales_Click(object sender, EventArgs e) 
         {
             Process.Start(new ProcessStartInfo

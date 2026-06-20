@@ -33,16 +33,17 @@
             // 
             // flpVistaProduc
             // 
-            this.flpVistaProduc.Location = new System.Drawing.Point(13, 13);
+            this.flpVistaProduc.Location = new System.Drawing.Point(15, 15);
             this.flpVistaProduc.Name = "flpVistaProduc";
-            this.flpVistaProduc.Size = new System.Drawing.Size(775, 425);
+            this.flpVistaProduc.Padding = new System.Windows.Forms.Padding(30, 30, 10, 0);
+            this.flpVistaProduc.Size = new System.Drawing.Size(937, 542);
             this.flpVistaProduc.TabIndex = 0;
             // 
             // Catalogo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(967, 572);
             this.Controls.Add(this.flpVistaProduc);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Catalogo";

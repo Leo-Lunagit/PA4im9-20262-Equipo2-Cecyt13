@@ -95,6 +95,7 @@
             this.txtMontoTotal.ReadOnly = true;
             this.txtMontoTotal.Size = new System.Drawing.Size(102, 25);
             this.txtMontoTotal.TabIndex = 50;
+            this.txtMontoTotal.Text = "$0.00";
             // 
             // lblMontoTotal
             // 
@@ -169,6 +170,7 @@
             this.txtSubTotal.ReadOnly = true;
             this.txtSubTotal.Size = new System.Drawing.Size(122, 25);
             this.txtSubTotal.TabIndex = 84;
+            this.txtSubTotal.Text = "$0.00";
             // 
             // lblIVA
             // 
@@ -190,6 +192,7 @@
             this.txtIVA.ReadOnly = true;
             this.txtIVA.Size = new System.Drawing.Size(92, 25);
             this.txtIVA.TabIndex = 83;
+            this.txtIVA.Text = "$0.00";
             // 
             // lblSubTotal
             // 

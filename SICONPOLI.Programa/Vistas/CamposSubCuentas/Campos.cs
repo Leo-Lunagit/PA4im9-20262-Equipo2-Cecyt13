@@ -48,7 +48,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
 
         private void txtCosto_TextChanged(object sender, EventArgs e)
         {
-            if (txtMonto.Text == "")
+            if (txtMonto.Text == "" || txtMonto.Text == ".")
             {
                 CambiarCostoTotal?.Invoke(CostoAnterior * -1, (Cuentas)Cuenta);
                 CostoAnterior = 0;

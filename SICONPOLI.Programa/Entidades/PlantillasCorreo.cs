@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using PA4IM9_20262_Equipo2.Entidades;
 
 namespace PA4IM9_20262_Equipo2.Modulos
 {
@@ -233,38 +234,5 @@ namespace PA4IM9_20262_Equipo2.Modulos
             {Footer(PaqueteFactura.indice)}
         {FinTabla}";
         }
-    }
-
-    public class PaqueteVerificacion
-    {
-        public string Codigo { get; set; }
-        public static int indice = 0;
-    }
-    public class PaqueteRecuperacion
-    {
-        public string Nombre { get; set; }
-        public string Usuario { get; set; }
-        public string Correo { get; set; }
-        public string Contrasenia { get; set; }
-        public static int indice = 1;
-    }
-    public class PaqueteFactura
-    {
-        public string ProductosHtml { get; set; }
-        public string Factura { get; set; }
-        public string Colaborador { get; set; }
-        public string Destinatario { get; set; }
-        public string FechaEmision { get; set; }
-        public string FechaExpiracion { get; set; }
-        public string Subtotal { get; set; }
-        public string IVA { get; set; }
-        public string Total { get; set; }
-        public static int indice = 2;
-    }
-    public class PaqueteProducto
-    {
-        public string Producto { get; set; }
-        public int Cantidad { get; set; }
-        public int Monto { get; set; }
     }
 }

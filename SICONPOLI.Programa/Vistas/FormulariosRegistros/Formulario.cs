@@ -54,8 +54,12 @@ namespace PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros
                 VentanaInco("Por favor complete los datos de los productos");
                 return false;
             }
-            //if( )
-            
+
+            if (txtTitular.Text == "" || txtFactura.Text == "")
+            {
+                VentanaInco("Por favor complete los datos del titular.");
+                return false;
+            }
             // Se verifican los campos de los totales.
             if (txtSubTotal.Text == "" && txtIVA.Text == "" && txtMontoTotal.Text == "")
             {
@@ -89,17 +93,10 @@ namespace PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros
             txtIVA.Text = $"{(SumaTotal * .16m):C2}";
             txtMontoTotal.Text = $"{(SumaTotal * 1.16m):C2}";
         }
-        private void txtSubTotal_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         public void AgregarCampos(Cuentas Cuenta)
         {
             bool EsAlmacen = Cuenta == Cuentas.Almacen;
-            // Dinamicamente obtenemos los controles nesesarios.
-            Campos Campos;
-            
-            Campos = EsAlmacen ? new CamposProducto() : (Campos)(new CamposBancos());
+            Campos Campos = EsAlmacen ? new CamposProducto() : (Campos)(new CamposBancos());
 
             // Agregamos una nueva fila de campos.
             Sistema.IndexarCampos(this, ContenedorRecursos, Campos, Cuenta);
@@ -113,8 +110,8 @@ namespace PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros
             // Si solo hay una fila no eliminamos nada.
             if (ContenedorRecursos.Controls.Count == 1) return;
 
-            int Indice = NumeroProducto - 1; // De No a indice.
-            // Guardamos la fila a eliminar para poder ahcer ctl z.
+            int Indice = NumeroProducto - 1; // De No. a indice.
+            // Guardamos la fila a eliminar para poder hacer ctl z.
             RecursoEliminado = ContenedorRecursos.Controls[Indice] as Campos;
 
             if (RecursoEliminado.txtMonto.Text != "")
@@ -128,18 +125,18 @@ namespace PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros
             ContenedorRecursos.Controls.RemoveAt(Indice);
 
             // Iniciamos una variable para enumerar las filas.
-            int NoProductos = 0;
+            int NoRecursos = 0;
             // Por cada fila en el campo
             foreach (Campos producto in ContenedorRecursos.Controls)
             {
                 // Va sumando uno al inicio para terminar con el numero exacto de filas y poder usar la variable despues.
-                NoProductos++;
+                NoRecursos++;
                 // Enumeramos la fila.
-                producto.lblNoItem.Text = $"{NoProductos}";
+                producto.lblNoItem.Text = $"{NoRecursos}";
             }
 
             // Cambiamos el total de filas.
-            lblNoRecursos.Text = $"{NoProductos}";
+            lblNoRecursos.Text = $"{NoRecursos}";
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

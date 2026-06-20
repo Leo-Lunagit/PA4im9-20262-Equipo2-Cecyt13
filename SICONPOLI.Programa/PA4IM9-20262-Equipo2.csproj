@@ -112,17 +112,18 @@
     <Compile Include="Vistas\Catalogos\Catalogo.Designer.cs">
       <DependentUpon>Catalogo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Catalogos\Productos.cs">
+    <Compile Include="Entidades\Paquetes.cs" />
+    <Compile Include="Vistas\Catalogos\TarjetaProducto.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Vistas\Catalogos\Productos.Designer.cs">
-      <DependentUpon>Productos.cs</DependentUpon>
+    <Compile Include="Vistas\Catalogos\TarjetaProducto.Designer.cs">
+      <DependentUpon>TarjetaProducto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Catalogos\Titulares.cs">
+    <Compile Include="Vistas\Catalogos\TarjetaTitular.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Vistas\Catalogos\Titulares.Designer.cs">
-      <DependentUpon>Titulares.cs</DependentUpon>
+    <Compile Include="Vistas\Catalogos\TarjetaTitular.Designer.cs">
+      <DependentUpon>TarjetaTitular.cs</DependentUpon>
     </Compile>
     <Compile Include="Vistas\FormulariosRegistros\Formulario.cs">
       <SubType>UserControl</SubType>
@@ -180,8 +181,11 @@
     <EmbeddedResource Include="Vistas\Catalogos\Catalogo.resx">
       <DependentUpon>Catalogo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Vistas\Catalogos\Productos.resx">
-      <DependentUpon>Productos.cs</DependentUpon>
+    <EmbeddedResource Include="Vistas\Catalogos\TarjetaProducto.resx">
+      <DependentUpon>TarjetaProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Catalogos\TarjetaTitular.resx">
+      <DependentUpon>TarjetaTitular.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\FormulariosRegistros\Formulario.resx">
       <DependentUpon>Formulario.cs</DependentUpon>

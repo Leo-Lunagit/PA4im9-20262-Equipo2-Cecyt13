@@ -7,17 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml;
 
 namespace PA4IM9_20262_Equipo2.Modulos
 {
     internal class RegistradorMayor
     {
+
+        //
+        // Registrador de Mayores.
+        //
+
         public static void AsientoToAuxiliar(Asiento asiento, Saldos saldo, Cuentas cuenta)
         {
             // Dinamicamente obtenemos la ruta y raiz del archivo correspondiente.
-            string ruta = cuenta == Cuentas.Clientes ? Rutas.Clientes : Rutas.Proveedores;
-            string raiz = cuenta == Cuentas.Clientes ? Raices.Clientes : Raices.Proveedores;
+            string ruta = cuenta == Cuentas.Proveedores ? Rutas.MayoresProveedores : Rutas.MayoresClientes;
+            string raiz = cuenta == Cuentas.Proveedores ? Raices.MayoresProveedores : Raices.MayoresClientes;
 
             // Cargamos el archivo correspondiente.
             Sistema.VerificarArchivo(ruta, raiz);
@@ -28,104 +34,108 @@ namespace PA4IM9_20262_Equipo2.Modulos
             string operacion;
             // Dinamicamente obtenemos los contenedores de las subcuentas.
             // Dinamicame determinamos que operacion se realiza para mostrarla en el concepto.
-            if (cuenta == Cuentas.Clientes)
+            if (cuenta == Cuentas.Proveedores)
+            {
+                Titulares = saldo == Saldos.Acredor ? asiento.Abonos[0] : asiento.Cargos[0];
+                operacion = saldo == Saldos.Acredor ? Acciones.Compra.ToString() : Acciones.Pago.ToString();
+            }
+            else 
             {
                 Titulares = saldo == Saldos.Deudor ? asiento.Cargos[0] : asiento.Abonos[0];
                 operacion = saldo == Saldos.Deudor ? Acciones.Venta.ToString() : Acciones.Cobro.ToString();
             }
-            else {
-                Titulares = saldo == Saldos.Acredor ? asiento.Abonos[0] : asiento.Cargos[0];
-                operacion = saldo == Saldos.Acredor ? Acciones.Compra.ToString() : Acciones.Pago.ToString(); 
-            }   
 
-            // Para cada proveedor registrado
-            foreach (Subcuenta Titular in Titulares.Subcuentas)
+            Subcuenta Titular = Titulares.Subcuentas[0];
+            // De la subcuenta obtenemos al titular y la factura.
+            string textoSubcuenta = Titular.NombreSubcuenta;
+            // Con base en la cadena ' s/f ' dividimos en dos, una de la cadena hacia atras (donde esta el proveedor)
+            // y otra de la cadena hacia adelante (donde esta la factura).
+            string[] paraDatos = textoSubcuenta.Split(new string[] { " s/f " }, StringSplitOptions.None);
+
+            // Creamos el movimiento con su respectivo saldo para saber si subira o bajara.
+            Movimiento movimiento = new Movimiento
             {
-                // De la subcuenta obtenemos al titular y la factura.
-                string textoSubcuenta = Titular.NombreSubcuenta;
-                // Con base en la cadena ' s/f ' dividimos en dos, una de la cadena hacia atras (donde esta el proveedor)
-                // y otra de la cadena hacia adelante (donde esta la factura).
-                string[] paraDatos = textoSubcuenta.Split(new string[] { " s/f " }, StringSplitOptions.None);
+                Monto = Titular.Monto,
+                Saldo = saldo.ToString()
+            };
 
-                // Creamos el movimiento que forzosamente debe ser acredor y debe sumarse.
-                Movimiento movimiento = new Movimiento
+            // Creamos el renglon del mayor auxiliar con los datos que si disponemos.
+            RenMayor renglon = new RenMayor
+            {
+                Fecha = asiento.Fecha.ToString("dd/MM"),
+                Factura = paraDatos[1],
+                Concepto = $"{operacion} de mercancia.",
+                Movimiento = movimiento,
+            };
+
+            // Verificamos si es un nuevo titular o si ya existia.
+            XmlNode titularExistente = escritor.DocumentElement.SelectSingleNode($"//mayor[titular='{paraDatos[0]}']");
+            if (titularExistente == null)
+            {
+                // Se asignan las propiedades iniciales.
+                renglon.Folio = "1001";
+                renglon.MontoSaldo = renglon.Movimiento.Monto;
+
+                // Asignamos las propiedades fundamentales de la targeta y el primer reenglon auxiliar.
+                Mayor titularNuevo = new Mayor
                 {
-                    Monto = Titular.Monto,
-                    Saldo = saldo.ToString()
+                    Cuenta = cuenta.ToString(),
+                    NoTargeta = Sistema.GenerarID(ruta, raiz, 3),
+                    Titular = paraDatos[0],
+                    RenMayores = new RenMayor[] { renglon }
                 };
 
-                // Creamos el renglon del mayor auxiliar con los datos que si disponemos.
-                RenMayor renglon = new RenMayor
-                {
-                    Fecha = asiento.Fecha.ToString("dd/MM"),
-                    Factura = paraDatos[1],
-                    Concepto = $"{operacion} de mercancia.",
-                    Movimiento = movimiento,
-                };
+                MayorToPaquete(titularNuevo, cuenta);
 
-                // Verificamos si es un nuevo proveedor o si ya existia.
-                XmlNode titularExistente = escritor.DocumentElement.SelectSingleNode($"//mayor[titular='{paraDatos[0]}']");
-                if (titularExistente == null)
-                {
-                    // Se asignan las propiedades iniciales.
-                    renglon.Folio = "1001";
-                    renglon.MontoSaldo = renglon.Movimiento.Monto;
+                // Convertimos el objeto en elemento.
+                XmlElement registro = ConvertidorXml.ObjetoToElemento(escritor, titularNuevo);
 
-                    // Asignamos las propiedades fundamentales de la targeta y el primer reenglon auxiliar.
-                    Mayor titularNuevo = new Mayor
-                    {
-                        Cuenta = cuenta.ToString(),
-                        NoTargeta = Sistema.GenerarID(ruta, raiz, 3),
-                        Titular = paraDatos[0],
-                        RenMayores = new RenMayor[] { renglon }
-                    };
+                // Lo guardamos en el siguiente espacio.
+                escritor.DocumentElement.AppendChild(registro);
+            }
+            else // Si ya existia el registro del proveedor.
+            {
+                // Convertir el registro en un objeto de mayor auxiliar.
+                Mayor MayorTitular = ConvertidorXml.ElementoToObjeto<Mayor>((XmlElement)titularExistente);
 
-                    // Convertimos el objeto en elemento.
-                    XmlElement registro = ConvertidorXml.ObjetoToElemento(escritor, titularNuevo);
+                // Dinamicame determinamos si el movimiento se debe sumar o restal al saldo anterior.
+                int sentido;
+                if (cuenta == Cuentas.Proveedores)
+                    sentido = saldo == Saldos.Acredor ? 1 : -1;
+                else sentido = saldo == Saldos.Deudor ? 1 : -1;
 
-                    // Lo guardamos en el siguiente espacio.
-                    escritor.DocumentElement.AppendChild(registro);
-                }
-                else // Si ya existia el registro del proveedor.
-                {
-                    // Convertir el registro en un objeto de mayor auxiliar.
-                    Mayor MayorTitular = ConvertidorXml.ElementoToObjeto<Mayor>((XmlElement)titularExistente);
+                // Asignamos con respecto a los registros anteriores los datos consecutivos.
+                renglon.Folio = $"1{(MayorTitular.RenMayores.Length + 1):D3}";
+                renglon.MontoSaldo = MayorTitular.RenMayores.Last().MontoSaldo + renglon.Movimiento.Monto * sentido;
 
-                    // Dinamicame determinamos si el movimiento se debe sumar o restal al saldo anterior.
-                    int sentido;
-                    if (cuenta == Cuentas.Clientes)
-                        sentido = saldo == Saldos.Deudor ? 1 : -1 ;
-                    else sentido = saldo == Saldos.Acredor ? 1 : -1;
+                // Agregamos el renglon a la siguiente posicion de los reenglones.
+                MayorTitular.RenMayores = MayorTitular.RenMayores.Append(renglon).ToArray();
 
-                    // Asignamos con respecto a los registros anteriores los datos consecutivos.
-                    renglon.Folio = $"1{(MayorTitular.RenMayores.Length + 1):D3}";
-                    renglon.MontoSaldo = MayorTitular.RenMayores.Last().MontoSaldo + renglon.Movimiento.Monto * sentido;
+                MayorToPaquete(MayorTitular, cuenta);
 
-                    // Agregamos el renglon a la siguiente posicion de los reenglones.
-                    MayorTitular.RenMayores = MayorTitular.RenMayores.Append(renglon).ToArray();
+                // Lo reeconvertimos a elemento Xml.
+                XmlElement titularActualizado = ConvertidorXml.ObjetoToElemento(escritor, Titular);
+                // Reemplazamos el objeto obtenido al principio (sin modificar) por el que modificamos.
+                escritor.DocumentElement.ReplaceChild(titularActualizado, titularExistente);
 
-                    // Lo reeconvertimos a elemento Xml.
-                    XmlElement titularActualizado = ConvertidorXml.ObjetoToElemento(escritor, Titular);
-                    // Reemplazamos el objeto obtenido al principio (sin modificar) por el que modificamos.
-                    escritor.DocumentElement.ReplaceChild(titularActualizado, titularExistente);
-                }
             }
             escritor.Save(ruta); // Guardamos.
         }
 
         public static void AsientoToAlmacen(Asiento asiento, Saldos saldo)
         {
+            bool EsCopra = saldo == Saldos.Deudor;
             Sistema.VerificarArchivo(Rutas.Almacen, Raices.Almacen);
             XmlDocument lector = new XmlDocument();
             lector.Load(Rutas.Almacen);
 
-            Cuenta Almacen = saldo == Saldos.Deudor ? asiento.Cargos[0] : asiento.Abonos[0] ;
-            Cuenta Titulares = saldo == Saldos.Deudor ? asiento.Abonos[0] : asiento.Cargos[0];
+            Cuenta Almacen = EsCopra ? asiento.Cargos[0] : asiento.Abonos[0] ;
+            Cuenta Titulares = EsCopra ? asiento.Abonos[0] : asiento.Cargos[0];
             string[] paraFactura = Titulares.Subcuentas[0].NombreSubcuenta.Split(new string[] { " s/f " }, StringSplitOptions.None);
 
-            foreach  (Subcuenta SubAlmacen in Almacen.Subcuentas)
+            foreach  (Subcuenta SubProducto in Almacen.Subcuentas)
             {
-                string texto = SubAlmacen.NombreSubcuenta;
+                string texto = SubProducto.NombreSubcuenta;
                 string[] ParaCantida = texto.Split(' ');
                 // Fragmenta la cadena con el texto escrito por nosotos (" a ");
                 string[] ParaCosto = texto.Split(new string[] { " a " }, StringSplitOptions.None);
@@ -133,8 +143,8 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 string textoCosto = ParaCosto[ParaCosto.Length - 1].Replace(" c/u.", string.Empty);
                 // No se que signifique pero funciona me lo genero gemini.
                 // Con expreciones regulares (mediante simbolos indica un formato de texto) quita la cantidad y el precio.
-                Match match = Regex.Match(texto, @"\d+ (.+) a \d+ c/u\.");
-                string nombreProducto = match.Groups[1].Value;
+                Match match = Regex.Match(texto, @"\d (?<producto>.*?)\sa\s\$\d+\.\d+\sc/u\.");
+                string nombreProducto = match.Groups["producto"].Value;
 
                 Movimiento MovInventario = new Movimiento
                 {
@@ -145,16 +155,18 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 Movimiento MovValor = new Movimiento
                 {
                     Saldo = saldo.ToString(),
-                    Monto = saldo == Saldos.Acredor ? Almacen.Monto / (1 + Sistema.PorcentajeUtilida) : Almacen.Monto
+                    // Debemos quitarle el margen de ganancia a la venta para los datos coincidan correctamente.
+                    Monto = EsCopra ? SubProducto.Monto : SubProducto.Monto / (1 + Sistema.PorcentajeUtilida)
                 };
 
+                int CostoUnitario = (int)(decimal.Parse(textoCosto, NumberStyles.Currency, CultureInfo.CurrentCulture) * 100);
                 // Asignamos los datos que ya conocemos.
                 RenAlmacen renAlmacen = new RenAlmacen
                 {
                     Fecha = asiento.Fecha.ToShortDateString(),
                     Factura = paraFactura[paraFactura.Length - 1],
                     MovInventario = MovInventario,
-                    CostoUnitario = int.Parse(textoCosto, NumberStyles.Currency, CultureInfo.CurrentCulture) * 100,
+                    CostoUnitario = EsCopra ? CostoUnitario : CostoUnitario / (1 + Sistema.PorcentajeUtilida),
                     MovValor = MovValor
                 };
 
@@ -170,10 +182,10 @@ namespace PA4IM9_20262_Equipo2.Modulos
                     {
                         NoTarjeta = Sistema.GenerarID(Rutas.Almacen, Raices.Almacen, 3),
                         Producto = nombreProducto,
-                        CostoUnitario = renAlmacen.CostoPromedio,
                         RenAlmacens = new RenAlmacen[] { renAlmacen },
-                        Stock = renAlmacen.Existencia
                     };
+
+                    AlmacenToPaquete(NuevoProducto);
 
                     XmlElement RegistroProducto = ConvertidorXml.ObjetoToElemento(lector, NuevoProducto);
                     lector.DocumentElement.AppendChild(RegistroProducto);
@@ -184,18 +196,58 @@ namespace PA4IM9_20262_Equipo2.Modulos
                     Almacen Producto = ConvertidorXml.ElementoToObjeto<Almacen>((XmlElement)ProductoExistente);
 
                     renAlmacen.Folio = $"1{(Producto.RenAlmacens.Length + 1):D3}";
-                    renAlmacen.Existencia += renAlmacen.MovInventario.Monto * sentido;
-                    renAlmacen.MontoSaldo += renAlmacen.MovValor.Monto * sentido;
+                    renAlmacen.Existencia = Producto.RenAlmacens.Last().Existencia + renAlmacen.MovInventario.Monto * sentido;
+                    renAlmacen.MontoSaldo = Producto.RenAlmacens.Last().MontoSaldo + renAlmacen.MovValor.Monto * sentido;
                     renAlmacen.CostoPromedio = renAlmacen.MontoSaldo / renAlmacen.Existencia;
 
                     Producto.RenAlmacens = Producto.RenAlmacens.Append(renAlmacen).ToArray();
-                    Producto.Stock = renAlmacen.Existencia;
+
+                    AlmacenToPaquete(Producto);
 
                     XmlElement ProductoModificado = ConvertidorXml.ObjetoToElemento(lector, Producto);
                     lector.DocumentElement.ReplaceChild(ProductoModificado, ProductoExistente);
                 }
             }
             lector.Save(Rutas.Almacen);
+        }
+
+        //
+        // Registrador de Paquetes.
+        //
+
+        private static void MayorToPaquete(Mayor titular, Cuentas cuenta)
+        {
+            string ruta = cuenta == Cuentas.Proveedores ? Rutas.Proveedores : Rutas.Clientes;
+            string raiz = cuenta == Cuentas.Proveedores ? Raices.Proveedores : Raices.Clientes;
+
+            Sistema.VerificarArchivo(ruta, raiz);
+            XmlDocument escritor = new XmlDocument();
+            escritor.Load(ruta);
+
+            PaqueteTitular paquete = titular.ToPaquete();
+            XmlElement nuevoPaquete = ConvertidorXml.ObjetoToElemento(escritor, paquete);
+
+            XmlNode paqueteGuardado = escritor.DocumentElement.SelectSingleNode($"//paqueteTitular[producto='{paquete.Titular}']");
+            if (paqueteGuardado == null)
+                escritor.DocumentElement.AppendChild(nuevoPaquete);
+            else escritor.ReplaceChild(nuevoPaquete, paqueteGuardado);
+            escritor.Save(ruta);
+        }
+
+        private static void AlmacenToPaquete(Almacen almacen)
+        {
+            Sistema.VerificarArchivo(Rutas.Productos, Raices.Productos);
+            XmlDocument escritor = new XmlDocument();
+            escritor.Load(Rutas.Productos);
+
+            PaqueteAlmacen paquete = almacen.ToPaquete();
+            XmlElement nuevoPaquete = ConvertidorXml.ObjetoToElemento(escritor, paquete);
+            
+            XmlNode paqueteGuardado = escritor.DocumentElement.SelectSingleNode($"//paqueteAlmacen[producto='{paquete.Producto}']");
+            if (paqueteGuardado == null)
+                escritor.DocumentElement.AppendChild(nuevoPaquete);
+            else escritor.DocumentElement.ReplaceChild(nuevoPaquete, paqueteGuardado);
+            escritor.Save(Rutas.Productos);
         }
     }
 }

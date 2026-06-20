@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PA4IM9_20262_Equipo2.Entidades;
 
 namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
 {
@@ -16,6 +17,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
         {
             InitializeComponent();
             cmbNombreItem.Items.Clear();
+            Cuenta = Cuentas.Bancos;
         }
 
         private void txtFactura_KeyPress(object sender, KeyPressEventArgs e)

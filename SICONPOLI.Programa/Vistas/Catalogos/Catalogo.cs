@@ -16,22 +16,46 @@ namespace PA4IM9_20262_Equipo2.Vistas.Catalogos
 {
     public partial class Catalogo : Form
     {
-        public Catalogo()
+        private Cuentas Cuenta;
+        public Catalogo(Cuentas CuentaCatalogo)
         {
             InitializeComponent();
+
+            Cuenta = CuentaCatalogo;
         }
 
         private void Catalogo_Load(object sender, EventArgs e)
         {
-            Sistema.VerificarArchivo(Rutas.Almacen, Raices.Almacen);
-            XmlDocument lector = new XmlDocument();
-            lector.Load(Rutas.Almacen);
+            string Ruta =
+                Cuenta == Cuentas.Almacen ? Rutas.Productos :
+                Cuenta == Cuentas.Clientes ? Rutas.Clientes :
+                Rutas.Proveedores;
+            string Raiz =
+                Cuenta == Cuentas.Almacen ? Raices.Productos :
+                Cuenta == Cuentas.Clientes ? Raices.Clientes :
+                Raices.Proveedores;
 
-            foreach (XmlElement RegProducto in lector.DocumentElement.ChildNodes)
+            Sistema.VerificarArchivo(Ruta, Raiz);
+            XmlDocument lector = new XmlDocument();
+            lector.Load(Ruta);
+
+            if (Cuenta == Cuentas.Almacen)
             {
-                Almacen Producto = ConvertidorXml.ElementoToObjeto<Almacen>(RegProducto);
-                Productos tarjetita = new Productos(Producto);
-                Sistema.IndexarControles(flpVistaProduc, tarjetita);
+                foreach (XmlElement RegProducto in lector.DocumentElement.ChildNodes)
+                {
+                    PaqueteAlmacen Producto = ConvertidorXml.ElementoToObjeto<PaqueteAlmacen>(RegProducto);
+                    TarjetaProducto tarjetita = new TarjetaProducto(Producto);
+                    Sistema.IndexarControles(flpVistaProduc, tarjetita);
+                }
+            }
+            else
+            {
+                foreach (XmlElement RegProducto in lector.DocumentElement.ChildNodes)
+                {
+                    PaqueteTitular Titular = ConvertidorXml.ElementoToObjeto<PaqueteTitular>(RegProducto);
+                    TarjetaTitular tarjetita = new TarjetaTitular(Titular);
+                    Sistema.IndexarControles(flpVistaProduc, tarjetita);
+                }
             }
         }
     }

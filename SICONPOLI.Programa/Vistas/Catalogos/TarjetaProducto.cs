@@ -11,21 +11,19 @@ using System.Windows.Forms;
 
 namespace PA4IM9_20262_Equipo2.Vistas.Catalogos
 {
-    public partial class Productos : UserControl
+    public partial class TarjetaProducto : UserControl
     {
-        Almacen Producto;
-        public Productos(Almacen Producto)
+        public TarjetaProducto(PaqueteAlmacen Producto)
         {
             InitializeComponent();
             CompletarComponentes(Producto);
         }
-        private void CompletarComponentes(Almacen producoto)
+        private void CompletarComponentes(PaqueteAlmacen producto)
         {
-            Producto = producoto;
-
-            lblproducto.Text = producoto.Producto;
-            lblcostopromedio.Text = producoto.CostoUnitario.ToString();
-            lblcantidad.Text = producoto.Stock.ToString();
+            lblproducto.Text = producto.Producto;
+            lblcostopromedio.Text = $"{(producto.CostoUnitario / 100):C2}";
+            lblcantidad.Text = $"{producto.Stock}";
+            lblNoTarjeta.Text = producto.NoTarjeta;
         }
     }
 }
