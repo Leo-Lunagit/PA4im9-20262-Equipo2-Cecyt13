@@ -71,6 +71,7 @@
             this.ptrImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ptrImagen.TabIndex = 10;
             this.ptrImagen.TabStop = false;
+            this.ptrImagen.Click += new System.EventHandler(this.TarjetaTitular_Click);
             // 
             // txtLimite
             // 
@@ -166,6 +167,7 @@
             this.Margin = new System.Windows.Forms.Padding(0, 0, 20, 20);
             this.Name = "TarjetaTitular";
             this.Size = new System.Drawing.Size(428, 157);
+            this.Click += new System.EventHandler(this.TarjetaTitular_Click);
             ((System.ComponentModel.ISupportInitialize)(this.ptrImagen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

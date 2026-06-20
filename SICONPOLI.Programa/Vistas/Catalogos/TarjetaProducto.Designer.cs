@@ -81,6 +81,7 @@
             this.ptrImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ptrImagen.TabIndex = 1;
             this.ptrImagen.TabStop = false;
+            this.ptrImagen.Click += new System.EventHandler(this.Click_EntrarProducto);
             // 
             // lblNoTarjeta
             // 
@@ -140,6 +141,7 @@
             this.Margin = new System.Windows.Forms.Padding(0, 0, 20, 20);
             this.Name = "TarjetaProducto";
             this.Size = new System.Drawing.Size(204, 246);
+            this.Click += new System.EventHandler(this.Click_EntrarProducto);
             ((System.ComponentModel.ISupportInitialize)(this.ptrImagen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

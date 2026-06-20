@@ -138,7 +138,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 
         private void LimpiarFormulario()
         {
-            bool EsDeuda = btnIntercalar.Text == "COMPRAR" || btnIntercalar.Text == "VENDER" ? true : false;
+            bool EsDeuda = btnIntercalar.Text == "COBRAR" || btnIntercalar.Text == "PAGAR" ? true : false;
             txtFolio.Text = Sistema.GenerarID(Ruta, Raiz, 3);
             cmbOpcionesConcepto.SelectedIndex = 0;
 

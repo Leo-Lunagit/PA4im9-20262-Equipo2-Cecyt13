@@ -16,6 +16,9 @@ namespace PA4IM9_20262_Equipo2.Vistas.Catalogos
 {
     public partial class Catalogo : Form
     {
+        public delegate void Entrar(string Folio, Cuentas Cuenta);
+        public event Entrar EntrarMayor;
+
         private Cuentas Cuenta;
         public Catalogo(Cuentas CuentaCatalogo)
         {
@@ -45,7 +48,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.Catalogos
                 {
                     PaqueteAlmacen Producto = ConvertidorXml.ElementoToObjeto<PaqueteAlmacen>(RegProducto);
                     TarjetaProducto tarjetita = new TarjetaProducto(Producto);
-                    Sistema.IndexarControles(flpVistaProduc, tarjetita);
+                    IndexarTarjetaProductos(flpVistaProduc, tarjetita);
                 }
             }
             else
@@ -54,9 +57,33 @@ namespace PA4IM9_20262_Equipo2.Vistas.Catalogos
                 {
                     PaqueteTitular Titular = ConvertidorXml.ElementoToObjeto<PaqueteTitular>(RegProducto);
                     TarjetaTitular tarjetita = new TarjetaTitular(Titular);
-                    Sistema.IndexarControles(flpVistaProduc, tarjetita);
+                    IndexarTarjetaTitulares(flpVistaProduc, tarjetita);
                 }
             }
+        }
+
+        private void IndexarTarjetaProductos(Panel Contenedor, TarjetaProducto tarjetita)
+        {
+            tarjetita.BringToFront();
+            tarjetita.Dock = DockStyle.Top;
+
+            tarjetita.EntrarProducto += LlamarEntrar;
+
+            Contenedor.Controls.Add(tarjetita);
+        }
+        private void IndexarTarjetaTitulares(Panel Contenedor, TarjetaTitular tarjetita)
+        {
+            tarjetita.BringToFront();
+            tarjetita.Dock = DockStyle.Top;
+
+            tarjetita.entrarTitular += LlamarEntrar;
+
+            Contenedor.Controls.Add(tarjetita);
+        }
+
+        public void LlamarEntrar(string noTarjeta)
+        {
+            EntrarMayor?.Invoke(noTarjeta, Cuenta);
         }
     }
 }

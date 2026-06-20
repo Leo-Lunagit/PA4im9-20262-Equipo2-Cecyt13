@@ -1,8 +1,9 @@
 ﻿using PA4IM9_20262_Equipo2.Entidades;
 using PA4IM9_20262_Equipo2.Modulos;
+using PA4IM9_20262_Equipo2.Vistas.Catalogos;
+using PA4IM9_20262_Equipo2.Vistas.Mayores;
 using PA4IM9_20262_Equipo2.Vistas.Panel_Principal;
 using PA4IM9_20262_Equipo2.Vistas.PanelVentas;
-using PA4IM9_20262_Equipo2.Vistas.Catalogos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 
 namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
@@ -59,8 +61,8 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
         private void btnHome_Click(object sender, EventArgs e) { CerrarPaneles(sender); }
         private void btnEntradas_Click(object sender, EventArgs e) { AbrirPaneles(new PanelRegistros(Cuentas.Proveedores), sender); }
         private void btnSalidas_Click(object sender, EventArgs e) { AbrirPaneles(new PanelRegistros(Cuentas.Clientes), sender); }
-        private void btnClientes_Click(object sender, EventArgs e) { AbrirPaneles(new Catalogo(Cuentas.Clientes), sender); }
-        private void btnProvedores_Click(object sender, EventArgs e) { AbrirPaneles(new Catalogo(Cuentas.Proveedores), sender); }
+        private void btnClientes_Click(object sender, EventArgs e) { IndexarCatalogoTitulares(new Catalogo(Cuentas.Clientes), sender); }
+        private void btnProvedores_Click(object sender, EventArgs e) { IndexarCatalogoTitulares(new Catalogo(Cuentas.Proveedores), sender); }
         private void btnAlmacen_Click(object sender, EventArgs e) { AbrirPaneles(new Catalogo(Cuentas.Almacen), sender); }
         private void btnSucursales_Click(object sender, EventArgs e) 
         {
@@ -109,6 +111,70 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
             ventana.RecomendarActivo();
             ventana.Show();
             this.Hide();
+        }
+
+        public void IndexarCatalogoTitulares(Catalogo FormHijo, object sender)
+        {
+            // Da el fondo clarito al boton seleccionado.
+            ColorearSeleccion(sender);
+
+            // Si el contendero tiene elementos, los elimina
+            if (Contenedor.Controls.Count > 0)
+                Contenedor.Controls.RemoveAt(0);
+
+            FormHijo.TopLevel = false; // Indica que no es un formulario de alto nivel, si no subordinado.
+            FormHijo.Dock = DockStyle.Fill; // Indica que ocupe todo el espacio.   
+
+            FormHijo.EntrarMayor += AbrirMayor;
+
+            Contenedor.Controls.Add(FormHijo); // Agrega el control al contenedor.
+            Contenedor.Tag = FormHijo;
+            FormHijo.Show(); // Muestra el panel.
+        }
+        public void IndexarCatalogoAlmacen(Catalogo FormHijo, object sender)
+        {
+            // Da el fondo clarito al boton seleccionado.
+            ColorearSeleccion(sender);
+
+            // Si el contendero tiene elementos, los elimina
+            if (Contenedor.Controls.Count > 0)
+                Contenedor.Controls.RemoveAt(0);
+
+            FormHijo.TopLevel = false; // Indica que no es un formulario de alto nivel, si no subordinado.
+            FormHijo.Dock = DockStyle.Fill; // Indica que ocupe todo el espacio.   
+
+            FormHijo.EntrarMayor += AbrirAlmacen;
+
+            Contenedor.Controls.Add(FormHijo); // Agrega el control al contenedor.
+            Contenedor.Tag = FormHijo;
+            FormHijo.Show(); // Muestra el panel.
+        }
+
+        private void AbrirMayor(string noTarjeta, Cuentas cuenta)
+        {
+            string ruta = cuenta == Cuentas.Proveedores ? Rutas.MayoresProveedores : Rutas.MayoresClientes;
+            string raiz = cuenta == Cuentas.Proveedores ? Raices.MayoresProveedores : Raices.MayoresClientes;
+
+            // Cargamos el archivo correspondiente.
+            Sistema.VerificarArchivo(ruta, raiz);
+            XmlDocument lector = new XmlDocument();
+            lector.Load(ruta);
+
+            XmlNode RegMayor = lector.DocumentElement.SelectSingleNode($"mayor[@noTarjeta='{noTarjeta}']");
+            Mayor Mayor = ConvertidorXml.ElementoToObjeto<Mayor>((XmlElement)RegMayor);
+
+            Sistema.IndexarFormulario(Contenedor, new EsquemaAuxiliar(Mayor));
+        }
+        private void AbrirAlmacen(string noTarjeta, Cuentas cuenta)
+        {
+            Sistema.VerificarArchivo(Rutas.Almacen, Raices.Almacen);
+            XmlDocument lector = new XmlDocument();
+            lector.Load(Rutas.Almacen);
+
+            XmlNode RegMayor = lector.DocumentElement.SelectSingleNode($"mayor[@noTarjeta='{noTarjeta}']");
+            Mayor Mayor = ConvertidorXml.ElementoToObjeto<Mayor>((XmlElement)RegMayor);
+
+            Sistema.IndexarFormulario(Contenedor, new EsquemaAuxiliar(Mayor));
         }
     }
 }

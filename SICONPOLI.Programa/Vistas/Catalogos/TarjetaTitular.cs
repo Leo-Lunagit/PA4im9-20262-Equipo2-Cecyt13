@@ -13,6 +13,9 @@ namespace PA4IM9_20262_Equipo2.Vistas.Catalogos
 {
     public partial class TarjetaTitular : UserControl
     {
+        public delegate void Entrar(string noTarjeta);
+        public event Entrar entrarTitular;
+
         public TarjetaTitular(PaqueteTitular Titular)
         {
             InitializeComponent();
@@ -26,6 +29,11 @@ namespace PA4IM9_20262_Equipo2.Vistas.Catalogos
             txtAdeudo.Text = $"{Titular.Adeudo}";
             txtLimite.Text = $"{Titular.LimiteCredito}";
             txtContacto.Text = Titular.Contacto;
+        }
+
+        private void TarjetaTitular_Click(object sender, EventArgs e)
+        {
+            entrarTitular?.Invoke(txtNoTarjeta.Text);
         }
     }
 }
