@@ -198,7 +198,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                     renAlmacen.Folio = $"1{(Producto.RenAlmacens.Length + 1):D3}";
                     renAlmacen.Existencia = Producto.RenAlmacens.Last().Existencia + renAlmacen.MovInventario.Monto * sentido;
                     renAlmacen.MontoSaldo = Producto.RenAlmacens.Last().MontoSaldo + renAlmacen.MovValor.Monto * sentido;
-                    renAlmacen.CostoPromedio = renAlmacen.MontoSaldo / renAlmacen.Existencia;
+                    renAlmacen.CostoPromedio = renAlmacen.Existencia != 0 ? renAlmacen.MontoSaldo / renAlmacen.Existencia : 0;
 
                     Producto.RenAlmacens = Producto.RenAlmacens.Append(renAlmacen).ToArray();
 

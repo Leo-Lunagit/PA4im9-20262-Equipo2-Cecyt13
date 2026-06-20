@@ -149,6 +149,12 @@
     <Compile Include="Vistas\Mayores\EsquemaAuxiliar.Designer.cs">
       <DependentUpon>EsquemaAuxiliar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\Mayores\TarjetaAlmacen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\Mayores\TarjetaAlmacen.Designer.cs">
+      <DependentUpon>TarjetaAlmacen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\PanelAcceso\CorreoRecuperacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +220,9 @@
     </Compile>
     <EmbeddedResource Include="Vistas\Mayores\EsquemaAuxiliar.resx">
       <DependentUpon>EsquemaAuxiliar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\Mayores\TarjetaAlmacen.resx">
+      <DependentUpon>TarjetaAlmacen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\PanelAcceso\CorreoRecuperacion.resx">
       <DependentUpon>CorreoRecuperacion.cs</DependentUpon>

@@ -63,7 +63,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
         private void btnSalidas_Click(object sender, EventArgs e) { AbrirPaneles(new PanelRegistros(Cuentas.Clientes), sender); }
         private void btnClientes_Click(object sender, EventArgs e) { IndexarCatalogoTitulares(new Catalogo(Cuentas.Clientes), sender); }
         private void btnProvedores_Click(object sender, EventArgs e) { IndexarCatalogoTitulares(new Catalogo(Cuentas.Proveedores), sender); }
-        private void btnAlmacen_Click(object sender, EventArgs e) { AbrirPaneles(new Catalogo(Cuentas.Almacen), sender); }
+        private void btnAlmacen_Click(object sender, EventArgs e) { IndexarCatalogoAlmacen(new Catalogo(Cuentas.Almacen), sender); }
         private void btnSucursales_Click(object sender, EventArgs e) 
         {
             Process.Start(new ProcessStartInfo
@@ -171,10 +171,10 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
             XmlDocument lector = new XmlDocument();
             lector.Load(Rutas.Almacen);
 
-            XmlNode RegMayor = lector.DocumentElement.SelectSingleNode($"mayor[@noTarjeta='{noTarjeta}']");
-            Mayor Mayor = ConvertidorXml.ElementoToObjeto<Mayor>((XmlElement)RegMayor);
+            XmlNode RegMayor = lector.DocumentElement.SelectSingleNode($"almacen[@noTarjeta='{noTarjeta}']");
+            Almacen Almacen = ConvertidorXml.ElementoToObjeto<Almacen>((XmlElement)RegMayor);
 
-            Sistema.IndexarFormulario(Contenedor, new EsquemaAuxiliar(Mayor));
+            Sistema.IndexarFormulario(Contenedor, new TarjetaAlmacen(Almacen));
         }
     }
 }
