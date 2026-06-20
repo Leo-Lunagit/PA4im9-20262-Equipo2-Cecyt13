@@ -16,28 +16,21 @@ namespace PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros
 {
     public partial class FormularioFacturaciones : Formulario
     {
-        public FormularioFacturaciones(Cuentas cuentaTitular) : base(cuentaTitular)
+        public FormularioFacturaciones(Cuentas cuentaTitular) 
         {
             InitializeComponent();
+            CompletarComponentes(cuentaTitular);
         }
         protected override void CompletarComponentes(Cuentas cuenta)
         {
             base.CompletarComponentes(cuenta);
             Sistema.IndexarCampos(this, this.ContenedorRecursos, new CamposProducto(), Cuentas.Almacen);
         }
-        //
-        // Logica de Validaciones
-        //
-        public override bool SumasIguales()
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            if (txtSumaTotal.Text == "" || txtIVA.Text == "" || txtSumaTotal.Text == "") return true;
-
-            decimal CostoTotal = decimal.Parse(txtSumaTotal.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
-            decimal IVA = decimal.Parse(txtIVA.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
-            decimal MontoToal = decimal.Parse(txtMontoTotal.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
-
-            bool Iguales = CostoTotal + IVA == MontoToal;
-            return Iguales;
+            if (ContenedorRecursos.Controls.Count < 4)
+                AgregarCampos(Cuentas.Almacen);
         }
     }
 }

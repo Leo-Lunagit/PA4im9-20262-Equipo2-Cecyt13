@@ -18,15 +18,13 @@ namespace PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros
     {
         public Cuentas CuentaTitular;
         // Variables para poder regrezar los campos.
-        protected CamposTitular TitularEliminado = null; // Proveedores y Clientes son iguales.
         protected Campos RecursoEliminado = null; // Bancos y Almacen no.
         //
         // Logica de carga.
         //
-        public Formulario(Cuentas cuentaTitular)
+        public Formulario()
         {
             InitializeComponent();
-            CompletarComponentes(cuentaTitular);
         }
         protected virtual void CompletarComponentes(Cuentas cuenta)
         {
@@ -35,43 +33,41 @@ namespace PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros
             grpTitulares.Text = CuentaTitular.ToString();
             lblTitulares.Text = CuentaTitular.ToString();
             if (cuenta == Cuentas.Proveedores) RecorrerLblTitulares();
-
-            Sistema.IndexarCampos(this, this.ContenedorTitulares, new CamposTitular(), CuentaTitular);
         }
         //
         // Logica de Validaciones.
         //
+        private void VentanaInco(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Datos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
         public bool CamposCorrectos()
         {
-            // Si las sumas no son iguales falla la verificacion.
-            if (!SumasIguales())
-            {
-                MessageBox.Show("Por favor rectifique que los datos coincidan.", "Sumas desiguales", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return true; 
-            }
-
             // Para evaluar que todos los campos sean correctos se compara cada un con el anterior. 
             bool RecursosCompletos = true;
             int NoRecursos = ContenedorRecursos.Controls.Count;
             foreach (Campos Recurso in ContenedorRecursos.Controls)
                 RecursosCompletos = RecursosCompletos && Recurso.CamposCompletos(NoRecursos != 1);
 
-            // Se inicia en true para que la primera validacion, con ningun campo, no afecte.
-            bool TitularesCompletos = true;
-            int NoTitulares = ContenedorTitulares.Controls.Count;
-            foreach (Campos Titular in ContenedorTitulares.Controls)
-                TitularesCompletos = TitularesCompletos && Titular.CamposCompletos(NoTitulares != 1);
+            if (!RecursosCompletos)
+            {
+                VentanaInco("Por favor complete los datos de los productos");
+                return false;
+            }
 
+            if (txtTitular.Text == "" || txtFactura.Text == "")
+            {
+                VentanaInco("Por favor complete los datos del titular.");
+                return false;
+            }
             // Se verifican los campos de los totales.
-            bool CamposCompletos = txtSumaTotal.Text != "" && txtIVA.Text != "" && txtMontoTotal.Text != "";
-            // Se evaluan todas las partes.
-            bool Completos = RecursosCompletos && TitularesCompletos && CamposCompletos;
-
-            return Completos; // Manda el resultado.
-        }
-        public virtual bool SumasIguales()
-        {
-            return true;
+            if (txtSubTotal.Text == "" && txtIVA.Text == "" && txtMontoTotal.Text == "")
+            {
+                VentanaInco("Complete los datos para obtener totales.");
+                return false;
+            }
+            
+            return true; // Manda el resultado.
         }
         //
         // Logica de utilidades.
@@ -79,109 +75,74 @@ namespace PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros
         private void RecorrerLblTitulares()
         {
             lblTitulares.Location = new Point(lblTitulares.Location.X - 11, lblTitulares.Location.Y);
-            lblNoTitulares.Location = new Point(lblNoTitulares.Location.X + 11, lblNoTitulares.Location.Y);
         }
         //
         // Logica de eventos
         //
         public void CambiarSumaTotal(decimal CostoCambiado, Cuentas Cuenta)
         {
-            bool EsRecurso = Cuenta == Cuentas.Almacen || Cuenta == Cuentas.Bancos;
-            // Dinamicamente obtenemos los controles nesesarios.
-            Elementos Elementos = new Elementos
-            {
-                txtSumaFinal = EsRecurso ? txtSumaTotal : txtMontoTotal,
-                txtIVA = EsRecurso ? txtIVA : null
-            };
-
             decimal SumaTotal = 0; // En cero por si esta vacio el campo.
-            if (Elementos.txtSumaFinal.Text != "")
+            if (txtSubTotal.Text != "")
                 // Si no esta vacio obtinene el valor del txt.
-                SumaTotal = decimal.Parse(Elementos.txtSumaFinal.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
+                SumaTotal = decimal.Parse(txtSubTotal.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
             // Hace la actualizacion de la suma.
             SumaTotal += CostoCambiado;
             // La refleja en el txt.
-            Elementos.txtSumaFinal.Text = $"{SumaTotal:C}";
+            txtSubTotal.Text = $"{SumaTotal:C}";
 
-            // Solo si requiere de IVA obtiene el nuevo IVA y lo refleja.
-            if (Elementos.txtIVA != null)
-            {
-                // Si es almacen se agrega el IVA.
-                // Si es banco se determina el IVa.
-                decimal IVA = Cuenta == Cuentas.Almacen ? SumaTotal * .16m : (SumaTotal / 1.16m) * .16m;
-                Elementos.txtIVA.Text = $"{IVA:C}";
-            }
+            txtIVA.Text = $"{(SumaTotal * .16m):C2}";
+            txtMontoTotal.Text = $"{(SumaTotal * 1.16m):C2}";
         }
         public void AgregarCampos(Cuentas Cuenta)
         {
-            bool EsRecurso = Cuenta == Cuentas.Almacen || Cuenta == Cuentas.Bancos;
             bool EsAlmacen = Cuenta == Cuentas.Almacen;
-            // Dinamicamente obtenemos los controles nesesarios.
-            Elementos Elementos = new Elementos
-            {
-                Contenedor = EsRecurso ? ContenedorRecursos : ContenedorTitulares,
-                lblNoItems = EsRecurso ? lblNoRecursos : lblNoTitulares,
-                Campos = EsAlmacen ? (Campos)new CamposProducto() : new CamposTitular(),
-            };
+            Campos Campos = EsAlmacen ? new CamposProducto() : (Campos)(new CamposBancos());
 
             // Agregamos una nueva fila de campos.
-            Sistema.IndexarCampos(this, Elementos.Contenedor, Elementos.Campos, Cuenta);
+            Sistema.IndexarCampos(this, ContenedorRecursos, Campos, Cuenta);
             // Obtenemos el numero de filas.
-            int CamposTotal = Elementos.Contenedor.Controls.Count;
+            int CamposTotal = ContenedorRecursos.Controls.Count;
             // Indicamos el numero de filas.
-            Elementos.lblNoItems.Text = $"{CamposTotal}";
+            lblNoRecursos.Text = $"{CamposTotal}";
         }
         public void ElinarCampos(int NumeroProducto, Cuentas Cuenta)
         {
-            bool EsRecurso = Cuenta == Cuentas.Almacen || Cuenta == Cuentas.Bancos;
-            // Dinamicamente obtenemos los controles nesesarios.
-            Elementos Elementos = new Elementos
-            {
-                Contenedor = EsRecurso ? ContenedorRecursos: ContenedorTitulares,
-                lblNoItems = EsRecurso ? lblNoRecursos : lblNoTitulares,
-                CampoEliminado = Cuenta == Cuentas.Almacen ? RecursoEliminado : TitularEliminado
-            };
-
             // Si solo hay una fila no eliminamos nada.
-            if (Elementos.Contenedor.Controls.Count == 1) return;
+            if (ContenedorRecursos.Controls.Count == 1) return;
 
-            int Indice = NumeroProducto - 1; // De No a indice.
-            // Guardamos la fila a eliminar para poder ahcer ctl z.
-            Elementos.CampoEliminado = Elementos.Contenedor.Controls[Indice] as Campos;
+            int Indice = NumeroProducto - 1; // De No. a indice.
+            // Guardamos la fila a eliminar para poder hacer ctl z.
+            RecursoEliminado = ContenedorRecursos.Controls[Indice] as Campos;
 
-            if (Elementos.CampoEliminado.txtMonto.Text != "")
+            if (RecursoEliminado.txtMonto.Text != "")
             {
                 // Resta su suma a la total.
-                decimal Suma = decimal.Parse(Elementos.CampoEliminado.txtMonto.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
+                decimal Suma = decimal.Parse(RecursoEliminado.txtMonto.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
                 CambiarSumaTotal(Suma * -1, Cuenta);
             }
 
             // Eliminamos la fila.
-            Elementos.Contenedor.Controls.RemoveAt(Indice);
+            ContenedorRecursos.Controls.RemoveAt(Indice);
 
             // Iniciamos una variable para enumerar las filas.
-            int NoProductos = 0;
+            int NoRecursos = 0;
             // Por cada fila en el campo
-            foreach (Campos producto in Elementos.Contenedor.Controls)
+            foreach (Campos producto in ContenedorRecursos.Controls)
             {
                 // Va sumando uno al inicio para terminar con el numero exacto de filas y poder usar la variable despues.
-                NoProductos++;
+                NoRecursos++;
                 // Enumeramos la fila.
-                producto.lblNoItem.Text = $"{NoProductos}";
+                producto.lblNoItem.Text = $"{NoRecursos}";
             }
 
             // Cambiamos el total de filas.
-            Elementos.lblNoItems.Text = $"{NoProductos}";
+            lblNoRecursos.Text = $"{NoRecursos}";
         }
-    }
 
-    internal class Elementos
-    {
-        public TextBox txtSumaFinal { set; get; }
-        public TextBox txtIVA { set; get; }
-        public Label lblNoItems { set; get; }
-        public Panel Contenedor { set; get; }
-        public Campos Campos { set; get; }
-        public Campos CampoEliminado { set; get; }
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (ContenedorRecursos.Controls.Count < 4) 
+                AgregarCampos(CuentaTitular);
+        }
     }
 }

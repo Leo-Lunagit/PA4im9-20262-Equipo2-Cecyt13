@@ -28,6 +28,9 @@ namespace PA4IM9_20262_Equipo2.Modulos
         public static string Ventas = Path.Combine(Datos, "Ventas.xml");
         public static string Proveedores = Path.Combine(Datos, "Proveedores.xml");
         public static string Clientes = Path.Combine(Datos, "Clientes.xml");
+        public static string Productos = Path.Combine(Datos, "Productos.xml");
+        public static string MayoresProveedores = Path.Combine(Datos, "MayoresProveedores.xml");
+        public static string MayoresClientes = Path.Combine(Datos, "MayoresClientes.xml");
         public static string Almacen = Path.Combine(Datos, "Almacen.xml");
     }
 
@@ -40,6 +43,9 @@ namespace PA4IM9_20262_Equipo2.Modulos
         public static string Ventas = "ventas";
         public static string Proveedores = "proveedores";
         public static string Clientes = "clientes";
+        public static string Productos = "productos";
+        public static string MayoresProveedores = "MayoresProveedores";
+        public static string MayoresClientes = "MayoresClientes";
         public static string Almacen = "almacen";
     }
 
@@ -52,6 +58,8 @@ namespace PA4IM9_20262_Equipo2.Modulos
         public static string[] Roles = { "administrador", "colaborador", "cliente" };
         public static string RolPredefinido = Roles[2];
         public static string banderaRecordar = "recordado";
+        //
+        public static int PorcentajeUtilida = 50;
 
         // Verificacion de la existencia de un archivo XML.
         public static void VerificarArchivo(string ruta, string nombreRaiz)
@@ -98,6 +106,9 @@ namespace PA4IM9_20262_Equipo2.Modulos
             VerificarArchivo(Rutas.Ventas, Raices.Ventas);
             VerificarArchivo(Rutas.Proveedores, Raices.Proveedores);
             VerificarArchivo(Rutas.Clientes, Raices.Clientes);
+            VerificarArchivo(Rutas.Productos, Raices.Productos);
+            VerificarArchivo(Rutas.MayoresProveedores, Raices.MayoresProveedores);
+            VerificarArchivo(Rutas.MayoresClientes, Raices.MayoresClientes);
             VerificarArchivo(Rutas.Almacen, Raices.Almacen);
         }
 

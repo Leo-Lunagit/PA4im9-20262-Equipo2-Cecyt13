@@ -48,7 +48,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
 
         private void txtCosto_TextChanged(object sender, EventArgs e)
         {
-            if (txtMonto.Text == "")
+            if (txtMonto.Text == "" || txtMonto.Text == ".")
             {
                 CambiarCostoTotal?.Invoke(CostoAnterior * -1, (Cuentas)Cuenta);
                 CostoAnterior = 0;
@@ -59,13 +59,6 @@ namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
                 CambiarCostoTotal?.Invoke(Costo - CostoAnterior, (Cuentas)Cuenta);
                 CostoAnterior = Costo;
             }
-        }
-
-        private void cmbProductos_TextChange(object sender, EventArgs e)
-        {
-            int NoCampos = this.Parent.Controls.Count;
-            if (NoCampos == int.Parse(lblNoItem.Text) && NoCampos < 4)
-                AgregarEspacioItem?.Invoke((Cuentas)Cuenta);
         }
         //
         // Logica de validaciones.

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PA4IM9_20262_Equipo2.Entidades;
 
 namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
 {
@@ -16,6 +17,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
         public CamposProducto()
         {
             InitializeComponent();
+            Cuenta = Cuentas.Almacen;
         }
         //
         // Logica de validaciones
@@ -67,6 +69,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
         }
         public override bool CampoNulo()
         {
+            base.CampoNulo();
             bool CampoNulo = nudCantidad.Value == 1 && cmbNombreItem.Text == "" && txtCostoUni.Text == "";
             return CampoNulo;
         }

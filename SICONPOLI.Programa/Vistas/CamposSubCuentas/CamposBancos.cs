@@ -7,15 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PA4IM9_20262_Equipo2.Entidades;
 
 namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
 {
-    public partial class CamposTitular : Campos
+    public partial class CamposBancos : Campos
     {
-        public CamposTitular()
+        public CamposBancos()
         {
             InitializeComponent();
             cmbNombreItem.Items.Clear();
+            Cuenta = Cuentas.Bancos;
         }
 
         private void txtFactura_KeyPress(object sender, KeyPressEventArgs e)

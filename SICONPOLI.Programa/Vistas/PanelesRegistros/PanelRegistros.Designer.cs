@@ -36,13 +36,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TablaMovimientos = new System.Windows.Forms.DataGridView();
-            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.folio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.accion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalProductos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iva = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.txtFolio = new System.Windows.Forms.TextBox();
             this.lblFolio = new System.Windows.Forms.Label();
@@ -53,6 +46,13 @@
             this.panFormularios = new System.Windows.Forms.Panel();
             this.panMovimientos = new System.Windows.Forms.Panel();
             this.cmbOpcionesConcepto = new System.Windows.Forms.ComboBox();
+            this.folio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.accion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titular = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.factura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.TablaMovimientos)).BeginInit();
             this.panMovimientos.SuspendLayout();
             this.SuspendLayout();
@@ -64,11 +64,11 @@
             this.TablaMovimientos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.TablaMovimientos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TablaMovimientos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.fecha,
             this.folio,
+            this.fecha,
             this.accion,
-            this.totalProductos,
-            this.iva,
+            this.titular,
+            this.factura,
             this.total,
             this.usuario});
             this.TablaMovimientos.Location = new System.Drawing.Point(20, 100);
@@ -78,69 +78,6 @@
             this.TablaMovimientos.RowHeadersWidth = 51;
             this.TablaMovimientos.Size = new System.Drawing.Size(920, 200);
             this.TablaMovimientos.TabIndex = 40;
-            // 
-            // fecha
-            // 
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.fecha.DefaultCellStyle = dataGridViewCellStyle1;
-            this.fecha.HeaderText = "Fecha y Hora";
-            this.fecha.MinimumWidth = 6;
-            this.fecha.Name = "fecha";
-            this.fecha.ReadOnly = true;
-            // 
-            // folio
-            // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.folio.DefaultCellStyle = dataGridViewCellStyle2;
-            this.folio.HeaderText = "Folio";
-            this.folio.MinimumWidth = 6;
-            this.folio.Name = "folio";
-            this.folio.ReadOnly = true;
-            // 
-            // accion
-            // 
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.accion.DefaultCellStyle = dataGridViewCellStyle3;
-            this.accion.HeaderText = "Acción";
-            this.accion.MinimumWidth = 6;
-            this.accion.Name = "accion";
-            this.accion.ReadOnly = true;
-            // 
-            // totalProductos
-            // 
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.totalProductos.DefaultCellStyle = dataGridViewCellStyle4;
-            this.totalProductos.HeaderText = "Subtotal";
-            this.totalProductos.MinimumWidth = 6;
-            this.totalProductos.Name = "totalProductos";
-            this.totalProductos.ReadOnly = true;
-            // 
-            // iva
-            // 
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.iva.DefaultCellStyle = dataGridViewCellStyle5;
-            this.iva.HeaderText = "IVA";
-            this.iva.MinimumWidth = 6;
-            this.iva.Name = "iva";
-            this.iva.ReadOnly = true;
-            // 
-            // total
-            // 
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.total.DefaultCellStyle = dataGridViewCellStyle6;
-            this.total.HeaderText = "Total";
-            this.total.MinimumWidth = 6;
-            this.total.Name = "total";
-            this.total.ReadOnly = true;
-            // 
-            // usuario
-            // 
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.usuario.DefaultCellStyle = dataGridViewCellStyle7;
-            this.usuario.HeaderText = "Usuario";
-            this.usuario.MinimumWidth = 6;
-            this.usuario.Name = "usuario";
-            this.usuario.ReadOnly = true;
             // 
             // btnRegistrar
             // 
@@ -263,7 +200,70 @@
             this.cmbOpcionesConcepto.TabIndex = 46;
             this.cmbOpcionesConcepto.SelectedIndexChanged += new System.EventHandler(this.cmbOpcionesConcepto_SelectedIndexChanged);
             // 
-            // Panel_Ventas
+            // folio
+            // 
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.folio.DefaultCellStyle = dataGridViewCellStyle1;
+            this.folio.HeaderText = "Folio";
+            this.folio.MinimumWidth = 6;
+            this.folio.Name = "folio";
+            this.folio.ReadOnly = true;
+            // 
+            // fecha
+            // 
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.fecha.DefaultCellStyle = dataGridViewCellStyle2;
+            this.fecha.HeaderText = "Fecha y Hora";
+            this.fecha.MinimumWidth = 6;
+            this.fecha.Name = "fecha";
+            this.fecha.ReadOnly = true;
+            // 
+            // accion
+            // 
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.accion.DefaultCellStyle = dataGridViewCellStyle3;
+            this.accion.HeaderText = "Acción";
+            this.accion.MinimumWidth = 6;
+            this.accion.Name = "accion";
+            this.accion.ReadOnly = true;
+            // 
+            // titular
+            // 
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.titular.DefaultCellStyle = dataGridViewCellStyle4;
+            this.titular.HeaderText = "Titular";
+            this.titular.MinimumWidth = 6;
+            this.titular.Name = "titular";
+            this.titular.ReadOnly = true;
+            // 
+            // factura
+            // 
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.factura.DefaultCellStyle = dataGridViewCellStyle5;
+            this.factura.HeaderText = "Factura";
+            this.factura.MinimumWidth = 6;
+            this.factura.Name = "factura";
+            this.factura.ReadOnly = true;
+            // 
+            // total
+            // 
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.total.DefaultCellStyle = dataGridViewCellStyle6;
+            this.total.HeaderText = "Total";
+            this.total.MinimumWidth = 6;
+            this.total.Name = "total";
+            this.total.ReadOnly = true;
+            // 
+            // usuario
+            // 
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.usuario.DefaultCellStyle = dataGridViewCellStyle7;
+            this.usuario.HeaderText = "Registrado por:";
+            this.usuario.MinimumWidth = 6;
+            this.usuario.Name = "usuario";
+            this.usuario.ReadOnly = true;
+            // 
+            // PanelRegistros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -273,7 +273,7 @@
             this.Controls.Add(this.panMovimientos);
             this.ForeColor = System.Drawing.Color.DarkRed;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Panel_Ventas";
+            this.Name = "PanelRegistros";
             this.Text = "pan";
             ((System.ComponentModel.ISupportInitialize)(this.TablaMovimientos)).EndInit();
             this.panMovimientos.ResumeLayout(false);
@@ -294,13 +294,13 @@
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Panel panFormularios;
         private System.Windows.Forms.Panel panMovimientos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
+        private System.Windows.Forms.ComboBox cmbOpcionesConcepto;
         private System.Windows.Forms.DataGridViewTextBoxColumn folio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn accion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalProductos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iva;
+        private System.Windows.Forms.DataGridViewTextBoxColumn titular;
+        private System.Windows.Forms.DataGridViewTextBoxColumn factura;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
         private System.Windows.Forms.DataGridViewTextBoxColumn usuario;
-        private System.Windows.Forms.ComboBox cmbOpcionesConcepto;
     }
 }

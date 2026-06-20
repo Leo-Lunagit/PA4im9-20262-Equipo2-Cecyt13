@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PA4IM9_20262_Equipo2.Vistas.Catalogos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,6 +40,20 @@ namespace PA4IM9_20262_Equipo2.Entidades
         public int Monto { get; set; }
     } 
 
+    public class Contactos
+    {
+        [XmlElement("domicilio")]
+        public string Domicilio { get; set; }
+        [XmlElement("coreo")]
+        public string Correo { get; set; }
+        [XmlElement("telefono")]
+        public string Telefono { get; set; }
+    }
+
+    //
+    // Libros mayores.
+    //
+
     public class RenMayor
     {
         [XmlAttribute("folio")]
@@ -55,17 +70,93 @@ namespace PA4IM9_20262_Equipo2.Entidades
         public int MontoSaldo { get; set; }
     }
 
-    [XmlRoot("auxiliar")]
+    [XmlRoot("mayor")]
     public class Mayor
     {
         [XmlAttribute("cuenta")]
         public string Cuenta { get; set; }
+        
         [XmlAttribute("noTarjeta")]
         public string NoTargeta { get; set; }
-        [XmlAttribute("titular")]
+        [XmlElement("titular")]
         public string Titular { get; set; }
-        [XmlArray("movAuxiliares")]
-        [XmlArrayItem("renAuxiliar")]
+        [XmlElement("datosContacto")]
+        public Contactos DatosContacto { get; set; }
+        [XmlElement("limiteCredito")]
+        public int LimiteCredito { get; set; }
+        [XmlArray("movMayores")]
+        [XmlArrayItem("renMayores")]
         public RenMayor[] RenMayores { get; set; }
+
+        public PaqueteTitular ToPaquete()
+        {
+            int monto = RenMayores.Last().MontoSaldo;
+            string adeudo = monto == 0 ? "Saldado." : $"{(monto / 100):C2}";
+            string limite = LimiteCredito == 0 ? "Sin Limite." : $"{LimiteCredito:C2}";
+            Contactos Contactos = DatosContacto;
+            string contacto =
+                DatosContacto == null ? "Sin Contacto." :
+                DatosContacto.Correo != "" ? DatosContacto.Correo :
+                DatosContacto.Telefono != "" ? DatosContacto.Telefono :
+                "Sin Contacto.";
+            PaqueteTitular Paquete = new PaqueteTitular 
+            {
+                NoTarjeta = this.NoTargeta,
+                Titular = this.Titular,
+                Adeudo = adeudo,
+                LimiteCredito = limite,
+                Contacto = contacto
+            };
+            return Paquete;
+        }
+    }
+
+    // 
+    // Targetas de almacen.
+    //
+
+    public class RenAlmacen
+    {
+        [XmlAttribute("folio")]
+        public string Folio { get; set; }
+        [XmlElement("fecha")]
+        public string Fecha { get; set; }
+        [XmlElement("factura")]
+        public string Factura { get; set; }
+        [XmlElement("movInventario")]
+        public Movimiento MovInventario { get; set; }
+        [XmlElement("Existencia")]
+        public int Existencia { get; set; }
+        [XmlElement("costo")]
+        public int CostoUnitario { get; set; }
+        [XmlElement("movValor")]
+        public int CostoPromedio { get; set; }
+        public Movimiento MovValor { get; set; }
+        [XmlElement("montoSaldo")]
+        public int MontoSaldo { get; set; }
+    }
+
+    [XmlRoot("almacen")]
+    public class Almacen
+    {
+        [XmlAttribute("noTarjeta")]
+        public string NoTarjeta { get; set; }
+        [XmlElement("producto")]
+        public string Producto { get; set; }
+        [XmlArray("movAlmacen")]
+        [XmlArrayItem("renAlmacen")]
+        public RenAlmacen[] RenAlmacens { get; set; }
+
+        public PaqueteAlmacen ToPaquete()
+        {
+            PaqueteAlmacen Paquete = new PaqueteAlmacen
+            {
+                NoTarjeta = this.NoTarjeta,
+                Producto = this.Producto,
+                Stock = this.RenAlmacens.Last().Existencia,
+                CostoUnitario = this.RenAlmacens.Last().CostoPromedio,
+            };
+            return Paquete;
+        }
     }
 }

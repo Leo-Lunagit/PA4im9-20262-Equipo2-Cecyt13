@@ -1,6 +1,6 @@
 ﻿namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
 {
-    partial class CamposTitular
+    partial class CamposBancos
     {
         /// <summary> 
         /// Variable del diseñador necesaria.

@@ -88,7 +88,6 @@
             this.cmbNombreItem.Name = "cmbNombreItem";
             this.cmbNombreItem.Size = new System.Drawing.Size(176, 26);
             this.cmbNombreItem.TabIndex = 1;
-            this.cmbNombreItem.TextChanged += new System.EventHandler(this.cmbProductos_TextChange);
             // 
             // Campos
             // 
