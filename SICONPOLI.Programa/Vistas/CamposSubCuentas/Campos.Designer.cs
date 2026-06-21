@@ -75,14 +75,8 @@
             // cmbNombreItem
             // 
             this.cmbNombreItem.BackColor = System.Drawing.Color.Snow;
-            this.cmbNombreItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbNombreItem.Font = new System.Drawing.Font("Modern No. 20", 12F);
             this.cmbNombreItem.FormattingEnabled = true;
-            this.cmbNombreItem.Items.AddRange(new object[] {
-            "Laptops",
-            "Monitor",
-            "PCs",
-            "Dispositivos portatiles"});
             this.cmbNombreItem.Location = new System.Drawing.Point(25, 9);
             this.cmbNombreItem.Margin = new System.Windows.Forms.Padding(4);
             this.cmbNombreItem.Name = "cmbNombreItem";

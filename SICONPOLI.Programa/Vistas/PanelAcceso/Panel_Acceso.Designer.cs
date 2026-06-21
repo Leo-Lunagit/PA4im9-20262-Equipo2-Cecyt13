@@ -61,13 +61,13 @@
             this.logoCecyt = new System.Windows.Forms.PictureBox();
             this.panAcceso = new System.Windows.Forms.Panel();
             this.panMarca = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.linea2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.grpInicioS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconoConfirmarContra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconoContrasenia)).BeginInit();
@@ -506,6 +506,51 @@
             this.panMarca.Size = new System.Drawing.Size(454, 378);
             this.panMarca.TabIndex = 15;
             // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Harrington", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(29)))), ((int)(((byte)(70)))));
+            this.label4.Location = new System.Drawing.Point(2, 46);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(446, 35);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "en el Poilitécnico";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(144)))), ((int)(((byte)(86)))));
+            this.label3.Location = new System.Drawing.Point(301, 317);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 21);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "EQUIPO 2";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(144)))), ((int)(((byte)(86)))));
+            this.label2.Location = new System.Drawing.Point(54, 317);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(105, 21);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "GRUPO 4IM9";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(88)))), ((int)(((byte)(77)))));
+            this.label1.Location = new System.Drawing.Point(180, 95);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 21);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Informatica";
+            // 
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
@@ -535,52 +580,7 @@
             this.linea2.Size = new System.Drawing.Size(2, 365);
             this.linea2.TabIndex = 5;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(88)))), ((int)(((byte)(77)))));
-            this.label1.Location = new System.Drawing.Point(180, 95);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 21);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Informatica";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(144)))), ((int)(((byte)(86)))));
-            this.label2.Location = new System.Drawing.Point(54, 317);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 21);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "GRUPO 4IM9";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(144)))), ((int)(((byte)(86)))));
-            this.label3.Location = new System.Drawing.Point(301, 317);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 21);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "EQUIPO 2";
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Harrington", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(29)))), ((int)(((byte)(70)))));
-            this.label4.Location = new System.Drawing.Point(2, 46);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(446, 35);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "en el Poilitécnico";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // PanelAcceso
+            // Panel_Acceso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -594,7 +594,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(800, 497);
             this.MinimumSize = new System.Drawing.Size(800, 497);
-            this.Name = "PanelAcceso";
+            this.Name = "Panel_Acceso";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Panel de Acceso. SIRETECH Poli.";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PanelAcceso_FormClosing);

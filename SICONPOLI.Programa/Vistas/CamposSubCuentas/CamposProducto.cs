@@ -8,16 +8,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using PA4IM9_20262_Equipo2.Entidades;
+using PA4IM9_20262_Equipo2.Modulos;
+using PA4IM9_20262_Equipo2.Vistas.Catalogos;
 
 namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
 {
     public partial class CamposProducto : Campos
     {
-        public CamposProducto()
+        Cuentas CuentaTitular;
+        private bool Restrictivo;
+
+        public CamposProducto(Cuentas cuentaTitular)
         {
             InitializeComponent();
+            CompletarCampos(cuentaTitular);
+        }
+        private void CompletarCampos(Cuentas cuentaTitular)
+        {
             Cuenta = Cuentas.Almacen;
+            CuentaTitular = cuentaTitular;
+            Restrictivo = CuentaTitular == Cuentas.Clientes;
+            Sistema.VerificarArchivo(Rutas.Productos, Raices.Productos);
+            XmlDocument lecto = new XmlDocument();
+            lecto.Load(Rutas.Productos);
+            
+            if (Restrictivo)
+            {
+                cmbNombreItem.DropDownStyle = ComboBoxStyle.DropDownList;
+                txtCostoUni.ReadOnly = true;
+            }
+
+            if (MEMORIA.Productos == null || MEMORIA.Productos.Length < 1) return;
+            foreach(PaqueteAlmacen producto in MEMORIA.Productos)
+                cmbNombreItem.Items.Add(producto.Producto);
         }
         //
         // Logica de validaciones
@@ -49,7 +74,9 @@ namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
             if (txtCostoUni.Text == "" || txtCostoUni.Text == ".") txtMonto.Text = "";
             else
             {
-                decimal CostoUnitario = decimal.Parse(txtCostoUni.Text);
+                decimal CostoUnitario;
+                if (!Restrictivo) CostoUnitario = decimal.Parse(txtCostoUni.Text);
+                else CostoUnitario = decimal.Parse(txtCostoUni.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
                 decimal Cantidad = nudCantidad.Value;
 
                 decimal CostoFinal = CostoUnitario * Cantidad;
@@ -72,6 +99,15 @@ namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
             base.CampoNulo();
             bool CampoNulo = nudCantidad.Value == 1 && cmbNombreItem.Text == "" && txtCostoUni.Text == "";
             return CampoNulo;
+        }
+
+        private void cmbNombreItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (txtCostoUni.Text != "" && !Restrictivo) return;
+
+            string NombreProducto = cmbNombreItem.Text;
+            int costo = MEMORIA.Productos.First(producto => producto.Producto == $"{NombreProducto}").CostoUnitario;
+            txtCostoUni.Text = $"{(costo / 100):C2}";
         }
     }
 }

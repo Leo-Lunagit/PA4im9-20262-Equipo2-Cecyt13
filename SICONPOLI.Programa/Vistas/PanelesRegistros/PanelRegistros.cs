@@ -53,6 +53,8 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             txtFolio.Text = Sistema.GenerarID(Ruta, Raiz, 3);
             // Asignando el concepto por defecto.
             txtConcepto.Text = ConceptoPorDefecto;
+
+            if (!EsCompra && MEMORIA.Productos.Length == 0) this.Enabled = false;
         }
         private void IndexarFormulumario(Formulario formulario)
         {
@@ -164,7 +166,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 
             Formulario.ContenedorRecursos.Controls.Clear();
             Cuentas NombreCuenta = EsDeuda ? Cuentas.Almacen : Cuentas.Bancos;
-            Campos Campos = EsDeuda ? new CamposProducto() : (Campos)((new CamposBancos()));
+            Campos Campos = EsDeuda ? new CamposProducto(CuentaTitular) : (Campos)((new CamposBancos()));
             Sistema.IndexarCampos(Formulario, Formulario.ContenedorRecursos, Campos, NombreCuenta);
         }
 

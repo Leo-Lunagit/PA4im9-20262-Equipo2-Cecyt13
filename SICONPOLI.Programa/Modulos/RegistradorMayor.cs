@@ -2,6 +2,7 @@
 using PA4IM9_20262_Equipo2.Vistas.Mayores;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -222,8 +223,9 @@ namespace PA4IM9_20262_Equipo2.Modulos
 
         private static void SavePaqueteTitular(Mayor titular, Cuentas cuenta)
         {
-            string ruta = cuenta == Cuentas.Proveedores ? Rutas.Proveedores : Rutas.Clientes;
-            string raiz = cuenta == Cuentas.Proveedores ? Raices.Proveedores : Raices.Clientes;
+            bool EsCompra = cuenta == Cuentas.Proveedores;
+            string ruta = EsCompra ? Rutas.Proveedores : Rutas.Clientes;
+            string raiz = EsCompra ? Raices.Proveedores : Raices.Clientes;
 
             Sistema.VerificarArchivo(ruta, raiz);
             XmlDocument escritor = new XmlDocument();
@@ -231,6 +233,12 @@ namespace PA4IM9_20262_Equipo2.Modulos
 
             PaqueteTitular paquete = titular.ToPaquete();
             XmlElement nuevoPaquete = ConvertidorXml.ObjetoToElemento(escritor, paquete);
+
+            PaqueteTitular[] coleccion = EsCompra ? MEMORIA.Proveedores : MEMORIA.Clientes;
+            int indice = Array.FindIndex(coleccion, titulares => titulares.NoTarjeta == paquete.NoTarjeta);
+            if (indice < 0)
+                coleccion = coleccion.Append<PaqueteTitular>(paquete).ToArray();
+            else coleccion[indice] = paquete;
 
             XmlNode paqueteGuardado = escritor.DocumentElement.SelectSingleNode($"//paqueteTitular[producto='{paquete.Titular}']");
             if (paqueteGuardado == null)
@@ -247,7 +255,12 @@ namespace PA4IM9_20262_Equipo2.Modulos
 
             PaqueteAlmacen paquete = almacen.ToPaquete();
             XmlElement nuevoPaquete = ConvertidorXml.ObjetoToElemento(escritor, paquete);
-            
+
+            int indice = Array.FindIndex(MEMORIA.Productos, producto => producto.NoTarjeta == paquete.NoTarjeta);
+            if (indice < 0)
+                MEMORIA.Productos = MEMORIA.Productos.Append<PaqueteAlmacen>(paquete).ToArray();
+            else MEMORIA.Productos[indice] = paquete;
+
             XmlNode paqueteGuardado = escritor.DocumentElement.SelectSingleNode($"//paqueteAlmacen[producto='{paquete.Producto}']");
             if (paqueteGuardado == null)
                 escritor.DocumentElement.AppendChild(nuevoPaquete);

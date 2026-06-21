@@ -105,7 +105,7 @@
             // 
             this.lblNoTarjeta.AutoSize = true;
             this.lblNoTarjeta.Font = new System.Drawing.Font("Harlow Solid Italic", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoTarjeta.Location = new System.Drawing.Point(847, 27);
+            this.lblNoTarjeta.Location = new System.Drawing.Point(847, 26);
             this.lblNoTarjeta.Name = "lblNoTarjeta";
             this.lblNoTarjeta.Size = new System.Drawing.Size(46, 24);
             this.lblNoTarjeta.TabIndex = 5;
@@ -115,7 +115,7 @@
             // 
             this.lblPunto.AutoSize = true;
             this.lblPunto.Font = new System.Drawing.Font("Lucida Fax", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPunto.Location = new System.Drawing.Point(831, 25);
+            this.lblPunto.Location = new System.Drawing.Point(831, 24);
             this.lblPunto.Name = "lblPunto";
             this.lblPunto.Size = new System.Drawing.Size(16, 22);
             this.lblPunto.TabIndex = 4;

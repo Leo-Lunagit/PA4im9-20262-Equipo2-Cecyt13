@@ -24,7 +24,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros
         protected override void CompletarComponentes(Cuentas cuenta)
         {
             base.CompletarComponentes(cuenta);
-            Sistema.IndexarCampos(this, this.ContenedorRecursos, new CamposProducto(), Cuentas.Almacen);
+            Sistema.IndexarCampos(this, this.ContenedorRecursos, new CamposProducto(cuenta), Cuentas.Almacen);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

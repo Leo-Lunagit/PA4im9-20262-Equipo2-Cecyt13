@@ -31,13 +31,13 @@ namespace PA4IM9_20262_Equipo2.Vistas.Mayores
                     renglon.Folio,
                     renglon.Fecha,
                     renglon.Factura,
-                    renglon.MovInventario.Saldo == $"{Saldos.Deudor}" ? $"{renglon.MovInventario.Monto}" : "",
-                    renglon.MovInventario.Saldo == $"{Saldos.Acredor}" ? $"{renglon.MovInventario.Monto}" : "",
+                    renglon.MovInventario.Saldo == $"{Saldos.Deudor}" ? $"{renglon.MovInventario.Monto}" : "---",
+                    renglon.MovInventario.Saldo == $"{Saldos.Acredor}" ? $"{renglon.MovInventario.Monto}" : "---",
                     renglon.Existencia,
-                    renglon.CostoPromedio,
-                    renglon.CostoPromedio,
-                    renglon.MovValor.Saldo == $"{Saldos.Deudor}" ? $"{(renglon.MovInventario.Monto / 100):C2}" : "",
-                    renglon.MovValor.Saldo == $"{Saldos.Acredor}" ? $"{(renglon.MovInventario.Monto / 100):C2}" : "",
+                    $"{(renglon.CostoUnitario / 100):C2}",
+                    $"{(renglon.CostoPromedio / 100):C2}",
+                    renglon.MovValor.Saldo == $"{Saldos.Deudor}" ? $"{(renglon.MovValor.Monto / 100):C2}" : "---",
+                    renglon.MovValor.Saldo == $"{Saldos.Acredor}" ? $"{(renglon.MovValor.Monto / 100):C2}" : "---",
                     $"{(renglon.MontoSaldo / 100):C2}"
                 );
             }

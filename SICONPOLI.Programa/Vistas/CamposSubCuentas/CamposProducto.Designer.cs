@@ -42,13 +42,14 @@
             // 
             this.btnEliminar.Location = new System.Drawing.Point(451, 9);
             // 
-            // cmbNombreItem
-            // 
-            this.cmbNombreItem.Location = new System.Drawing.Point(82, 9);
-            // 
             // txtMonto
             // 
             this.txtMonto.Location = new System.Drawing.Point(357, 9);
+            // 
+            // cmbNombreItem
+            // 
+            this.cmbNombreItem.Location = new System.Drawing.Point(82, 9);
+            this.cmbNombreItem.SelectedIndexChanged += new System.EventHandler(this.cmbNombreItem_SelectedIndexChanged);
             // 
             // nudCantidad
             // 

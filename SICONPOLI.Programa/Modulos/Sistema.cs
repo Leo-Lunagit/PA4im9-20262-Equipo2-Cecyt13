@@ -49,6 +49,36 @@ namespace PA4IM9_20262_Equipo2.Modulos
         public static string Almacen = "almacen";
     }
 
+    public static class MEMORIA
+    {
+        public static PaqueteAlmacen[] Productos;
+        public static PaqueteTitular[] Clientes;
+        public static PaqueteTitular[] Proveedores;
+
+        public static void CargarMemorias()
+        {
+            XmlDocument lector = new XmlDocument();
+
+            lector.Load(Rutas.Productos);
+            Productos = new PaqueteAlmacen[] { new PaqueteAlmacen() };
+            foreach (XmlElement registro in lector.DocumentElement.ChildNodes)
+                Productos = Productos.Append(ConvertidorXml.ElementoToObjeto<PaqueteAlmacen>(registro)).ToArray();
+            Productos = Productos.Skip(1).ToArray();
+
+            lector.Load(Rutas.Clientes);
+            Clientes = new PaqueteTitular[] { new PaqueteTitular() };
+            foreach (XmlElement registro in lector.DocumentElement.ChildNodes)
+                Clientes = Clientes.Append(ConvertidorXml.ElementoToObjeto<PaqueteTitular>(registro)).ToArray();
+            Clientes = Clientes.Skip(1).ToArray();
+
+            lector.Load(Rutas.Proveedores);
+            Clientes = new PaqueteTitular[] { new PaqueteTitular() };
+            foreach (XmlElement registro in lector.DocumentElement.ChildNodes)
+                Clientes = Clientes.Append(ConvertidorXml.ElementoToObjeto<PaqueteTitular>(registro)).ToArray();
+            Clientes = Clientes.Skip(1).ToArray();
+        }
+    }
+
     internal static class Sistema
     {
         // Variables para guardar los perfiles logueados.
@@ -110,6 +140,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
             VerificarArchivo(Rutas.MayoresProveedores, Raices.MayoresProveedores);
             VerificarArchivo(Rutas.MayoresClientes, Raices.MayoresClientes);
             VerificarArchivo(Rutas.Almacen, Raices.Almacen);
+
         }
 
         public static string GenerarID(string Ruta, string Raiz, int Cifras)

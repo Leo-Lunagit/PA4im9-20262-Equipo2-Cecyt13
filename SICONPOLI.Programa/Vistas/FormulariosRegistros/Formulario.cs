@@ -96,7 +96,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros
         public void AgregarCampos(Cuentas Cuenta)
         {
             bool EsAlmacen = Cuenta == Cuentas.Almacen;
-            Campos Campos = EsAlmacen ? new CamposProducto() : (Campos)(new CamposBancos());
+            Campos Campos = EsAlmacen ? new CamposProducto(Cuenta) : (Campos)(new CamposBancos());
 
             // Agregamos una nueva fila de campos.
             Sistema.IndexarCampos(this, ContenedorRecursos, Campos, Cuenta);
