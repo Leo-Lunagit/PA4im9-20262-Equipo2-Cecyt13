@@ -30,14 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TarjetaAlmacen));
             this.upBar = new System.Windows.Forms.Panel();
-            this.Contenedor = new System.Windows.Forms.Panel();
+            this.btnRegreso = new System.Windows.Forms.PictureBox();
             this.txtProducto = new System.Windows.Forms.Label();
             this.lblEmpresa = new System.Windows.Forms.Label();
             this.lblNoTarjeta = new System.Windows.Forms.Label();
             this.lblPunto = new System.Windows.Forms.Label();
             this.lblNo = new System.Windows.Forms.Label();
             this.lblTitulo = new System.Windows.Forms.Label();
-            this.btnRegreso = new System.Windows.Forms.PictureBox();
+            this.Contenedor = new System.Windows.Forms.Panel();
             this.TablaProducto = new System.Windows.Forms.DataGridView();
             this.folio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,8 +51,8 @@
             this.abonos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.upBar.SuspendLayout();
-            this.Contenedor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRegreso)).BeginInit();
+            this.Contenedor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TablaProducto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,14 +71,16 @@
             this.upBar.Size = new System.Drawing.Size(967, 100);
             this.upBar.TabIndex = 0;
             // 
-            // Contenedor
+            // btnRegreso
             // 
-            this.Contenedor.Controls.Add(this.TablaProducto);
-            this.Contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Contenedor.Location = new System.Drawing.Point(0, 100);
-            this.Contenedor.Name = "Contenedor";
-            this.Contenedor.Size = new System.Drawing.Size(967, 472);
-            this.Contenedor.TabIndex = 1;
+            this.btnRegreso.Image = ((System.Drawing.Image)(resources.GetObject("btnRegreso.Image")));
+            this.btnRegreso.Location = new System.Drawing.Point(885, 29);
+            this.btnRegreso.Name = "btnRegreso";
+            this.btnRegreso.Size = new System.Drawing.Size(50, 50);
+            this.btnRegreso.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnRegreso.TabIndex = 16;
+            this.btnRegreso.TabStop = false;
+            this.btnRegreso.Click += new System.EventHandler(this.btnRegreso_Click);
             // 
             // txtProducto
             // 
@@ -135,20 +137,18 @@
             this.lblTitulo.Font = new System.Drawing.Font("Led Italic Font", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lblTitulo.Location = new System.Drawing.Point(21, 24);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(238, 26);
+            this.lblTitulo.Size = new System.Drawing.Size(234, 26);
             this.lblTitulo.TabIndex = 8;
             this.lblTitulo.Text = "TARJETA DE ALMACEN";
             // 
-            // btnRegreso
+            // Contenedor
             // 
-            this.btnRegreso.Image = ((System.Drawing.Image)(resources.GetObject("btnRegreso.Image")));
-            this.btnRegreso.Location = new System.Drawing.Point(885, 29);
-            this.btnRegreso.Name = "btnRegreso";
-            this.btnRegreso.Size = new System.Drawing.Size(50, 50);
-            this.btnRegreso.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnRegreso.TabIndex = 16;
-            this.btnRegreso.TabStop = false;
-            this.btnRegreso.Click += new System.EventHandler(this.btnRegreso_Click);
+            this.Contenedor.Controls.Add(this.TablaProducto);
+            this.Contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Contenedor.Location = new System.Drawing.Point(0, 100);
+            this.Contenedor.Name = "Contenedor";
+            this.Contenedor.Size = new System.Drawing.Size(967, 472);
+            this.Contenedor.TabIndex = 1;
             // 
             // TablaProducto
             // 
@@ -250,8 +250,8 @@
             this.Text = "TarjetaAlmacen";
             this.upBar.ResumeLayout(false);
             this.upBar.PerformLayout();
-            this.Contenedor.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnRegreso)).EndInit();
+            this.Contenedor.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TablaProducto)).EndInit();
             this.ResumeLayout(false);
 

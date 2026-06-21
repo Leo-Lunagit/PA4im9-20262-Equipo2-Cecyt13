@@ -35,11 +35,9 @@ namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
         // Manejadores de eventos (dictan el tipo de dato de retorno y los parametros que debe recibir).
         public delegate void CambioCostoHandler(decimal Costo, Cuentas Cuenta);
         public delegate void AutoEliminarHandler(int Indice, Cuentas Cuenta);
-        public delegate void OcupaEspacioHandler(Cuentas Cuenta);
         // Eventos 
         public event CambioCostoHandler CambiarCostoTotal;
         public event AutoEliminarHandler LlamarAutoEliminacion;
-        public event OcupaEspacioHandler AgregarEspacioItem;
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {

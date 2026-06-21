@@ -78,10 +78,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\Asientos.cs" />
-    <Compile Include="Entidades\LabelVertical.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Entidades\Auxiliares.cs" />
+    <Compile Include="Modulos\ContenedorEventos.cs" />
     <Compile Include="Entidades\Perfil.cs" />
     <Compile Include="Modulos\Cartero.cs" />
     <Compile Include="Modulos\ConvertidorXml.cs" />

@@ -85,7 +85,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                     RenMayores = new RenMayor[] { renglon }
                 };
 
-                MayorToPaquete(titularNuevo, cuenta);
+                SavePaqueteTitular(titularNuevo, cuenta);
 
                 // Convertimos el objeto en elemento.
                 XmlElement registro = ConvertidorXml.ObjetoToElemento(escritor, titularNuevo);
@@ -111,7 +111,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 // Agregamos el renglon a la siguiente posicion de los reenglones.
                 MayorTitular.RenMayores = MayorTitular.RenMayores.Append(renglon).ToArray();
 
-                MayorToPaquete(MayorTitular, cuenta);
+                SavePaqueteTitular(MayorTitular, cuenta);
 
                 // Lo reeconvertimos a elemento Xml.
                 XmlElement titularActualizado = ConvertidorXml.ObjetoToElemento(escritor, Titular);
@@ -133,7 +133,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
             Cuenta Titulares = EsCopra ? asiento.Abonos[0] : asiento.Cargos[0];
             string[] paraFactura = Titulares.Subcuentas[0].NombreSubcuenta.Split(new string[] { " s/f " }, StringSplitOptions.None);
 
-            foreach  (Subcuenta SubProducto in Almacen.Subcuentas)
+            foreach (Subcuenta SubProducto in Almacen.Subcuentas)
             {
                 string texto = SubProducto.NombreSubcuenta;
                 string[] ParaCantida = texto.Split(' ');
@@ -141,22 +141,21 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 string[] ParaCosto = texto.Split(new string[] { " a " }, StringSplitOptions.None);
                 // Asegurandonos que sea el texto que nosotros agregamos (hasta el final) quitamos el segundo texto que agregamos (" c/u.)
                 string textoCosto = ParaCosto[ParaCosto.Length - 1].Replace(" c/u.", string.Empty);
-                // No se que signifique pero funciona me lo genero gemini.
                 // Con expreciones regulares (mediante simbolos indica un formato de texto) quita la cantidad y el precio.
                 Match match = Regex.Match(texto, @"\d (?<producto>.*?)\sa\s\$\d+\.\d+\sc/u\.");
                 string nombreProducto = match.Groups["producto"].Value;
 
                 Movimiento MovInventario = new Movimiento
                 {
-                    Saldo = saldo.ToString(),
+                    Saldo = $"{saldo}",
                     Monto = int.Parse(ParaCantida[0])
                 };
 
                 Movimiento MovValor = new Movimiento
                 {
-                    Saldo = saldo.ToString(),
-                    // Debemos quitarle el margen de ganancia a la venta para los datos coincidan correctamente.
-                    Monto = EsCopra ? SubProducto.Monto : SubProducto.Monto / (1 + Sistema.PorcentajeUtilida)
+                    Saldo = $"{saldo}",
+                    // Debemos quitarle el margen de ganancia a la venta, despues lo aremos.
+                    Monto = EsCopra ? SubProducto.Monto : 0
                 };
 
                 int CostoUnitario = (int)(decimal.Parse(textoCosto, NumberStyles.Currency, CultureInfo.CurrentCulture) * 100);
@@ -166,7 +165,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                     Fecha = asiento.Fecha.ToShortDateString(),
                     Factura = paraFactura[paraFactura.Length - 1],
                     MovInventario = MovInventario,
-                    CostoUnitario = EsCopra ? CostoUnitario : CostoUnitario / (1 + Sistema.PorcentajeUtilida),
+                    CostoUnitario = EsCopra ? CostoUnitario : 0,
                     MovValor = MovValor
                 };
 
@@ -185,7 +184,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                         RenAlmacens = new RenAlmacen[] { renAlmacen },
                     };
 
-                    AlmacenToPaquete(NuevoProducto);
+                    SavePaqueteAlmacen(NuevoProducto);
 
                     XmlElement RegistroProducto = ConvertidorXml.ObjetoToElemento(lector, NuevoProducto);
                     lector.DocumentElement.AppendChild(RegistroProducto);
@@ -195,6 +194,12 @@ namespace PA4IM9_20262_Equipo2.Modulos
                     int sentido = saldo == Saldos.Deudor ? 1 : -1;
                     Almacen Producto = ConvertidorXml.ElementoToObjeto<Almacen>((XmlElement)ProductoExistente);
 
+                    if (!EsCopra)
+                    {
+                        renAlmacen.CostoUnitario = Producto.RenAlmacens.Last().CostoPromedio;
+                        renAlmacen.MovValor.Monto = MovInventario.Monto * renAlmacen.CostoUnitario;
+                    }
+
                     renAlmacen.Folio = $"1{(Producto.RenAlmacens.Length + 1):D3}";
                     renAlmacen.Existencia = Producto.RenAlmacens.Last().Existencia + renAlmacen.MovInventario.Monto * sentido;
                     renAlmacen.MontoSaldo = Producto.RenAlmacens.Last().MontoSaldo + renAlmacen.MovValor.Monto * sentido;
@@ -202,7 +207,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
 
                     Producto.RenAlmacens = Producto.RenAlmacens.Append(renAlmacen).ToArray();
 
-                    AlmacenToPaquete(Producto);
+                    SavePaqueteAlmacen(Producto);
 
                     XmlElement ProductoModificado = ConvertidorXml.ObjetoToElemento(lector, Producto);
                     lector.DocumentElement.ReplaceChild(ProductoModificado, ProductoExistente);
@@ -215,7 +220,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
         // Registrador de Paquetes.
         //
 
-        private static void MayorToPaquete(Mayor titular, Cuentas cuenta)
+        private static void SavePaqueteTitular(Mayor titular, Cuentas cuenta)
         {
             string ruta = cuenta == Cuentas.Proveedores ? Rutas.Proveedores : Rutas.Clientes;
             string raiz = cuenta == Cuentas.Proveedores ? Raices.Proveedores : Raices.Clientes;
@@ -234,7 +239,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
             escritor.Save(ruta);
         }
 
-        private static void AlmacenToPaquete(Almacen almacen)
+        private static void SavePaqueteAlmacen(Almacen almacen)
         {
             Sistema.VerificarArchivo(Rutas.Productos, Raices.Productos);
             XmlDocument escritor = new XmlDocument();

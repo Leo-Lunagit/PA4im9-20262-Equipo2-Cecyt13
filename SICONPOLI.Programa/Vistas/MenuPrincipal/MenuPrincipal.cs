@@ -21,19 +21,33 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
 {
     public partial class MenuPrincipal : Form
     {
+        EnlaceEventos[] EventosBasicos;
+        EnlaceEventos[] EventosCatalogo;
+        EnlaceEventos[] EventosEsquemas;
+
+        //
+        // Logica de carga.
+        //
         public MenuPrincipal()
         {
             InitializeComponent();
+            CompletarComponentes();
         }
+
+        private void CompletarComponentes()
+        {
+            EventosBasicos =  new EnlaceEventos[] { new EnlaceEventos {Controlador = "SolicitarEliminacion", Evento = "CerrarPaneles" } };
+            EventosCatalogo = EventosBasicos.Append(new EnlaceEventos { Controlador = "EntrarMayor", Evento = "AbrirMayor" }).ToArray();
+            EventosEsquemas = new EnlaceEventos[] { new EnlaceEventos { Controlador = "SolicitarRegresar", Evento = "AbrirCatalogo" } };
+        }
+        private void MenuPrincipal_FormClosing(object sender, FormClosingEventArgs e) { Application.Exit(); }
 
         //
         // Logica de ventanas.
         //
-        private void CerrarPaneles(object sender)
+        private void CerrarPaneles()
         {
-            // Da el fondo clarito al boton seleccionado.
-            ColorearSeleccion(sender);
-
+            ColorearSeleccion(null);
             // Si el contendero tiene elementos, los elimina
             if (this.Contenedor.Controls.Count > 0)
                 this.Contenedor.Controls.RemoveAt(0);
@@ -41,29 +55,66 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
             // Agrega (hace aparecer) el picture box con el logo.
             this.Contenedor.Controls.Add(this.marcaAgua);
         }
-        private void AbrirPaneles(object formularioHijo, object sender)
+        private void AbrirPaneles(Form formularioHijo, EnlaceEventos[] eventos, object sender)
         {
             // Da el fondo clarito al boton seleccionado.
             ColorearSeleccion(sender);
 
             // Incrusta el formulario en el panel.
-            Sistema.IndexarFormulario(this.Contenedor, formularioHijo);
+            Sistema.IndexarFormulario(
+                Suscriptor: this,
+                Contenedor: this.Contenedor, 
+                ObjFormHijo: formularioHijo, 
+                enlaces: eventos
+            );
         }
         private void ColorearSeleccion(object sender)
         {
             Button botonColoreado = this.BarraLateral.Controls.OfType<Button>().FirstOrDefault(btn => btn.BackColor == Color.FromArgb(200, 220, 215));
             if (botonColoreado != null) 
                 botonColoreado.BackColor = Color.White;
+
+            if (sender == null) return;
             
             Button boton = sender as Button;
             boton.BackColor = Color.FromArgb(200, 220, 215);
         }
-        private void btnHome_Click(object sender, EventArgs e) { CerrarPaneles(sender); }
-        private void btnEntradas_Click(object sender, EventArgs e) { AbrirPaneles(new PanelRegistros(Cuentas.Proveedores), sender); }
-        private void btnSalidas_Click(object sender, EventArgs e) { AbrirPaneles(new PanelRegistros(Cuentas.Clientes), sender); }
-        private void btnClientes_Click(object sender, EventArgs e) { IndexarCatalogoTitulares(new Catalogo(Cuentas.Clientes), sender); }
-        private void btnProvedores_Click(object sender, EventArgs e) { IndexarCatalogoTitulares(new Catalogo(Cuentas.Proveedores), sender); }
-        private void btnAlmacen_Click(object sender, EventArgs e) { IndexarCatalogoAlmacen(new Catalogo(Cuentas.Almacen), sender); }
+        private void AbrirCatalogo(Cuentas Cuenta, object sender)
+        {
+            AbrirPaneles(
+                formularioHijo: new Catalogo(Cuenta),
+                eventos: EventosCatalogo,
+                sender: sender
+            );
+        }
+
+        //
+        // Ventanas de Botones.
+        //
+        private void btnHome_Click(object sender, EventArgs e) 
+        {
+            CerrarPaneles(); 
+            ColorearSeleccion(sender);
+        }
+        private void btnEntradas_Click(object sender, EventArgs e) 
+        { 
+            AbrirPaneles(
+                formularioHijo: new PanelRegistros(Cuentas.Proveedores), 
+                sender: sender, 
+                eventos: EventosBasicos
+            ); 
+        }
+        private void btnSalidas_Click(object sender, EventArgs e) 
+        { 
+            AbrirPaneles(
+                formularioHijo: new PanelRegistros(Cuentas.Clientes), 
+                sender: sender, 
+                eventos: EventosBasicos
+            ); 
+        }
+        private void btnClientes_Click(object sender, EventArgs e) { AbrirCatalogo(Cuentas.Clientes, sender); }
+        private void btnProvedores_Click(object sender, EventArgs e) { AbrirCatalogo(Cuentas.Proveedores, sender); }
+        private void btnAlmacen_Click(object sender, EventArgs e) { AbrirCatalogo(Cuentas.Almacen, sender); }
         private void btnSucursales_Click(object sender, EventArgs e) 
         {
             Process.Start(new ProcessStartInfo
@@ -72,9 +123,18 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
                 UseShellExecute = true
             });
         }
-        private void btnUsuario_Click(object sender, EventArgs e) { CerrarPaneles(sender); }
-        private void btnConfig_Click(object sender, EventArgs e) { CerrarPaneles(sender); }
-        private void MenuPrincipal_FormClosing(object sender, FormClosingEventArgs e) { Application.Exit(); }
+
+        //
+        // Botones Desplegables.
+        //
+        private void btnUsuario_Click(object sender, EventArgs e) 
+        { 
+            CerrarPaneles(); 
+        }
+        private void btnConfig_Click(object sender, EventArgs e) 
+        { 
+            CerrarPaneles(); 
+        }
 
         //
         // Logica de utilidades.
@@ -113,45 +173,17 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
             this.Hide();
         }
 
-        public void IndexarCatalogoTitulares(Catalogo FormHijo, object sender)
-        {
-            // Da el fondo clarito al boton seleccionado.
-            ColorearSeleccion(sender);
-
-            // Si el contendero tiene elementos, los elimina
-            if (Contenedor.Controls.Count > 0)
-                Contenedor.Controls.RemoveAt(0);
-
-            FormHijo.TopLevel = false; // Indica que no es un formulario de alto nivel, si no subordinado.
-            FormHijo.Dock = DockStyle.Fill; // Indica que ocupe todo el espacio.   
-
-            FormHijo.EntrarMayor += AbrirMayor;
-
-            Contenedor.Controls.Add(FormHijo); // Agrega el control al contenedor.
-            Contenedor.Tag = FormHijo;
-            FormHijo.Show(); // Muestra el panel.
-        }
-        public void IndexarCatalogoAlmacen(Catalogo FormHijo, object sender)
-        {
-            // Da el fondo clarito al boton seleccionado.
-            ColorearSeleccion(sender);
-
-            // Si el contendero tiene elementos, los elimina
-            if (Contenedor.Controls.Count > 0)
-                Contenedor.Controls.RemoveAt(0);
-
-            FormHijo.TopLevel = false; // Indica que no es un formulario de alto nivel, si no subordinado.
-            FormHijo.Dock = DockStyle.Fill; // Indica que ocupe todo el espacio.   
-
-            FormHijo.EntrarMayor += AbrirAlmacen;
-
-            Contenedor.Controls.Add(FormHijo); // Agrega el control al contenedor.
-            Contenedor.Tag = FormHijo;
-            FormHijo.Show(); // Muestra el panel.
-        }
-
+        //
+        // Metodos de eventos.
+        //
         private void AbrirMayor(string noTarjeta, Cuentas cuenta)
         {
+            if (cuenta == Cuentas.Almacen)
+            {
+                AbrirAlmacen(noTarjeta);
+                return;
+            }
+
             string ruta = cuenta == Cuentas.Proveedores ? Rutas.MayoresProveedores : Rutas.MayoresClientes;
             string raiz = cuenta == Cuentas.Proveedores ? Raices.MayoresProveedores : Raices.MayoresClientes;
 
@@ -163,9 +195,14 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
             XmlNode RegMayor = lector.DocumentElement.SelectSingleNode($"mayor[@noTarjeta='{noTarjeta}']");
             Mayor Mayor = ConvertidorXml.ElementoToObjeto<Mayor>((XmlElement)RegMayor);
 
-            Sistema.IndexarFormulario(Contenedor, new EsquemaAuxiliar(Mayor));
+            Sistema.IndexarFormulario(
+                Suscriptor: this,
+                Contenedor: Contenedor, 
+                ObjFormHijo: new EsquemaAuxiliar(Mayor),
+                enlaces: EventosEsquemas
+            );
         }
-        private void AbrirAlmacen(string noTarjeta, Cuentas cuenta)
+        private void AbrirAlmacen(string noTarjeta)
         {
             Sistema.VerificarArchivo(Rutas.Almacen, Raices.Almacen);
             XmlDocument lector = new XmlDocument();
@@ -174,7 +211,12 @@ namespace PA4IM9_20262_Equipo2.Vistas.Panel_Principal
             XmlNode RegMayor = lector.DocumentElement.SelectSingleNode($"almacen[@noTarjeta='{noTarjeta}']");
             Almacen Almacen = ConvertidorXml.ElementoToObjeto<Almacen>((XmlElement)RegMayor);
 
-            Sistema.IndexarFormulario(Contenedor, new TarjetaAlmacen(Almacen));
+            Sistema.IndexarFormulario(
+                Contenedor: Contenedor, 
+                ObjFormHijo: new TarjetaAlmacen(Almacen),
+                Suscriptor: this,
+                enlaces: EventosEsquemas
+            );
         }
     }
 }

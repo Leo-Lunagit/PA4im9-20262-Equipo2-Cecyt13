@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EsquemaAuxiliar));
             this.Encabezado = new System.Windows.Forms.Panel();
+            this.btnRegresar = new System.Windows.Forms.PictureBox();
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblEmpresa = new System.Windows.Forms.Label();
             this.lblNoTarjeta = new System.Windows.Forms.Label();
@@ -39,7 +40,6 @@
             this.lblCuenta = new System.Windows.Forms.Label();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.TablaAuxiliar = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.referencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.concepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,16 +47,16 @@
             this.cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.abono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnRegreso = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.Encabezado.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRegresar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TablaAuxiliar)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnRegreso)).BeginInit();
             this.SuspendLayout();
             // 
             // Encabezado
             // 
-            this.Encabezado.Controls.Add(this.btnRegreso);
+            this.Encabezado.Controls.Add(this.btnRegresar);
             this.Encabezado.Controls.Add(this.lblNombre);
             this.Encabezado.Controls.Add(this.lblEmpresa);
             this.Encabezado.Controls.Add(this.lblNoTarjeta);
@@ -70,6 +70,17 @@
             this.Encabezado.Name = "Encabezado";
             this.Encabezado.Size = new System.Drawing.Size(967, 100);
             this.Encabezado.TabIndex = 0;
+            // 
+            // btnRegresar
+            // 
+            this.btnRegresar.Image = ((System.Drawing.Image)(resources.GetObject("btnRegresar.Image")));
+            this.btnRegresar.Location = new System.Drawing.Point(907, 29);
+            this.btnRegresar.Name = "btnRegresar";
+            this.btnRegresar.Size = new System.Drawing.Size(50, 50);
+            this.btnRegresar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnRegresar.TabIndex = 9;
+            this.btnRegresar.TabStop = false;
+            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
             // lblNombre
             // 
@@ -93,18 +104,18 @@
             // lblNoTarjeta
             // 
             this.lblNoTarjeta.AutoSize = true;
-            this.lblNoTarjeta.Font = new System.Drawing.Font("Led Italic Font", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblNoTarjeta.Location = new System.Drawing.Point(814, 25);
+            this.lblNoTarjeta.Font = new System.Drawing.Font("Harlow Solid Italic", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoTarjeta.Location = new System.Drawing.Point(847, 27);
             this.lblNoTarjeta.Name = "lblNoTarjeta";
-            this.lblNoTarjeta.Size = new System.Drawing.Size(42, 26);
+            this.lblNoTarjeta.Size = new System.Drawing.Size(46, 24);
             this.lblNoTarjeta.TabIndex = 5;
-            this.lblNoTarjeta.Text = "NO";
+            this.lblNoTarjeta.Text = "9999";
             // 
             // lblPunto
             // 
             this.lblPunto.AutoSize = true;
             this.lblPunto.Font = new System.Drawing.Font("Lucida Fax", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPunto.Location = new System.Drawing.Point(792, 29);
+            this.lblPunto.Location = new System.Drawing.Point(831, 25);
             this.lblPunto.Name = "lblPunto";
             this.lblPunto.Size = new System.Drawing.Size(16, 22);
             this.lblPunto.TabIndex = 4;
@@ -114,7 +125,7 @@
             // 
             this.lblNo.AutoSize = true;
             this.lblNo.Font = new System.Drawing.Font("Led Italic Font", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.lblNo.Location = new System.Drawing.Point(755, 25);
+            this.lblNo.Location = new System.Drawing.Point(794, 25);
             this.lblNo.Name = "lblNo";
             this.lblNo.Size = new System.Drawing.Size(42, 26);
             this.lblNo.TabIndex = 3;
@@ -168,15 +179,6 @@
             this.TablaAuxiliar.Size = new System.Drawing.Size(927, 432);
             this.TablaAuxiliar.TabIndex = 1;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.TablaAuxiliar);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 100);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(967, 472);
-            this.panel1.TabIndex = 1;
-            // 
             // fecha
             // 
             this.fecha.HeaderText = "Fecha";
@@ -219,16 +221,14 @@
             this.saldo.Name = "saldo";
             this.saldo.ReadOnly = true;
             // 
-            // btnRegreso
+            // panel1
             // 
-            this.btnRegreso.Image = ((System.Drawing.Image)(resources.GetObject("btnRegreso.Image")));
-            this.btnRegreso.Location = new System.Drawing.Point(892, 29);
-            this.btnRegreso.Name = "btnRegreso";
-            this.btnRegreso.Size = new System.Drawing.Size(50, 50);
-            this.btnRegreso.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.btnRegreso.TabIndex = 8;
-            this.btnRegreso.TabStop = false;
-            this.btnRegreso.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.panel1.Controls.Add(this.TablaAuxiliar);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 100);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(967, 472);
+            this.panel1.TabIndex = 1;
             // 
             // EsquemaAuxiliar
             // 
@@ -242,9 +242,9 @@
             this.Text = "EsquemaAuxiliar";
             this.Encabezado.ResumeLayout(false);
             this.Encabezado.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRegresar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TablaAuxiliar)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnRegreso)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -269,6 +269,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cargo;
         private System.Windows.Forms.DataGridViewTextBoxColumn abono;
         private System.Windows.Forms.DataGridViewTextBoxColumn saldo;
-        private System.Windows.Forms.PictureBox btnRegreso;
+        private System.Windows.Forms.PictureBox btnRegresar;
     }
 }

@@ -49,6 +49,7 @@
             this.lblproducto.TabIndex = 5;
             this.lblproducto.Text = "Producto";
             this.lblproducto.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblproducto.Click += new System.EventHandler(this.Click_EntrarProducto);
             // 
             // lblcostopromedio
             // 
@@ -60,10 +61,10 @@
             this.lblcostopromedio.Size = new System.Drawing.Size(59, 15);
             this.lblcostopromedio.TabIndex = 6;
             this.lblcostopromedio.Text = "$999.99";
+            this.lblcostopromedio.Click += new System.EventHandler(this.Click_EntrarProducto);
             // 
             // lblcantidad
             // 
-            this.lblcantidad.AutoSize = true;
             this.lblcantidad.Font = new System.Drawing.Font("Maiandra GD", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblcantidad.Location = new System.Drawing.Point(145, 206);
             this.lblcantidad.Margin = new System.Windows.Forms.Padding(0);
@@ -71,6 +72,8 @@
             this.lblcantidad.Size = new System.Drawing.Size(49, 15);
             this.lblcantidad.TabIndex = 7;
             this.lblcantidad.Text = "999KG";
+            this.lblcantidad.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblcantidad.Click += new System.EventHandler(this.Click_EntrarProducto);
             // 
             // ptrImagen
             // 
@@ -87,21 +90,23 @@
             // 
             this.lblNoTarjeta.AutoSize = true;
             this.lblNoTarjeta.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoTarjeta.Location = new System.Drawing.Point(100, 8);
+            this.lblNoTarjeta.Location = new System.Drawing.Point(89, 8);
             this.lblNoTarjeta.Name = "lblNoTarjeta";
-            this.lblNoTarjeta.Size = new System.Drawing.Size(14, 15);
+            this.lblNoTarjeta.Size = new System.Drawing.Size(35, 15);
             this.lblNoTarjeta.TabIndex = 8;
-            this.lblNoTarjeta.Text = "9";
+            this.lblNoTarjeta.Text = "9999";
+            this.lblNoTarjeta.Click += new System.EventHandler(this.Click_EntrarProducto);
             // 
             // lblNo
             // 
             this.lblNo.AutoSize = true;
             this.lblNo.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNo.Location = new System.Drawing.Point(90, 8);
+            this.lblNo.Location = new System.Drawing.Point(79, 8);
             this.lblNo.Name = "lblNo";
             this.lblNo.Size = new System.Drawing.Size(14, 15);
             this.lblNo.TabIndex = 9;
             this.lblNo.Text = "#";
+            this.lblNo.Click += new System.EventHandler(this.Click_EntrarProducto);
             // 
             // lblCU
             // 
@@ -113,6 +118,7 @@
             this.lblCU.Size = new System.Drawing.Size(39, 15);
             this.lblCU.TabIndex = 10;
             this.lblCU.Text = "C/u :";
+            this.lblCU.Click += new System.EventHandler(this.Click_EntrarProducto);
             // 
             // lblStock
             // 
@@ -124,6 +130,7 @@
             this.lblStock.Size = new System.Drawing.Size(44, 15);
             this.lblStock.TabIndex = 11;
             this.lblStock.Text = "Stock:";
+            this.lblStock.Click += new System.EventHandler(this.Click_EntrarProducto);
             // 
             // TarjetaProducto
             // 

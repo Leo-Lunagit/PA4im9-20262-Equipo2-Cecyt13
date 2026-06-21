@@ -47,9 +47,11 @@
             this.lblSuma = new System.Windows.Forms.Label();
             this.lblIDMovimiento = new System.Windows.Forms.Label();
             this.lblRecursos = new System.Windows.Forms.Label();
+            this.btnSalir = new System.Windows.Forms.PictureBox();
             this.grpTitulares.SuspendLayout();
             this.grpRecursos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSalir)).BeginInit();
             this.SuspendLayout();
             // 
             // grpTitulares
@@ -257,11 +259,23 @@
             this.lblRecursos.TabIndex = 28;
             this.lblRecursos.Text = "Recursos";
             // 
+            // btnSalir
+            // 
+            this.btnSalir.Image = ((System.Drawing.Image)(resources.GetObject("btnSalir.Image")));
+            this.btnSalir.Location = new System.Drawing.Point(899, 18);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(50, 50);
+            this.btnSalir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnSalir.TabIndex = 82;
+            this.btnSalir.TabStop = false;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
             // Formulario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.grpRecursos);
             this.Controls.Add(this.grpTitulares);
             this.Name = "Formulario";
@@ -271,6 +285,7 @@
             this.grpRecursos.ResumeLayout(false);
             this.grpRecursos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAgregar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSalir)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -294,5 +309,6 @@
         public System.Windows.Forms.TextBox txtFactura;
         public System.Windows.Forms.TextBox txtTitular;
         protected System.Windows.Forms.PictureBox btnAgregar;
+        private System.Windows.Forms.PictureBox btnSalir;
     }
 }

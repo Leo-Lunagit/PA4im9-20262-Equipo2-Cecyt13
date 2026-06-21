@@ -46,17 +46,18 @@
             // 
             this.txtNoTarjeta.AutoSize = true;
             this.txtNoTarjeta.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoTarjeta.Location = new System.Drawing.Point(23, 5);
+            this.txtNoTarjeta.Location = new System.Drawing.Point(18, 5);
             this.txtNoTarjeta.Name = "txtNoTarjeta";
             this.txtNoTarjeta.Size = new System.Drawing.Size(14, 15);
             this.txtNoTarjeta.TabIndex = 11;
             this.txtNoTarjeta.Text = "9";
+            this.txtNoTarjeta.Click += new System.EventHandler(this.TarjetaTitular_Click);
             // 
             // lblNo
             // 
             this.lblNo.AutoSize = true;
             this.lblNo.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNo.Location = new System.Drawing.Point(13, 5);
+            this.lblNo.Location = new System.Drawing.Point(8, 5);
             this.lblNo.Name = "lblNo";
             this.lblNo.Size = new System.Drawing.Size(14, 15);
             this.lblNo.TabIndex = 12;
@@ -65,7 +66,7 @@
             // ptrImagen
             // 
             this.ptrImagen.Image = ((System.Drawing.Image)(resources.GetObject("ptrImagen.Image")));
-            this.ptrImagen.Location = new System.Drawing.Point(15, 20);
+            this.ptrImagen.Location = new System.Drawing.Point(10, 20);
             this.ptrImagen.Name = "ptrImagen";
             this.ptrImagen.Size = new System.Drawing.Size(220, 127);
             this.ptrImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -77,77 +78,84 @@
             // 
             this.txtLimite.AutoSize = true;
             this.txtLimite.Font = new System.Drawing.Font("Maiandra GD", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLimite.Location = new System.Drawing.Point(335, 75);
+            this.txtLimite.Location = new System.Drawing.Point(330, 75);
             this.txtLimite.Margin = new System.Windows.Forms.Padding(0);
             this.txtLimite.Name = "txtLimite";
             this.txtLimite.Size = new System.Drawing.Size(87, 15);
             this.txtLimite.TabIndex = 15;
             this.txtLimite.Text = "$999,999.99";
+            this.txtLimite.Click += new System.EventHandler(this.TarjetaTitular_Click);
             // 
             // lblLimite
             // 
             this.lblLimite.AutoSize = true;
             this.lblLimite.Font = new System.Drawing.Font("Maiandra GD", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLimite.Location = new System.Drawing.Point(246, 75);
+            this.lblLimite.Location = new System.Drawing.Point(241, 75);
             this.lblLimite.Margin = new System.Windows.Forms.Padding(0);
             this.lblLimite.Name = "lblLimite";
             this.lblLimite.Size = new System.Drawing.Size(55, 15);
             this.lblLimite.TabIndex = 17;
             this.lblLimite.Text = "Limite :";
+            this.lblLimite.Click += new System.EventHandler(this.TarjetaTitular_Click);
             // 
             // lblAdeudo
             // 
             this.lblAdeudo.AutoSize = true;
             this.lblAdeudo.Font = new System.Drawing.Font("Maiandra GD", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAdeudo.Location = new System.Drawing.Point(246, 55);
+            this.lblAdeudo.Location = new System.Drawing.Point(241, 55);
             this.lblAdeudo.Margin = new System.Windows.Forms.Padding(0);
             this.lblAdeudo.Name = "lblAdeudo";
             this.lblAdeudo.Size = new System.Drawing.Size(65, 15);
             this.lblAdeudo.TabIndex = 16;
             this.lblAdeudo.Text = "Adeudo :";
+            this.lblAdeudo.Click += new System.EventHandler(this.TarjetaTitular_Click);
             // 
             // txtAdeudo
             // 
             this.txtAdeudo.AutoSize = true;
             this.txtAdeudo.Font = new System.Drawing.Font("Maiandra GD", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAdeudo.Location = new System.Drawing.Point(335, 55);
+            this.txtAdeudo.Location = new System.Drawing.Point(330, 55);
             this.txtAdeudo.Margin = new System.Windows.Forms.Padding(0);
             this.txtAdeudo.Name = "txtAdeudo";
             this.txtAdeudo.Size = new System.Drawing.Size(87, 15);
             this.txtAdeudo.TabIndex = 14;
             this.txtAdeudo.Text = "$999,999.99";
+            this.txtAdeudo.Click += new System.EventHandler(this.TarjetaTitular_Click);
             // 
             // txtTitular
             // 
             this.txtTitular.Font = new System.Drawing.Font("Gadugi", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTitular.Location = new System.Drawing.Point(241, 15);
+            this.txtTitular.Location = new System.Drawing.Point(236, 15);
             this.txtTitular.Name = "txtTitular";
             this.txtTitular.Size = new System.Drawing.Size(174, 50);
             this.txtTitular.TabIndex = 13;
             this.txtTitular.Text = "Titular";
             this.txtTitular.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.txtTitular.Click += new System.EventHandler(this.TarjetaTitular_Click);
             // 
             // lblContacto
             // 
             this.lblContacto.AutoSize = true;
             this.lblContacto.Font = new System.Drawing.Font("Maiandra GD", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContacto.Location = new System.Drawing.Point(298, 95);
+            this.lblContacto.Location = new System.Drawing.Point(293, 95);
             this.lblContacto.Margin = new System.Windows.Forms.Padding(0);
             this.lblContacto.Name = "lblContacto";
             this.lblContacto.Size = new System.Drawing.Size(63, 15);
             this.lblContacto.TabIndex = 18;
             this.lblContacto.Text = "Contacto";
+            this.lblContacto.Click += new System.EventHandler(this.TarjetaTitular_Click);
             // 
             // txtContacto
             // 
             this.txtContacto.Font = new System.Drawing.Font("Maiandra GD", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContacto.Location = new System.Drawing.Point(246, 115);
+            this.txtContacto.Location = new System.Drawing.Point(241, 115);
             this.txtContacto.Margin = new System.Windows.Forms.Padding(0);
             this.txtContacto.Name = "txtContacto";
             this.txtContacto.Size = new System.Drawing.Size(167, 32);
             this.txtContacto.TabIndex = 19;
             this.txtContacto.Text = "empresa@mail.www";
             this.txtContacto.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.txtContacto.Click += new System.EventHandler(this.TarjetaTitular_Click);
             // 
             // TarjetaTitular
             // 
@@ -166,7 +174,7 @@
             this.Controls.Add(this.ptrImagen);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 20, 20);
             this.Name = "TarjetaTitular";
-            this.Size = new System.Drawing.Size(428, 157);
+            this.Size = new System.Drawing.Size(428, 152);
             this.Click += new System.EventHandler(this.TarjetaTitular_Click);
             ((System.ComponentModel.ISupportInitialize)(this.ptrImagen)).EndInit();
             this.ResumeLayout(false);

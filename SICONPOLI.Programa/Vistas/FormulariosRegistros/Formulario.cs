@@ -144,5 +144,15 @@ namespace PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros
             if (ContenedorRecursos.Controls.Count < 4) 
                 AgregarCampos(CuentaTitular);
         }
+
+        //
+        // Logica de Eventos
+        //
+        public delegate void AutoEliminar();
+        public event AutoEliminar ClickEliminar; 
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            ClickEliminar?.Invoke();
+        }
     }
 }

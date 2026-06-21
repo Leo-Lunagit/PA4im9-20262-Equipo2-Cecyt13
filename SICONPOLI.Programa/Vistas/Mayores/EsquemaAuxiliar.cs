@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,9 +14,6 @@ namespace PA4IM9_20262_Equipo2.Vistas.Mayores
 {
     public partial class EsquemaAuxiliar : Form
     {
-        public delegate void ManejadorEliminador();
-        public event ManejadorEliminador SolicitarEliminacion;
-
         public EsquemaAuxiliar(Mayor Titular)
         {
             InitializeComponent();
@@ -36,15 +34,21 @@ namespace PA4IM9_20262_Equipo2.Vistas.Mayores
                     renglon.Factura,
                     renglon.Concepto,
                     renglon.Folio,
-                    Sube ? $"{(renglon.Movimiento.Monto) : C2}" : "",
+                    Sube ? $"{(renglon.Movimiento.Monto): C2}" : "",
                     Sube ? "" : $"{(renglon.Movimiento.Monto): C2}",
                     renglon.MontoSaldo);
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        //
+        // Logica de eventos.
+        //
+        public delegate void ClickRegresar(Cuentas Cuenta, object sender);
+        public event ClickRegresar SolicitarRegresar;
+
+        private void btnRegresar_Click(object sender, EventArgs e)
         {
-            SolicitarEliminacion?.Invoke();
+            SolicitarRegresar?.Invoke(Cuenta: lblCuenta.Text == $"{Cuentas.Clientes}" ? Cuentas.Clientes : Cuentas.Proveedores, sender: null);
         }
     }
 }

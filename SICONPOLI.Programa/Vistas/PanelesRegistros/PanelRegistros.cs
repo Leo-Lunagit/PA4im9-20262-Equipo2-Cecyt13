@@ -26,6 +26,8 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
         private string ConceptoPorDefecto;
         private string Ruta;
         private string Raiz;
+        private EnlaceEventos[] Eventos = { new EnlaceEventos {Controlador = "ClickEliminar", Evento = "EntrarEliminar" }};
+
         //
         // Logica de carga.
         //
@@ -46,11 +48,21 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             Raiz = EsCompra ? Raices.Compras : Raices.Ventas;
 
             // Incrusta los controles del formulario correspondiente.
-            Sistema.IndexarControles(this.panFormularios, new FormularioFacturaciones(CuentaTitular));
+            IndexarFormulumario(new FormularioFacturaciones(CuentaTitular));
             // Asigna el folio corresposndiente.
             txtFolio.Text = Sistema.GenerarID(Ruta, Raiz, 3);
             // Asignando el concepto por defecto.
             txtConcepto.Text = ConceptoPorDefecto;
+        }
+        private void IndexarFormulumario(Formulario formulario)
+        {
+            Sistema.IndexarControles(
+                Suscriptor: this,
+                Contenedor: this.panFormularios, 
+                Dock: DockStyle.Fill,
+                enlaces: Eventos,
+                ObjControles: formulario
+            );
         }
 
         private void CargarMovimientos()
@@ -131,7 +143,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 
             TablaMovimientos.Rows.Add
             (
-                Registro.NoAsiento, Registro.NoAsiento, paraAccion[0], paraTitular[0],
+                Registro.NoAsiento, Registro.Fecha, paraAccion[0], paraTitular[0],
                 paraTitular[1], $"{(Total / 100):C}", Registro.Registrador
             );
         }
@@ -182,13 +194,13 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             // Dinamicamente manda a incrustar el formulario adecuado.
             if (btnIntercalar.Text == "PAGAR" || btnIntercalar.Text == "COBRAR")
             {
-                Sistema.IndexarControles(this.panFormularios, new FormularioTransacciones(CuentaTitular));
+                IndexarFormulumario(new FormularioTransacciones(CuentaTitular));
                 btnIntercalar.Text = EsCompra ? "COMPRAR" : "VENDER";
                 ConceptoPorDefecto = EsCompra ? Conceptos[1] : Conceptos[3] ;
             }
             else
             {
-                Sistema.IndexarControles(this.panFormularios, new FormularioFacturaciones(CuentaTitular));
+                IndexarFormulumario(new FormularioFacturaciones(CuentaTitular));
                 btnIntercalar.Text = EsCompra ? "PAGAR" : "COBRAR";
                 ConceptoPorDefecto = EsCompra ? Conceptos[0] : Conceptos[2];
             }
@@ -276,6 +288,18 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             };
 
             return Registro;
+        }
+
+        //
+        // Logica de eventos.
+        //
+
+        public delegate void ClickRegreso();
+        public event ClickRegreso SolicitarEliminacion;
+
+        public void EntrarEliminar()
+        {
+            SolicitarEliminacion?.Invoke();
         }
     }
 }

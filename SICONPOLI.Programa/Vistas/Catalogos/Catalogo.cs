@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,9 +17,6 @@ namespace PA4IM9_20262_Equipo2.Vistas.Catalogos
 {
     public partial class Catalogo : Form
     {
-        public delegate void Entrar(string Folio, Cuentas Cuenta);
-        public event Entrar EntrarMayor;
-
         private Cuentas Cuenta;
         public Catalogo(Cuentas CuentaCatalogo)
         {
@@ -48,7 +46,13 @@ namespace PA4IM9_20262_Equipo2.Vistas.Catalogos
                 {
                     PaqueteAlmacen Producto = ConvertidorXml.ElementoToObjeto<PaqueteAlmacen>(RegProducto);
                     TarjetaProducto tarjetita = new TarjetaProducto(Producto);
-                    IndexarTarjetaProductos(flpVistaProduc, tarjetita);
+                    Sistema.IndexarControles(
+                        Suscriptor: this,
+                        Contenedor: flpVistaProduc,
+                        ObjControles: tarjetita,
+                        enlaces: new EnlaceEventos[] { new EnlaceEventos { Controlador = "EntrarProducto", Evento = "AbrirEsquema" } },
+                        Dock: DockStyle.None
+                    );
                 }
             }
             else
@@ -57,33 +61,33 @@ namespace PA4IM9_20262_Equipo2.Vistas.Catalogos
                 {
                     PaqueteTitular Titular = ConvertidorXml.ElementoToObjeto<PaqueteTitular>(RegProducto);
                     TarjetaTitular tarjetita = new TarjetaTitular(Titular);
-                    IndexarTarjetaTitulares(flpVistaProduc, tarjetita);
+                    Sistema.IndexarControles(
+                        Suscriptor: this,
+                        Contenedor: flpVistaProduc,
+                        ObjControles: tarjetita,
+                        enlaces: new EnlaceEventos[] { new EnlaceEventos { Controlador = "EntrarTitular", Evento = "AbrirEsquema" } },
+                        Dock: DockStyle.None
+                    );
                 }
             }
         }
 
-        private void IndexarTarjetaProductos(Panel Contenedor, TarjetaProducto tarjetita)
-        {
-            tarjetita.BringToFront();
-            tarjetita.Dock = DockStyle.Top;
+        //
+        // Logica Eventos.
+        //
+        public delegate void Entrar(string Folio, Cuentas Cuenta);
+        public delegate void ClickEliminar();
+        public event Entrar EntrarMayor;
+        public event ClickEliminar SolicitarEliminacion;
 
-            tarjetita.EntrarProducto += LlamarEntrar;
-
-            Contenedor.Controls.Add(tarjetita);
-        }
-        private void IndexarTarjetaTitulares(Panel Contenedor, TarjetaTitular tarjetita)
-        {
-            tarjetita.BringToFront();
-            tarjetita.Dock = DockStyle.Top;
-
-            tarjetita.entrarTitular += LlamarEntrar;
-
-            Contenedor.Controls.Add(tarjetita);
-        }
-
-        public void LlamarEntrar(string noTarjeta)
+        public void AbrirEsquema(string noTarjeta)
         {
             EntrarMayor?.Invoke(noTarjeta, Cuenta);
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            SolicitarEliminacion?.Invoke();
         }
     }
 }

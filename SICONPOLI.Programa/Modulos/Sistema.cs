@@ -59,7 +59,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
         public static string RolPredefinido = Roles[2];
         public static string banderaRecordar = "recordado";
         //
-        public static int PorcentajeUtilida = 50;
+        public static decimal PorcentajeUtilida = .50m;
 
         // Verificacion de la existencia de un archivo XML.
         public static void VerificarArchivo(string ruta, string nombreRaiz)
@@ -116,9 +116,9 @@ namespace PA4IM9_20262_Equipo2.Modulos
         {
             VerificarArchivo(Ruta, Raiz);
             XmlDocument lector = new XmlDocument();
-            lector.Load(Ruta);
+            lector.Load(Ruta);        
             // El numero de perfiles mas 1, asegurandose que minimo tenga 3 cifras aunque con 0 a la izquierda (:D3).
-            return $"1{(lector.DocumentElement.ChildNodes.Count + 1).ToString($"D{Cifras}")}"; 
+            return "1" + (lector.DocumentElement.ChildNodes.Count + 1).ToString($"D{Cifras}"); 
         }
 
         public static void GuardarPerfil(XmlElement usuario)
@@ -145,7 +145,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
             config.Save(Rutas.Configuracion);
         }
 
-        public static void CargarPerfil(Perfil PerfilLogueado)
+        public static void ActualizarPerfilActivo(Perfil PerfilLogueado)
         {
             // Si no hay pefiles lo guarda directo.
             if (PerfilesLogueados == null || PerfilesLogueados.Length == 0)
@@ -177,10 +177,8 @@ namespace PA4IM9_20262_Equipo2.Modulos
             }
         }
 
-        public static void IndexarFormulario(object ObjContenedor, object ObjFormHijo) 
+        public static void IndexarFormulario(object Suscriptor, Panel Contenedor, object ObjFormHijo, EnlaceEventos[] enlaces) 
         {
-            // Trasnformamos el objeto del panel en un panel.
-            Panel Contenedor = ObjContenedor as Panel;
             // Tranformamos el objeto de formulario en un formulario.
             Form FormHijo = ObjFormHijo as Form;
 
@@ -188,6 +186,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
             if (Contenedor.Controls.Count > 0)
                 Contenedor.Controls.RemoveAt(0);
 
+            SuscriptorEventos.VincularEventos(enlaces, Suscriptor, ObjFormHijo);
             FormHijo.TopLevel = false; // Indica que no es un formulario de alto nivel, si no subordinado.
             FormHijo.Dock = DockStyle.Fill; // Indica que ocupe todo el espacio.   
             Contenedor.Controls.Add(FormHijo); // Agrega el control al contenedor.
@@ -195,15 +194,13 @@ namespace PA4IM9_20262_Equipo2.Modulos
             FormHijo.Show(); // Muestra el panel.
         }
 
-        public static void IndexarControles(object ObjContenedor,object ObjControles)
+        public static void IndexarControles(object Suscriptor, Panel Contenedor, object ObjControles, EnlaceEventos[] enlaces, DockStyle Dock)
         {
-            // Trasnformamos el objeto del panel en un panel.
-            Panel Contenedor = ObjContenedor as Panel;
             // Tranformamos el objeto del UserControls en un Contol normal.
             Control Controles = ObjControles as Control;
 
-            Controles.BringToFront();
-            Controles.Dock = DockStyle.Top;
+            SuscriptorEventos.VincularEventos(enlaces, Suscriptor, Controles);
+            Controles.Dock = Dock;
             Contenedor.Controls.Add(Controles);
         }
         public static void IndexarCampos(Formulario Suscriber, Panel Contenedor, Campos Controles, Cuentas Cuenta)
@@ -214,7 +211,6 @@ namespace PA4IM9_20262_Equipo2.Modulos
 
             // Vincula los eventos, hace que le notifique en cuanto ocurra dicho evento para que el escucha ejecute la funcion.
             Controles.CambiarCostoTotal += Suscriber.CambiarSumaTotal;
-            Controles.AgregarEspacioItem += Suscriber.AgregarCampos;
             Controles.LlamarAutoEliminacion += Suscriber.ElinarCampos;
 
             Contenedor.Controls.Add(Controles);

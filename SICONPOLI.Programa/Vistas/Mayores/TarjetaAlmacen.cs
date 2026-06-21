@@ -13,9 +13,6 @@ namespace PA4IM9_20262_Equipo2.Vistas.Mayores
 {
     public partial class TarjetaAlmacen : Form
     {
-        public delegate void SolicitarSalir();
-        public event SolicitarSalir ManejadorSalida;
-
         public TarjetaAlmacen(Almacen almacen)
         {
             InitializeComponent();
@@ -46,9 +43,12 @@ namespace PA4IM9_20262_Equipo2.Vistas.Mayores
             }
         }
 
+        public delegate void ClickRegresar(Cuentas Cuenta, object sender);
+        public event ClickRegresar SolicitarRegresar;
+
         private void btnRegreso_Click(object sender, EventArgs e)
         {
-            ManejadorSalida?.Invoke();
+            SolicitarRegresar?.Invoke(Cuenta: Cuentas.Almacen, sender: null);
         }
     }
 }

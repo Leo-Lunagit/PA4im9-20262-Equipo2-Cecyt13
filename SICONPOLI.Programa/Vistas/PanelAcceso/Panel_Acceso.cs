@@ -77,11 +77,11 @@ namespace PA4IM9_20262_Equipo2
 
             Perfil perfilActivoOriginal = Sistema.PerfilActivo;
 
-            XmlElement usuariosActivos = lector.DocumentElement["usuariosActivos"];
+            XmlElement usuariosActivos = lector.DocumentElement[Raices.PadreUsuarios];
             if (usuariosActivos == null)
             {
-                lector.DocumentElement.AppendChild(lector.CreateElement("usuariosActivos"));
-                usuariosActivos = lector.DocumentElement["usuariosActivos"];
+                lector.DocumentElement.AppendChild(lector.CreateElement(Raices.PadreUsuarios));
+                usuariosActivos = lector.DocumentElement[Raices.PadreUsuarios];
                 lector.Save(Rutas.Configuracion);
             }
             else if (usuariosActivos.ChildNodes.Count != 0)
@@ -90,7 +90,7 @@ namespace PA4IM9_20262_Equipo2
                 {
                     cmbUsuarios.Items.Add(perfil["usuario"].InnerText);
                     Perfil objPerfil = ConvertidorXml.ElementoToObjeto<Perfil>(perfil);
-                    Sistema.CargarPerfil(objPerfil);
+                    Sistema.ActualizarPerfilActivo(objPerfil);
                 }
                 Sistema.PerfilActivo = perfilActivoOriginal;
             }
@@ -139,7 +139,7 @@ namespace PA4IM9_20262_Equipo2
                     {// Transformamos el elemento xml a un objeto de tipo perfil.
                         Perfil PerfilLogueado = ConvertidorXml.ElementoToObjeto<Perfil>(elemento);
                         // Ese perfil coincidente lo guardamos en la memoria del programa.
-                        Sistema.CargarPerfil(PerfilLogueado);
+                        Sistema.ActualizarPerfilActivo(PerfilLogueado);
                         // Se guarda en archivos el usuario
                         Sistema.GuardarPerfil(elemento);
                         // Logica para manejar correctamente.
@@ -191,7 +191,7 @@ namespace PA4IM9_20262_Equipo2
 
             
             // Cargamos el perfil nuevo en la memoria del programa para las sesiones activas.
-            Sistema.CargarPerfil(nuevoPerfil);
+            Sistema.ActualizarPerfilActivo(nuevoPerfil);
 
             // Creamos un elemento Xml llenandolo con los datos del perfil antes llenado.
             XmlElement elementoPerfil = ConvertidorXml.ObjetoToElemento(escritor, nuevoPerfil);
