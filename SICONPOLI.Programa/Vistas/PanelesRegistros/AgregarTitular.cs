@@ -177,6 +177,8 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelesRegistros
             XmlElement nuevoPaquete = ConvertidorXml.ObjetoToElemento(escritor, paqueteTitular);
             escritor.DocumentElement.AppendChild(nuevoPaquete);
             escritor.Save(rutaPaquete);
+
+            this.Close();
         }
     }
 }
