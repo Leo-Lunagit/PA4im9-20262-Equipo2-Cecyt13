@@ -51,31 +51,28 @@ namespace PA4IM9_20262_Equipo2.Modulos
 
     public static class MEMORIA
     {
-        public static PaqueteAlmacen[] Productos;
-        public static PaqueteTitular[] Clientes;
-        public static PaqueteTitular[] Proveedores;
+        public static PaqueteAlmacen[] Productos = new PaqueteAlmacen[0];
+        public static PaqueteTitular[] Clientes = new PaqueteTitular[0];
+        public static PaqueteTitular[] Proveedores = new PaqueteTitular[0];
 
         public static void CargarMemorias()
         {
+            Sistema.VerificarArchivo(Rutas.Productos, Raices.Productos);
+            Sistema.VerificarArchivo(Rutas.Proveedores, Raices.Proveedores);
+            Sistema.VerificarArchivo(Rutas.Clientes, Raices.Clientes);
             XmlDocument lector = new XmlDocument();
 
             lector.Load(Rutas.Productos);
-            Productos = new PaqueteAlmacen[] { new PaqueteAlmacen() };
             foreach (XmlElement registro in lector.DocumentElement.ChildNodes)
                 Productos = Productos.Append(ConvertidorXml.ElementoToObjeto<PaqueteAlmacen>(registro)).ToArray();
-            Productos = Productos.Skip(1).ToArray();
 
             lector.Load(Rutas.Clientes);
-            Clientes = new PaqueteTitular[] { new PaqueteTitular() };
             foreach (XmlElement registro in lector.DocumentElement.ChildNodes)
                 Clientes = Clientes.Append(ConvertidorXml.ElementoToObjeto<PaqueteTitular>(registro)).ToArray();
-            Clientes = Clientes.Skip(1).ToArray();
 
             lector.Load(Rutas.Proveedores);
-            Proveedores = new PaqueteTitular[] { new PaqueteTitular() };
             foreach (XmlElement registro in lector.DocumentElement.ChildNodes)
                 Proveedores = Proveedores.Append(ConvertidorXml.ElementoToObjeto<PaqueteTitular>(registro)).ToArray();
-            Proveedores = Proveedores.Skip(1).ToArray();
         }
     }
 

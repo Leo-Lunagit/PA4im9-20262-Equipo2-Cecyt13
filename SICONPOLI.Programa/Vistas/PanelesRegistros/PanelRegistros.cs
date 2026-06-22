@@ -26,6 +26,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
         private static string[] Conceptos = { "Compra de mercancia.", "Pago de compra de mercancia.", "Venta de mercancia.", "Cobro de venta de mercancia." };
         private string ConceptoPorDefecto;
         private bool EsConceptoCompuesto;
+        private bool EsCompra;
         private string Ruta;
         private string Raiz;
         private EnlaceEventos[] Eventos = { new EnlaceEventos {Controlador = "ClickEliminar", Evento = "EntrarEliminar" }};
@@ -43,7 +44,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
         private void CompletarComponentes(Cuentas cuenta)
         {
             CuentaTitular = cuenta;
-            bool EsCompra = CuentaTitular == Cuentas.Proveedores;
+            EsCompra = CuentaTitular == Cuentas.Proveedores;
 
             ConceptoPorDefecto = EsCompra ? Conceptos[0] : Conceptos[2];
             Ruta = EsCompra ? Rutas.Compras : Rutas.Ventas;
@@ -56,7 +57,11 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             // Asignando el concepto por defecto.
             cmbOpcionesConcepto.SelectedIndex = 0;
 
-            if (!EsCompra && MEMORIA.Productos.Length == 0) this.Enabled = false;
+            if (!EsCompra && MEMORIA.Productos.Length == 0)
+            {
+                MessageBox.Show("Aun no hay productos que se puedan vender, por favor primero compre mercancia.", "SIN PRODUCTOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Enabled = false;
+            }
         }
         private void IndexarFormulumario(Formulario formulario)
         {
@@ -87,15 +92,6 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
         //
         public bool VerificarCampos()
         {
-            bool EsVentas = CuentaTitular == Cuentas.Clientes;
-            string ruta = EsVentas ? Rutas.Clientes : Rutas.Proveedores;
-            string raiz = EsVentas ? Raices.Clientes : Raices.Proveedores;
-
-            // Cargamos el archivo correspondiente.
-            Sistema.VerificarArchivo(ruta, raiz);
-            XmlDocument escritor = new XmlDocument();
-            escritor.Load(ruta);
-
             Formulario formulario = panFormularios.Controls.OfType<Formulario>().First();
             if (!formulario.CamposCorrectos()) return false;
 
@@ -110,16 +106,15 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
         }
         public void VerificarTitular(string nombre)
         {
-            bool EsVentas = CuentaTitular == Cuentas.Clientes;
-            string ruta = EsVentas ? Rutas.Clientes : Rutas.Proveedores;
-            string raiz = EsVentas ? Raices.Clientes : Raices.Proveedores;
+            string rutaPaquetes = EsCompra ? Rutas.Proveedores : Rutas.Clientes;
+            string raizPaquetes = EsCompra ? Raices.Proveedores : Raices.Clientes;
 
             // Cargamos el archivo correspondiente.
-            Sistema.VerificarArchivo(ruta, raiz);
-            XmlDocument escritor = new XmlDocument();
-            escritor.Load(ruta);
+            Sistema.VerificarArchivo(rutaPaquetes, raizPaquetes);
+            XmlDocument lector = new XmlDocument();
+            lector.Load(rutaPaquetes);
 
-            XmlNode existente = escritor.DocumentElement.SelectSingleNode($"//paqueteTitular[titular='{nombre}']");
+            XmlNode existente = lector.DocumentElement.SelectSingleNode($"//paqueteTitular[titular='{nombre}']");
             if (existente == null)
             {
                 DialogResult resultado = MessageBox.Show("El titular ingresado no ha sido registrado. ¿Quiere registrar el titular ahora mismo?", "Titular NO encontrado.", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
@@ -130,7 +125,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
                 }
             }
         }
-            //
+        //
         // Logica de registros
         //
         private void btnRegistrar_Click(object sender, EventArgs e)
@@ -164,9 +159,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             escritor.Save(Ruta);
         }
         private void MostrarMovimiento(Asiento Registro)
-        {
-            bool EsCompra = CuentaTitular == Cuentas.Proveedores;
-            
+        {            
             string[] paraAccion = Registro.Concepto.Split(':');
             Cuenta Titulares;
             // Determinamos si es para facturar o para pagar.
@@ -199,7 +192,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             Formulario.txtTitular.Text = "";
             Formulario.txtFactura.Text = "";
             Formulario.AutoFactura = Formulario.GenerarDigitosFactura(4);
-            Formulario.cmbFacturas.SelectedIndex = 0;
+            if (!EsCompra) Formulario.cmbFacturas.SelectedIndex = 0;
 
             Formulario.ContenedorRecursos.Controls.Clear();
             Cuentas NombreCuenta = EsDeuda ? Cuentas.Almacen : Cuentas.Bancos;
@@ -229,7 +222,6 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
         //
         private void btnIntercalar_Click(object sender, EventArgs e)
         {
-            bool EsCompra = CuentaTitular == Cuentas.Proveedores;
             // Dinamicamente manda a incrustar el formulario adecuado.
             if (btnIntercalar.Text == "PAGAR" || btnIntercalar.Text == "COBRAR")
             {
@@ -276,19 +268,18 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
         //
         private Asiento AsientoFacturacion()
         {
-            bool EsCompra = CuentaTitular == Cuentas.Proveedores;
             FormularioFacturaciones Formulario = panFormularios.Controls[0] as FormularioFacturaciones;
 
-            Subcuenta[] Productos = { new Subcuenta() };
-            foreach (CamposProducto Producto in Formulario.ContenedorRecursos.Controls)
+            Subcuenta[] Productos = new Subcuenta[0];
+            foreach (CamposProducto Campos in Formulario.ContenedorRecursos.Controls)
             {
                 // Si estan todos sus campos vacios, no hace nada.
-                if (Producto.CampoNulo()) continue;
+                if (Campos.CampoNulo()) continue;
                 decimal costoUni;
-                try { costoUni = decimal.Parse(Producto.txtCostoUni.Text); }
-                catch { costoUni = decimal.Parse(Producto.txtCostoUni.Text, NumberStyles.Currency, CultureInfo.CurrentCulture); }
-                string Nombre = $"{Producto.nudCantidad.Value} {Producto.cmbNombreItem.Text} a {(costoUni):C} c/u.";
-                decimal Monto = decimal.Parse(Producto.txtMonto.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
+                try { costoUni = decimal.Parse(Campos.txtCostoUni.Text); }
+                catch { costoUni = decimal.Parse(Campos.txtCostoUni.Text, NumberStyles.Currency, CultureInfo.CurrentCulture); }
+                string Nombre = $"{Campos.nudCantidad.Value} {Campos.cmbNombreItem.Text} a {(costoUni):C} c/u.";
+                decimal Monto = decimal.Parse(Campos.txtMonto.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
                 Subcuenta producto = new Subcuenta
                 {
                     NombreSubcuenta = Nombre,
@@ -296,7 +287,6 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
                 };
                 Productos = Productos.Append(producto).ToArray();
             }
-            Productos = Productos.Skip(1).ToArray();
             int sumaProductos = (int)(decimal.Parse(Formulario.txtSubTotal.Text, NumberStyles.Currency, CultureInfo.CurrentCulture) * 100);
 
             Cuenta Almacen = new Cuenta

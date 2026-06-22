@@ -82,6 +82,8 @@ namespace PA4IM9_20262_Equipo2.Entidades
         public string NoTargeta { get; set; }
         [XmlElement("titular")]
         public string Titular { get; set; }
+        [XmlElement("fechaRegistro")]
+        public string FechaAlta { get; set; }
         [XmlElement("datosContacto")]
         public Contactos DatosContacto { get; set; }
         [XmlElement("limiteCredito")]
@@ -146,6 +148,8 @@ namespace PA4IM9_20262_Equipo2.Entidades
         public string NoTarjeta { get; set; }
         [XmlElement("producto")]
         public string Producto { get; set; }
+        [XmlElement("fechaAlta")]
+        public string FechaAlta { get; set; }
         [XmlArray("movAlmacen")]
         [XmlArrayItem("renAlmacen")]
         public RenAlmacen[] RenAlmacens { get; set; }

@@ -64,7 +64,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
             RenMayor renglon = new RenMayor
             {
                 Fecha = asiento.Fecha.ToString("dd/MM"),
-                Factura = paraDatos[1],
+                Factura = paraDatos.Last(),
                 Concepto = $"{operacion} de mercancia.",
                 Movimiento = movimiento,
             };
@@ -73,7 +73,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
             XmlNode titularExistente = escritor.DocumentElement.SelectSingleNode($"//mayor[titular='{paraDatos[0]}']");
             if (titularExistente == null)
             {
-                MessageBox.Show("El presente titular no se ha registrado aun. Contacte con el titular para acordar el financiamiento a credito.", "Titular encontrado.");
+                MessageBox.Show("El presente titular no se ha registrado aun. Contacte con el titular para acordar el financiamiento a credito y no haga ningun conflicto con el titular.", "Titular encontrado.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 // Se asignan las propiedades iniciales.
                 renglon.Folio = "1001";
                 renglon.MontoSaldo = renglon.Movimiento.Monto;
@@ -83,7 +83,9 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 {
                     Cuenta = cuenta.ToString(),
                     NoTargeta = Sistema.GenerarID(ruta, raiz, 3),
-                    Titular = paraDatos[0],
+                    Titular = paraDatos.First(),
+                    FechaAlta = "",
+                    DatosContacto = null,
                     LimiteCredito = "Sin Aclarar",
                     RenMayores = new RenMayor[] { renglon }
                 };
@@ -143,15 +145,15 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 // Fragmenta la cadena con el texto escrito por nosotos (" a ");
                 string[] ParaCosto = texto.Split(new string[] { " a " }, StringSplitOptions.None);
                 // Asegurandonos que sea el texto que nosotros agregamos (hasta el final) quitamos el segundo texto que agregamos (" c/u.)
-                string textoCosto = ParaCosto[ParaCosto.Length - 1].Replace(" c/u.", string.Empty);
+                string textoCosto = ParaCosto.Last().Replace(" c/u.", string.Empty);
                 // Con expreciones regulares (mediante simbolos indica un formato de texto) quita la cantidad y el precio.
-                Match match = Regex.Match(texto, @"\d (?<producto>.*?)\sa\s\$\d+\.\d+\sc/u\.");
+                Match match = Regex.Match(texto, @"\d\s(?<producto>.*?)\sa\s\$\d+\.\d+\sc/u\.");
                 string nombreProducto = match.Groups["producto"].Value;
 
                 Movimiento MovInventario = new Movimiento
                 {
                     Saldo = $"{saldo}",
-                    Monto = decimal.Parse(ParaCantida[0])
+                    Monto = decimal.Parse(ParaCantida.First())
                 };
 
                 Movimiento MovValor = new Movimiento
@@ -166,7 +168,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 RenAlmacen renAlmacen = new RenAlmacen
                 {
                     Fecha = asiento.Fecha.ToShortDateString(),
-                    Factura = paraFactura[paraFactura.Length - 1],
+                    Factura = paraFactura.Last(),
                     MovInventario = MovInventario,
                     CostoUnitario = EsCopra ? CostoUnitario : 0,
                     MovValor = MovValor
@@ -184,7 +186,9 @@ namespace PA4IM9_20262_Equipo2.Modulos
                     {
                         NoTarjeta = Sistema.GenerarID(Rutas.Almacen, Raices.Almacen, 3),
                         Producto = nombreProducto,
+                        FechaAlta = "",
                         RenAlmacens = new RenAlmacen[] { renAlmacen },
+                        LinkImagen = ""
                     };
 
                     SavePaqueteAlmacen(NuevoProducto);
@@ -206,7 +210,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                     renAlmacen.Folio = $"1{(Producto.RenAlmacens.Length + 1):D3}";
                     renAlmacen.Existencia = Producto.RenAlmacens.Last().Existencia + renAlmacen.MovInventario.Monto * sentido;
                     renAlmacen.MontoSaldo = Producto.RenAlmacens.Last().MontoSaldo + renAlmacen.MovValor.Monto * sentido;
-                    renAlmacen.CostoPromedio = renAlmacen.Existencia != 0 ? renAlmacen.MontoSaldo / renAlmacen.Existencia : 0;
+                    renAlmacen.CostoPromedio = renAlmacen.Existencia != 0.000m ? renAlmacen.MontoSaldo / renAlmacen.Existencia : 0;
 
                     Producto.RenAlmacens = Producto.RenAlmacens.Append(renAlmacen).ToArray();
 
