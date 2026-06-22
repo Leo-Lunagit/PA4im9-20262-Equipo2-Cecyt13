@@ -462,10 +462,7 @@ namespace PA4IM9_20262_Equipo2
         {
             if (txtCorreo.Text == "Email") lblMensajes.Text = "Falta ingresar el correo.";
             else if (!CorreoValido(txtCorreo.Text) && txtCorreo.Visible == true)
-            {
-                lblMensajes.Text = "El correo no es valido.";
                 txtCorreo.Focus();
-            }
         }
         private void txtContrasenia_Validating(object sender, CancelEventArgs e)
         {

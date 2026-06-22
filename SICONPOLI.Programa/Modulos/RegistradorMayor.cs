@@ -73,6 +73,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
             XmlNode titularExistente = escritor.DocumentElement.SelectSingleNode($"//mayor[titular='{paraDatos[0]}']");
             if (titularExistente == null)
             {
+                MessageBox.Show("El presente titular no se ha registrado aun. Contacte con el titular para acordar el financiamiento a credito.", "Titular encontrado.");
                 // Se asignan las propiedades iniciales.
                 renglon.Folio = "1001";
                 renglon.MontoSaldo = renglon.Movimiento.Monto;
@@ -83,6 +84,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                     Cuenta = cuenta.ToString(),
                     NoTargeta = Sistema.GenerarID(ruta, raiz, 3),
                     Titular = paraDatos[0],
+                    LimiteCredito = "Sin Aclarar",
                     RenMayores = new RenMayor[] { renglon }
                 };
 
@@ -149,7 +151,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 Movimiento MovInventario = new Movimiento
                 {
                     Saldo = $"{saldo}",
-                    Monto = int.Parse(ParaCantida[0])
+                    Monto = decimal.Parse(ParaCantida[0])
                 };
 
                 Movimiento MovValor = new Movimiento

@@ -33,7 +33,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
             Sistema.VerificarArchivo(Rutas.Productos, Raices.Productos);
             XmlDocument lecto = new XmlDocument();
             lecto.Load(Rutas.Productos);
-            
+
             if (Restrictivo)
             {
                 cmbNombreItem.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -41,7 +41,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
             }
 
             if (MEMORIA.Productos == null || MEMORIA.Productos.Length < 1) return;
-            foreach(PaqueteAlmacen producto in MEMORIA.Productos)
+            foreach (PaqueteAlmacen producto in MEMORIA.Productos)
                 cmbNombreItem.Items.Add(producto.Producto);
         }
         //
@@ -52,16 +52,22 @@ namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
             TextBox txt = (TextBox)sender;
 
             // 1. Permitir números, borrar, espacios y el punto (si no existe ya)
-            if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsSeparator(e.KeyChar)) e.Handled = false;
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back) e.Handled = false;
             else if (e.KeyChar == '.' && !txt.Text.Contains(".")) e.Handled = false;
-            else e.Handled = true;
+            else { e.Handled = true; return; }
 
             // 2. Controlar las 2 cifras decimales (solo si ya hay punto y no estás borrando)
-            if (!e.Handled && txt.Text.Contains(".") && !char.IsControl(e.KeyChar))
+            if (!e.Handled && txt.Text.Contains(".") && char.IsDigit(e.KeyChar))
             {
+                int indice = txt.Text.IndexOf('.');
                 // Bloquea solo si el cursor está parado después del punto y ya hay 2 dígitos
-                if (txt.SelectionStart > txt.Text.IndexOf('.') && txt.Text.Length - txt.Text.IndexOf('.') > 2)
-                    e.Handled = true;
+                if (txt.SelectionLength > 0 && txt.SelectionStart >= indice) return;
+                if (txt.SelectionStart > indice)
+                {
+                    string decimales = txt.Text.Substring(indice + 1);
+                    if (decimales.Length >= 2)
+                        e.Handled = true;
+                }
             }
         }
         //
@@ -75,23 +81,23 @@ namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
             else
             {
                 decimal CostoUnitario;
-                if (!Restrictivo) CostoUnitario = decimal.Parse(txtCostoUni.Text);
-                else CostoUnitario = decimal.Parse(txtCostoUni.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
+                try { CostoUnitario = decimal.Parse(txtCostoUni.Text); }
+                catch { CostoUnitario = decimal.Parse(txtCostoUni.Text, NumberStyles.Currency, CultureInfo.CurrentCulture); }
                 decimal Cantidad = nudCantidad.Value;
 
                 decimal CostoFinal = CostoUnitario * Cantidad;
                 txtMonto.Text = $"{CostoFinal:C}";
-            }
+                }
         }
         //
         // Logica de validacion.
         //
         public override bool CamposCompletos(bool Hermanos)
         {
-            if (Hermanos && CampoNulo()) 
-                return true; 
-            
-            bool Completos = cmbNombreItem.Text != "" && txtCostoUni.Text != "";
+            if (Hermanos && CampoNulo())
+                return true;
+
+            bool Completos = cmbNombreItem.Text != "" && txtCostoUni.Text != "" && nudCantidad.Text != "";
             return Completos;
         }
         public override bool CampoNulo()
@@ -106,8 +112,11 @@ namespace PA4IM9_20262_Equipo2.Vistas.CamposSubCuentas
             if (txtCostoUni.Text != "" && !Restrictivo) return;
 
             string NombreProducto = cmbNombreItem.Text;
-            int costo = MEMORIA.Productos.First(producto => producto.Producto == $"{NombreProducto}").CostoUnitario;
+            PaqueteAlmacen paquete = MEMORIA.Productos.First(producto => producto.Producto == $"{NombreProducto}");
+            decimal costo = paquete.CostoUnitario;
             txtCostoUni.Text = $"{(costo / 100):C2}";
+
+            if (Restrictivo) nudCantidad.Maximum = paquete.Stock;
         }
     }
 }

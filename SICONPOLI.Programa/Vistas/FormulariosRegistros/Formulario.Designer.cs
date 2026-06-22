@@ -31,11 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Formulario));
             this.grpTitulares = new System.Windows.Forms.GroupBox();
             this.txtFactura = new System.Windows.Forms.TextBox();
-            this.txtTitular = new System.Windows.Forms.TextBox();
             this.txtMontoTotal = new System.Windows.Forms.TextBox();
             this.lblMontoTotal = new System.Windows.Forms.Label();
             this.lblFactura = new System.Windows.Forms.Label();
             this.lblTitulares = new System.Windows.Forms.Label();
+            this.txtTitular = new System.Windows.Forms.ComboBox();
+            this.cmbFacturas = new System.Windows.Forms.ComboBox();
             this.grpRecursos = new System.Windows.Forms.GroupBox();
             this.btnAgregar = new System.Windows.Forms.PictureBox();
             this.txtSubTotal = new System.Windows.Forms.TextBox();
@@ -57,11 +58,12 @@
             // grpTitulares
             // 
             this.grpTitulares.Controls.Add(this.txtFactura);
-            this.grpTitulares.Controls.Add(this.txtTitular);
             this.grpTitulares.Controls.Add(this.txtMontoTotal);
             this.grpTitulares.Controls.Add(this.lblMontoTotal);
             this.grpTitulares.Controls.Add(this.lblFactura);
             this.grpTitulares.Controls.Add(this.lblTitulares);
+            this.grpTitulares.Controls.Add(this.txtTitular);
+            this.grpTitulares.Controls.Add(this.cmbFacturas);
             this.grpTitulares.Font = new System.Drawing.Font("Dubai", 13.8F, System.Drawing.FontStyle.Bold);
             this.grpTitulares.Location = new System.Drawing.Point(563, 68);
             this.grpTitulares.Name = "grpTitulares";
@@ -75,18 +77,10 @@
             this.txtFactura.Font = new System.Drawing.Font("Modern No. 20", 12F);
             this.txtFactura.Location = new System.Drawing.Point(201, 56);
             this.txtFactura.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFactura.MaxLength = 4;
             this.txtFactura.Name = "txtFactura";
-            this.txtFactura.Size = new System.Drawing.Size(102, 25);
+            this.txtFactura.Size = new System.Drawing.Size(85, 25);
             this.txtFactura.TabIndex = 52;
-            // 
-            // txtTitular
-            // 
-            this.txtTitular.Font = new System.Drawing.Font("Modern No. 20", 12F);
-            this.txtTitular.Location = new System.Drawing.Point(15, 56);
-            this.txtTitular.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTitular.Name = "txtTitular";
-            this.txtTitular.Size = new System.Drawing.Size(176, 25);
-            this.txtTitular.TabIndex = 51;
             // 
             // txtMontoTotal
             // 
@@ -131,6 +125,24 @@
             this.lblTitulares.Size = new System.Drawing.Size(70, 25);
             this.lblTitulares.TabIndex = 28;
             this.lblTitulares.Text = "Titulares";
+            // 
+            // txtTitular
+            // 
+            this.txtTitular.Font = new System.Drawing.Font("Modern No. 20", 12F);
+            this.txtTitular.FormattingEnabled = true;
+            this.txtTitular.Location = new System.Drawing.Point(15, 55);
+            this.txtTitular.Name = "txtTitular";
+            this.txtTitular.Size = new System.Drawing.Size(176, 26);
+            this.txtTitular.TabIndex = 53;
+            // 
+            // cmbFacturas
+            // 
+            this.cmbFacturas.Font = new System.Drawing.Font("Modern No. 20", 12F);
+            this.cmbFacturas.FormattingEnabled = true;
+            this.cmbFacturas.Location = new System.Drawing.Point(201, 55);
+            this.cmbFacturas.Name = "cmbFacturas";
+            this.cmbFacturas.Size = new System.Drawing.Size(102, 26);
+            this.cmbFacturas.TabIndex = 54;
             // 
             // grpRecursos
             // 
@@ -307,8 +319,9 @@
         public System.Windows.Forms.Panel ContenedorRecursos;
         public System.Windows.Forms.Label lblTitulares;
         public System.Windows.Forms.TextBox txtFactura;
-        public System.Windows.Forms.TextBox txtTitular;
         protected System.Windows.Forms.PictureBox btnAgregar;
         private System.Windows.Forms.PictureBox btnSalir;
+        public System.Windows.Forms.ComboBox txtTitular;
+        public System.Windows.Forms.ComboBox cmbFacturas;
     }
 }

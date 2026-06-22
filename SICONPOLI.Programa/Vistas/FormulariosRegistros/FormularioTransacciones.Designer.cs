@@ -30,11 +30,8 @@
         {
             this.grpTitulares.SuspendLayout();
             this.grpRecursos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAgregar)).BeginInit();
             this.SuspendLayout();
-            // 
-            // grpTitulares
-            // 
-            this.grpTitulares.Location = new System.Drawing.Point(600, 68);
             // 
             // grpRecursos
             // 
@@ -55,6 +52,10 @@
             this.lblRecursos.Size = new System.Drawing.Size(58, 25);
             this.lblRecursos.Text = "Bancos";
             // 
+            // txtTitular
+            // 
+            this.txtTitular.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            // 
             // FormularioTransacciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -64,6 +65,7 @@
             this.grpTitulares.PerformLayout();
             this.grpRecursos.ResumeLayout(false);
             this.grpRecursos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAgregar)).EndInit();
             this.ResumeLayout(false);
 
         }

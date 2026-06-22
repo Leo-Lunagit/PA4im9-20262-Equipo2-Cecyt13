@@ -44,6 +44,8 @@
             this.grpRecursos.Location = new System.Drawing.Point(50, 18);
             this.grpRecursos.Size = new System.Drawing.Size(500, 230);
             this.grpRecursos.Text = "Productos";
+            this.grpRecursos.Controls.SetChildIndex(this.lblCantidad, 0);
+            this.grpRecursos.Controls.SetChildIndex(this.pictureBox1, 0);
             this.grpRecursos.Controls.SetChildIndex(this.btnAgregar, 0);
             this.grpRecursos.Controls.SetChildIndex(this.lblRecursos, 0);
             this.grpRecursos.Controls.SetChildIndex(this.lblIDMovimiento, 0);
@@ -54,8 +56,6 @@
             this.grpRecursos.Controls.SetChildIndex(this.txtIVA, 0);
             this.grpRecursos.Controls.SetChildIndex(this.lblIVA, 0);
             this.grpRecursos.Controls.SetChildIndex(this.txtSubTotal, 0);
-            this.grpRecursos.Controls.SetChildIndex(this.lblCantidad, 0);
-            this.grpRecursos.Controls.SetChildIndex(this.pictureBox1, 0);
             // 
             // lblNoRecursos
             // 
@@ -70,8 +70,8 @@
             // lblIDMovimiento
             // 
             this.lblIDMovimiento.Location = new System.Drawing.Point(261, 28);
-            this.lblIDMovimiento.Size = new System.Drawing.Size(106, 25);
-            this.lblIDMovimiento.Text = "Costo Unitario";
+            this.lblIDMovimiento.Size = new System.Drawing.Size(104, 25);
+            this.lblIDMovimiento.Text = "Costo por Kilo";
             // 
             // lblRecursos
             // 
@@ -101,16 +101,24 @@
             // 
             this.ContenedorRecursos.Size = new System.Drawing.Size(492, 129);
             // 
+            // cmbFacturas
+            // 
+            this.cmbFacturas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFacturas.Items.AddRange(new object[] {
+            "Automatica",
+            "Manual"});
+            this.cmbFacturas.SelectedIndexChanged += new System.EventHandler(this.cmbFacturas_SelectedIndexChanged);
+            // 
             // lblCantidad
             // 
             this.lblCantidad.AutoSize = true;
             this.lblCantidad.Font = new System.Drawing.Font("Dubai", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCantidad.Location = new System.Drawing.Point(19, 28);
+            this.lblCantidad.Location = new System.Drawing.Point(34, 28);
             this.lblCantidad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCantidad.Name = "lblCantidad";
-            this.lblCantidad.Size = new System.Drawing.Size(69, 25);
+            this.lblCantidad.Size = new System.Drawing.Size(64, 25);
             this.lblCantidad.TabIndex = 85;
-            this.lblCantidad.Text = "Cantidad";
+            this.lblCantidad.Text = "Peso Kg";
             // 
             // pictureBox1
             // 

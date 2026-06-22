@@ -48,16 +48,23 @@
             // 
             // cmbNombreItem
             // 
-            this.cmbNombreItem.Location = new System.Drawing.Point(82, 9);
+            this.cmbNombreItem.Location = new System.Drawing.Point(102, 9);
+            this.cmbNombreItem.Size = new System.Drawing.Size(156, 26);
             this.cmbNombreItem.SelectedIndexChanged += new System.EventHandler(this.cmbNombreItem_SelectedIndexChanged);
             // 
             // nudCantidad
             // 
+            this.nudCantidad.DecimalPlaces = 3;
             this.nudCantidad.Font = new System.Drawing.Font("Modern No. 20", 12F);
+            this.nudCantidad.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.nudCantidad.Location = new System.Drawing.Point(25, 9);
             this.nudCantidad.Margin = new System.Windows.Forms.Padding(4);
             this.nudCantidad.Maximum = new decimal(new int[] {
-            20,
+            99,
             0,
             0,
             0});
@@ -65,10 +72,10 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudCantidad.Name = "nudCantidad";
             this.nudCantidad.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nudCantidad.Size = new System.Drawing.Size(48, 25);
+            this.nudCantidad.Size = new System.Drawing.Size(68, 25);
             this.nudCantidad.TabIndex = 2;
             this.nudCantidad.Value = new decimal(new int[] {
             1,

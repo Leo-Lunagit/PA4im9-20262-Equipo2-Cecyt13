@@ -9,6 +9,7 @@ using System.Security.Authentication;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace PA4IM9_20262_Equipo2.Vistas.Mayores
 {
@@ -26,6 +27,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.Mayores
             lblNoTarjeta.Text = Titular.NoTargeta;
             lblNombre.Text = Titular.Titular;
 
+            if (Titular.RenMayores == null) return;
             foreach (RenMayor renglon in Titular.RenMayores)
             {
                 bool Sube = renglon.Movimiento.Saldo == (Titular.Cuenta == Cuentas.Clientes.ToString() ? Saldos.Deudor : Saldos.Acredor).ToString();
@@ -34,9 +36,9 @@ namespace PA4IM9_20262_Equipo2.Vistas.Mayores
                     renglon.Factura,
                     renglon.Concepto,
                     renglon.Folio,
-                    Sube ? $"{(renglon.Movimiento.Monto): C2}" : "",
-                    Sube ? "" : $"{(renglon.Movimiento.Monto): C2}",
-                    renglon.MontoSaldo);
+                    Sube ? $"{(renglon.Movimiento.Monto / 100):C2}" : "",
+                    Sube ? "" : $"{(renglon.Movimiento.Monto / 100):C2}",
+                    $"{(renglon.MontoSaldo / 100):C2}");
             }
         }
 

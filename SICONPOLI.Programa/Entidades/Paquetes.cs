@@ -29,9 +29,9 @@ namespace PA4IM9_20262_Equipo2.Entidades
         [XmlElement("producto")]
         public string Producto;
         [XmlElement("costoUnitario")]
-        public int CostoUnitario;
+        public decimal CostoUnitario;
         [XmlElement("stok")]
-        public int Stock;
+        public decimal Stock;
     }
 
     public class PaqueteVerificacion

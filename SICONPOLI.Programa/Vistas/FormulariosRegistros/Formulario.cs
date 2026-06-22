@@ -11,12 +11,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros
 {
     public partial class Formulario : UserControl
     {
+        public string AutoFactura;
         public Cuentas CuentaTitular;
+        protected bool EsClientes;
+        protected int NoRecursos;
         // Variables para poder regrezar los campos.
         protected Campos RecursoEliminado = null; // Bancos y Almacen no.
         //
@@ -29,10 +33,19 @@ namespace PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros
         protected virtual void CompletarComponentes(Cuentas cuenta)
         {
             CuentaTitular = cuenta;
+            EsClientes = CuentaTitular == Cuentas.Clientes;
+            CargarTitulares();
 
             grpTitulares.Text = CuentaTitular.ToString();
             lblTitulares.Text = CuentaTitular.ToString();
-            if (cuenta == Cuentas.Proveedores) RecorrerLblTitulares();
+            if (!EsClientes) RecorrerLblTitulares();
+        }
+        private void CargarTitulares()
+        {
+            PaqueteTitular[] titulares = EsClientes ? MEMORIA.Clientes : MEMORIA.Proveedores;
+            if (titulares == null) return;
+            foreach (PaqueteTitular titular in titulares)
+                txtTitular.Items.Add(titular.Titular);
         }
         //
         // Logica de Validaciones.
@@ -75,6 +88,16 @@ namespace PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros
         private void RecorrerLblTitulares()
         {
             lblTitulares.Location = new Point(lblTitulares.Location.X - 11, lblTitulares.Location.Y);
+        }
+        public static string GenerarDigitosFactura(int longitud)
+        {
+            Random random = new Random();
+
+            System.Text.StringBuilder constructor = new System.Text.StringBuilder();
+            for (int i = 0; i < longitud; i++)
+                constructor.Append(random.Next(0, 10));
+
+            return constructor.ToString();
         }
         //
         // Logica de eventos

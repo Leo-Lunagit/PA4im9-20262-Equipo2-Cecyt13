@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros
 {
@@ -27,6 +28,15 @@ namespace PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros
         {
             base.CompletarComponentes(cuenta);
             Sistema.IndexarCampos(this, this.ContenedorRecursos, new CamposBancos(), Cuentas.Bancos);
+
+            txtFactura.ReadOnly = true;
+
+            NoRecursos = 2;
+            //Sistema.VerificarArchivo(Rutas.Cuentas, Raices.Cuentas);
+            //XmlDocument lector = new XmlDocument();
+            //lector.Load(Rutas.Productos);
+            //NoRecursos = lector.DocumentElement.ChildNodes.Count;
+            //if (NoRecursos == 0) NoRecursos++;
         }
     }
 }

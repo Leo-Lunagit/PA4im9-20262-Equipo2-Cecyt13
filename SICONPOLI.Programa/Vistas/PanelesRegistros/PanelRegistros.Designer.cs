@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TablaMovimientos = new System.Windows.Forms.DataGridView();
             this.folio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,11 +48,11 @@
             this.lblFolio = new System.Windows.Forms.Label();
             this.lblConcepto = new System.Windows.Forms.Label();
             this.txtConcepto = new System.Windows.Forms.TextBox();
-            this.btnIntercalar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.panFormularios = new System.Windows.Forms.Panel();
             this.panMovimientos = new System.Windows.Forms.Panel();
             this.cmbOpcionesConcepto = new System.Windows.Forms.ComboBox();
+            this.btnIntercalar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.TablaMovimientos)).BeginInit();
             this.panMovimientos.SuspendLayout();
             this.SuspendLayout();
@@ -81,8 +81,8 @@
             // 
             // folio
             // 
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.folio.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.folio.DefaultCellStyle = dataGridViewCellStyle22;
             this.folio.HeaderText = "Folio";
             this.folio.MinimumWidth = 6;
             this.folio.Name = "folio";
@@ -90,8 +90,8 @@
             // 
             // fecha
             // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.fecha.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.fecha.DefaultCellStyle = dataGridViewCellStyle23;
             this.fecha.HeaderText = "Fecha y Hora";
             this.fecha.MinimumWidth = 6;
             this.fecha.Name = "fecha";
@@ -99,8 +99,8 @@
             // 
             // accion
             // 
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.accion.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.accion.DefaultCellStyle = dataGridViewCellStyle24;
             this.accion.HeaderText = "Acción";
             this.accion.MinimumWidth = 6;
             this.accion.Name = "accion";
@@ -108,8 +108,8 @@
             // 
             // titular
             // 
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.titular.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.titular.DefaultCellStyle = dataGridViewCellStyle25;
             this.titular.HeaderText = "Titular";
             this.titular.MinimumWidth = 6;
             this.titular.Name = "titular";
@@ -117,8 +117,8 @@
             // 
             // factura
             // 
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.factura.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.factura.DefaultCellStyle = dataGridViewCellStyle26;
             this.factura.HeaderText = "Factura";
             this.factura.MinimumWidth = 6;
             this.factura.Name = "factura";
@@ -126,8 +126,8 @@
             // 
             // total
             // 
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.total.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.total.DefaultCellStyle = dataGridViewCellStyle27;
             this.total.HeaderText = "Total";
             this.total.MinimumWidth = 6;
             this.total.Name = "total";
@@ -135,8 +135,8 @@
             // 
             // usuario
             // 
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.usuario.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.usuario.DefaultCellStyle = dataGridViewCellStyle28;
             this.usuario.HeaderText = "Registrado por:";
             this.usuario.MinimumWidth = 6;
             this.usuario.Name = "usuario";
@@ -195,18 +195,7 @@
             this.txtConcepto.ReadOnly = true;
             this.txtConcepto.Size = new System.Drawing.Size(388, 25);
             this.txtConcepto.TabIndex = 45;
-            // 
-            // btnIntercalar
-            // 
-            this.btnIntercalar.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.btnIntercalar.Location = new System.Drawing.Point(40, 55);
-            this.btnIntercalar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnIntercalar.Name = "btnIntercalar";
-            this.btnIntercalar.Size = new System.Drawing.Size(112, 35);
-            this.btnIntercalar.TabIndex = 43;
-            this.btnIntercalar.Text = "COBRAR";
-            this.btnIntercalar.UseVisualStyleBackColor = true;
-            this.btnIntercalar.Click += new System.EventHandler(this.btnIntercalar_Click);
+            this.txtConcepto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtConcepto_KeyPress);
             // 
             // btnModificar
             // 
@@ -256,12 +245,25 @@
             this.cmbOpcionesConcepto.FormattingEnabled = true;
             this.cmbOpcionesConcepto.Items.AddRange(new object[] {
             "Por Defecto",
-            "Personalizada"});
+            "Personalizada",
+            "Por Defecto + Personalizada"});
             this.cmbOpcionesConcepto.Location = new System.Drawing.Point(483, 14);
             this.cmbOpcionesConcepto.Name = "cmbOpcionesConcepto";
             this.cmbOpcionesConcepto.Size = new System.Drawing.Size(405, 26);
             this.cmbOpcionesConcepto.TabIndex = 46;
             this.cmbOpcionesConcepto.SelectedIndexChanged += new System.EventHandler(this.cmbOpcionesConcepto_SelectedIndexChanged);
+            // 
+            // btnIntercalar
+            // 
+            this.btnIntercalar.Font = new System.Drawing.Font("Century Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.btnIntercalar.Location = new System.Drawing.Point(40, 55);
+            this.btnIntercalar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnIntercalar.Name = "btnIntercalar";
+            this.btnIntercalar.Size = new System.Drawing.Size(112, 35);
+            this.btnIntercalar.TabIndex = 43;
+            this.btnIntercalar.Text = "COBRAR";
+            this.btnIntercalar.UseVisualStyleBackColor = true;
+            this.btnIntercalar.Click += new System.EventHandler(this.btnIntercalar_Click);
             // 
             // PanelRegistros
             // 
@@ -290,7 +292,6 @@
         private System.Windows.Forms.TextBox txtFolio;
         private System.Windows.Forms.TextBox txtConcepto;
         private System.Windows.Forms.Label lblConcepto;
-        private System.Windows.Forms.Button btnIntercalar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Panel panFormularios;
         private System.Windows.Forms.Panel panMovimientos;
@@ -302,5 +303,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn factura;
         private System.Windows.Forms.DataGridViewTextBoxColumn total;
         private System.Windows.Forms.DataGridViewTextBoxColumn usuario;
+        private System.Windows.Forms.Button btnIntercalar;
     }
 }

@@ -37,7 +37,7 @@ namespace PA4IM9_20262_Equipo2.Entidades
         [XmlAttribute("saldo")]
         public string Saldo { get; set; }
         [XmlElement("monto")]
-        public int Monto { get; set; }
+        public decimal Monto { get; set; }
     } 
 
     public class Contactos
@@ -48,6 +48,8 @@ namespace PA4IM9_20262_Equipo2.Entidades
         public string Correo { get; set; }
         [XmlElement("telefono")]
         public string Telefono { get; set; }
+        [XmlElement("linkImagen")]
+        public string LinkImagen { get; set; }
     }
 
     //
@@ -67,7 +69,7 @@ namespace PA4IM9_20262_Equipo2.Entidades
         [XmlElement("movimiento")]
         public Movimiento Movimiento { get; set; }
         [XmlElement("montoSaldo")]
-        public int MontoSaldo { get; set; }
+        public decimal MontoSaldo { get; set; }
     }
 
     [XmlRoot("mayor")]
@@ -83,16 +85,17 @@ namespace PA4IM9_20262_Equipo2.Entidades
         [XmlElement("datosContacto")]
         public Contactos DatosContacto { get; set; }
         [XmlElement("limiteCredito")]
-        public int LimiteCredito { get; set; }
+        public string LimiteCredito { get; set; }
         [XmlArray("movMayores")]
         [XmlArrayItem("renMayores")]
         public RenMayor[] RenMayores { get; set; }
 
         public PaqueteTitular ToPaquete()
         {
-            int monto = RenMayores.Last().MontoSaldo;
+            decimal monto = 0;
+            if (RenMayores != null)
+                 monto = RenMayores.Last().MontoSaldo;
             string adeudo = monto == 0 ? "Saldado." : $"{(monto / 100):C2}";
-            string limite = LimiteCredito == 0 ? "Sin Limite." : $"{LimiteCredito:C2}";
             Contactos Contactos = DatosContacto;
             string contacto =
                 DatosContacto == null ? "Sin Contacto." :
@@ -104,7 +107,7 @@ namespace PA4IM9_20262_Equipo2.Entidades
                 NoTarjeta = this.NoTargeta,
                 Titular = this.Titular,
                 Adeudo = adeudo,
-                LimiteCredito = limite,
+                LimiteCredito = this.LimiteCredito,
                 Contacto = contacto
             };
             return Paquete;
@@ -126,14 +129,14 @@ namespace PA4IM9_20262_Equipo2.Entidades
         [XmlElement("movInventario")]
         public Movimiento MovInventario { get; set; }
         [XmlElement("Existencia")]
-        public int Existencia { get; set; }
+        public decimal Existencia { get; set; }
         [XmlElement("costo")]
-        public int CostoUnitario { get; set; }
+        public decimal CostoUnitario { get; set; }
         [XmlElement("movValor")]
-        public int CostoPromedio { get; set; }
+        public decimal CostoPromedio { get; set; }
         public Movimiento MovValor { get; set; }
         [XmlElement("montoSaldo")]
-        public int MontoSaldo { get; set; }
+        public decimal MontoSaldo { get; set; }
     }
 
     [XmlRoot("almacen")]
@@ -146,6 +149,8 @@ namespace PA4IM9_20262_Equipo2.Entidades
         [XmlArray("movAlmacen")]
         [XmlArrayItem("renAlmacen")]
         public RenAlmacen[] RenAlmacens { get; set; }
+        [XmlElement("linkImagen")]
+        public string LinkImagen { get; set; }
 
         public PaqueteAlmacen ToPaquete()
         {

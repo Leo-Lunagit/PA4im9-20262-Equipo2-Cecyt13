@@ -72,10 +72,10 @@ namespace PA4IM9_20262_Equipo2.Modulos
             Clientes = Clientes.Skip(1).ToArray();
 
             lector.Load(Rutas.Proveedores);
-            Clientes = new PaqueteTitular[] { new PaqueteTitular() };
+            Proveedores = new PaqueteTitular[] { new PaqueteTitular() };
             foreach (XmlElement registro in lector.DocumentElement.ChildNodes)
-                Clientes = Clientes.Append(ConvertidorXml.ElementoToObjeto<PaqueteTitular>(registro)).ToArray();
-            Clientes = Clientes.Skip(1).ToArray();
+                Proveedores = Proveedores.Append(ConvertidorXml.ElementoToObjeto<PaqueteTitular>(registro)).ToArray();
+            Proveedores = Proveedores.Skip(1).ToArray();
         }
     }
 
@@ -140,7 +140,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
             VerificarArchivo(Rutas.MayoresProveedores, Raices.MayoresProveedores);
             VerificarArchivo(Rutas.MayoresClientes, Raices.MayoresClientes);
             VerificarArchivo(Rutas.Almacen, Raices.Almacen);
-
+            MEMORIA.CargarMemorias();
         }
 
         public static string GenerarID(string Ruta, string Raiz, int Cifras)

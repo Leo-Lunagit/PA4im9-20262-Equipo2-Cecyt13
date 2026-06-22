@@ -16,6 +16,7 @@ using System.Xml;
 using System.Globalization;
 using PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros;
 using PA4IM9_20262_Equipo2.Vistas.Mayores;
+using PA4IM9_20262_Equipo2.Vistas.PanelesRegistros;
 
 namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
 {
@@ -24,6 +25,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
         private Cuentas CuentaTitular;
         private static string[] Conceptos = { "Compra de mercancia.", "Pago de compra de mercancia.", "Venta de mercancia.", "Cobro de venta de mercancia." };
         private string ConceptoPorDefecto;
+        private bool EsConceptoCompuesto;
         private string Ruta;
         private string Raiz;
         private EnlaceEventos[] Eventos = { new EnlaceEventos {Controlador = "ClickEliminar", Evento = "EntrarEliminar" }};
@@ -52,12 +54,13 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             // Asigna el folio corresposndiente.
             txtFolio.Text = Sistema.GenerarID(Ruta, Raiz, 3);
             // Asignando el concepto por defecto.
-            txtConcepto.Text = ConceptoPorDefecto;
+            cmbOpcionesConcepto.SelectedIndex = 0;
 
             if (!EsCompra && MEMORIA.Productos.Length == 0) this.Enabled = false;
         }
         private void IndexarFormulumario(Formulario formulario)
         {
+            panFormularios.Controls.Clear();
             Sistema.IndexarControles(
                 Suscriptor: this,
                 Contenedor: this.panFormularios, 
@@ -85,6 +88,14 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
         public bool VerificarCampos()
         {
             bool EsVentas = CuentaTitular == Cuentas.Clientes;
+            string ruta = EsVentas ? Rutas.Clientes : Rutas.Proveedores;
+            string raiz = EsVentas ? Raices.Clientes : Raices.Proveedores;
+
+            // Cargamos el archivo correspondiente.
+            Sistema.VerificarArchivo(ruta, raiz);
+            XmlDocument escritor = new XmlDocument();
+            escritor.Load(ruta);
+
             Formulario formulario = panFormularios.Controls.OfType<Formulario>().First();
             if (!formulario.CamposCorrectos()) return false;
 
@@ -93,9 +104,33 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
                 MessageBox.Show("Por favor complete los campos vacios", "Campos vacios", MessageBoxButtons.OK);
                 return false;
             }
+
+            VerificarTitular(formulario.txtTitular.Text);
             return true;
         }
-        //
+        public void VerificarTitular(string nombre)
+        {
+            bool EsVentas = CuentaTitular == Cuentas.Clientes;
+            string ruta = EsVentas ? Rutas.Clientes : Rutas.Proveedores;
+            string raiz = EsVentas ? Raices.Clientes : Raices.Proveedores;
+
+            // Cargamos el archivo correspondiente.
+            Sistema.VerificarArchivo(ruta, raiz);
+            XmlDocument escritor = new XmlDocument();
+            escritor.Load(ruta);
+
+            XmlNode existente = escritor.DocumentElement.SelectSingleNode($"//paqueteTitular[titular='{nombre}']");
+            if (existente == null)
+            {
+                DialogResult resultado = MessageBox.Show("El titular ingresado no ha sido registrado. ¿Quiere registrar el titular ahora mismo?", "Titular NO encontrado.", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (resultado == DialogResult.Yes)
+                {
+                    AgregarTitular ventana = new AgregarTitular(nombre, CuentaTitular);
+                    ventana.ShowDialog();
+                }
+            }
+        }
+            //
         // Logica de registros
         //
         private void btnRegistrar_Click(object sender, EventArgs e)
@@ -163,6 +198,8 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             Formulario.txtMontoTotal.Text = "";
             Formulario.txtTitular.Text = "";
             Formulario.txtFactura.Text = "";
+            Formulario.AutoFactura = Formulario.GenerarDigitosFactura(4);
+            Formulario.cmbFacturas.SelectedIndex = 0;
 
             Formulario.ContenedorRecursos.Controls.Clear();
             Cuentas NombreCuenta = EsDeuda ? Cuentas.Almacen : Cuentas.Bancos;
@@ -199,6 +236,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
                 IndexarFormulumario(new FormularioTransacciones(CuentaTitular));
                 btnIntercalar.Text = EsCompra ? "COMPRAR" : "VENDER";
                 ConceptoPorDefecto = EsCompra ? Conceptos[1] : Conceptos[3] ;
+                
             }
             else
             {
@@ -206,6 +244,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
                 btnIntercalar.Text = EsCompra ? "PAGAR" : "COBRAR";
                 ConceptoPorDefecto = EsCompra ? Conceptos[0] : Conceptos[2];
             }
+            txtConcepto.Text = ConceptoPorDefecto;
         }
 
         private void cmbOpcionesConcepto_SelectedIndexChanged(object sender, EventArgs e)
@@ -214,12 +253,21 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             {
                 txtConcepto.Text = ConceptoPorDefecto;
                 txtConcepto.ReadOnly = true;
+                EsConceptoCompuesto = false;
             }
-            else
+            else if (cmbOpcionesConcepto.Text == "Personalizada")
             {
                 txtConcepto.Text = "";
                 txtConcepto.ReadOnly = false;
                 txtConcepto.Focus();
+                EsConceptoCompuesto = false;
+            } 
+            else
+            {
+                txtConcepto.Text = "Por Defecto + ";
+                txtConcepto.ReadOnly = false;
+                txtConcepto.Focus();
+                EsConceptoCompuesto = true;
             }
         }
 
@@ -236,8 +284,10 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             {
                 // Si estan todos sus campos vacios, no hace nada.
                 if (Producto.CampoNulo()) continue;
-
-                string Nombre = $"{Producto.nudCantidad.Value} {Producto.cmbNombreItem.Text} a {decimal.Parse(Producto.txtCostoUni.Text):C} c/u.";
+                decimal costoUni;
+                try { costoUni = decimal.Parse(Producto.txtCostoUni.Text); }
+                catch { costoUni = decimal.Parse(Producto.txtCostoUni.Text, NumberStyles.Currency, CultureInfo.CurrentCulture); }
+                string Nombre = $"{Producto.nudCantidad.Value} {Producto.cmbNombreItem.Text} a {(costoUni):C} c/u.";
                 decimal Monto = decimal.Parse(Producto.txtMonto.Text, NumberStyles.Currency, CultureInfo.CurrentCulture);
                 Subcuenta producto = new Subcuenta
                 {
@@ -302,6 +352,15 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
         public void EntrarEliminar()
         {
             SolicitarEliminacion?.Invoke();
+        }
+
+        private void txtConcepto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!EsConceptoCompuesto) return;
+            TextBox txt = sender as TextBox;
+            e.Handled = true;
+            if (txt.SelectionStart >= 14 && !(txt.SelectionStart == 14 && e.KeyChar == (char)Keys.Back))
+                e.Handled = false;
         }
     }
 }
