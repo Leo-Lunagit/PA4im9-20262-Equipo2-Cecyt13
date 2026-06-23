@@ -40,7 +40,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros
             lblTitulares.Text = CuentaTitular.ToString();
             if (!EsClientes) RecorrerLblTitulares();
         }
-        private void CargarTitulares()
+        public void CargarTitulares()
         {
             PaqueteTitular[] titulares = EsClientes ? MEMORIA.Clientes : MEMORIA.Proveedores;
             if (titulares == null) return;

@@ -17,7 +17,9 @@ namespace PA4IM9_20262_Equipo2.Modulos
             MimeMessage Mensaje = new MimeMessage();
 
             Mensaje.From.Add(new MailboxAddress("SIRETECH Poli", "siretechpoli@gmail.com"));
-            Mensaje.To.Add(Datos.Destinatario);
+            if (Datos.Destinatario != null) Mensaje.To.Add(Datos.Destinatario);
+            else foreach (MailboxAddress Destinatario in Datos.Destinatarios)
+                    Mensaje.To.Add(Destinatario);
 
             Mensaje.Subject = Datos.Asunto;
             Mensaje.Body = new TextPart("html") { Text = Datos.MensajeHtml };
@@ -39,6 +41,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
 
     public class Correo
     {
+        public MailboxAddress[] Destinatarios;
         public MailboxAddress Destinatario;
         public string Asunto;
         public string MensajeHtml;

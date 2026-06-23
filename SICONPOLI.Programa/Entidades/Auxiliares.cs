@@ -95,7 +95,7 @@ namespace PA4IM9_20262_Equipo2.Entidades
         public PaqueteTitular ToPaquete()
         {
             decimal monto = 0;
-            if (RenMayores != null)
+            if (RenMayores.Length > 0)
                  monto = RenMayores.Last().MontoSaldo;
             string adeudo = monto == 0 ? "Saldado." : $"{(monto / 100):C2}";
             Contactos Contactos = DatosContacto;

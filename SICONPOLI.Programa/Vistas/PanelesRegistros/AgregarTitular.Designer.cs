@@ -309,6 +309,7 @@
             this.Controls.Add(this.Contenedor);
             this.Controls.Add(this.BarraSuperior);
             this.Name = "AgregarTitular";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AgregarTitular";
             this.Contenedor.ResumeLayout(false);
             this.grpDatos.ResumeLayout(false);

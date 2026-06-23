@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Globalization;
+using MimeKit;
 using PA4IM9_20262_Equipo2.Vistas.FormulariosRegistros;
 using PA4IM9_20262_Equipo2.Vistas.Mayores;
 using PA4IM9_20262_Equipo2.Vistas.PanelesRegistros;
@@ -135,6 +136,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             Asiento Registro = AsientoFacturacion();
             GuardarVenta(Registro);
             MostrarMovimiento(Registro);
+            GenerarTiket(Registro);
 
             // Determina si sube (saldo deudor, compra de mercancia) o si baja el almacen (saldo acredor, venta de mercancia).
             Saldos saldoProducto = CuentaTitular == Cuentas.Proveedores ? Saldos.Deudor : Saldos.Acredor;
@@ -178,6 +180,15 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             );
         }
 
+        private void GenerarTiket(Asiento Registro)
+        {
+            DialogResult resultado = MessageBox.Show("Compra exitosa. ¿Desea generar un tiket?", "Compra finalizada.", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resultado == DialogResult.No) return;
+
+            Tiket ventana  = new Tiket(Registro, CuentaTitular);
+            ventana.Show();
+        }
+
         private void LimpiarFormulario()
         {
             bool EsDeuda = btnIntercalar.Text == "COBRAR" || btnIntercalar.Text == "PAGAR" ? true : false;
@@ -192,6 +203,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
             Formulario.txtTitular.Text = "";
             Formulario.txtFactura.Text = "";
             Formulario.AutoFactura = Formulario.GenerarDigitosFactura(4);
+            Formulario.CargarTitulares();
             if (!EsCompra) Formulario.cmbFacturas.SelectedIndex = 0;
 
             Formulario.ContenedorRecursos.Controls.Clear();
@@ -268,6 +280,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
         //
         private Asiento AsientoFacturacion()
         {
+            string concepto = cmbOpcionesConcepto.SelectedIndex == 2 ? $"{ConceptoPorDefecto} {txtConcepto.Text.Substring(14)}" : txtConcepto.Text;
             FormularioFacturaciones Formulario = panFormularios.Controls[0] as FormularioFacturaciones;
 
             Subcuenta[] Productos = new Subcuenta[0];
@@ -326,7 +339,7 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelVentas
                 SumaCargos = EsCompra ? Almacen.Monto + IVA.Monto : Titulares.Monto,
                 Abonos = EsCompra ? new Cuenta[] { Titulares } : new Cuenta[] { Almacen, IVA },
                 SumaAbonos = EsCompra ? Titulares.Monto : Almacen.Monto + IVA.Monto,
-                Concepto = $"{(EsCompra ? Acciones.Compra : Acciones.Venta).ToString()}:{txtConcepto.Text}"
+                Concepto = $"{(EsCompra ? Acciones.Compra : Acciones.Venta).ToString()}:{concepto}"
             };
 
             return Registro;

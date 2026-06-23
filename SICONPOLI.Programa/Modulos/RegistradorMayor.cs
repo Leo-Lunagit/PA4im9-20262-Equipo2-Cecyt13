@@ -63,7 +63,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
             // Creamos el renglon del mayor auxiliar con los datos que si disponemos.
             RenMayor renglon = new RenMayor
             {
-                Fecha = asiento.Fecha.ToString("dd/MM"),
+                Fecha = asiento.Fecha.ToShortDateString(),
                 Factura = paraDatos.Last(),
                 Concepto = $"{operacion} de mercancia.",
                 Movimiento = movimiento,
@@ -78,6 +78,13 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 renglon.Folio = "1001";
                 renglon.MontoSaldo = renglon.Movimiento.Monto;
 
+                Contactos contactos = new Contactos 
+                {
+                    Domicilio = "Sin Aclarar.",
+                    Correo = "Sin Aclarar.",
+                    Telefono = "Sin Aclarar.",
+                    LinkImagen = ""
+                };
                 // Asignamos las propiedades fundamentales de la targeta y el primer reenglon auxiliar.
                 Mayor titularNuevo = new Mayor
                 {
@@ -85,7 +92,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                     NoTargeta = Sistema.GenerarID(ruta, raiz, 3),
                     Titular = paraDatos.First(),
                     FechaAlta = "",
-                    DatosContacto = null,
+                    DatosContacto = contactos,
                     LimiteCredito = "Sin Aclarar",
                     RenMayores = new RenMayor[] { renglon }
                 };
@@ -140,30 +147,22 @@ namespace PA4IM9_20262_Equipo2.Modulos
 
             foreach (Subcuenta SubProducto in Almacen.Subcuentas)
             {
-                string texto = SubProducto.NombreSubcuenta;
-                string[] ParaCantida = texto.Split(' ');
-                // Fragmenta la cadena con el texto escrito por nosotos (" a ");
-                string[] ParaCosto = texto.Split(new string[] { " a " }, StringSplitOptions.None);
-                // Asegurandonos que sea el texto que nosotros agregamos (hasta el final) quitamos el segundo texto que agregamos (" c/u.)
-                string textoCosto = ParaCosto.Last().Replace(" c/u.", string.Empty);
-                // Con expreciones regulares (mediante simbolos indica un formato de texto) quita la cantidad y el precio.
-                Match match = Regex.Match(texto, @"\d\s(?<producto>.*?)\sa\s\$\d+\.\d+\sc/u\.");
-                string nombreProducto = match.Groups["producto"].Value;
+                PaqueteProducto producto = SubAlmacenToPaquete(SubProducto);
 
                 Movimiento MovInventario = new Movimiento
                 {
                     Saldo = $"{saldo}",
-                    Monto = decimal.Parse(ParaCantida.First())
+                    Monto = producto.Cantidad
                 };
 
                 Movimiento MovValor = new Movimiento
                 {
                     Saldo = $"{saldo}",
                     // Debemos quitarle el margen de ganancia a la venta, despues lo aremos.
-                    Monto = EsCopra ? SubProducto.Monto : 0
+                    Monto = EsCopra ? producto.Monto : 0
                 };
 
-                int CostoUnitario = (int)(decimal.Parse(textoCosto, NumberStyles.Currency, CultureInfo.CurrentCulture) * 100);
+                int CostoUnitario = (int)(decimal.Parse(producto.TextoCostoUni, NumberStyles.Currency, CultureInfo.CurrentCulture) * 100);
                 // Asignamos los datos que ya conocemos.
                 RenAlmacen renAlmacen = new RenAlmacen
                 {
@@ -174,7 +173,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                     MovValor = MovValor
                 };
 
-                XmlNode ProductoExistente = lector.DocumentElement.SelectSingleNode($"//almacen[producto='{nombreProducto}']");
+                XmlNode ProductoExistente = lector.DocumentElement.SelectSingleNode($"//almacen[producto='{producto.Producto}']");
                 if (ProductoExistente == null)
                 {
                     renAlmacen.Folio = "1001";
@@ -185,7 +184,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                     Almacen NuevoProducto = new Almacen
                     {
                         NoTarjeta = Sistema.GenerarID(Rutas.Almacen, Raices.Almacen, 3),
-                        Producto = nombreProducto,
+                        Producto = producto.Producto,
                         FechaAlta = "",
                         RenAlmacens = new RenAlmacen[] { renAlmacen },
                         LinkImagen = ""
@@ -221,6 +220,27 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 }
             }
             lector.Save(Rutas.Almacen);
+        }
+
+        public static PaqueteProducto SubAlmacenToPaquete(Subcuenta Producto)
+        {
+            string texto = Producto.NombreSubcuenta;
+            string[] ParaCantida = texto.Split(' ');
+            // Fragmenta la cadena con el texto escrito por nosotos (" a ");
+            string[] ParaCosto = texto.Split(new string[] { " a " }, StringSplitOptions.None);
+            // Asegurandonos que sea el texto que nosotros agregamos (hasta el final) quitamos el segundo texto que agregamos (" c/u.)
+            string textoCosto = ParaCosto.Last().Replace(" c/u.", string.Empty);
+            // Con expreciones regulares (mediante simbolos indica un formato de texto) quita la cantidad y el precio.
+            Match match = Regex.Match(texto, @"\d\s(?<producto>.*?)\sa\s\$\d+\.\d+\sc/u\.");
+            string nombreProducto = match.Groups["producto"].Value;
+
+            return new PaqueteProducto
+            {
+                Producto = nombreProducto,
+                Cantidad = decimal.Parse(ParaCantida.First()),
+                TextoCostoUni = textoCosto,
+                Monto = Producto.Monto/100,
+            };
         }
 
         //

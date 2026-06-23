@@ -17,10 +17,20 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelesRegistros
     public partial class AgregarTitular : Form
     {
         private Cuentas Cuenta;
+        //
+        // Logica de carga.
+        //
         public AgregarTitular(string Nombre, Cuentas cuenta)
         {
             InitializeComponent();
             CompletarComponentes(Nombre, cuenta);
+        }
+        public AgregarTitular(PaqueteTitular Titular, Contactos DatosContacto, Cuentas cuenta)
+        {
+            InitializeComponent();
+            ObligarExistentes(Titular, DatosContacto);
+            Cuenta = cuenta;
+            txtNombre.Text = Titular.Titular;
         }
         private void CompletarComponentes(string Nombre, Cuentas cuenta)
         {
@@ -28,13 +38,45 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelesRegistros
             cmbCreditos.SelectedIndex = 0;
             if (Nombre == "")
                 txtNombre.ReadOnly = false;
-            else
+            else txtNombre.Text = Nombre;
+        }
+        private void ObligarExistentes(PaqueteTitular Titular, Contactos DatosContacto)
+        {
+            if (Titular.LimiteCredito != "Sin Aclarar")
             {
-                txtNombre.Text = Nombre;
-                cmbCreditos.SelectedIndex = 0;
+                chkCredito.Checked = true;
+                chkCredito.Enabled = false;
+                txtCredito.Text = Titular.LimiteCredito;
+            }
+            if (DatosContacto.Telefono != "Sin Aclarar.")
+            {
+                chkTelefono.Checked = true;
+                chkTelefono.Enabled = false;
+                txtTelefono.Text = DatosContacto.Telefono;
+            }
+            if (DatosContacto.Domicilio != "Sin Aclarar.")
+            {
+                chkDireccion.Checked = true;
+                chkDireccion.Enabled = false;
+                txtDireccion.Text = DatosContacto.Domicilio;
+            }
+            if (DatosContacto.Correo != "Sin Aclarar.")
+            {
+                chkCorreo.Checked = true;
+                chkCorreo.Enabled = false;
+                txtCorreo.Text = DatosContacto.Correo;
+            }
+            if (DatosContacto.LinkImagen != "")
+            {
+                chkImagen.Checked = true;
+                chkImagen.Enabled = false;
+                txtLinkImagen.Text = DatosContacto.LinkImagen;
             }
         }
 
+        //
+        // Logica de Utilidades
+        //
         private void cmbCreditos_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbCreditos.SelectedIndex == 0)
@@ -131,6 +173,9 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelesRegistros
             }
         }
 
+        //
+        // Logica de Registro
+        //
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             if (!VerificarCampos())
@@ -152,30 +197,49 @@ namespace PA4IM9_20262_Equipo2.Vistas.PanelesRegistros
 
             Contactos Contacto = new Contactos
             {
-                Correo = chkCorreo.Checked ? txtCorreo.Text : "",
-                Domicilio = chkDireccion.Checked ? txtDireccion.Text : "",
-                Telefono = chkTelefono.Checked ? txtTelefono.Text : "",
+                Correo = chkCorreo.Checked ? txtCorreo.Text : "Sin Aclarar.",
+                Domicilio = chkDireccion.Checked ? txtDireccion.Text : "Sin Aclarar.",
+                Telefono = chkTelefono.Checked ? txtTelefono.Text : "Sin Aclarar.",
                 LinkImagen = chkImagen.Checked ? txtLinkImagen.Text : ""
             };
 
-            Mayor titular = new Mayor
+            Mayor Titular;
+            XmlNode viejoTitular = escritor.DocumentElement.SelectSingleNode($"//mayor[titular='{txtNombre.Text}']");
+            if (viejoTitular == null) {
+                Titular = new Mayor
+                {
+                    Cuenta = Cuenta.ToString(),
+                    NoTargeta = Sistema.GenerarID(rutaMayor, raizMayor, 3),
+                    Titular = txtNombre.Text,
+                    FechaAlta = DateTime.Now.ToString(),
+                    DatosContacto = Contacto,
+                    LimiteCredito = chkCredito.Checked ? txtCredito.Text : "Sin Aclarar",
+                    RenMayores = new RenMayor[0]
+                };
+            }
+            else
             {
-                Cuenta = Cuenta.ToString(),
-                NoTargeta = Sistema.GenerarID(rutaMayor, raizMayor, 3),
-                Titular = txtNombre.Text,
-                DatosContacto = Contacto,
-                LimiteCredito = chkCredito.Checked ? txtCredito.Text : "Sin Aclarar",
-            };
+                Titular = ConvertidorXml.ElementoToObjeto<Mayor>((XmlElement)viejoTitular);
 
-            PaqueteTitular paqueteTitular = titular.ToPaquete();
+                Titular.DatosContacto = Contacto;
+                Titular.FechaAlta = Titular.FechaAlta != "" ? Titular.FechaAlta : DateTime.Now.ToString();
+                Titular.LimiteCredito = chkCredito.Checked ? txtCredito.Text : "Sin Aclarar";
+            }
 
-            XmlElement nuevoTitular = ConvertidorXml.ObjetoToElemento(escritor, titular);
-            escritor.DocumentElement.AppendChild(nuevoTitular);
+            PaqueteTitular paqueteTitular = Titular.ToPaquete();
+
+            XmlElement nuevoTitular = ConvertidorXml.ObjetoToElemento(escritor, Titular);
+            if (viejoTitular == null)
+                escritor.DocumentElement.AppendChild(nuevoTitular);
+            else escritor.ReplaceChild(nuevoTitular, viejoTitular);
             escritor.Save(rutaMayor);
 
             escritor.Load(rutaPaquete);
             XmlElement nuevoPaquete = ConvertidorXml.ObjetoToElemento(escritor, paqueteTitular);
-            escritor.DocumentElement.AppendChild(nuevoPaquete);
+            XmlNode viejoPaquete = escritor.DocumentElement.SelectSingleNode($"//paqueteTitular[titular='{txtNombre.Text}']");
+            if (viejoPaquete == null)
+                escritor.DocumentElement.AppendChild(nuevoPaquete);
+            else escritor.ReplaceChild(nuevoPaquete, viejoPaquete);
             escritor.Save(rutaPaquete);
 
             this.Close();

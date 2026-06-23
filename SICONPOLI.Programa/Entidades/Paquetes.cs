@@ -37,6 +37,7 @@ namespace PA4IM9_20262_Equipo2.Entidades
     public class PaqueteVerificacion
     {
         public string Codigo { get; set; }
+        public string Nombre { get; set; }
         public static int indice = 0;
     }
     public class PaqueteRecuperacion
@@ -53,6 +54,7 @@ namespace PA4IM9_20262_Equipo2.Entidades
         public string Factura { get; set; }
         public string Colaborador { get; set; }
         public string Destinatario { get; set; }
+        public string Emisor { get; set; }
         public string FechaEmision { get; set; }
         public string FechaExpiracion { get; set; }
         public string Subtotal { get; set; }
@@ -63,7 +65,8 @@ namespace PA4IM9_20262_Equipo2.Entidades
     public class PaqueteProducto
     {
         public string Producto { get; set; }
-        public int Cantidad { get; set; }
-        public int Monto { get; set; }
+        public decimal Cantidad { get; set; }
+        public string TextoCostoUni { get; set; }
+        public decimal Monto { get; set; }
     }
 }

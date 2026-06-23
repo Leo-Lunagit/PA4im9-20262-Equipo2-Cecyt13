@@ -51,12 +51,16 @@ namespace PA4IM9_20262_Equipo2.Modulos
 
     public static class MEMORIA
     {
-        public static PaqueteAlmacen[] Productos = new PaqueteAlmacen[0];
-        public static PaqueteTitular[] Clientes = new PaqueteTitular[0];
-        public static PaqueteTitular[] Proveedores = new PaqueteTitular[0];
+        public static PaqueteAlmacen[] Productos;
+        public static PaqueteTitular[] Clientes;
+        public static PaqueteTitular[] Proveedores;
 
         public static void CargarMemorias()
         {
+            Productos = new PaqueteAlmacen[0];
+            Clientes = new PaqueteTitular[0];
+            Proveedores = new PaqueteTitular[0];
+
             Sistema.VerificarArchivo(Rutas.Productos, Raices.Productos);
             Sistema.VerificarArchivo(Rutas.Proveedores, Raices.Proveedores);
             Sistema.VerificarArchivo(Rutas.Clientes, Raices.Clientes);
@@ -85,7 +89,8 @@ namespace PA4IM9_20262_Equipo2.Modulos
         public static string[] Roles = { "administrador", "colaborador", "cliente" };
         public static string RolPredefinido = Roles[2];
         public static string banderaRecordar = "recordado";
-        //
+        // Variables empresariales y del contavles.
+        public static string NombreEmpresa = "SIRETECH Poli";
         public static decimal PorcentajeUtilida = .50m;
 
         // Verificacion de la existencia de un archivo XML.

@@ -156,16 +156,16 @@ namespace PA4IM9_20262_Equipo2.Modulos
             {Footer(PaqueteRecuperacion.indice)}
     {FinTabla}";
         }
-        public static string Producto()
+        public static string Producto(PaqueteProducto Paquete)
         {
-            return $@"
-                        <tr style='border-bottom: 1px solid #EDF2F7; font-family: ""Segoe UI"", ""Gill Sans"", Calibri, sans-serif;'>
-                            <td style='padding: 10px; color: #4A5568;'>Gabinete Acteck (E-Waste Clase B)</td>
-                            <td align='center' style='color: #4A5568;'>2</td>
-                            <td align='right' style='font-family: monospace; color: #4A5568;'>$120.00</td>
-                        </tr>";
+            return $@"<tr style='border-bottom: 1px solid #EDF2F7; font-family: ""Segoe UI"", ""Gill Sans"", Calibri, sans-serif;'>
+                            <td align='left' style='padding: 10px; color: #4A5568;'>{Paquete.Producto}</td>
+                            <td align='center' style='color: #4A5568;'>{Paquete.Cantidad}</td>
+                            <td align='right' style='font-family: monospace; color: #4A5568;'>{Paquete.Monto:C2}</td>
+                        </tr>
+                        ";
         }
-        public static string Paquete(PaqueteFactura Paquete)
+        public static string Factura(PaqueteFactura Paquete)
         {
             return $@"
 {Declaracion}
@@ -194,6 +194,7 @@ namespace PA4IM9_20262_Equipo2.Modulos
                                     <td width='50%' style='vertical-align: top; border-left: 1px solid #E2E8F0; padding-left: 15px;'>
                                         <strong>Emisión:</strong> {Paquete.FechaEmision}<br>
                                         <strong>Expiración:</strong> {Paquete.FechaExpiracion}<br>
+                                        <strong>Emisor:</strong> {Paquete.Emisor}<br>
                                         <strong>Estado:</strong> <span style='background-color: #DCFCE7; color: #15803D; padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: bold;'>Procesado</span>
                                     </td>
                                 </tr>
@@ -205,12 +206,13 @@ namespace PA4IM9_20262_Equipo2.Modulos
                 <table width='100%' border='0' cellpadding='8' cellspacing='0' style='border-collapse: collapse; font-size: 13px; margin-bottom: 20px; border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden;'>
                     <thead>
                         <tr style='background-color: #F1F9F3; border-bottom: 2px solid #5D8E1E;'>
-                            <th align='left' style='color: #184725; font-weight: bold; font-size: 12px; padding: 10px;'>Descripción del Componente</th>
-                            <th align='center' style='color: #184725; font-weight: bold; font-size: 12px; width: 60px;'>Cant.</th>
-                            <th align='right' style='color: #184725; font-weight: bold; font-size: 12px; width: 90px; padding: 10px;'>Monto/Valor</th>
+                            <th align='left' style='color: #184725; font-weight: bold; font-size: 12px; padding: 10px;'>Producto</th>
+                            <th align='center' style='color: #184725; font-weight: bold; font-size: 12px; width: 60px;'>Peso. Kg</th>
+                            <th align='right' style='color: #184725; font-weight: bold; font-size: 12px; width: 90px; padding: 10px;'>Monto</th>
                         </tr>
                     </thead>
                     <tbody>
+
                         {Paquete.ProductosHtml}
                     </tbody>
                 </table>

@@ -167,6 +167,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vistas\PanelesRegistros\AgregarCorreo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\PanelesRegistros\AgregarCorreo.Designer.cs">
+      <DependentUpon>AgregarCorreo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\PanelesRegistros\AgregarTitular.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +184,24 @@
     </Compile>
     <Compile Include="Vistas\PanelesRegistros\PanelRegistros.Designer.cs">
       <DependentUpon>PanelRegistros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\PanelesRegistros\RenProductos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Vistas\PanelesRegistros\RenProductos.Designer.cs">
+      <DependentUpon>RenProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\PanelesRegistros\Tiket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\PanelesRegistros\Tiket.Designer.cs">
+      <DependentUpon>Tiket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\txtCorreoVerificado.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Entidades\txtCorreoVerificado.Designer.cs">
+      <DependentUpon>txtCorreoVerificado.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Vistas\CamposSubCuentas\Campos.resx">
       <DependentUpon>Campos.cs</DependentUpon>
@@ -238,6 +262,9 @@
       <DependentUpon>MenuPrincipal.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\PanelesRegistros\AgregarCorreo.resx">
+      <DependentUpon>AgregarCorreo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vistas\PanelesRegistros\AgregarTitular.resx">
       <DependentUpon>AgregarTitular.cs</DependentUpon>
     </EmbeddedResource>
@@ -246,6 +273,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\PanelesRegistros\PanelRegistros.resx">
       <DependentUpon>PanelRegistros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\PanelesRegistros\RenProductos.resx">
+      <DependentUpon>RenProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\PanelesRegistros\Tiket.resx">
+      <DependentUpon>Tiket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Entidades\txtCorreoVerificado.resx">
+      <DependentUpon>txtCorreoVerificado.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
